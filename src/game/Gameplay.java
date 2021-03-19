@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class Gameplay extends JPanel {
 	private int delay = 8;
 	private Timer time;
-	
+	//|||||||||||||||||||||||||||||||||||||||||| NOT USE
 	public Gameplay() {
 //		time = new Timer();
 //		time.start();

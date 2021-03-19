@@ -1,15 +1,13 @@
 package model;
 
+import properties.Hunger;
+import properties.Position;
+
 public class Goldfish extends Fish {
-	
-	public Goldfish() {
-		super();
-	}
-	
-	@Override
-	public void Move() {
-		// TODO Auto-generated method stub
-		
+
+	public Goldfish(String n, Position p, Hunger h) {
+		super(n, p, h);
+		// TODO Auto-generated constructor stub
 	}
 
 }
