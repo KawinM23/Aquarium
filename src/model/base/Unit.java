@@ -7,6 +7,11 @@ public abstract class Unit {
 	private String name;
 	private double posX;
 	private double posY;
+	private double width;
+	private double height;
+	private double velX;	
+	private double velY;
+	private int speed;
 
 	private Image img;
 
@@ -21,6 +26,11 @@ public abstract class Unit {
 		return dis;
 	}
 
+	//HeadToUnit = set velocity
+	
+	//HeadToPoint
+	
+	//GETTER SETTER
 	public String getName() {
 		return name;
 	}
@@ -44,6 +54,51 @@ public abstract class Unit {
 	public void setPosY(double posY) {
 		this.posY = posY;
 	}
+	
+	public void setPos(double posX, double posY) {
+		this.posX = posX;
+		this.posY = posY;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public double getVelX() {
+		return velX;
+	}
+
+	public void setVelX(double velX) {
+		this.velX = velX;
+	}
+
+	public double getVelY() {
+		return velY;
+	}
+
+	public void setVelY(double velY) {
+		this.velY = velY;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
 
 	public Image getImg() {
 		return img;
@@ -52,5 +107,8 @@ public abstract class Unit {
 	public void setImg(Image img) {
 		this.img = img;
 	}
+	
+
+
 
 }
