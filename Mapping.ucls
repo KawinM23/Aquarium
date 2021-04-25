@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="game.main1" project="Aquarium" file="/Aquarium/src/game/main1.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="124" width="130" x="41" y="37"/>    
+    <position height="124" width="130" x="1361" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="manager.GameManager" project="Aquarium" 
     file="/Aquarium/src/manager/GameManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="127" x="403" y="37"/>    
+    <position height="196" width="149" x="915" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="manager.TankManager" project="Aquarium" 
     file="/Aquarium/src/manager/TankManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="120" x="1081" y="37"/>    
+    <position height="214" width="217" x="1104" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="manager.ViewManager" project="Aquarium" 
     file="/Aquarium/src/manager/ViewManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="152" x="211" y="37"/>    
+    <position height="160" width="152" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="model.base.Fish" project="Aquarium" file="/Aquarium/src/model/base/Fish.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="184" x="346" y="722"/>    
+    <position height="141" width="177" x="347" y="812"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="model.base.Unit" project="Aquarium" file="/Aquarium/src/model/base/Unit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="645" width="183" x="570" y="37"/>    
+    <position height="735" width="205" x="455" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="model.base.VerticalUnit" project="Aquarium" 
     file="/Aquarium/src/model/base/VerticalUnit.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="87" width="105" x="570" y="722"/>    
+    <position height="87" width="320" x="564" y="812"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="properties.Hunger" project="Aquarium" file="/Aquarium/src/properties/Hunger.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="104" x="793" y="37"/>    
+    <position height="286" width="182" x="233" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="properties.Production" project="Aquarium" 
     file="/Aquarium/src/properties/Production.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="104" x="937" y="37"/>    
+    <position height="268" width="175" x="700" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

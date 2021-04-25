@@ -7,11 +7,11 @@ import model.base.Fish;
 import model.base.Unit;
 
 public class TankManager {
-	private static GraphicsContext gc;
+
 	
-	private static ArrayList<Unit> unitList;
+	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
 	
-	private static ArrayList<Fish> fishList;
+	private static ArrayList<Fish> fishList = new ArrayList<Fish>();
 
 	
 	
@@ -31,13 +31,15 @@ public class TankManager {
 		TankManager.fishList = fishList;
 	}
 
-	public static void update() {
+
+
+	public static void update(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		for(Unit u:unitList) {
 			u.draw(gc);
 		}
 		for(Fish f:fishList) {
-			f.update();
+			f.update(0);;
 		}
 	}
 	

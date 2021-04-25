@@ -49,6 +49,17 @@ public abstract class Unit {
 		this.setVelX((x - this.getPosX() / this.distance(x,y)*this.getSpeed()));
 		this.setVelY((y - this.getPosY() / this.distance(x,y)*this.getSpeed()));
 	}
+	
+	public void move(int fr) {
+		
+		double deltaTime = 1.0/fr;
+		System.out.println("move"+this.getPosX()+" "+this.getPosY()+" "+fr);
+		this.setPosX(this.getPosX() + this.getVelX()*deltaTime);
+		this.setPosY(this.getPosY() + this.getVelY()*deltaTime);
+	}
+	
+	
+	
 	//GETTER SETTER
 	public String getName() {
 		return name;
@@ -108,6 +119,11 @@ public abstract class Unit {
 	}
 
 	public void setVelY(double velY) {
+		this.velY = velY;
+	}
+	
+	public void setVel(double velX,double velY){
+		this.velX = velX;
 		this.velY = velY;
 	}
 

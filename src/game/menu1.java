@@ -54,7 +54,7 @@ public class menu1 extends Application {
 		Button button = new Button("Add");
 	    AnchorPane.setTopAnchor(button, 10.0);
 	    AnchorPane.setRightAnchor(button, 10.0);
-	    anchorPane.getChildren().addAll(list, button);
+//	    AnchorPane.getChildren().addAll(list, button);
 	}
 	
 	public static void main(String[] args) {
