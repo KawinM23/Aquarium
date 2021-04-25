@@ -22,8 +22,7 @@ public abstract class Unit {
 	public double distance(Unit u) {
 		double deltaX = u.getPosX() - this.getPosX();
 		double deltaY = u.getPosY() - this.getPosY();
-		double dis = Math.hypot(deltaX, deltaY);
-		return dis;
+		return Math.hypot(deltaX, deltaY);
 	}
 
 	//HeadToUnit = set velocity
