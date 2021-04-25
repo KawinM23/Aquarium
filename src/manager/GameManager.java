@@ -1,8 +1,8 @@
 package manager;
 
 public class GameManager {
-	private static int WIDTH = 1000;
-	private static int HEIGHT = 600;
+	private static int WIDTH = 640;
+	private static int HEIGHT = 480;
 	
 	
 	public static int getWIDTH() {
