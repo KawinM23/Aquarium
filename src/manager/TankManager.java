@@ -3,15 +3,17 @@ package manager;
 import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
+import model.Food;
 import model.base.Fish;
 import model.base.Unit;
 
 public class TankManager {
-	private static GraphicsContext gc;
+
 	
-	private static ArrayList<Unit> unitList;
+	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
 	
-	private static ArrayList<Fish> fishList;
+	private static ArrayList<Fish> fishList = new ArrayList<Fish>();
+	private static ArrayList<Food> foodList = new ArrayList<Food>();
 
 	
 	
@@ -30,14 +32,25 @@ public class TankManager {
 	public static void setFishList(ArrayList<Fish> fishList) {
 		TankManager.fishList = fishList;
 	}
+	
+	public static ArrayList<Food> getFoodList() {
+		return foodList;
+	}
 
-	public static void update() {
+	public static void setFoodList(ArrayList<Food> foodList) {
+		TankManager.foodList = foodList;
+	}
+
+	public static void update(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		for(Unit u:unitList) {
 			u.draw(gc);
 		}
 		for(Fish f:fishList) {
-			f.update();
+			f.update(GameManager.getFRAMERATE());
+		}
+		for(Food f:foodList) {
+			f.update(GameManager.getFRAMERATE());
 		}
 	}
 	
