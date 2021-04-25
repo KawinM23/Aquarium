@@ -14,6 +14,18 @@ public abstract class Unit {
 	private int speed;
 
 	private Image img;
+	
+	
+
+	public Unit(String name, double posX, double posY, double width, double height, int speed) {
+		super();
+		this.name = name;
+		this.posX = posX;
+		this.posY = posY;
+		this.width = width;
+		this.height = height;
+		this.speed = speed;
+	}
 
 	public abstract void update(long t);
 

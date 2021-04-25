@@ -25,7 +25,7 @@ public class ViewManager {
 		mainPane.getChildren().add(canvas);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
-		Thread thread = new Thread(new Runnable() {
+		Thread threadTank = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
@@ -53,8 +53,8 @@ public class ViewManager {
 
 		});
 		// don't let thread prevent JVM shutdown
-		thread.setDaemon(true);
-		thread.start();
+		threadTank.setDaemon(true);
+		threadTank.start();
 
 	}
 

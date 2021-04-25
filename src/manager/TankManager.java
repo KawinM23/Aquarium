@@ -1,5 +1,9 @@
 package manager;
 
-public class TankManager {
+import java.util.ArrayList;
 
+import model.base.Unit;
+
+public class TankManager {
+	private static ArrayList<Unit> unitList;
 }

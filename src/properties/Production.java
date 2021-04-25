@@ -1,5 +1,8 @@
 package properties;
 
-public class Production {
+import model.base.Unit;
 
+public class Production {
+	private Unit product;
+	
 }
