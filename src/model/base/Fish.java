@@ -14,6 +14,5 @@ public abstract class Fish extends Unit {
 		super(name, posX, posY, width, height, speed);
 		this.hunger = hunger;
 		this.production = production;
-		// TODO Auto-generated constructor stub
 	}
 }
