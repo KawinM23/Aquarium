@@ -24,7 +24,7 @@ public class Guppy extends Fish{
 	}
 
 	@Override
-	public void update(long t) {
+	public void update(int fr) {
 		// TODO Auto-generated method stub
 //		switch(hunger.checkHunger()) {
 //		case 0:
@@ -38,14 +38,13 @@ public class Guppy extends Fish{
 //			break;
 //		}
 		
-		this.move(GameManager.getFRAMERATE());
+		this.move(fr);
 		
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		System.out.println("Guppy" + System.nanoTime());
 		gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
 		
 	}

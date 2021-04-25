@@ -22,7 +22,7 @@ public abstract class Unit {
 		this.posY = posY;
 	}
 
-	public abstract void update(long t);
+	public abstract void update(int fr);
 
 	public abstract void draw(GraphicsContext gc);
 
@@ -53,7 +53,6 @@ public abstract class Unit {
 	public void move(int fr) {
 		
 		double deltaTime = 1.0/fr;
-		System.out.println("move"+this.getPosX()+" "+this.getPosY()+" "+fr);
 		this.setPosX(this.getPosX() + this.getVelX()*deltaTime);
 		this.setPosY(this.getPosY() + this.getVelY()*deltaTime);
 	}
