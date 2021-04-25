@@ -15,4 +15,7 @@ public abstract class Fish extends Unit {
 		this.hunger = hunger;
 		this.production = production;
 	}
+	
+	//void update
+	
 }

@@ -9,13 +9,11 @@ public abstract class Unit {
 	private double posY;
 	private double width;
 	private double height;
-	private double velX;	
+	private double velX;
 	private double velY;
 	private int speed;
 
 	private Image img;
-	
-	
 
 	public Unit(String name, double posX, double posY, double width, double height, int speed) {
 		super();
@@ -36,11 +34,24 @@ public abstract class Unit {
 		double deltaY = u.getPosY() - this.getPosY();
 		return Math.hypot(deltaX, deltaY);
 	}
+	
+	public double distance(double x,double y) {
+		double deltaX = x - this.getPosX();
+		double deltaY = y - this.getPosY();
+		return Math.hypot(deltaX, deltaY);
+	}
 
-	//HeadToUnit = set velocity
-	
-	//HeadToPoint
-	
+	// HeadToUnit = set velocity
+	public void headToUnit(Unit u) {
+		this.setVelX((u.getPosX() - this.getPosX() / this.distance(u))*this.getSpeed());
+		this.setVelY((u.getPosY() - this.getPosY() / this.distance(u))*this.getSpeed());
+	}
+
+	// HeadToPoint
+	public void headToPos(double x,double y) {
+		this.setVelX((x - this.getPosX() / this.distance(x,y)*this.getSpeed()));
+		this.setVelY((y - this.getPosY() / this.distance(x,y)*this.getSpeed()));
+	}
 	//GETTER SETTER
 	public String getName() {
 		return name;
@@ -65,7 +76,7 @@ public abstract class Unit {
 	public void setPosY(double posY) {
 		this.posY = posY;
 	}
-	
+
 	public void setPos(double posX, double posY) {
 		this.posX = posX;
 		this.posY = posY;
@@ -118,8 +129,5 @@ public abstract class Unit {
 	public void setImg(Image img) {
 		this.img = img;
 	}
-	
-
-
 
 }
