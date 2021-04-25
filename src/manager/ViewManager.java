@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Guppy;
 
 public class ViewManager {
 	private Pane mainPane;
@@ -24,6 +25,10 @@ public class ViewManager {
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		mainPane.getChildren().add(canvas);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
+		
+		Guppy g1 = new Guppy("g1",500,300);
+		TankManager.getUnitList().add(g1);
+		TankManager.getFishList().add(g1);
 
 		Thread threadTank = new Thread(new Runnable() {
 
@@ -42,7 +47,7 @@ public class ViewManager {
 				while (true) {
 					try {
 						Thread.sleep(20);//50hz
-
+						TankManager.update();
 					} catch (InterruptedException ex) {
 					}
 
