@@ -7,15 +7,18 @@ import properties.Production;
 public abstract class Fish extends Unit {
 	
 
-	private Hunger hunger;
-	private Production production;
+	protected Hunger hunger;
+	protected Production production;
 	
-	public Fish(String name, double posX, double posY, double width, double height, int speed,Hunger hunger,Production production) {
-		super(name, posX, posY, width, height, speed);
+	public Fish(String name, double posX, double posY) {
+		super(name, posX, posY);
 		this.hunger = hunger;
 		this.production = production;
 	}
 	
 	//void update
-	
+	public void update() {
+		
+		
+	}
 }

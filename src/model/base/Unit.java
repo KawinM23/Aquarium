@@ -15,14 +15,11 @@ public abstract class Unit {
 
 	private Image img;
 
-	public Unit(String name, double posX, double posY, double width, double height, int speed) {
+	public Unit(String name, double posX, double posY) {
 		super();
 		this.name = name;
 		this.posX = posX;
 		this.posY = posY;
-		this.width = width;
-		this.height = height;
-		this.speed = speed;
 	}
 
 	public abstract void update(long t);

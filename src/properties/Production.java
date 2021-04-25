@@ -17,6 +17,15 @@ public class Production {
 		this.lastProduce = System.nanoTime();
 		this.cooldown = cooldown;
 	}
+	
+	public void checkProduce(){
+		
+	}
+	
+	
+	
+	
+	
 	public Unit getProduct() {
 		return product;
 	}
