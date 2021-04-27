@@ -40,8 +40,8 @@ public abstract class Unit {
 
 	// HeadToUnit = set velocity
 	public void headToUnit(Unit u) {
-		this.setVelX((u.getPosX() - this.getPosX() / this.distance(u))*this.getSpeed());
-		this.setVelY((u.getPosY() - this.getPosY() / this.distance(u))*this.getSpeed());
+		this.setVelX(((u.getPosX() - this.getPosX()) / this.distance(u))*this.getSpeed());
+		this.setVelY(((u.getPosY() - this.getPosY()) / this.distance(u))*this.getSpeed());
 	}
 
 	// HeadToPoint

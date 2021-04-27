@@ -27,14 +27,19 @@ public class ViewManager {
 		mainPane.getChildren().add(canvas);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		
-		/////////////////////////
+		///////////////////////// TEST
+		
 		Guppy g1 = new Guppy("g1",500,300);
 		TankManager.getUnitList().add(g1);
 		TankManager.getFishList().add(g1);
 		
-		Food f1 = new Food("f1",200,300);
+		Food f1 = new Food("f1",200,100);
 		TankManager.getUnitList().add(f1);
 		TankManager.getFoodList().add(f1);
+		
+		Food f2 = new Food("f2",800,200);
+		TankManager.getUnitList().add(f2);
+		TankManager.getFoodList().add(f2);
 
 		
 		//////////////////////////

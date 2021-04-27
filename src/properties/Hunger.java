@@ -1,17 +1,19 @@
 package properties;
 
+import model.Food;
 import model.base.Unit;
 
 public class Hunger {
 
-	private Unit food;
+	private int foodType;
+	
 	private long lastFed;
 	private double cooldown;
 	private double lifetime;
 
-	public Hunger(Unit food, double cooldown, double lifetime) {
+	public Hunger(int foodType, double cooldown, double lifetime) {
 		super();
-		this.food = food;
+		this.foodType = foodType;
 		this.lastFed = System.nanoTime();
 		this.cooldown = cooldown;
 		this.lifetime = lifetime;
@@ -29,12 +31,12 @@ public class Hunger {
 
 	}
 
-	public Unit getFood() {
-		return food;
+	public int getFoodType() {
+		return foodType;
 	}
 
-	public void setFood(Unit food) {
-		this.food = food;
+	public void setFoodType(int foodType) {
+		this.foodType = foodType;
 	}
 
 	public long getLastFed() {
