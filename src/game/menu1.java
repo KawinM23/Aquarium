@@ -18,7 +18,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class menu1 extends Application {
-	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomLeft, borderRadius,
+	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
 	final double[][] buttonDetail = { { 354.0, 43.0, 576.0, 116.0, 100.0, 40.0 },
 			{ 354.0, 138.0, 576.0, 192.0, 30.0, 40.0 }, { 354.0, 207.0, 576.0, 262.0, 30.0, 40.0 },
