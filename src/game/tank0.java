@@ -1,7 +1,7 @@
 package game;
 
-import manager.ViewManager;
 import manager.ScreenController;
+import manager.ViewManager;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,19 +17,18 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
-public class menu1 extends Application {
+public class tank0 extends Application {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
-	final double[][] buttonDetail = { { 354.0, 43.0, 576.0, 116.0, 100.0, 40.0 },
-			{ 354.0, 138.0, 576.0, 192.0, 30.0, 40.0 }, { 354.0, 207.0, 576.0, 262.0, 30.0, 40.0 },
-			{ 354.0, 282.0, 576.0, 357.0, 100.0, 40.0 }, { 402.0, 377.0, 529.0, 409.0, 80.0, 20.0 },
-			{ 323.0, 412.0, 417.0, 443.0, 80.0, 20.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 20.0 },
-			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
+	final double[][] buttonDetail = { { 22.0, 3.0, 72.0, 46.0, 100.0, 20.0 }, { 91.0, 3.0, 141.0, 46.0, 80.0, 20.0 },
+			{ 148.0, 3.0, 198.0, 46.0, 80.0, 20.0 }, { 221.0, 3.0, 271.0, 46.0, 100.0, 20.0 },
+			{ 295.0, 3.0, 344.0, 46.0, 80.0, 20.0 }, { 367.0, 3.0, 417.0, 46.0, 80.0, 20.0 },
+			{ 440.0, 3.0, 490.0, 46.0, 80.0, 20.0 }, { 532.0, 3.0, 617.0, 25.0, 80.0, 20.0 } };
+	private int money = 0;
 
 	@Override
 	public void start(Stage stage) {
@@ -42,22 +41,40 @@ public class menu1 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
-		String image_path = "file:res/image/menu_editted2.jpg";
-		drawImage(gc, image_path);
+		String imagePathMenubar = "file:res/image/menubar.jpg";
+		String imagePathBackground = "file:res/image/aquarium1.jpg";
+		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
+		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
 		String musicFile = "res/sound/buttonclick.mp3"; // For example
 
 		Media sound = new Media(new File(musicFile).toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		//mediaPlayer.setAutoPlay(true);
-		ScreenController screen = new ScreenController(scene);
 		for (int i = 0; i < buttonDetail.length; i++) {
-			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer, screen);
+			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
 		}
-		;
-		screen.addScreen("tank0", root);
-		tank0 tank0 = new tank0();
-		tank0.addScreen(screen);
+
 		stage.show();
+	}
+
+	public void addScreen(ScreenController screen) {
+		AnchorPane root = new AnchorPane();
+		Canvas canvas = new Canvas(640 * 1.5, 480 * 1.5);
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		root.getChildren().add(canvas);
+		setBackGround(gc);
+		String imagePathMenubar = "file:res/image/menubar.jpg";
+		String imagePathBackground = "file:res/image/aquarium1.jpg";
+		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
+		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
+		String musicFile = "res/sound/buttonclick.mp3"; // For example
+
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		for (int i = 0; i < buttonDetail.length; i++) {
+			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
+		}
+
+		screen.addScreen("tank0", root);
 	}
 
 	private void setBackGround(GraphicsContext gc) {
@@ -68,24 +85,25 @@ public class menu1 extends Application {
 	private void drawImage(GraphicsContext gc, String image_path) {
 		System.out.println(image_path);
 		Image javafx_logo = new Image(image_path);
-		gc.drawImage(javafx_logo, 0, 0, 640 * 1.5, 480 * 1.5);
+		gc.drawImage(javafx_logo, 0, 0);
 	}
 
-	private void drawImageFixSize(GraphicsContext gc, String image_path) {
+	private void drawImageFixSize(GraphicsContext gc, String image_path, double x, double y) {
 		System.out.println(image_path);
 		Image javafx_logo = new Image(image_path);
 
 		// image, x ,y, width, height
-		gc.drawImage(javafx_logo, 40, 40, 600, 200);
+		gc.drawImage(javafx_logo, 0, 0, x, y);
 	}
 
-	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position, MediaPlayer mediaPlayer, ScreenController screen) {
+	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position, MediaPlayer mediaPlayer) {
 		Button button = new Button(buttonText);
 		button.setPrefSize((position[2] - position[0]) * 1.5, (position[3] - position[1]) * 1.5);
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 				+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
-//		button.setBorder(null);
-//		button.setBackground(null);
+		button.setStyle("-fx-background-radius: " + position[4] + "px;");
+//			button.setBorder(null);
+//			button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				System.out.println("Pressed " + buttonText);
@@ -127,9 +145,6 @@ public class menu1 extends Application {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
 				playClickSound(mediaPlayer);
-				if (buttonText.equals("Button 1")) {
-					screen.activate("tank0");
-				}
 			}
 		});
 		button.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -151,7 +166,6 @@ public class menu1 extends Application {
 	}
 
 	private void playClickSound(MediaPlayer mediaPlayer) {
-		mediaPlayer.stop();
 		mediaPlayer.play();
 		// System.out.println("played");
 	}
