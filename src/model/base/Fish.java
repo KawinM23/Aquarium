@@ -1,5 +1,6 @@
 package model.base;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import manager.TankManager;
 import model.Food;
@@ -8,11 +9,48 @@ import properties.Production;
 
 public class Fish extends Unit {
 
+	
 	protected Hunger hunger;
 	protected Production production;
 
 	public Fish(String name, double posX, double posY) {
 		super(name, posX, posY);
+	}
+
+	public void findFood() {
+		// TODO Auto-generated method stub
+
+		switch (this.hunger.getFoodType()) {
+		case 0: // Food
+			if (TankManager.getFoodList().size() != 0) {
+				System.out.println(TankManager.getFishList());
+				Unit nearestFood = TankManager.getFoodList().get(0);
+				for (Food f : TankManager.getFoodList()) {
+					if (this.distance(f) < this.distance(nearestFood)) {
+						nearestFood = f;
+					}
+				}
+				System.out.println(nearestFood.getPosX() + " " + nearestFood.getPosY());
+				System.out.println(this.getVelX() + " " + this.getVelY());
+				
+				//Check Food position and Fish
+				if (nearestFood.getBoundary().contains(new Point2D(this.getPosX()+5, this.getPosY()+40))) {
+					// eat & levelup
+					TankManager.remove(nearestFood);
+					this.setVelZero();
+					this.hunger.feed();
+				} else {
+					this.headToUnit(nearestFood);
+				}
+			} else {
+				// idle
+				this.setVelZero();
+			}
+		case 1: // Guppy mini
+
+		case 2: // Carnivore
+
+		}
 	}
 
 	@Override
@@ -33,34 +71,8 @@ public class Fish extends Unit {
 			System.out.println("" + System.nanoTime() / 1.0e9 + " Dying");
 			break;
 		}
-
+	
 		this.move(fr);
-	}
-
-	public void findFood() {
-		// TODO Auto-generated method stub
-
-		switch (this.hunger.getFoodType()) {
-		case 0: // Food
-			if (TankManager.getFishList().size() != 0) {
-				System.out.println(TankManager.getFishList());
-				Unit nearestFood = TankManager.getFoodList().get(0);
-				for (Food f : TankManager.getFoodList()) {
-					if (this.distance(f) < this.distance(nearestFood)) {
-						nearestFood = f;
-					}
-				}
-				System.out.println(nearestFood.getPosX() + " " + nearestFood.getPosY());
-				System.out.println(this.getVelX() + " " + this.getVelY());
-				this.headToUnit(nearestFood);
-			} else {
-				// idle
-			}
-		case 1: // Guppy mini
-
-		case 2: // Carnivore
-
-		}
 	}
 
 	@Override

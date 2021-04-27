@@ -14,13 +14,14 @@ public class Guppy extends Fish{
 	public Guppy(String name, double posX, double posY){
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
-		this.setWidth(90);
+		this.setWidth(80);
 		this.setHeight(60);
 		this.setSpeed(100);
 		this.setVelX(10);
 		this.setVelY(10);
 		this.setImg(new Image("file:res/image/Guppy.png"));
 		
+		this.growth = 0;
 		this.hunger = new Hunger(0, 3, 15);
 	}
 

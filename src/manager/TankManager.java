@@ -54,5 +54,17 @@ public class TankManager {
 		}
 	}
 	
+	public static void remove(Unit u) {
+		if(TankManager.unitList.contains(u)) {
+			TankManager.unitList.remove(u);
+			if(u.getClass().equals(Fish.class)){
+				TankManager.fishList.remove(u);
+			}
+			if(u.getClass().equals(Food.class)){
+				TankManager.foodList.remove(u);
+			}
+		}
+	}
+	
 	
 }

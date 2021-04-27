@@ -2,6 +2,7 @@ package manager;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -33,13 +34,14 @@ public class ViewManager {
 		TankManager.getUnitList().add(g1);
 		TankManager.getFishList().add(g1);
 		
-		Food f1 = new Food("f1",200,100);
+		Food f1 = new Food("f1",200,50);
 		TankManager.getUnitList().add(f1);
 		TankManager.getFoodList().add(f1);
 		
 		Food f2 = new Food("f2",800,200);
 		TankManager.getUnitList().add(f2);
 		TankManager.getFoodList().add(f2);
+		
 
 		
 		//////////////////////////

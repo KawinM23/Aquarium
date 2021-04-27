@@ -1,5 +1,6 @@
 package model.base;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -57,6 +58,14 @@ public abstract class Unit {
 		this.setPosY(this.getPosY() + this.getVelY()*deltaTime);
 	}
 	
+	
+	public Rectangle2D getBoundary() {
+        return new Rectangle2D(posX, posY, width, height);
+    }
+	
+	public boolean intersects(Unit u) {
+        return this.getBoundary().intersects(u.getBoundary());
+    }
 	
 	
 	//GETTER SETTER
@@ -124,6 +133,11 @@ public abstract class Unit {
 	public void setVel(double velX,double velY){
 		this.velX = velX;
 		this.velY = velY;
+	}
+	
+	public void setVelZero() {
+		this.velX = 0;
+		this.velY = 0;
 	}
 
 	public int getSpeed() {

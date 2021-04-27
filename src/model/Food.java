@@ -12,8 +12,8 @@ public class Food extends Unit {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
 		this.setVel(0, 40);
-		this.setWidth(60);
-		this.setHeight(60);
+		this.setWidth(30);
+		this.setHeight(30);
 		this.setImg(new Image("file:res/image/Food1.png"));
 	}
 
@@ -23,8 +23,7 @@ public class Food extends Unit {
 	public void update(int fr) {
 		// TODO Auto-generated method stub
 		if(this.getPosY()+(this.getHeight()/2.0) > GameManager.getHEIGHT()) {
-			TankManager.getUnitList().remove(this);
-			TankManager.getFoodList().remove(this);
+			TankManager.remove(this);
 			return; //BUG : Some Exception
 		}
 		this.move(fr);

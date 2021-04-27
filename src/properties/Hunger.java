@@ -28,7 +28,10 @@ public class Hunger {
 		} else {
 			return 0;
 		}
-
+	}
+	
+	public void feed() {
+		this.setLastFed(System.nanoTime());
 	}
 
 	public int getFoodType() {
