@@ -23,15 +23,12 @@ public class Fish extends Unit {
 		switch (this.hunger.getFoodType()) {
 		case 0: // Food
 			if (TankManager.getFoodList().size() != 0) {
-				System.out.println(TankManager.getFishList());
 				Unit nearestFood = TankManager.getFoodList().get(0);
 				for (Food f : TankManager.getFoodList()) {
 					if (this.distance(f) < this.distance(nearestFood)) {
 						nearestFood = f;
 					}
 				}
-				System.out.println(nearestFood.getPosX() + " " + nearestFood.getPosY());
-				System.out.println(this.getVelX() + " " + this.getVelY());
 				
 				//Check Food position and Fish
 				if (nearestFood.getBoundary().contains(new Point2D(this.getPosX()+5, this.getPosY()+40))) {
@@ -59,18 +56,20 @@ public class Fish extends Unit {
 		switch (hunger.checkHunger()) {
 		case 0:
 			// idle
-			System.out.println("" + System.nanoTime() / 1.0e9 + " Chill");
+			System.out.println(this.getName() + " Chill");
 			break;
 		case 1:
-			System.out.println("" + System.nanoTime() / 1.0e9 + " Hungry");
+			System.out.println(this.getName() + " Hungry");
 			// find food
 			this.findFood();
 			break;
 		case 2:
 			// die
-			System.out.println("" + System.nanoTime() / 1.0e9 + " Dying");
+			System.out.println(this.getName() + " Dying");
+			TankManager.remove(this);
 			break;
 		}
+		this.production.checkProduce();
 	
 		this.move(fr);
 	}

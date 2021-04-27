@@ -156,4 +156,13 @@ public abstract class Unit {
 		this.img = img;
 	}
 
+	public double getCenterX() {
+		// TODO Auto-generated method stub
+		return posX+(width/2.0);
+	}
+	public double getCenterY() {
+		// TODO Auto-generated method stub
+		return posY+(height/2.0);
+	}
+
 }
