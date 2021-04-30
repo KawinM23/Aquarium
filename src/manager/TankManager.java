@@ -13,11 +13,13 @@ import model.base.Unit;
 public class TankManager {
 
 	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
-	private static ArrayList<Unit> removeList = new ArrayList<Unit>();
+
 
 	private static ArrayList<Fish> fishList = new ArrayList<Fish>();
 	private static ArrayList<Food> foodList = new ArrayList<Food>();
 	private static ArrayList<Money> moneyList = new ArrayList<Money>();
+	
+	private static ArrayList<Unit> removeFishList = new ArrayList<Unit>();
 
 	public static ArrayList<Unit> getUnitList() {
 		return unitList;
@@ -50,8 +52,8 @@ public class TankManager {
 		}
 		for (Fish f : fishList) {
 			f.update(GameManager.getFRAMERATE());
-			
 		}
+		fishList.removeAll(removeFishList); 
 		System.out.println(foodList);
 		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
@@ -79,13 +81,14 @@ public class TankManager {
 				}
 			}
 			if (u instanceof Fish) {
-				Iterator<Fish> fishItr = fishList.iterator();
-				while (fishItr.hasNext()) {
-					Fish unit = fishItr.next();
-					if (unit.equals(u)) {
-						fishItr.remove();
-					}
-				}
+				removeFishList.add(u);
+//				Iterator<Fish> fishItr = fishList.iterator();
+//				while (fishItr.hasNext()) {
+//					Fish unit = fishItr.next();
+//					if (unit.equals(u)) {
+//						fishItr.remove();
+//					}
+//				}
 			}
 			if (u instanceof Food) {
 				Iterator<Food> foodItr = foodList.iterator();
