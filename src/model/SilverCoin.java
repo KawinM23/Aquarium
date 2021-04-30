@@ -8,8 +8,9 @@ public class SilverCoin extends Money {
 	public SilverCoin(String name, double posX, double posY) {
 		super(name, posX, posY);
 		
+		
 		// TODO Auto-generated constructor stub
-		this.setImg(new Image("file:res/image/Food1.png"));
+		this.setImg(new Image("file:res/image/SilverCoin.png"));
 	}
 	
 }

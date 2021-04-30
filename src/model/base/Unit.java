@@ -6,10 +6,12 @@ import javafx.scene.image.Image;
 
 public abstract class Unit {
 	private String name;
+	
 	private double posX;
 	private double posY;
 	private double width;
 	private double height;
+	
 	private double velX;
 	private double velY;
 	private int speed;

@@ -6,6 +6,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -29,6 +30,8 @@ public class ViewManager {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		///////////////////////// TEST
+		
+		Image bc = new Image("file:res/image/aquarium1.jpg");
 
 		Guppy g1 = new Guppy("g1", 500, 300);
 		TankManager.getUnitList().add(g1);
@@ -52,8 +55,9 @@ public class ViewManager {
 					@Override
 					public void run() {
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-						gc.setFill(Color.rgb(102, 204, 255));
-						gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
+//						gc.setFill(Color.rgb(102, 204, 255));
+//						gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 						TankManager.update(gc);
 					}
 				};

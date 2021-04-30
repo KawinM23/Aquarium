@@ -9,12 +9,15 @@ import properties.Production;
 
 public class Fish extends Unit {
 
-	
+	protected boolean isFacingRight;
 	protected Hunger hunger;
 	protected Production production;
 
 	public Fish(String name, double posX, double posY) {
 		super(name, posX, posY);
+		this.isFacingRight = false;
+		this.hunger = null;
+		this.production = null;
 	}
 
 	public void findFood() {
