@@ -27,23 +27,21 @@ public class ViewManager {
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		mainPane.getChildren().add(canvas);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		
+
 		///////////////////////// TEST
-		
-		Guppy g1 = new Guppy("g1",500,300);
+
+		Guppy g1 = new Guppy("g1", 500, 300);
 		TankManager.getUnitList().add(g1);
 		TankManager.getFishList().add(g1);
-		
-		Food f1 = new Food("f1",200,50);
+
+		Food f1 = new Food("f1", 200, 50);
 		TankManager.getUnitList().add(f1);
 		TankManager.getFoodList().add(f1);
-		
-		Food f2 = new Food("f2",800,200);
+
+		Food f2 = new Food("f2", 800, 200);
 		TankManager.getUnitList().add(f2);
 		TankManager.getFoodList().add(f2);
-		
 
-		
 		//////////////////////////
 		Thread threadTank = new Thread(new Runnable() {
 
@@ -62,7 +60,7 @@ public class ViewManager {
 
 				while (true) {
 					try {
-						Thread.sleep(20);//50hz
+						Thread.sleep(20);// 50hz
 					} catch (InterruptedException ex) {
 					}
 
@@ -72,6 +70,7 @@ public class ViewManager {
 			}
 
 		});
+
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
 		threadTank.start();
@@ -82,5 +81,4 @@ public class ViewManager {
 		return mainStage;
 	}
 
-	
 }

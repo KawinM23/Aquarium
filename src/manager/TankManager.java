@@ -1,7 +1,9 @@
 package manager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import model.Food;
 import model.base.Fish;
@@ -10,16 +12,13 @@ import model.base.Unit;
 
 public class TankManager {
 
-	
 	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
 	private static ArrayList<Unit> removeList = new ArrayList<Unit>();
-	
+
 	private static ArrayList<Fish> fishList = new ArrayList<Fish>();
 	private static ArrayList<Food> foodList = new ArrayList<Food>();
 	private static ArrayList<Money> moneyList = new ArrayList<Money>();
 
-	
-	
 	public static ArrayList<Unit> getUnitList() {
 		return unitList;
 	}
@@ -35,7 +34,7 @@ public class TankManager {
 	public static void setFishList(ArrayList<Fish> fishList) {
 		TankManager.fishList = fishList;
 	}
-	
+
 	public static ArrayList<Food> getFoodList() {
 		return foodList;
 	}
@@ -46,37 +45,58 @@ public class TankManager {
 
 	public static void update(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		for(Unit u:unitList) {
+		for (Unit u : unitList) {
 			u.draw(gc);
 		}
-		for(Fish f:fishList) {
+		for (Fish f : fishList) {
+			f.update(GameManager.getFRAMERATE());
+			
+		}
+		System.out.println(foodList);
+		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
 		}
-		for(Food f:foodList) {
-			f.update(GameManager.getFRAMERATE());
-		}
-		for(Money m:moneyList) {
+		for (Money m : moneyList) {
 			m.update(GameManager.getFRAMERATE());
 		}
-		unitList.removeAll(removeList);
+//		unitList.removeAll(removeList);
 	}
-	
+
 	public static void produceMoney(Money m) {
 		unitList.add(m);
 		moneyList.add(m);
 	}
-	
+
 	public static void remove(Unit u) {
-		if(unitList.contains(u)) {
-			removeList.add(u);
-			if(u instanceof Fish){
-				fishList.remove(u);
+
+		if (unitList.contains(u)) {
+			Iterator<Unit> itr = unitList.iterator();
+			while (itr.hasNext()) {
+				Unit unit = itr.next();
+				if (unit.equals(u)) {
+					itr.remove();
+					
+				}
 			}
-			if(u instanceof Food){
-				foodList.remove(u);
+			if (u instanceof Fish) {
+				Iterator<Fish> fishItr = fishList.iterator();
+				while (fishItr.hasNext()) {
+					Fish unit = fishItr.next();
+					if (unit.equals(u)) {
+						fishItr.remove();
+					}
+				}
+			}
+			if (u instanceof Food) {
+				Iterator<Food> foodItr = foodList.iterator();
+				while (foodItr.hasNext()) {
+					Food unit = foodItr.next();
+					if (unit.equals(u)) {
+						foodItr.remove();
+					}
+				}
 			}
 		}
 	}
-	
-	
+
 }

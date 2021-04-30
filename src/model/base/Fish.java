@@ -67,7 +67,7 @@ public class Fish extends Unit {
 			// die
 			System.out.println(this.getName() + " Dying");
 			TankManager.remove(this);
-			break;
+			return;
 		}
 		this.production.checkProduce();
 	
