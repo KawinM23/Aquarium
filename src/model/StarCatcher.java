@@ -8,9 +8,9 @@ import model.base.Unit;
 import properties.Hunger;
 import properties.Production;
 
-public class StarCatcher extends Fish {
+public class Starcatcher extends Fish {
 
-	public StarCatcher(String name, double posX, double posY) {
+	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
 		this.setWidth(40);
