@@ -8,17 +8,18 @@ import javafx.scene.canvas.GraphicsContext;
 import model.Food;
 import model.base.Fish;
 import model.base.Money;
+import model.base.Monster;
 import model.base.Unit;
 
 public class TankManager {
 
 	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
 
-
 	private static ArrayList<Fish> fishList = new ArrayList<Fish>();
 	private static ArrayList<Food> foodList = new ArrayList<Food>();
 	private static ArrayList<Money> moneyList = new ArrayList<Money>();
-	
+	private static ArrayList<Monster> monsterList = new ArrayList<Monster>();
+
 	private static ArrayList<Unit> removeFishList = new ArrayList<Unit>();
 
 	public static ArrayList<Unit> getUnitList() {
@@ -53,24 +54,29 @@ public class TankManager {
 		for (Fish f : fishList) {
 			f.update(GameManager.getFRAMERATE());
 		}
-		fishList.removeAll(removeFishList); 
+		fishList.removeAll(removeFishList);
 		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
 		}
 		for (Money m : moneyList) {
 			m.update(GameManager.getFRAMERATE());
 		}
+		for (Monster m : monsterList) {
+			m.update(GameManager.getFRAMERATE());
+		}
 //		unitList.removeAll(removeList);
 	}
-	
+
 	public static void add(Unit u) {
 		unitList.add(u);
-		if(u instanceof Food) {
+		if (u instanceof Food) {
 			foodList.add((Food) u);
-		}else if(u instanceof Money) {
+		} else if (u instanceof Money) {
 			moneyList.add((Money) u);
-		}else if(u instanceof Fish) {
+		} else if (u instanceof Fish) {
 			fishList.add((Fish) u);
+		} else if (u instanceof Monster) {
+			monsterList.add((Monster) u);
 		}
 	}
 
@@ -87,7 +93,7 @@ public class TankManager {
 				Unit unit = itr.next();
 				if (unit.equals(u)) {
 					itr.remove();
-					
+
 				}
 			}
 			if (u instanceof Fish) {
