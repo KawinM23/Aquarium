@@ -37,7 +37,7 @@ public class Fish extends Unit {
 				// eat & levelup
 				TankManager.remove(nearestFood);
 				this.setVelZero();
-				this.hunger.feed();
+				this.feed();
 			} else {
 				// Go to food
 				this.headToUnit(nearestFood);
@@ -52,6 +52,10 @@ public class Fish extends Unit {
 
 	public boolean isAtMounth(Unit nearestFood) {
 		return nearestFood.getBoundary().contains(new Point2D(this.getPosX() + 5, this.getPosY() + 40));
+	}
+
+	public void feed() {
+		this.hunger.resetTime();
 	}
 
 	@Override

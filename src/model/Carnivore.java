@@ -28,7 +28,7 @@ public class Carnivore extends Fish {
 			// Find NearestFood
 			for (Fish f : TankManager.getFishList()) {
 				if (f instanceof Guppy) {
-					if (((Guppy) f).getGrowth() == 0) {
+					if (((Guppy) f).getGrowth() < 100) {
 						if (nearestFood == null) {
 							nearestFood = f;
 						} else if (this.distance(f) < this.distance(nearestFood)) {
@@ -36,7 +36,6 @@ public class Carnivore extends Fish {
 						}
 					}
 				}
-
 			}
 			// Check Food position and Fish
 			if (nearestFood != null) {
@@ -44,7 +43,7 @@ public class Carnivore extends Fish {
 					// eat & levelup
 					TankManager.remove(nearestFood);
 					this.setVelZero();
-					this.hunger.feed();
+					this.feed();
 				} else {
 					// Go to food
 					this.headToUnit(nearestFood);

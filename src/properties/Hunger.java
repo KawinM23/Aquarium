@@ -30,7 +30,7 @@ public class Hunger {
 		}
 	}
 	
-	public void feed() {
+	public void resetTime() {
 		this.setLastFed(System.nanoTime());
 	}
 
