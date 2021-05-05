@@ -77,6 +77,7 @@ public class Fish extends Unit {
 			TankManager.remove(this);
 			return;
 		}
+		
 		this.production.checkProduce();
 
 		this.move(fr);

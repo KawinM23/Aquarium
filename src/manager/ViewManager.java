@@ -66,7 +66,7 @@ public class ViewManager {
 
 				while (true) {
 					try {
-						Thread.sleep(20);// 50hz
+						Thread.sleep(1000/GameManager.getFRAMERATE());// 50hz ,1000/50 = 20
 					} catch (InterruptedException ex) {
 					}
 
