@@ -18,7 +18,7 @@ public class Carnivore extends Fish {
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
-		this.hunger = new Hunger(Guppy.class, 3, 7);
+		this.hunger = new Hunger(Guppy.class, 3, 10);
 		this.production = new Production(this, 0, 5);
 	}
 
@@ -39,7 +39,7 @@ public class Carnivore extends Fish {
 
 			}
 			// Check Food position and Fish
-			if (nearestFood == null) {
+			if (nearestFood != null) {
 				if (isAtMounth(nearestFood)) {
 					// eat & levelup
 					TankManager.remove(nearestFood);
