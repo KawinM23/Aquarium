@@ -22,7 +22,7 @@ public class Guppy extends Fish {
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
 		this.growth = 0;
-		this.setHunger(new Hunger(Food.class, 3, 20)); 
+		this.setHunger(new Hunger(Food.class, 3, 15)); 
 		this.setProduction(new Production(this, 0, 5+Math.random()));
 	}
 

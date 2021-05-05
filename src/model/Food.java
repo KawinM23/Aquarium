@@ -22,7 +22,7 @@ public class Food extends Unit {
 	@Override
 	public void update(int fr) {
 		// TODO Auto-generated method stub
-		if(this.getPosY()+(this.getHeight()/2.0) > GameManager.getHEIGHT()) {
+		if(this.getPosY() + this.getHeight() > GameManager.getBOTTOMHEIGHT()) {
 			TankManager.remove(this);
 			return; //BUG : Some Exception
 		}

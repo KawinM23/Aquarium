@@ -39,7 +39,7 @@ public class ViewManager {
 		Guppy g1 = new Guppy("g1", 500, 300);
 		TankManager.add(g1);
 
-		Food f1 = new Food("f1", 200, 50);
+		Food f1 = new Food("f1", 200, 20);
 		TankManager.add(f1);
 
 		Food f2 = new Food("f2", 800, 200);
@@ -51,8 +51,8 @@ public class ViewManager {
 //		StarCatcher sc1 = new StarCatcher("sc1", 300, 600);
 //		TankManager.add(sc1);
 //		
-//		Star s1 = new Star("s1", 400, 200);
-//		TankManager.add(s1);
+		Star s1 = new Star("s1", 400, 200);
+		TankManager.add(s1);
 		
 
 		//////////////////////////
@@ -67,7 +67,7 @@ public class ViewManager {
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
 						gc.setFill(Color.rgb(102, 204, 255));
-						gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
 						TankManager.update(gc);
 					}
 				};

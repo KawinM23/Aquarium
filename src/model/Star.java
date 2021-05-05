@@ -8,10 +8,10 @@ public class Star extends Money {
 	public Star(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
-		this.setWidth(20);
-		this.setHeight(20);
+		this.setWidth(36);
+		this.setHeight(40);
 		
-		this.setImg(new Image("file:res/image/SilverCoin.png"));
+		this.setImg(new Image("file:res/image/Star.png"));
 	}
 
 }

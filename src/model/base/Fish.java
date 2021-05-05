@@ -37,6 +37,7 @@ public class Fish extends Unit {
 			// Check Food position and Fish
 			if (isAtMounth(nearestFood)) {
 				// eat & levelup
+				System.out.println(this.getName()+" eat "+nearestFood.getName());
 				this.feed(nearestFood);
 				TankManager.remove(nearestFood);
 				this.setVelZero();
@@ -61,7 +62,6 @@ public class Fish extends Unit {
 	}
 
 	public void headToFood(Unit u) {
-		System.out.println("" + getMouthPosX() + " " + getMouthPosY());
 		this.setVelX(
 				((u.getCenterX() - getMouthPosX()) / u.distance(getMouthPosX(), getMouthPosY())) * this.getSpeed());
 		this.setVelY(
