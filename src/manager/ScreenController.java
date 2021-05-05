@@ -8,12 +8,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ScreenController {
-	private ArrayList<Scene> sceneList = new ArrayList();
-	private ArrayList<String> nameList = new ArrayList();
-	private Stage stage;
-	private ArrayList<String> arrayList;
+	private static ArrayList<Scene> sceneList = new ArrayList();
+	private static ArrayList<String> nameList = new ArrayList();
+	private static Stage stage;
 
 	// Declare a primary stage to change scenes in
+	public ScreenController() {
+	}
+
 	public ScreenController(Stage stage) {
 		this.stage = stage;
 	}
@@ -37,10 +39,38 @@ public class ScreenController {
 		Scene scene = sceneList.get(tempIndex);
 		stage.setScene(scene);
 	}
-	
+
 	public boolean sceneExist(String name) {
-		for (int i=0;i<nameList.size();i++) {
-			if (nameList.get(i).equals(name)) return true;
-		}  return false;
+		for (int i = 0; i < nameList.size(); i++) {
+			if (nameList.get(i).equals(name))
+				return true;
+		}
+		return false;
 	}
+
+	public static ArrayList<Scene> getSceneList() {
+		return sceneList;
+	}
+
+	public static void setSceneList(ArrayList<Scene> sceneList) {
+		ScreenController.sceneList = sceneList;
+	}
+
+	public static ArrayList<String> getNameList() {
+		return nameList;
+	}
+
+	public static void setNameList(ArrayList<String> nameList) {
+		ScreenController.nameList = nameList;
+	}
+
+	public static Stage getStage() {
+		return stage;
+	}
+
+	public static void setStage(Stage stage) {
+		ScreenController.stage = stage;
+	}
+	
+	
 }

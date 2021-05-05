@@ -3,6 +3,7 @@ package game;
 import manager.ScreenController;
 import manager.ViewManager;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -30,8 +31,12 @@ public class tank0 extends Application {
 			{ 440.0, 3.0, 490.0, 46.0, 80.0, 20.0 }, { 532.0, 3.0, 617.0, 25.0, 80.0, 20.0 } };
 	private int money = 0;
 	private Scene scene;
-	
+	private static ScreenController screenController;
+	private MediaPlayer mediaPlayer;
+	private Media sound;
+
 	public tank0() {
+		screenController = new ScreenController();
 		AnchorPane root = new AnchorPane();
 		scene = new Scene(root);
 		Canvas canvas = new Canvas(640 * 1.5, 480 * 1.5);
@@ -42,16 +47,15 @@ public class tank0 extends Application {
 		String imagePathBackground = "file:res/image/aquarium1.jpg";
 		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
 		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
-		String musicFile = "res/sound/buttonclick.mp3"; // For example
+		String BUTTON_CLICK_PATH = "res/sound/buttonclick.mp3"; // For example
 
-		Media sound = new Media(new File(musicFile).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
+		mediaPlayer = new MediaPlayer(sound);
 		for (int i = 0; i < buttonDetail.length; i++) {
 			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
 		}
 	}
-	
-	
+
 	@Override
 	public void start(Stage stage) {
 		AnchorPane root = new AnchorPane();
@@ -165,9 +169,13 @@ public class tank0 extends Application {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
 				playClickSound(mediaPlayer);
+				if (buttonText.equals("Button 8")) {
+					screenController.changeScene("menu");
+				}
 			}
 		});
 		button.setOnMouseReleased(new EventHandler<MouseEvent>() {
+
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				System.out.println("Released " + buttonText);
@@ -180,16 +188,34 @@ public class tank0 extends Application {
 				}
 
 			}
+
 		});
 
 		anchorpane.getChildren().addAll(button);
 	}
 
 	private void playClickSound(MediaPlayer mediaPlayer) {
-		mediaPlayer.play();
+		Thread thread = new Thread(() -> {
+			try {
+				MediaPlayer newMediaPlayer = new MediaPlayer(sound);
+				newMediaPlayer.play();
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+
+					}
+				});
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		});
+		thread.start();
+
 		// System.out.println("played");
 	}
-	
 
 	public Scene getScene() {
 		return scene;

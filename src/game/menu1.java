@@ -32,8 +32,9 @@ public class menu1 extends Application {
 			{ 354.0, 282.0, 576.0, 357.0, 100.0, 40.0 }, { 402.0, 377.0, 529.0, 409.0, 80.0, 20.0 },
 			{ 323.0, 412.0, 417.0, 443.0, 80.0, 20.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 20.0 },
 			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
-	ScreenController screenController;
-
+	private ScreenController screenController;
+	private MediaPlayer mediaPlayer;
+	private Media sound;
 	@Override
 	public void start(Stage stage) {
 		// Add ScreenController and set main stage to our stage
@@ -53,8 +54,8 @@ public class menu1 extends Application {
 		// Set sound effect for button click
 		final String BUTTON_CLICK_PATH = "res/sound/buttonclick.mp3";
 
-		Media sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
+		mediaPlayer = new MediaPlayer(sound);
 
 		// Add buttons to current menu scene
 		for (int i = 0; i < buttonDetail.length; i++) {
@@ -185,8 +186,25 @@ public class menu1 extends Application {
 	}
 
 	private void playClickSound(MediaPlayer mediaPlayer) {
-		mediaPlayer.stop();
-		mediaPlayer.play();
+		Thread thread = new Thread(() -> {
+			try {
+				MediaPlayer newMediaPlayer = new MediaPlayer(sound);
+				newMediaPlayer.play();
+				Platform.runLater(new Runnable(){
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		});
+		thread.start();
+		
 		// System.out.println("played");
 	}
 
