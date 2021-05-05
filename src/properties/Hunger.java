@@ -5,13 +5,13 @@ import model.base.Unit;
 
 public class Hunger {
 
-	private int foodType;
+	private Class foodType;
 	
 	private long lastFed;
 	private double cooldown;
 	private double lifetime;
 
-	public Hunger(int foodType, double cooldown, double lifetime) {
+	public Hunger(Class foodType, double cooldown, double lifetime) {
 		super();
 		this.foodType = foodType;
 		this.lastFed = System.nanoTime();
@@ -34,11 +34,11 @@ public class Hunger {
 		this.setLastFed(System.nanoTime());
 	}
 
-	public int getFoodType() {
+	public Class getFoodType() {
 		return foodType;
 	}
 
-	public void setFoodType(int foodType) {
+	public void setFoodType(Class foodType) {
 		this.foodType = foodType;
 	}
 

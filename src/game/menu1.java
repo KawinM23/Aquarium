@@ -1,6 +1,7 @@
 package game;
 
 import manager.ViewManager;
+import manager.GameManager;
 import manager.ScreenController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -38,7 +39,7 @@ public class menu1 extends Application {
 		stage.setScene(scene);
 		stage.setTitle("Aquarium Demastered");
 		stage.setResizable(false);
-		Canvas canvas = new Canvas(640 * 1.5, 480 * 1.5);
+		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
@@ -68,7 +69,7 @@ public class menu1 extends Application {
 	private void drawImage(GraphicsContext gc, String image_path) {
 		System.out.println(image_path);
 		Image javafx_logo = new Image(image_path);
-		gc.drawImage(javafx_logo, 0, 0, 640 * 1.5, 480 * 1.5);
+		gc.drawImage(javafx_logo, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
 
 	private void drawImageFixSize(GraphicsContext gc, String image_path) {

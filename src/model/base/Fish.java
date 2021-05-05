@@ -20,21 +20,25 @@ public class Fish extends Unit {
 		this.production = null;
 	}
 
-	public void findFood() {
+	public void findFood(Class food) {
 		// TODO Auto-generated method stub
 
-		switch (this.hunger.getFoodType()) {
-		case 0: // Food
-			if (TankManager.getFoodList().size() != 0) {
-				Unit nearestFood = TankManager.getFoodList().get(0);
-				for (Food f : TankManager.getFoodList()) {
-					if (this.distance(f) < this.distance(nearestFood)) {
-						nearestFood = f;
+		if (food != null) {
+			if (TankManager.getUnitList().size() != 0) {
+				Unit nearestFood = null;
+				for (Unit u : TankManager.getUnitList()) {
+					if (food.isInstance(u) && nearestFood != null) {
+						if (this.distance(u) < this.distance(nearestFood)) {
+							nearestFood = u;
+						}
+					} else {
+						nearestFood = u;
 					}
+
 				}
-				
-				//Check Food position and Fish
-				if (nearestFood.getBoundary().contains(new Point2D(this.getPosX()+5, this.getPosY()+40))) {
+
+				// Check Food position and Fish
+				if (isAtMounth(nearestFood)) {
 					// eat & levelup
 					TankManager.remove(nearestFood);
 					this.setVelZero();
@@ -46,11 +50,14 @@ public class Fish extends Unit {
 				// idle
 				this.setVelZero();
 			}
-		case 1: // Guppy mini
-
-		case 2: // Carnivore
-
+		} else {
+			System.out.println("No Food Class");
 		}
+
+	}
+
+	public boolean isAtMounth(Unit nearestFood) {
+		return nearestFood.getBoundary().contains(new Point2D(this.getPosX() + 5, this.getPosY() + 40));
 	}
 
 	@Override
@@ -64,7 +71,7 @@ public class Fish extends Unit {
 		case 1:
 			System.out.println(this.getName() + " Hungry");
 			// find food
-			this.findFood();
+			this.findFood(this.hunger.getFoodType());
 			break;
 		case 2:
 			// die
@@ -73,7 +80,7 @@ public class Fish extends Unit {
 			return;
 		}
 		this.production.checkProduce();
-	
+
 		this.move(fr);
 	}
 

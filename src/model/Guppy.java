@@ -21,7 +21,7 @@ public class Guppy extends Fish {
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
 		this.growth = 0;
-		this.hunger = new Hunger(0, 3, 7);
+		this.hunger = new Hunger(Food.class, 3, 7);
 		this.production = new Production(this, 0, 5);
 	}
 

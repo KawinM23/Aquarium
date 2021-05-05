@@ -54,7 +54,6 @@ public class TankManager {
 			f.update(GameManager.getFRAMERATE());
 		}
 		fishList.removeAll(removeFishList); 
-		System.out.println(foodList);
 		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
 		}
