@@ -17,8 +17,7 @@ public class Guppy extends Fish {
 		this.setWidth(80);
 		this.setHeight(60);
 		this.setSpeed(100);
-		this.setVelX(10);
-		this.setVelY(10);
+		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
 		this.growth = 0;

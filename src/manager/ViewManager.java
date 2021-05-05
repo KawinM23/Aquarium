@@ -55,9 +55,9 @@ public class ViewManager {
 					@Override
 					public void run() {
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
-//						gc.setFill(Color.rgb(102, 204, 255));
-//						gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+//						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
+						gc.setFill(Color.rgb(102, 204, 255));
+						gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 						TankManager.update(gc);
 					}
 				};
