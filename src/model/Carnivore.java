@@ -40,7 +40,7 @@ public class Carnivore extends Fish {
 			// Check Food position and Fish
 			if (nearestFood != null) {
 				if (isAtMounth(nearestFood)) {
-					// eat & levelup
+					// Eat baby guppy
 					TankManager.remove(nearestFood);
 					this.setVelZero();
 					this.feed(nearestFood);

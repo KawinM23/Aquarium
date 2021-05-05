@@ -1,26 +1,19 @@
 package model;
 
-import javafx.scene.image.Image;
+import manager.GameManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
 import model.base.Unit;
-import properties.Hunger;
-import properties.Production;
 
-public class Starcatcher extends Fish {
+public class Guppycruncher extends Fish {
 
-	public Starcatcher(String name, double posX, double posY) {
+	private boolean isJumping;
+	private double fallAcc = 10;
+
+	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
-		this.setWidth(40);
-		this.setHeight(40);
-		this.setSpeed(35);
-		this.setVelZero();
-		this.setImg(new Image("file:res/image/Guppy.png"));
-
-		this.setHunger(new Hunger(Star.class, 3, 20));
-		this.setProduction(new Production(this, 5, 7));
 	}
 
 	public void findFood() {
@@ -49,9 +42,12 @@ public class Starcatcher extends Fish {
 				} else {
 					if (this.distanceX(nearestFood) < 5) {
 						this.setVelZero();
-					} else if(getVelX() > 5) {
+					} else if (getVelX() > 5) {
 						this.multiplyVel(0.98);
 					}
+				}
+				if (this.distanceY(nearestFood) < 60 && !isJumping) {
+					jump();
 				}
 			} else {
 				this.setVelZero();
@@ -61,6 +57,39 @@ public class Starcatcher extends Fish {
 		}
 	}
 
+	private void jump() {
+		// TODO Auto-generated method stub
+		this.setVelY(-20);
+		this.isJumping = true;
+	}
+
+	@Override
+	public void update(int fr) {
+		if (this.getPosY() + getHeight() > GameManager.getBOTTOMHEIGHT()) {
+			this.setPosY(GameManager.getBOTTOMHEIGHT() - getHeight());
+			this.setJumping(false);
+		}
+		this.move(fr);
+	}
+
+	public void move(int fr) {
+
+		double deltaTime = 1.0 / fr;
+		if (isJumping) {
+			this.setVelY(getVelY() + (fallAcc * deltaTime));
+		}
+		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
+		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+	}
+
+	public boolean isJumping() {
+		return isJumping;
+	}
+
+	public void setJumping(boolean isJumping) {
+		this.isJumping = isJumping;
+	}
+	
 	
 
 }

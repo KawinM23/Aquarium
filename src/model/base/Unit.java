@@ -6,12 +6,12 @@ import javafx.scene.image.Image;
 
 public abstract class Unit {
 	private String name;
-	
+
 	private double posX;
 	private double posY;
 	private double width;
 	private double height;
-	
+
 	private double velX;
 	private double velY;
 	private int speed;
@@ -34,46 +34,57 @@ public abstract class Unit {
 		double deltaY = u.getCenterY() - this.getCenterY();
 		return Math.hypot(deltaX, deltaY);
 	}
-	
-	public double distance(double x,double y) {
+
+	public double distance(double x, double y) {
 		double deltaX = x - this.getCenterX();
 		double deltaY = y - this.getCenterY();
 		return Math.hypot(deltaX, deltaY);
 	}
 
+	public double distanceX(Unit u) {
+		return u.getPosX() - this.getPosX();
+	}
+	
+	public double distanceY(Unit u) {
+		return u.getPosY() - this.getPosY();
+	}
+
 	// HeadToUnit = set velocity
 	public void headToUnit(Unit u) {
-		this.setVelX(((u.getCenterX() - this.getCenterX()) / this.distance(u))*this.getSpeed());
-		this.setVelY(((u.getCenterY() - this.getCenterY()) / this.distance(u))*this.getSpeed());
+		this.setVelX(((u.getCenterX() - this.getCenterX()) / this.distance(u)) * this.getSpeed());
+		this.setVelY(((u.getCenterY() - this.getCenterY()) / this.distance(u)) * this.getSpeed());
 	}
 
 	// HeadToPoint
-	public void headToPos(double x,double y) {
-		this.setVelX((x - this.getCenterX() / this.distance(x,y)*this.getSpeed()));
-		this.setVelY((y - this.getCenterY() / this.distance(x,y)*this.getSpeed()));
+	public void headToPos(double x, double y) {
+		this.setVelX((x - this.getCenterX() / this.distance(x, y) * this.getSpeed()));
+		this.setVelY((y - this.getCenterY() / this.distance(x, y) * this.getSpeed()));
 	}
 	
+	public void headToUnitX(Unit nearestFood) {
+		// TODO Auto-generated method stub
+		this.setVelX((distanceX(nearestFood)) / Math.abs(distanceX(nearestFood)) * this.getSpeed());
+	}
+
 	public void move(int fr) {
-		
-		double deltaTime = 1.0/fr;
-		this.setPosX(this.getPosX() + this.getVelX()*deltaTime);
-		this.setPosY(this.getPosY() + this.getVelY()*deltaTime);
+
+		double deltaTime = 1.0 / fr;
+		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
+		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
 	}
-	
-	
+
 	public Rectangle2D getBoundary() {
-        return new Rectangle2D(posX, posY, width, height);
-    }
-	
+		return new Rectangle2D(posX, posY, width, height);
+	}
+
 	public boolean intersects(Unit u) {
-        return this.getBoundary().intersects(u.getBoundary());
-    }
-	
-	
-	//GETTER SETTER
+		return this.getBoundary().intersects(u.getBoundary());
+	}
+
+	// GETTER SETTER
 	@SuppressWarnings("unused")
 	private int _____GETTER_SETTER_____;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -121,12 +132,12 @@ public abstract class Unit {
 
 	public double getCenterX() {
 		// TODO Auto-generated method stub
-		return posX+(width/2.0);
+		return posX + (width / 2.0);
 	}
 
 	public double getCenterY() {
 		// TODO Auto-generated method stub
-		return posY+(height/2.0);
+		return posY + (height / 2.0);
 	}
 
 	public double getVelX() {
@@ -144,15 +155,20 @@ public abstract class Unit {
 	public void setVelY(double velY) {
 		this.velY = velY;
 	}
-	
-	public void setVel(double velX,double velY){
+
+	public void setVel(double velX, double velY) {
 		this.velX = velX;
 		this.velY = velY;
 	}
-	
+
 	public void setVelZero() {
 		this.velX = 0;
 		this.velY = 0;
+	}
+
+	public void multiplyVel(double i) {
+		this.velX = velX * i;
+		this.velY = velY * i;
 	}
 
 	public int getSpeed() {

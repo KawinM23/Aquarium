@@ -28,7 +28,7 @@ public class Food extends Unit {
 		// TODO Auto-generated method stub
 		if(this.getPosY() + this.getHeight() > GameManager.getBOTTOMHEIGHT()) {
 			TankManager.remove(this);
-			return; //BUG : Some Exception
+			return;
 		}
 		this.move(fr);
 	}

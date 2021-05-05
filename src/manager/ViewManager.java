@@ -36,21 +36,21 @@ public class ViewManager {
 
 		Image bc = new Image("file:res/image/aquarium1.jpg");
 
-		Guppy g1 = new Guppy("g1", 500, 300);
-		TankManager.add(g1);
-
-		Food f1 = new Food("f1", 200, 20, 0);
-		TankManager.add(f1);
-
-		Food f2 = new Food("f2", 800, 200, 0);
-		TankManager.add(f2);
+//		Guppy g1 = new Guppy("g1", 500, 300);
+//		TankManager.add(g1);
+//
+//		Food f1 = new Food("f1", 200, 20, 0);
+//		TankManager.add(f1);
+//
+//		Food f2 = new Food("f2", 800, 200, 0);
+//		TankManager.add(f2);
 //		
 //		Carnivore c1 = new Carnivore("c1", 300, 200);
 //		TankManager.add(c1);
-//		
-//		StarCatcher sc1 = new StarCatcher("sc1", 300, 600);
-//		TankManager.add(sc1);
-//		
+		
+		Starcatcher sc1 = new Starcatcher("sc1", 300, GameManager.getBOTTOMHEIGHT()-40);
+		TankManager.add(sc1);
+		
 		Star s1 = new Star("s1", 400, 200);
 		TankManager.add(s1);
 
