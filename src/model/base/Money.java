@@ -18,13 +18,12 @@ public class Money extends Unit {
 	@Override
 	public void update(int fr) {
 		// TODO Auto-generated method stub
-		if(this.getCenterY() > GameManager.getHEIGHT()) {
+		if (this.getPosY() + this.getHeight() > GameManager.getBOTTOMHEIGHT()) {
 			TankManager.remove(this);
 			return;
 		}
 		this.move(fr);
 	}
-
 
 	@Override
 	public void draw(GraphicsContext gc) {
