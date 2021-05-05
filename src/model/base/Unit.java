@@ -71,6 +71,9 @@ public abstract class Unit {
 	
 	
 	//GETTER SETTER
+	@SuppressWarnings("unused")
+	private int _____GETTER_SETTER_____;
+	
 	public String getName() {
 		return name;
 	}
@@ -116,6 +119,16 @@ public abstract class Unit {
 		this.height = height;
 	}
 
+	public double getCenterX() {
+		// TODO Auto-generated method stub
+		return posX+(width/2.0);
+	}
+
+	public double getCenterY() {
+		// TODO Auto-generated method stub
+		return posY+(height/2.0);
+	}
+
 	public double getVelX() {
 		return velX;
 	}
@@ -156,15 +169,6 @@ public abstract class Unit {
 
 	public void setImg(Image img) {
 		this.img = img;
-	}
-
-	public double getCenterX() {
-		// TODO Auto-generated method stub
-		return posX+(width/2.0);
-	}
-	public double getCenterY() {
-		// TODO Auto-generated method stub
-		return posY+(height/2.0);
 	}
 
 }

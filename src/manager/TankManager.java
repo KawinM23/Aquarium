@@ -21,6 +21,9 @@ public class TankManager {
 	private static ArrayList<Monster> monsterList = new ArrayList<Monster>();
 
 	private static ArrayList<Unit> removeFishList = new ArrayList<Unit>();
+	private static ArrayList<Unit> removeFoodList = new ArrayList<Unit>();
+	private static ArrayList<Unit> removeMoneyList = new ArrayList<Unit>();
+	private static ArrayList<Unit> removeMonsterList = new ArrayList<Unit>();
 
 	public static ArrayList<Unit> getUnitList() {
 		return unitList;
@@ -58,12 +61,15 @@ public class TankManager {
 		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
 		}
+		foodList.removeAll(removeFoodList);
 		for (Money m : moneyList) {
 			m.update(GameManager.getFRAMERATE());
 		}
+		moneyList.removeAll(removeMoneyList);
 		for (Monster m : monsterList) {
 			m.update(GameManager.getFRAMERATE());
 		}
+		monsterList.removeAll(removeMonsterList);
 //		unitList.removeAll(removeList);
 	}
 
@@ -96,24 +102,14 @@ public class TankManager {
 
 				}
 			}
-			if (u instanceof Fish) {
-				removeFishList.add(u);
-//				Iterator<Fish> fishItr = fishList.iterator();
-//				while (fishItr.hasNext()) {
-//					Fish unit = fishItr.next();
-//					if (unit.equals(u)) {
-//						fishItr.remove();
-//					}
-//				}
-			}
 			if (u instanceof Food) {
-				Iterator<Food> foodItr = foodList.iterator();
-				while (foodItr.hasNext()) {
-					Food unit = foodItr.next();
-					if (unit.equals(u)) {
-						foodItr.remove();
-					}
-				}
+				removeFoodList.add(u);
+			} else if (u instanceof Money) {
+				removeMoneyList.add(u);
+			} else if (u instanceof Fish) {
+				removeFishList.add(u);
+			} else if (u instanceof Monster) {
+				removeMonsterList.add(u);
 			}
 		}
 	}
