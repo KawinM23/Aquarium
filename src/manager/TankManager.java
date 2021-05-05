@@ -62,6 +62,17 @@ public class TankManager {
 		}
 //		unitList.removeAll(removeList);
 	}
+	
+	public static void add(Unit u) {
+		unitList.add(u);
+		if(u instanceof Food) {
+			foodList.add((Food) u);
+		}else if(u instanceof Money) {
+			moneyList.add((Money) u);
+		}else if(u instanceof Fish) {
+			fishList.add((Fish) u);
+		}
+	}
 
 	public static void produceMoney(Money m) {
 		unitList.add(m);

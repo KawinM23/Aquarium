@@ -25,4 +25,13 @@ public class Guppy extends Fish {
 		this.production = new Production(this, 0, 5);
 	}
 
+	public int getGrowth() {
+		return growth;
+	}
+
+	public void setGrowth(int growth) {
+		this.growth = growth;
+	}
+
+	
 }

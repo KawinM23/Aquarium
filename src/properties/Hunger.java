@@ -35,6 +35,9 @@ public class Hunger {
 	}
 
 	public Class getFoodType() {
+		// 0 food
+		// 1 MiniGuppy
+		// 2 Coin
 		return foodType;
 	}
 
