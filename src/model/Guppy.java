@@ -2,6 +2,7 @@ package model;
 
 import javafx.scene.image.Image;
 import model.base.Fish;
+import model.base.Unit;
 import properties.Hunger;
 import properties.Production;
 
@@ -31,7 +32,7 @@ public class Guppy extends Fish {
 		this.growth = growth;
 	}
 	
-	public void feed() {
+	public void feed(Unit nearestFood) {
 		this.hunger.resetTime();
 		this.setGrowth(getGrowth()+100);
 	}

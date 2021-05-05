@@ -43,7 +43,7 @@ public class Carnivore extends Fish {
 					// eat & levelup
 					TankManager.remove(nearestFood);
 					this.setVelZero();
-					this.feed();
+					this.feed(nearestFood);
 				} else {
 					// Go to food
 					this.headToUnit(nearestFood);
