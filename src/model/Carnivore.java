@@ -18,8 +18,8 @@ public class Carnivore extends Fish {
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
-		this.hunger = new Hunger(Guppy.class, 3, 10);
-		this.production = new Production(this, 0, 5);
+		this.setHunger(new Hunger(Guppy.class, 3, 10));
+		this.setProduction(new Production(this, 0, 5));
 	}
 
 	public void findFood() {

@@ -19,8 +19,8 @@ public class StarCatcher extends Fish {
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 		
-		this.hunger = new Hunger(Star.class, 3, 20);
-		this.production = new Production(this, 5, 7);
+		this.setHunger(new Hunger(Star.class, 3, 20));
+		this.setProduction(new Production(this, 5, 7));
 	}
 
 	public void findFood() {
