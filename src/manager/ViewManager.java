@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Carnivore;
 import model.Food;
 import model.Guppy;
 
@@ -34,16 +35,17 @@ public class ViewManager {
 		Image bc = new Image("file:res/image/aquarium1.jpg");
 
 		Guppy g1 = new Guppy("g1", 500, 300);
-		TankManager.getUnitList().add(g1);
-		TankManager.getFishList().add(g1);
+		TankManager.add(g1);
 
 		Food f1 = new Food("f1", 200, 50);
-		TankManager.getUnitList().add(f1);
-		TankManager.getFoodList().add(f1);
+		TankManager.add(f1);
 
 		Food f2 = new Food("f2", 800, 200);
-		TankManager.getUnitList().add(f2);
-		TankManager.getFoodList().add(f2);
+		TankManager.add(f2);
+		
+		Carnivore c1 = new Carnivore("c1", 300, 200);
+		TankManager.add(c1);
+		
 
 		//////////////////////////
 		Thread threadTank = new Thread(new Runnable() {

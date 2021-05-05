@@ -1,15 +1,13 @@
 package model;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import manager.GameManager;
 import model.base.Fish;
 import properties.Hunger;
 import properties.Production;
 
 public class Guppy extends Fish {
 
-	private int growth;
+	private int growth; //0-99 Baby / 100+ Medium / 200+ Large
 
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -25,4 +23,18 @@ public class Guppy extends Fish {
 		this.production = new Production(this, 0, 5);
 	}
 
+	public int getGrowth() {
+		return growth;
+	}
+
+	public void setGrowth(int growth) {
+		this.growth = growth;
+	}
+	
+	public void feed() {
+		this.hunger.resetTime();
+		this.setGrowth(getGrowth()+100);
+	}
+
+	
 }

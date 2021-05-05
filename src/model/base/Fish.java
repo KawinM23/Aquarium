@@ -4,6 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import manager.TankManager;
 import model.Food;
+import model.Guppy;
 import properties.Hunger;
 import properties.Production;
 
@@ -20,44 +21,41 @@ public class Fish extends Unit {
 		this.production = null;
 	}
 
-	public void findFood(Class food) {
+	public void findFood() {
 		// TODO Auto-generated method stub
 
-		if (food != null) {
-			if (TankManager.getUnitList().size() != 0) {
-				Unit nearestFood = null;
-				for (Unit u : TankManager.getUnitList()) {
-					if (food.isInstance(u) && nearestFood != null) {
-						if (this.distance(u) < this.distance(nearestFood)) {
-							nearestFood = u;
-						}
-					} else {
-						nearestFood = u;
-					}
-
+		if (TankManager.getFoodList().size() != 0) {
+			Unit nearestFood = TankManager.getFoodList().get(0);
+			// Find NearestFood
+			for (Food f : TankManager.getFoodList()) {
+				if (this.distance(f) < this.distance(nearestFood)) {
+					nearestFood = f;
 				}
-
-				// Check Food position and Fish
-				if (isAtMounth(nearestFood)) {
-					// eat & levelup
-					TankManager.remove(nearestFood);
-					this.setVelZero();
-					this.hunger.feed();
-				} else {
-					this.headToUnit(nearestFood);
-				}
-			} else {
-				// idle
-				this.setVelZero();
 			}
+			// Check Food position and Fish
+			if (isAtMounth(nearestFood)) {
+				// eat & levelup
+				TankManager.remove(nearestFood);
+				this.setVelZero();
+				this.feed();
+			} else {
+				// Go to food
+				this.headToUnit(nearestFood);
+			}
+
 		} else {
-			System.out.println("No Food Class");
+			this.setVelZero();
+			System.out.println("No Food");
 		}
 
 	}
 
 	public boolean isAtMounth(Unit nearestFood) {
 		return nearestFood.getBoundary().contains(new Point2D(this.getPosX() + 5, this.getPosY() + 40));
+	}
+
+	public void feed() {
+		this.hunger.resetTime();
 	}
 
 	@Override
@@ -71,7 +69,7 @@ public class Fish extends Unit {
 		case 1:
 			System.out.println(this.getName() + " Hungry");
 			// find food
-			this.findFood(this.hunger.getFoodType());
+			this.findFood();
 			break;
 		case 2:
 			// die

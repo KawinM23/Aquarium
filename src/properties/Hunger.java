@@ -30,11 +30,14 @@ public class Hunger {
 		}
 	}
 	
-	public void feed() {
+	public void resetTime() {
 		this.setLastFed(System.nanoTime());
 	}
 
 	public Class getFoodType() {
+		// 0 food
+		// 1 MiniGuppy
+		// 2 Coin
 		return foodType;
 	}
 
