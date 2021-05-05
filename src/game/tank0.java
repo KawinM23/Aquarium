@@ -29,11 +29,33 @@ public class tank0 extends Application {
 			{ 295.0, 3.0, 344.0, 46.0, 80.0, 20.0 }, { 367.0, 3.0, 417.0, 46.0, 80.0, 20.0 },
 			{ 440.0, 3.0, 490.0, 46.0, 80.0, 20.0 }, { 532.0, 3.0, 617.0, 25.0, 80.0, 20.0 } };
 	private int money = 0;
+	private Scene scene;
+	
+	public tank0() {
+		AnchorPane root = new AnchorPane();
+		scene = new Scene(root);
+		Canvas canvas = new Canvas(640 * 1.5, 480 * 1.5);
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		root.getChildren().add(canvas);
+		setBackGround(gc);
+		String imagePathMenubar = "file:res/image/menubar.jpg";
+		String imagePathBackground = "file:res/image/aquarium1.jpg";
+		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
+		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
+		String musicFile = "res/sound/buttonclick.mp3"; // For example
 
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		for (int i = 0; i < buttonDetail.length; i++) {
+			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
+		}
+	}
+	
+	
 	@Override
 	public void start(Stage stage) {
 		AnchorPane root = new AnchorPane();
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("Aquarium Demastered");
 		stage.setResizable(false);
@@ -73,8 +95,6 @@ public class tank0 extends Application {
 		for (int i = 0; i < buttonDetail.length; i++) {
 			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
 		}
-
-		screen.addScreen("tank0", root);
 	}
 
 	private void setBackGround(GraphicsContext gc) {
@@ -168,6 +188,11 @@ public class tank0 extends Application {
 	private void playClickSound(MediaPlayer mediaPlayer) {
 		mediaPlayer.play();
 		// System.out.println("played");
+	}
+	
+
+	public Scene getScene() {
+		return scene;
 	}
 
 	public static void main(String[] args) {

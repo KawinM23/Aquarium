@@ -4,6 +4,7 @@ import manager.ViewManager;
 import manager.GameManager;
 import manager.ScreenController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -31,56 +32,66 @@ public class menu1 extends Application {
 			{ 354.0, 282.0, 576.0, 357.0, 100.0, 40.0 }, { 402.0, 377.0, 529.0, 409.0, 80.0, 20.0 },
 			{ 323.0, 412.0, 417.0, 443.0, 80.0, 20.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 20.0 },
 			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
+	ScreenController screenController;
 
 	@Override
 	public void start(Stage stage) {
+		// Add ScreenController and set main stage to our stage
+		screenController = new ScreenController(stage);
+		// Create main menu scene
 		AnchorPane root = new AnchorPane();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
+		Scene menuScene = new Scene(root);
+		stage.setScene(menuScene);
 		stage.setTitle("Aquarium Demastered");
 		stage.setResizable(false);
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
-		setBackGround(gc);
-		String image_path = "file:res/image/menu_editted2.jpg";
-		drawImage(gc, image_path);
-		String musicFile = "res/sound/buttonclick.mp3"; // For example
+		resetBackGround(gc);
+		final String IMAGE_PATH = "file:res/image/menu_editted2.jpg";
+		setBackGroundImage(gc, IMAGE_PATH);
+		// Set sound effect for button click
+		final String BUTTON_CLICK_PATH = "res/sound/buttonclick.mp3";
 
-		Media sound = new Media(new File(musicFile).toURI().toString());
+		Media sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		//mediaPlayer.setAutoPlay(true);
-		ScreenController screen = new ScreenController(scene);
+
+		// Add buttons to current menu scene
 		for (int i = 0; i < buttonDetail.length; i++) {
-			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer, screen);
+			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
 		}
 		;
-		screen.addScreen("tank0", root);
-		tank0 tank0 = new tank0();
-		tank0.addScreen(screen);
+		// Add menuScene in ArrayList in String "menu"
+		screenController.addScene("menu", menuScene);
+		// Set current scene to "menu"
+		screenController.changeScene("menu");
 		stage.show();
 	}
 
-	private void setBackGround(GraphicsContext gc) {
+	// Set background to BLACK
+	private void resetBackGround(GraphicsContext gc) {
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
 
-	private void drawImage(GraphicsContext gc, String image_path) {
+	// Set background to an image
+	private void setBackGroundImage(GraphicsContext gc, String image_path) {
 		System.out.println(image_path);
 		Image javafx_logo = new Image(image_path);
 		gc.drawImage(javafx_logo, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
 
-	private void drawImageFixSize(GraphicsContext gc, String image_path) {
+	// Draw an image on the screen at specific place
+	private void drawImage(GraphicsContext gc, String image_path, int xPos, int yPos, int width, int height) {
 		System.out.println(image_path);
 		Image javafx_logo = new Image(image_path);
 
 		// image, x ,y, width, height
-		gc.drawImage(javafx_logo, 40, 40, 600, 200);
+		gc.drawImage(javafx_logo, xPos, yPos, width, height);
 	}
 
-	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position, MediaPlayer mediaPlayer, ScreenController screen) {
+	// Add buttons and set their event listeners
+	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position, MediaPlayer mediaPlayer) {
 		Button button = new Button(buttonText);
 		button.setPrefSize((position[2] - position[0]) * 1.5, (position[3] - position[1]) * 1.5);
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
@@ -129,7 +140,29 @@ public class menu1 extends Application {
 						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
 				playClickSound(mediaPlayer);
 				if (buttonText.equals("Button 1")) {
-					screen.activate("tank0");
+					Thread thread = new Thread(() -> {
+						try {
+							if (!screenController.sceneExist("tank0")) {
+								tank0 tank0 = new tank0();
+								Scene tank0Scene = tank0.getScene();
+								screenController.addScene("tank0", tank0Scene);
+							}
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									System.out.println("ran");
+									screenController.changeScene("tank0");
+								}
+							});
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
 				}
 			}
 		});
