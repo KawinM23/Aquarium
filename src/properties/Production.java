@@ -26,12 +26,11 @@ public class Production {
 		if (deltaTime > cooldown) {
 			switch (this.productType) {
 			case 0:
-				TankManager.produceMoney(new SilverCoin("SilverCoin", producer.getCenterX(), producer.getCenterY()));
 				setLastProduceNow();
 				break;
 			case 1:
-
-
+				TankManager.produceMoney(new SilverCoin("SilverCoin", producer.getCenterX(), producer.getCenterY()));
+				setLastProduceNow();
 				break;
 			case 2:
 

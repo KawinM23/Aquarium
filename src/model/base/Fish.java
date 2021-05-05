@@ -10,9 +10,11 @@ import properties.Production;
 
 public class Fish extends Unit {
 
-	protected boolean isFacingRight;
-	protected Hunger hunger;
-	protected Production production;
+	private boolean isFacingRight;
+	private Hunger hunger;
+	private Production production;
+	private double mouthPosX;
+	private double mouthPosY;
 
 	public Fish(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -40,22 +42,30 @@ public class Fish extends Unit {
 				this.setVelZero();
 			} else {
 				// Go to food
-				this.headToUnit(nearestFood);
+				this.headToFood(nearestFood);
 			}
 
 		} else {
+			// Idle No food
 			this.setVelZero();
-			System.out.println("No Food");
 		}
 
 	}
 
 	public boolean isAtMounth(Unit nearestFood) {
-		return nearestFood.getBoundary().contains(new Point2D(this.getPosX() + 5, this.getPosY() + 40));
+		return nearestFood.getBoundary().contains(new Point2D(getMouthPosX(), getMouthPosY()));
 	}
 
 	public void feed(Unit nearestFood) {
 		this.hunger.resetTime();
+	}
+
+	public void headToFood(Unit u) {
+		System.out.println("" + getMouthPosX() + " " + getMouthPosY());
+		this.setVelX(
+				((u.getCenterX() - getMouthPosX()) / u.distance(getMouthPosX(), getMouthPosY())) * this.getSpeed());
+		this.setVelY(
+				((u.getCenterY() - getMouthPosY()) / u.distance(getMouthPosX(), getMouthPosY())) * this.getSpeed());
 	}
 
 	@Override
@@ -64,10 +74,8 @@ public class Fish extends Unit {
 		switch (hunger.checkHunger()) {
 		case 0:
 			// idle
-			System.out.println(this.getName() + " Chill");
 			break;
 		case 1:
-			System.out.println(this.getName() + " Hungry");
 			// find food
 			this.findFood();
 			break;
@@ -77,7 +85,7 @@ public class Fish extends Unit {
 			TankManager.remove(this);
 			return;
 		}
-		
+
 		this.production.checkProduce();
 
 		this.move(fr);
@@ -89,4 +97,50 @@ public class Fish extends Unit {
 		gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
 
 	}
+
+	public double getMouthPosX() {
+		return getPosX() + mouthPosX;
+	}
+
+	public void setMouthPosX(double mouthPosX) {
+		this.mouthPosX = mouthPosX;
+	}
+
+	public double getMouthPosY() {
+		return getPosY() + mouthPosY;
+	}
+
+	public void setMouthPosY(double mouthPosY) {
+		this.mouthPosY = mouthPosY;
+	}
+
+	public void setMouthPos(double mouthPosX, double mouthPosY) {
+		this.mouthPosX = mouthPosX;
+		this.mouthPosY = mouthPosY;
+	}
+
+	public boolean isFacingRight() {
+		return isFacingRight;
+	}
+
+	public void setFacingRight(boolean isFacingRight) {
+		this.isFacingRight = isFacingRight;
+	}
+
+	public Hunger getHunger() {
+		return hunger;
+	}
+
+	public void setHunger(Hunger hunger) {
+		this.hunger = hunger;
+	}
+
+	public Production getProduction() {
+		return production;
+	}
+
+	public void setProduction(Production production) {
+		this.production = production;
+	}
+
 }

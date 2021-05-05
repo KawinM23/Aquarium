@@ -36,21 +36,21 @@ public abstract class Unit {
 	}
 	
 	public double distance(double x,double y) {
-		double deltaX = x - this.getPosX();
-		double deltaY = y - this.getPosY();
+		double deltaX = x - this.getCenterX();
+		double deltaY = y - this.getCenterY();
 		return Math.hypot(deltaX, deltaY);
 	}
 
 	// HeadToUnit = set velocity
 	public void headToUnit(Unit u) {
-		this.setVelX(((u.getPosX() - this.getPosX()) / this.distance(u))*this.getSpeed());
-		this.setVelY(((u.getPosY() - this.getPosY()) / this.distance(u))*this.getSpeed());
+		this.setVelX(((u.getCenterX() - this.getCenterX()) / this.distance(u))*this.getSpeed());
+		this.setVelY(((u.getCenterY() - this.getCenterY()) / this.distance(u))*this.getSpeed());
 	}
 
 	// HeadToPoint
 	public void headToPos(double x,double y) {
-		this.setVelX((x - this.getPosX() / this.distance(x,y)*this.getSpeed()));
-		this.setVelY((y - this.getPosY() / this.distance(x,y)*this.getSpeed()));
+		this.setVelX((x - this.getCenterX() / this.distance(x,y)*this.getSpeed()));
+		this.setVelY((y - this.getCenterY() / this.distance(x,y)*this.getSpeed()));
 	}
 	
 	public void move(int fr) {
