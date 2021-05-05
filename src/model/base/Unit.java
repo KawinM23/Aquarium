@@ -30,8 +30,8 @@ public abstract class Unit {
 	public abstract void draw(GraphicsContext gc);
 
 	public double distance(Unit u) {
-		double deltaX = u.getPosX() - this.getPosX();
-		double deltaY = u.getPosY() - this.getPosY();
+		double deltaX = u.getCenterX() - this.getCenterX();
+		double deltaY = u.getCenterY() - this.getCenterY();
 		return Math.hypot(deltaX, deltaY);
 	}
 	

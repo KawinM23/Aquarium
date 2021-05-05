@@ -49,6 +49,22 @@ public class TankManager {
 		TankManager.foodList = foodList;
 	}
 
+	public static ArrayList<Money> getMoneyList() {
+		return moneyList;
+	}
+
+	public static void setMoneyList(ArrayList<Money> moneyList) {
+		TankManager.moneyList = moneyList;
+	}
+
+	public static ArrayList<Monster> getMonsterList() {
+		return monsterList;
+	}
+
+	public static void setMonsterList(ArrayList<Monster> monsterList) {
+		TankManager.monsterList = monsterList;
+	}
+
 	public static void update(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		for (Unit u : unitList) {
