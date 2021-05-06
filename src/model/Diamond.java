@@ -11,12 +11,12 @@ public class Diamond extends Money {
 	public Diamond(String name, double posX, double posY, int type) {
 		super(name, posX, posY);
 		this.type = type;
-		
+
 		this.setImg(new Image("file:res/image/SilverCoin.png"));
-		if(type == 0) {
+		if (type == 0) {
 			this.setVel(0, 50);
-		}else if(type ==1) {
-			this.setVelY(-60); //TODO Spit Diamond Fall
+		} else if (type == 1) {
+			this.setVelY(-60); // TODO Spit Diamond Fall
 		}
 	}
 
