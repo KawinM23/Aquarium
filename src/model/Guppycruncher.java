@@ -57,10 +57,7 @@ public class Guppycruncher extends Fish {
 		}
 	}
 	
-	public void feed(Unit nearestFood) {
-		this.getHunger().resetTime();
-		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY(), 1));
-	}
+
 
 	private void jump() {
 		// TODO Auto-generated method stub

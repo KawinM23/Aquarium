@@ -61,6 +61,9 @@ public class Starcatcher extends Fish {
 		}
 	}
 
-	
+	public void feed(Unit nearestFood) {
+		this.getHunger().resetTime();
+		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY(), 1));
+	}
 
 }
