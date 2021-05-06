@@ -13,7 +13,7 @@ public class Guppycruncher extends Fish {
 
 	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
+		// TODO SetMoreVar
 	}
 
 	public void findFood() {
@@ -60,7 +60,7 @@ public class Guppycruncher extends Fish {
 
 
 	private void jump() {
-		// TODO Auto-generated method stub
+		// TODO jump
 		this.setVelY(-20);
 		this.isJumping = true;
 	}
@@ -75,7 +75,7 @@ public class Guppycruncher extends Fish {
 	}
 
 	public void move(int fr) {
-
+		//TODO Test Jumping GC
 		double deltaTime = 1.0 / fr;
 		if (isJumping) {
 			this.setVelY(getVelY() + (fallAcc * deltaTime));

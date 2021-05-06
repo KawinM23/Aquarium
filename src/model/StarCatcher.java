@@ -12,14 +12,13 @@ public class Starcatcher extends Fish {
 
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
 		this.setWidth(40);
 		this.setHeight(40);
 		this.setSpeed(35);
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
-		this.setHunger(new Hunger(Star.class, 3, 20));
+		this.setHunger(new Hunger(Star.class, 3, 20));  //TODO Hunger 10sec
 		this.setProduction(new Production(this, 5, 0));
 	}
 
@@ -63,7 +62,7 @@ public class Starcatcher extends Fish {
 
 	public void feed(Unit nearestFood) {
 		this.getHunger().resetTime();
-		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY(), 1));
+		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY()-20, 1));
 	}
 
 }

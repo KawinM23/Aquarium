@@ -24,7 +24,6 @@ public class Fish extends Unit {
 	}
 
 	public void findFood() {
-		// TODO Auto-generated method stub
 
 		if (TankManager.getFoodList().size() != 0) {
 			Unit nearestFood = TankManager.getFoodList().get(0);
@@ -70,7 +69,6 @@ public class Fish extends Unit {
 
 	@Override
 	public void update(int fr) {
-		// TODO Auto-generated method stub
 		switch (hunger.checkHunger()) {
 		case 0:
 			// idle
@@ -93,7 +91,6 @@ public class Fish extends Unit {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
 		gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
 
 	}
