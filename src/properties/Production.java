@@ -21,7 +21,9 @@ public class Production {
 	}
 
 	public void checkProduce() {
-
+		if(cooldown==0) {
+			return;
+		}
 		double deltaTime = (System.nanoTime() - getLastProduce()) / 1.0e9;
 		if (deltaTime > cooldown) {
 			switch (this.productType) {
