@@ -137,5 +137,20 @@ public class TankManager {
 			}
 		}
 	}
+	
+	public static void clear() {
+		unitList.clear();
+		
+		foodList.clear();
+		moneyList.clear();
+		fishList.clear();
+		monsterList.clear();
+		
+		removeFoodList.clear();
+		removeMoneyList.clear();
+		removeFishList.clear();
+		removeMonsterList.clear();
+		
+	}
 
 }

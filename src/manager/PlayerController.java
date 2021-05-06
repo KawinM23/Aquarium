@@ -1,6 +1,7 @@
 package manager;
 
 public class PlayerController {
+	
 	private static int money;
 	private static boolean isPlaying;
 	
