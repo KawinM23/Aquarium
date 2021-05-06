@@ -12,27 +12,32 @@ import model.base.Unit;
 import properties.Hunger;
 
 public class Sylvester extends Monster {
-	
+
 	private Hunger hunger;
 
 	public Sylvester(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
-		
+
 		this.setWidth(100);
 		this.setHeight(150);
 		this.setSpeed(120);
-		
+
 		this.setImg(new Image("file:res/image/Guppy.png", getWidth(), getHeight(), false, true));
-		
+
 		this.setHealth(200);
 		this.hunger = new Hunger(Fish.class, 5, 0);
-		
+
 	}
 
 	@Override
 	public void update(int fr) {
 		// TODO Auto-generated method stub
+		if (this.getHealth() <= 0) {
+			// TODO Defeat
+			return;
+		}
+		
 		switch (hunger.checkHunger()) {
 		case 0:
 			// idle
@@ -40,7 +45,6 @@ public class Sylvester extends Monster {
 			break;
 		case 1:
 			// find food
-			System.out.println("Monster attack");
 			this.attack();
 			break;
 		}
@@ -70,7 +74,7 @@ public class Sylvester extends Monster {
 			// Check Food position and Fish
 			if (this.getBoundary().contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
 				// eat & levelup
-				System.out.println(this.getName()+" eat "+nearestFish.getName());
+				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish);
 				this.setVelZero();
 			} else {
@@ -88,6 +92,10 @@ public class Sylvester extends Monster {
 		// TODO Auto-generated method stub
 		TankManager.remove(nearestFish);
 		this.hunger.resetTime();
+	}
+
+	public void getHit() {
+		// TODO Onclick Mouse -> decrease Hp
 	}
 
 }

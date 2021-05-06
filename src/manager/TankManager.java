@@ -101,6 +101,11 @@ public class TankManager {
 			monsterList.add((Monster) u);
 		}
 	}
+	
+	public static void addFood(Food f) {
+		unitList.add(f);
+		foodList.add(f);
+	}
 
 	public static void produceMoney(Money m) {
 		unitList.add(m);

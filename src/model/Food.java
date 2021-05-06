@@ -21,10 +21,12 @@ public class Food extends Unit {
 			this.setWidth(40);
 			this.setHeight(40);
 		}
+		this.setPos(posX - (getWidth() / 2), posY - (getHeight() / 2)); // Slide
+
 		this.setVel(0, 40);
 
-		this.setImg(new Image("file:res/image/Food1.png")); //TODO DifferentPic
-		//TODO Set Food Level
+		this.setImg(new Image("file:res/image/Food1.png")); // TODO DifferentPic
+		// TODO Set Food Level
 
 	}
 
@@ -48,6 +50,14 @@ public class Food extends Unit {
 
 	public void setFoodType(int foodType) {
 		this.foodType = foodType;
+	}
+
+	public int getFoodLevel() {
+		return foodLevel;
+	}
+
+	public void setFoodLevel(int foodLevel) {
+		this.foodLevel = foodLevel;
 	}
 
 }

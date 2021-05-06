@@ -2,11 +2,13 @@ package manager;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -48,17 +50,15 @@ public class ViewManager {
 //		
 //		Carnivore c1 = new Carnivore("c1", 300, 200);
 //		TankManager.add(c1);
-		
+
 //		Starcatcher sc1 = new Starcatcher("sc1", 300, GameManager.getBOTTOMHEIGHT()-40);
 //		TankManager.add(sc1);
 //		
 //		Star s1 = new Star("s1", 400, 200);
 //		TankManager.add(s1);
-		
+
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 		TankManager.add(sv);
-		
-		
 
 		//////////////////////////
 		Thread threadTank = new Thread(new Runnable() {
@@ -93,6 +93,19 @@ public class ViewManager {
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
 		threadTank.start();
+
+		//MouseClick Position
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				System.out.println("Click "+event.getSceneX()+" "+event.getSceneY());
+				//Add Food
+				TankManager.add(new Food("Food",event.getSceneX(),event.getSceneY(), 1));
+			}
+		};
+		
+		mainScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 
 	}
 
