@@ -66,6 +66,11 @@ public class Fish extends Unit {
 		this.setVelY(
 				((u.getCenterY() - getMouthPosY()) / u.distance(getMouthPosX(), getMouthPosY())) * this.getSpeed());
 	}
+	
+	public void die() {
+		System.out.println(this.getName()+" die");
+		TankManager.remove(this);
+	}
 
 	@Override
 	public void update(int fr) {
@@ -79,8 +84,7 @@ public class Fish extends Unit {
 			break;
 		case 2:
 			// die
-			System.out.println(this.getName() + " Dying");
-			TankManager.remove(this);
+			this.die();
 			return;
 		}
 

@@ -14,11 +14,11 @@ public class Starcatcher extends Fish {
 		super(name, posX, posY);
 		this.setWidth(40);
 		this.setHeight(40);
-		this.setSpeed(35);
+		this.setSpeed(40);
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
-		this.setHunger(new Hunger(Star.class, 3, 20));  //TODO Hunger 10sec
+		this.setHunger(new Hunger(Star.class, 3, 10));  //TODO Hunger 10sec
 		this.setProduction(new Production(this, 5, 0));
 	}
 

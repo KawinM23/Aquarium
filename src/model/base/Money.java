@@ -10,7 +10,7 @@ public class Money extends Unit {
 	public Money(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
-		this.setVel(0, 40);
+		this.setVel(0, 50);
 		this.setWidth(30);
 		this.setHeight(30);
 	}

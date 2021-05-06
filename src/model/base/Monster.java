@@ -9,5 +9,6 @@ public abstract class Monster extends Unit {
 		// TODO Auto-generated constructor stub
 	}
 
+	public abstract void attack();
 
 }
