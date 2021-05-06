@@ -74,6 +74,9 @@ public class TankManager {
 			f.update(GameManager.getFRAMERATE());
 		}
 		fishList.removeAll(removeFishList);
+		if (fishList.size() == 0) {
+			PlayerController.setPlaying(false);
+		}
 		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
 		}
@@ -101,7 +104,7 @@ public class TankManager {
 			monsterList.add((Monster) u);
 		}
 	}
-	
+
 	public static void addFood(Food f) {
 		unitList.add(f);
 		foodList.add(f);

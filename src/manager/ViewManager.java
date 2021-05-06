@@ -59,7 +59,8 @@ public class ViewManager {
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 		TankManager.add(sv);
-
+		
+		PlayerController.setPlaying(true);
 		//////////////////////////
 		Thread threadTank = new Thread(new Runnable() {
 
@@ -77,14 +78,15 @@ public class ViewManager {
 					}
 				};
 
-				while (true) {
+				while (PlayerController.isPlaying()) {
 					try {
 						Thread.sleep(1000 / GameManager.getFRAMERATE());// 50hz ,1000/50 = 20
 					} catch (InterruptedException ex) {
 					}
-
-					// UI update is run on the Application thread
 					Platform.runLater(updater);
+				}
+				if(!PlayerController.isPlaying()) {
+					System.out.println("LOSE");
 				}
 			}
 
