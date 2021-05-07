@@ -35,6 +35,7 @@ public class menu1 extends Application {
 	private ScreenController screenController;
 	private MediaPlayer mediaPlayer;
 	private Media sound;
+	private tank2 tank2;
 
 	@Override
 	public void start(Stage stage) {
@@ -113,7 +114,6 @@ public class menu1 extends Application {
 		AnchorPane.setLeftAnchor(button, position[0] * 1.5);
 
 		button.hoverProperty().addListener((event) -> {
-			System.out.println("Hovered " + buttonText);
 			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 					+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
 		});
@@ -121,7 +121,7 @@ public class menu1 extends Application {
 		button.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				System.out.println("Entered " + buttonText);
+
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 						+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
 			}
@@ -129,7 +129,6 @@ public class menu1 extends Application {
 		button.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				System.out.println("Exited " + buttonText);
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 						+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
 			}
@@ -137,7 +136,6 @@ public class menu1 extends Application {
 		button.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				System.out.println("Pressed " + buttonText);
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
 				playClickSound(mediaPlayer);
@@ -177,8 +175,37 @@ public class menu1 extends Application {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									System.out.println("Change To Tank1");
+									if(GameManager.isLOG()) System.out.println("Change To Tank1");
 									screenController.changeScene("tank1");
+								}
+							});
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+					});
+					newTankthread.start();
+				} else if (buttonText.equals("Button 3")) {
+					Thread newTankthread = new Thread(() -> {
+						try {
+							if (!screenController.sceneExist("tank2")) {
+								
+								tank2 = new tank2();
+								Scene sceneTank2 = tank2.getScene();
+								screenController.addScene("tank2", sceneTank2);
+							} else {
+								
+							}
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									if(GameManager.isLOG()) System.out.println("Change To Tank2");
+									screenController.changeScene("tank2");
+									if(tank2.getThreadTank().getState() == Thread.State.WAITING) {
+										synchronized (tank2.getThreadTank()) {
+											tank2.getThreadTank().notify();
+										}
+									}
 								}
 							});
 						} catch (Exception e) {
@@ -193,7 +220,6 @@ public class menu1 extends Application {
 		button.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				System.out.println("Released " + buttonText);
 				if (button.isHover()) {
 					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 							+ "-fx-background-color: transparent;" + "-fx-text-fill: red");

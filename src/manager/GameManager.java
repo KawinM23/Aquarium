@@ -7,6 +7,7 @@ public class GameManager {
 	
 	private static int FRAMERATE = 50;
 	
+	private static boolean LOG = true;
 	
 	public static int getWIDTH() {
 		return WIDTH;
@@ -21,6 +22,11 @@ public class GameManager {
 	public static int getFRAMERATE() {
 		return FRAMERATE;
 	}
+	public static boolean isLOG() {
+		return LOG;
+	}
+	
+	
 	
 	
 	

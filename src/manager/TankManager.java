@@ -3,7 +3,6 @@ package manager;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import model.Food;
 import model.base.Fish;
@@ -29,40 +28,20 @@ public class TankManager {
 		return unitList;
 	}
 
-	public static void setUnitList(ArrayList<Unit> unitList) {
-		TankManager.unitList = unitList;
-	}
-
 	public static ArrayList<Fish> getFishList() {
 		return fishList;
-	}
-
-	public static void setFishList(ArrayList<Fish> fishList) {
-		TankManager.fishList = fishList;
 	}
 
 	public static ArrayList<Food> getFoodList() {
 		return foodList;
 	}
 
-	public static void setFoodList(ArrayList<Food> foodList) {
-		TankManager.foodList = foodList;
-	}
-
 	public static ArrayList<Money> getMoneyList() {
 		return moneyList;
 	}
 
-	public static void setMoneyList(ArrayList<Money> moneyList) {
-		TankManager.moneyList = moneyList;
-	}
-
 	public static ArrayList<Monster> getMonsterList() {
 		return monsterList;
-	}
-
-	public static void setMonsterList(ArrayList<Monster> monsterList) {
-		TankManager.monsterList = monsterList;
 	}
 
 	public static void update(GraphicsContext gc) {
