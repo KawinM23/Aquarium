@@ -106,8 +106,10 @@ public class TankManager {
 	}
 
 	public static void addFood(Food f) {
-		unitList.add(f);
-		foodList.add(f);
+		if(!(foodList.size()>=PlayerController.getMaxFood())) {
+			unitList.add(f);
+			foodList.add(f);
+		}
 	}
 
 	public static void produceMoney(Money m) {

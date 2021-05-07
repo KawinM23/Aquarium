@@ -22,14 +22,14 @@ import model.Sylvester;
 
 public class ViewManager {
 	private Pane mainPane;
-	private Scene mainScene;
-	private Stage mainStage;
+	private Scene tankScene;
+	private Stage tankStage;
 
 	public ViewManager() {
 		mainPane = new Pane();
-		mainScene = new Scene(mainPane, GameManager.getWIDTH(), GameManager.getHEIGHT());
-		mainStage = new Stage();
-		mainStage.setScene(mainScene);
+		tankScene = new Scene(mainPane, GameManager.getWIDTH(), GameManager.getHEIGHT());
+//		tankStage = new Stage();
+//		tankStage.setScene(tankScene);
 
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		mainPane.getChildren().add(canvas);
@@ -37,6 +37,9 @@ public class ViewManager {
 
 		///////////////////////// TEST
 
+		PlayerController.setPlaying(true);
+		PlayerController.setMaxFood(3);
+		
 		Image bc = new Image("file:res/image/aquarium1.jpg");
 
 		Guppy g1 = new Guppy("g1", 500, 300);
@@ -60,7 +63,6 @@ public class ViewManager {
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 		TankManager.add(sv);
 		
-		PlayerController.setPlaying(true);
 		//////////////////////////
 		Thread threadTank = new Thread(new Runnable() {
 
@@ -103,16 +105,22 @@ public class ViewManager {
 			public void handle(MouseEvent event) {
 				System.out.println("Click "+event.getSceneX()+" "+event.getSceneY());
 				//Add Food
-				TankManager.add(new Food("Food",event.getSceneX(),event.getSceneY(), 1));
+				TankManager.addFood(new Food("Food",event.getSceneX(),event.getSceneY(), 1));
 			}
 		};
 		
-		mainScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 
 	}
 
-	public Stage getMainStage() {
-		return mainStage;
+	public Stage getTankStage() {
+		return tankStage;
 	}
+	
+	public Scene getTankScene() {
+		return tankScene;
+	}
+	
+	
 
 }

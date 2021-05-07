@@ -10,7 +10,7 @@ public class main1 extends Application{
 	public void start(Stage primaryStage) {
 		try {
 			ViewManager manager = new ViewManager();
-			primaryStage = manager.getMainStage();
+			primaryStage = manager.getTankStage();
 			
 			
 			

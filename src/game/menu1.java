@@ -35,6 +35,7 @@ public class menu1 extends Application {
 	private ScreenController screenController;
 	private MediaPlayer mediaPlayer;
 	private Media sound;
+
 	@Override
 	public void start(Stage stage) {
 		// Add ScreenController and set main stage to our stage
@@ -164,6 +165,28 @@ public class menu1 extends Application {
 					});
 					thread.start();
 
+				} else if (buttonText.equals("Button 2")) {
+					Thread newTankthread = new Thread(() -> {
+						try {
+							if (!screenController.sceneExist("tank1")) {
+								ViewManager vm1 = new ViewManager();
+								
+								Scene tank1 = vm1.getTankScene();
+								screenController.addScene("tank1", tank1);
+							}
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									System.out.println("Change To Tank1");
+									screenController.changeScene("tank1");
+								}
+							});
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+					});
+					newTankthread.start();
 				}
 			}
 		});
@@ -190,21 +213,21 @@ public class menu1 extends Application {
 			try {
 				MediaPlayer newMediaPlayer = new MediaPlayer(sound);
 				newMediaPlayer.play();
-				Platform.runLater(new Runnable(){
+				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						
+
 					}
 				});
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		});
 		thread.start();
-		
+
 		// System.out.println("played");
 	}
 
