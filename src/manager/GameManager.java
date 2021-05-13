@@ -1,6 +1,7 @@
 package manager;
 
 public class GameManager {
+	
 	private static int WIDTH = (int) (640*1.5);
 	private static int HEIGHT = (int) (480*1.5);
 	private static int BOTTOMHEIGHT = HEIGHT - 30;
