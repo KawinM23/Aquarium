@@ -91,7 +91,7 @@ public class Sylvester extends Monster {
 	private void eat(Unit nearestFish) {
 		// TODO Auto-generated method stub
 		TankManager.remove(nearestFish);
-		this.hunger.resetTime();
+		this.hunger.setLastFedNow();
 	}
 
 	public void getHit() {

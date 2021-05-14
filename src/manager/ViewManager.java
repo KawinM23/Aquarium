@@ -39,7 +39,8 @@ public class ViewManager {
 
 		PlayerController.setPlaying(true);
 		PlayerController.setMaxFood(3);
-		
+		MonsterManager.setInvasionTime((long) (System.nanoTime() + 20e10));
+
 		Image bc = new Image("file:res/image/aquarium1.jpg");
 
 		Guppy g1 = new Guppy("g1", 500, 300);
@@ -62,8 +63,10 @@ public class ViewManager {
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 		TankManager.add(sv);
-		
+
 		//////////////////////////
+		
+		//TODO Change Code to new Controller
 		Thread threadTank = new Thread(new Runnable() {
 
 			@Override
@@ -76,6 +79,7 @@ public class ViewManager {
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
 						gc.setFill(Color.rgb(102, 204, 255));
 						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
+						MonsterManager.getInvasionTime();
 						TankManager.update(gc);
 					}
 				};
@@ -87,7 +91,7 @@ public class ViewManager {
 					}
 					Platform.runLater(updater);
 				}
-				if(!PlayerController.isPlaying()) {
+				if (!PlayerController.isPlaying()) {
 					System.out.println("LOSE");
 				}
 			}
@@ -98,17 +102,17 @@ public class ViewManager {
 		threadTank.setDaemon(true);
 		threadTank.start();
 
-		//MouseClick Position
+		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Click "+event.getSceneX()+" "+event.getSceneY());
-				//Add Food
-				TankManager.addFood(new Food("Food",event.getSceneX(),event.getSceneY(), 1));
+				System.out.println("Click " + event.getSceneX() + " " + event.getSceneY());
+				// Add Food
+				TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
 			}
 		};
-		
+
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 
 	}
@@ -116,11 +120,9 @@ public class ViewManager {
 	public Stage getTankStage() {
 		return tankStage;
 	}
-	
+
 	public Scene getTankScene() {
 		return tankScene;
 	}
-	
-	
 
 }

@@ -17,7 +17,7 @@ public class Hunger {
 	}
 
 	public int checkHunger() {
-		double deltaTime = (System.nanoTime() - getLastFed()) / 1.0e9;
+		double deltaTime = getDeltaTime();
 		if (lifetime != 0 && deltaTime > lifetime) {
 			return 2;
 		} else if (cooldown != 0 && deltaTime > cooldown) {
@@ -25,10 +25,6 @@ public class Hunger {
 		} else {
 			return 0;
 		}
-	}
-
-	public void resetTime() {
-		this.setLastFed(System.nanoTime());
 	}
 
 	public Class<?> getFoodType() {
@@ -50,12 +46,27 @@ public class Hunger {
 		this.lastFed = lastFed;
 	}
 
+	public void setLastFedNow() {
+		this.setLastFed(System.nanoTime());
+	}
+
+	public double getDeltaTime() {
+		return (System.nanoTime() - getLastFed()) / 1.0e9;
+	}
+
 	public double getCooldown() {
 		return cooldown;
 	}
 
 	public void setCooldown(double cooldown) {
 		this.cooldown = cooldown;
+	}
+
+	public void endInvasion(long invasionDuration) {
+		setLastFed(lastFed + invasionDuration);
+		if (getDeltaTime() > cooldown) {
+			setLastFed((long) (System.nanoTime() - (cooldown * 1e9)));
+		}
 	}
 
 }

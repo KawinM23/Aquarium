@@ -1,8 +1,8 @@
 package manager;
 
 public class MonsterManager {
-	private static boolean isInvaded;
-	private static int invasion;
+	private static boolean isInvaded = false;
+	private static int invasion = 0;
 	private static long invasionTime;
 
 	public static boolean isInvaded() {
@@ -31,5 +31,16 @@ public class MonsterManager {
 
 	public static void setInvasion(int invasion) {
 		MonsterManager.invasion = invasion;
+	}
+
+	public static void update() {
+		if (!isInvaded && System.nanoTime() >= invasionTime) {
+			setInvaded(true);
+			setInvasion(invasion + 1);
+			// ADD MONSTER
+		} else if (isInvaded && TankManager.getMonsterCount() == 0) {
+			setInvaded(false);
+			TankManager.endInvasion(getInvasionDuration());
+		}
 	}
 }

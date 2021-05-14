@@ -44,6 +44,10 @@ public class TankManager {
 		return monsterList;
 	}
 
+	public static int getMonsterCount() {
+		return monsterList.size();
+	}
+
 	public static void update(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		for (Unit u : unitList) {
@@ -85,7 +89,7 @@ public class TankManager {
 	}
 
 	public static void addFood(Food f) {
-		if(!(foodList.size()>=PlayerController.getMaxFood())) {
+		if (!(foodList.size() >= PlayerController.getMaxFood())) {
 			unitList.add(f);
 			foodList.add(f);
 		}
@@ -118,20 +122,28 @@ public class TankManager {
 			}
 		}
 	}
-	
+
 	public static void clear() {
 		unitList.clear();
-		
+
 		foodList.clear();
 		moneyList.clear();
 		fishList.clear();
 		monsterList.clear();
-		
+
 		removeFoodList.clear();
 		removeMoneyList.clear();
 		removeFishList.clear();
 		removeMonsterList.clear();
-		
+
+	}
+
+	public static void endInvasion(long invasionDuration) {
+		//Add TIME ti Hunger AND Production to every fish
+		for(Fish f : fishList) {
+			f.getHunger().endInvasion(invasionDuration);
+			f.getProduction().endInvasion(invasionDuration);
+		}
 	}
 
 }

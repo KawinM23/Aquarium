@@ -35,7 +35,7 @@ public class Guppy extends Fish {
 	}
 
 	public void feed(Unit nearestFood) {
-		this.getHunger().resetTime();
+		this.getHunger().setLastFedNow();
 		this.setGrowth(getGrowth() + 100);
 		if (this.growth >= 100) {
 			System.out.println("Levelup");

@@ -2,6 +2,7 @@ package model.base;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
+import manager.MonsterManager;
 import manager.TankManager;
 import model.Food;
 import model.Guppy;
@@ -36,7 +37,7 @@ public class Fish extends Unit {
 			// Check Food position and Fish
 			if (isAtMounth(nearestFood)) {
 				// eat & levelup
-				System.out.println(this.getName()+" eat "+nearestFood.getName());
+				System.out.println(this.getName() + " eat " + nearestFood.getName());
 				this.feed(nearestFood);
 				TankManager.remove(nearestFood);
 				this.setVelZero();
@@ -57,7 +58,7 @@ public class Fish extends Unit {
 	}
 
 	public void feed(Unit nearestFood) {
-		this.hunger.resetTime();
+		this.hunger.setLastFedNow();
 	}
 
 	public void headToFood(Unit u) {
@@ -66,30 +67,33 @@ public class Fish extends Unit {
 		this.setVelY(
 				((u.getCenterY() - getMouthPosY()) / u.distance(getMouthPosX(), getMouthPosY())) * this.getSpeed());
 	}
-	
+
 	public void die() {
-		System.out.println(this.getName()+" die");
+		System.out.println(this.getName() + " die");
 		TankManager.remove(this);
 	}
 
 	@Override
 	public void update(int fr) {
-		switch (hunger.checkHunger()) {
-		case 0:
-			// idle
-			break;
-		case 1:
-			// find food
-			this.findFood();
-			break;
-		case 2:
-			// die
-			this.die();
-			return;
+		if (!MonsterManager.isInvaded()) {
+			switch (hunger.checkHunger()) {
+			case 0:
+				// idle
+				break;
+			case 1:
+				// find food
+				this.findFood();
+				break;
+			case 2:
+				// die
+				this.die();
+				return;
+			}
+
+			this.production.checkProduce();
+		} else {
+			//TODO IDLE
 		}
-
-		this.production.checkProduce();
-
 		this.move(fr);
 	}
 

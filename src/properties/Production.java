@@ -72,4 +72,9 @@ public class Production {
 		this.cooldown = cooldown;
 	}
 
+	public void endInvasion(long invasionDuration) {
+		// TODO 
+		
+	}
+
 }
