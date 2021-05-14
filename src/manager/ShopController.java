@@ -7,6 +7,9 @@ public class ShopController {
 			{ 323.0, 412.0, 417.0, 443.0, 80.0, 20.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 20.0 },
 			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
 	
+	public void drawMenuBar() {
+		
+	}
 	//TODO Add All button
 	//TODO Draw Shop Ui
 }

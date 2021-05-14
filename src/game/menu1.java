@@ -36,7 +36,8 @@ public class menu1 extends Application {
 	private MediaPlayer mediaPlayer;
 	private Media sound;
 	private tank2 tank2;
-
+	
+	//ClassLoader.getSystemResource("").toString();
 	@Override
 	public void start(Stage stage) {
 		// Add ScreenController and set main stage to our stage
@@ -51,12 +52,12 @@ public class menu1 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		resetBackGround(gc);
-		final String IMAGE_PATH = "file:res/image/menu_editted2.jpg";
+		final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted2.jpg").toString();
 		setBackGroundImage(gc, IMAGE_PATH);
 		// Set sound effect for button click
-		final String BUTTON_CLICK_PATH = "res/sound/buttonclick.mp3";
-
-		sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
+		final String BUTTON_CLICK_PATH = ClassLoader.getSystemResource("buttonclick.mp3").toString();
+		//sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
+		sound = new Media(BUTTON_CLICK_PATH);
 		mediaPlayer = new MediaPlayer(sound);
 
 		// Add buttons to current menu scene

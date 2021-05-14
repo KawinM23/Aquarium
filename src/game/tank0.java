@@ -34,7 +34,7 @@ public class tank0 extends Application {
 	private static ScreenController screenController;
 	private MediaPlayer mediaPlayer;
 	private Media sound;
-
+	//ClassLoader.getSystemResource("").toString();
 	public tank0() {
 		screenController = new ScreenController();
 		AnchorPane root = new AnchorPane();
@@ -43,13 +43,13 @@ public class tank0 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
-		String imagePathMenubar = "file:res/image/menubar.jpg";
-		String imagePathBackground = "file:res/image/aquarium1.jpg";
+		String imagePathMenubar = ClassLoader.getSystemResource("menubar.jpg").toString();
+		String imagePathBackground = ClassLoader.getSystemResource("aquarium1.jpg").toString();
 		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
 		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
-		String BUTTON_CLICK_PATH = "res/sound/buttonclick.mp3"; // For example
+		String BUTTON_CLICK_PATH = ClassLoader.getSystemResource("buttonclick.mp3").toString(); // For example
 
-		sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
+		sound = new Media(BUTTON_CLICK_PATH);
 		mediaPlayer = new MediaPlayer(sound);
 		for (int i = 0; i < buttonDetail.length; i++) {
 			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
@@ -67,13 +67,13 @@ public class tank0 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
-		String imagePathMenubar = "file:res/image/menubar.jpg";
-		String imagePathBackground = "file:res/image/aquarium1.jpg";
+		String imagePathMenubar = ClassLoader.getSystemResource("menubar.jpg").toString();;
+		String imagePathBackground = ClassLoader.getSystemResource("aquarium1.jpg").toString();;
 		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
 		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
-		String musicFile = "res/sound/buttonclick.mp3"; // For example
+		String musicFile = ClassLoader.getSystemResource("buttonclick.mp3").toString();; // For example
 
-		Media sound = new Media(new File(musicFile).toURI().toString());
+		Media sound = new Media(musicFile);
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		for (int i = 0; i < buttonDetail.length; i++) {
 			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
@@ -88,8 +88,8 @@ public class tank0 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
-		String imagePathMenubar = "file:res/image/menubar.jpg";
-		String imagePathBackground = "file:res/image/aquarium1.jpg";
+		String imagePathMenubar = ClassLoader.getSystemResource("file:res/image/menubar.jpg").toString();
+		String imagePathBackground = ClassLoader.getSystemResource("file:res/image/aquarium1.jpg").toString();;
 		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
 		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
 		String musicFile = "res/sound/buttonclick.mp3"; // For example
@@ -125,7 +125,7 @@ public class tank0 extends Application {
 		button.setPrefSize((position[2] - position[0]) * 1.5, (position[3] - position[1]) * 1.5);
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 				+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
-		button.setStyle("-fx-background-radius: " + position[4] + "px;");
+//		button.setStyle("-fx-background-radius: " + position[4] + "px;");
 //			button.setBorder(null);
 //			button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
