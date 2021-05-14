@@ -1,5 +1,7 @@
 package manager;
 
+import java.util.ArrayList;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -19,6 +21,7 @@ import model.Guppy;
 import model.Star;
 import model.Starcatcher;
 import model.Sylvester;
+import model.base.Monster;
 
 public class ViewManager {
 	private Pane mainPane;
@@ -36,15 +39,13 @@ public class ViewManager {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		///////////////////////// TEST
-
-		PlayerController.setPlaying(true);
-		PlayerController.setMaxFood(3);
-		MonsterManager.setInvasionTime((long) (System.nanoTime() + 20e10));
-
 		Image bc = new Image("file:res/image/aquarium1.jpg");
 
 		Guppy g1 = new Guppy("g1", 500, 300);
 		TankManager.add(g1);
+
+		Guppy g2 = new Guppy("g1", 200, 100);
+		TankManager.add(g2);
 
 		Food f1 = new Food("f1", 200, 20, 1);
 		TankManager.add(f1);
@@ -62,11 +63,17 @@ public class ViewManager {
 //		TankManager.add(s1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
-		TankManager.add(sv);
 
+		PlayerController.setPlaying(true);
+		PlayerController.setMaxFood(3);
+
+		MonsterManager.setInvasionTime((long) (System.nanoTime() + 10e9));
+		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
+		firstInvasion.add(sv);
+		MonsterManager.getInvasionList().add(firstInvasion);
 		//////////////////////////
-		
-		//TODO Change Code to new Controller
+
+		// TODO Change Code to new Controller
 		Thread threadTank = new Thread(new Runnable() {
 
 			@Override
@@ -108,8 +115,13 @@ public class ViewManager {
 			@Override
 			public void handle(MouseEvent event) {
 				System.out.println("Click " + event.getSceneX() + " " + event.getSceneY());
-				// Add Food
-				TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+				if (!MonsterManager.isInvaded()) {
+					// Add Food at mouse position
+					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+				} else {
+					//Shoot
+				}
+
 			}
 		};
 

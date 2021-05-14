@@ -1,9 +1,32 @@
 package manager;
 
+import java.util.ArrayList;
+
+import model.base.Monster;
+
 public class MonsterManager {
 	private static boolean isInvaded = false;
 	private static int invasion = 0;
 	private static long invasionTime;
+	private static ArrayList<ArrayList<Monster>> invasionList = new ArrayList<ArrayList<Monster>>();
+
+	public static void update() {
+		if (!isInvaded && System.nanoTime() >= invasionTime) {
+			System.out.println("Invading");
+			setInvaded(true);
+			// ADD MONSTER
+			if (invasion<invasionList.size()) {
+				for(Monster m : invasionList.get(invasion)) {
+					TankManager.add(m);
+				}
+			}
+		} else if (isInvaded && TankManager.getMonsterCount() == 0) {
+			setInvaded(false);
+			setInvasion(invasion + 1);
+			TankManager.endInvasion(getInvasionDuration());
+			setInvasionTime((long) (System.nanoTime() + 20e10));
+		}
+	}
 
 	public static boolean isInvaded() {
 		return isInvaded;
@@ -33,14 +56,11 @@ public class MonsterManager {
 		MonsterManager.invasion = invasion;
 	}
 
-	public static void update() {
-		if (!isInvaded && System.nanoTime() >= invasionTime) {
-			setInvaded(true);
-			setInvasion(invasion + 1);
-			// ADD MONSTER
-		} else if (isInvaded && TankManager.getMonsterCount() == 0) {
-			setInvaded(false);
-			TankManager.endInvasion(getInvasionDuration());
-		}
+	public static ArrayList<ArrayList<Monster>> getInvasionList() {
+		return invasionList;
+	}
+
+	public static void setInvasionList(ArrayList<ArrayList<Monster>> invasionList) {
+		MonsterManager.invasionList = invasionList;
 	}
 }

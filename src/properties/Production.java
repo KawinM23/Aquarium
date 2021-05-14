@@ -8,11 +8,11 @@ public class Production {
 
 	private Unit producer;
 	private int productType;
-	
+
 	private long lastProduce;
 	private double cooldown;
 
-	public Production(Unit producer,int productType, double cooldown) {
+	public Production(Unit producer, int productType, double cooldown) {
 		super();
 		this.producer = producer;
 		this.productType = productType;
@@ -21,10 +21,10 @@ public class Production {
 	}
 
 	public void checkProduce() {
-		if(cooldown==0) {
+		if (cooldown == 0) {
 			return;
 		}
-		double deltaTime = (System.nanoTime() - getLastProduce()) / 1.0e9;
+		double deltaTime = getDeltatime();
 		if (deltaTime > cooldown) {
 			switch (this.productType) {
 			case 0:
@@ -41,9 +41,10 @@ public class Production {
 		}
 	}
 
+	public double getDeltatime() {
+		return (System.nanoTime() - getLastProduce()) / 1.0e9;
+	}
 
-
-	
 	public int getProductType() {
 		return productType;
 	}
@@ -59,7 +60,7 @@ public class Production {
 	public void setLastProduce(long lastProduce) {
 		this.lastProduce = lastProduce;
 	}
-	
+
 	public void setLastProduceNow() {
 		this.lastProduce = System.nanoTime();
 	}
@@ -73,8 +74,8 @@ public class Production {
 	}
 
 	public void endInvasion(long invasionDuration) {
-		// TODO 
-		
+		// TODO
+		setLastProduce(lastProduce + invasionDuration);
 	}
 
 }

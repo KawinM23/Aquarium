@@ -9,6 +9,7 @@ public class main1 extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			System.out.println("Test");
 			ViewManager manager = new ViewManager();
 			primaryStage = manager.getTankStage();
 			
@@ -19,7 +20,7 @@ public class main1 extends Application{
 			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
