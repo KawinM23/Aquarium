@@ -16,7 +16,7 @@ public class main1 extends Application{
 			
 			
 			
-			primaryStage.setTitle("JAVAFXTEST");
+			primaryStage.setTitle("AQUARIUM");
 			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch (Exception e) {

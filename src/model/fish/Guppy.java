@@ -5,6 +5,7 @@ import model.Food;
 import model.base.Fish;
 import model.base.Unit;
 import properties.Hunger;
+import properties.Idle;
 import properties.Production;
 
 public class Guppy extends Fish {
@@ -17,14 +18,15 @@ public class Guppy extends Fish {
 		this.setWidth(80);
 		this.setHeight(60);
 		this.setMouthPos(5, 30);
-		
-		this.setSpeed(100);
+
+		this.setSpeed(80);
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
 		this.growth = 0;
-		this.setHunger(new Hunger(Food.class, 3, 15)); 
-		this.setProduction(new Production(this, 0, 5+Math.random()));
+		this.setHunger(new Hunger(Food.class, 3, 15));
+		this.setProduction(new Production(this, 0, 5 + Math.random()));
+		this.setIdle(new Idle(this,15));
 	}
 
 	public int getGrowth() {
@@ -38,9 +40,10 @@ public class Guppy extends Fish {
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
 		this.setGrowth(getGrowth() + 100);
-		if (this.growth >= 100) {
-			System.out.println("Levelup");
+		if (this.growth >= 100 && getProduction().getProductType() != 1) {
 			this.getProduction().setProductType(1);
+		} else if (this.growth >= 200) {
+
 		}
 	}
 

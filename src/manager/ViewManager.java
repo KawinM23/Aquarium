@@ -67,7 +67,7 @@ public class ViewManager {
 		PlayerController.setPlaying(true);
 		PlayerController.setMaxFood(3);
 
-		MonsterManager.setInvasionTime((long) (System.nanoTime() + 10e9));
+		MonsterManager.setInvasionTime((long) (System.nanoTime() + 100e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		MonsterManager.getInvasionList().add(firstInvasion);
@@ -114,7 +114,6 @@ public class ViewManager {
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Click " + event.getSceneX() + " " + event.getSceneY());
 				if (!MonsterManager.isInvaded()) {
 					// Add Food at mouse position
 					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));

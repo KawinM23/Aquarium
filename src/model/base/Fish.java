@@ -7,6 +7,7 @@ import manager.TankManager;
 import model.Food;
 import model.fish.Guppy;
 import properties.Hunger;
+import properties.Idle;
 import properties.Production;
 
 public class Fish extends Unit {
@@ -14,6 +15,8 @@ public class Fish extends Unit {
 	private boolean isFacingRight;
 	private Hunger hunger;
 	private Production production;
+	private Idle idle;
+
 	private double mouthPosX;
 	private double mouthPosY;
 
@@ -22,6 +25,15 @@ public class Fish extends Unit {
 		this.isFacingRight = false;
 		this.hunger = null;
 		this.production = null;
+		this.idle = null;
+	}
+
+	public Idle getIdle() {
+		return idle;
+	}
+
+	public void setIdle(Idle idle) {
+		this.idle = idle;
 	}
 
 	public void findFood() {
@@ -39,16 +51,17 @@ public class Fish extends Unit {
 				// eat & levelup
 				System.out.println(this.getName() + " eat " + nearestFood.getName());
 				this.feed(nearestFood);
+				this.idle.resetIdle();
 				TankManager.remove(nearestFood);
-				this.setVelZero();
 			} else {
 				// Go to food
+				this.idle.resetIdle();
 				this.headToFood(nearestFood);
 			}
 
 		} else {
 			// Idle No food
-			this.setVelZero();
+			this.idle.checkIdle();
 		}
 
 	}
@@ -79,6 +92,7 @@ public class Fish extends Unit {
 			switch (hunger.checkHunger()) {
 			case 0:
 				// idle
+				this.idle.checkIdle();
 				break;
 			case 1:
 				// find food
@@ -92,7 +106,7 @@ public class Fish extends Unit {
 
 			this.production.checkProduce();
 		} else {
-			//TODO IDLE
+			// TODO IDLE
 		}
 		this.move(fr);
 	}
