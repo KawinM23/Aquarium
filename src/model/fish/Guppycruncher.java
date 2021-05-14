@@ -1,10 +1,11 @@
-package model;
+package model.fish;
 
 import manager.GameManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
 import model.base.Unit;
+import model.money.Star;
 
 public class Guppycruncher extends Fish {
 

@@ -1,6 +1,7 @@
-package model;
+package model.fish;
 
 import javafx.scene.image.Image;
+import model.Food;
 import model.base.Fish;
 import model.base.Unit;
 import properties.Hunger;

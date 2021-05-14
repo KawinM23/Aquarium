@@ -2,11 +2,11 @@ package manager;
 
 public class PlayerController {
 
-	private static int money;
-	private static boolean isPlaying;
+	private static int money = 0;
+	private static boolean isPlaying = true;
 	private static int maxFood;
-	private static int foodLevel;
-	private static int gunLevel;
+	private static int foodLevel = 1;
+	private static int gunLevel = 1;
 	//TODO GOAL Tracker
 
 	public static int getMoney() {

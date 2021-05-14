@@ -1,4 +1,4 @@
-package model;
+package model.fish;
 
 import javafx.scene.image.Image;
 import manager.TankManager;

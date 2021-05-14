@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import manager.MonsterManager;
 import manager.TankManager;
 import model.Food;
-import model.Guppy;
+import model.fish.Guppy;
 import properties.Hunger;
 import properties.Production;
 

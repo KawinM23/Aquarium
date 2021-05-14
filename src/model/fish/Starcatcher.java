@@ -1,10 +1,12 @@
-package model;
+package model.fish;
 
 import javafx.scene.image.Image;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
 import model.base.Unit;
+import model.money.Diamond;
+import model.money.Star;
 import properties.Hunger;
 import properties.Production;
 

@@ -1,10 +1,11 @@
-package model;
+package model.monster;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import manager.PlayerController;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Monster;
@@ -35,6 +36,8 @@ public class Sylvester extends Monster {
 		// TODO Auto-generated method stub
 		if (this.getHealth() <= 0) {
 			// TODO Defeat
+			System.out.println("Defeat");
+			TankManager.remove(this);
 			return;
 		}
 		
@@ -96,6 +99,8 @@ public class Sylvester extends Monster {
 
 	public void getHit() {
 		// TODO Onclick Mouse -> decrease Hp
+		System.out.println("Hit Monster");
+		this.decreaseHealth(PlayerController.getGunDamage());
 	}
 
 }

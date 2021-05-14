@@ -1,8 +1,8 @@
 package properties;
 
 import manager.TankManager;
-import model.SilverCoin;
 import model.base.Unit;
+import model.money.SilverCoin;
 
 public class Production {
 

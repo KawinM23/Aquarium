@@ -14,6 +14,7 @@ public abstract class Monster extends Unit {
 	}
 
 	public abstract void attack();
+	public abstract void getHit();
 
 	public int getHealth() {
 		return health;

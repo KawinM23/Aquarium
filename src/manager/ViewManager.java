@@ -15,13 +15,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.Carnivore;
 import model.Food;
-import model.Guppy;
-import model.Star;
-import model.Starcatcher;
-import model.Sylvester;
 import model.base.Monster;
+import model.fish.Carnivore;
+import model.fish.Guppy;
+import model.fish.Starcatcher;
+import model.money.Star;
+import model.monster.Sylvester;
 
 public class ViewManager {
 	private Pane mainPane;
@@ -120,6 +120,12 @@ public class ViewManager {
 					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
 				} else {
 					//Shoot
+					for (Monster m : TankManager.getMonsterList()) {
+						if(m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
+							m.getHit();
+							break;
+						}
+					}
 				}
 
 			}

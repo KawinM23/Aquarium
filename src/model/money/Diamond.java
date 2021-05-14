@@ -1,4 +1,4 @@
-package model;
+package model.money;
 
 import javafx.scene.image.Image;
 import model.base.Money;
