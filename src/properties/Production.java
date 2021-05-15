@@ -2,7 +2,14 @@ package properties;
 
 import manager.TankManager;
 import model.base.Unit;
+import model.fish.Guppy;
+import model.money.Beetle;
+import model.money.Diamond;
+import model.money.GoldCoin;
+import model.money.Pearl;
 import model.money.SilverCoin;
+import model.money.Star;
+import model.money.TreasureChest;
 
 public class Production {
 
@@ -35,7 +42,37 @@ public class Production {
 				setLastProduceNow();
 				break;
 			case 2:
+				TankManager.produceMoney(new GoldCoin("GoldCoin", producer.getCenterX(), producer.getCenterY()));
+				setLastProduceNow();
+				break;
+			case 3:
+				TankManager.produceMoney(new Diamond("Diamond", producer.getCenterX(), producer.getCenterY(), 0));
+				setLastProduceNow();
+				break;
+			case 4:
+				TankManager.produceMoney(new Diamond("GoldCoin", producer.getCenterX(), producer.getCenterY(), 1));
+				setLastProduceNow();
 
+				break;
+			case 5:
+				TankManager.produceMoney(new Star("Star", producer.getCenterX(), producer.getCenterY()));
+				setLastProduceNow();
+				break;
+			case 6:
+				TankManager.produceMoney(new Beetle("Beetle", producer.getCenterX(), producer.getCenterY()));
+				setLastProduceNow();
+				break;
+			case 7:
+				TankManager.produceMoney(new Pearl("Pearl", producer.getCenterX(), producer.getCenterY()));
+				setLastProduceNow();
+				break;
+			case 8:
+				TankManager.add(new Guppy("Guppy", producer.getCenterX(), producer.getCenterY()));
+				setLastProduceNow();
+				break;
+			case 9:
+				TankManager.produceMoney(new TreasureChest("Treasure Chest", producer.getCenterX(), producer.getCenterY()));
+				setLastProduceNow();
 				break;
 			}
 		}

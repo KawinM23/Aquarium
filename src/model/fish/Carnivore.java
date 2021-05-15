@@ -14,13 +14,13 @@ public class Carnivore extends Fish {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
 		this.setWidth(100);
-		this.setHeight(50);
+		this.setHeight(70);
 		this.setSpeed(100);
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
 		this.setHunger(new Hunger(Guppy.class, 3, 10));
-		this.setProduction(new Production(this, 0, 5));
+		this.setProduction(new Production(this, 3, 6));
 		this.setIdle(new Idle(this,15));
 	}
 

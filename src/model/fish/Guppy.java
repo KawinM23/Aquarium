@@ -10,7 +10,9 @@ import properties.Production;
 
 public class Guppy extends Fish {
 
-	private int growth; // 0-99 Baby / 100+ Medium / 200+ Large
+	private boolean isStar;
+	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
+	private long bornTime;
 
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -24,7 +26,10 @@ public class Guppy extends Fish {
 		this.setImg(new Image("file:res/image/Guppy.png"));
 //		this.setImg(new Image(getClass().getResource("/res/image/Guppy.png").toString()));
 
+		this.isStar = false;
 		this.growth = 0;
+		this.setBornTime(System.nanoTime());
+		
 		this.setHunger(new Hunger(Food.class, 3, 15));
 		this.setProduction(new Production(this, 0, 5 + Math.random()));
 		this.setIdle(new Idle(this,15));
@@ -36,6 +41,22 @@ public class Guppy extends Fish {
 
 	public void setGrowth(int growth) {
 		this.growth = growth;
+	}
+
+	public boolean isStar() {
+		return isStar;
+	}
+
+	public void setStar(boolean isStar) {
+		this.isStar = isStar;
+	}
+
+	public long getBornTime() {
+		return bornTime;
+	}
+
+	public void setBornTime(long bornTime) {
+		this.bornTime = bornTime;
 	}
 
 	public void feed(Unit nearestFood) {
