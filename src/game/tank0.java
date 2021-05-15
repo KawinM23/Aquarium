@@ -1,6 +1,9 @@
 package game;
 
+import manager.DrawManager;
 import manager.ScreenController;
+import manager.ShopController;
+import manager.SoundManager;
 import manager.ViewManager;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -32,9 +35,8 @@ public class tank0 extends Application {
 	private int money = 0;
 	private Scene scene;
 	private static ScreenController screenController;
-	private MediaPlayer mediaPlayer;
-	private Media sound;
-	//ClassLoader.getSystemResource("").toString();
+
+	// ClassLoader.getSystemResource("").toString();
 	public tank0() {
 		screenController = new ScreenController();
 		AnchorPane root = new AnchorPane();
@@ -45,15 +47,11 @@ public class tank0 extends Application {
 		setBackGround(gc);
 		String imagePathMenubar = ClassLoader.getSystemResource("menubar.jpg").toString();
 		String imagePathBackground = ClassLoader.getSystemResource("aquarium1.jpg").toString();
-		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
-		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
-		String BUTTON_CLICK_PATH = ClassLoader.getSystemResource("buttonclick.mp3").toString(); // For example
-
-		sound = new Media(BUTTON_CLICK_PATH);
-		mediaPlayer = new MediaPlayer(sound);
-		for (int i = 0; i < buttonDetail.length; i++) {
-			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
-		}
+		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+		ShopController.setShopDetail(0);
+		ShopController.addAllButtons(root);
+		ShopController.drawShop(gc);
 	}
 
 	@Override
@@ -67,17 +65,14 @@ public class tank0 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
-		String imagePathMenubar = ClassLoader.getSystemResource("menubar.jpg").toString();;
-		String imagePathBackground = ClassLoader.getSystemResource("aquarium1.jpg").toString();;
-		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
-		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
-		String musicFile = ClassLoader.getSystemResource("buttonclick.mp3").toString();; // For example
-
-		Media sound = new Media(musicFile);
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		for (int i = 0; i < buttonDetail.length; i++) {
-			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
-		}
+		String imagePathMenubar = ClassLoader.getSystemResource("menubar.jpg").toString();
+		;
+		String imagePathBackground = ClassLoader.getSystemResource("aquarium1.jpg").toString();
+		;
+		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+		//Draw Shop
+		ShopController.addAllButtons(root);
 
 		stage.show();
 	}
@@ -89,132 +84,16 @@ public class tank0 extends Application {
 		root.getChildren().add(canvas);
 		setBackGround(gc);
 		String imagePathMenubar = ClassLoader.getSystemResource("file:res/image/menubar.jpg").toString();
-		String imagePathBackground = ClassLoader.getSystemResource("file:res/image/aquarium1.jpg").toString();;
-		drawImageFixSize(gc, imagePathBackground, 640.0 * 1.5, 480.0 * 1.5);
-		drawImageFixSize(gc, imagePathMenubar, 640.0 * 1.5, 75.0 * 1.5);
-		String musicFile = "res/sound/buttonclick.mp3"; // For example
-
-		Media sound = new Media(new File(musicFile).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		for (int i = 0; i < buttonDetail.length; i++) {
-			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
-		}
+		String imagePathBackground = ClassLoader.getSystemResource("file:res/image/aquarium1.jpg").toString();
+		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+		// Draw Shop
+		ShopController.addAllButtons(root);
 	}
 
 	private void setBackGround(GraphicsContext gc) {
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-	}
-
-	private void drawImage(GraphicsContext gc, String image_path) {
-		System.out.println(image_path);
-		Image javafx_logo = new Image(image_path);
-		gc.drawImage(javafx_logo, 0, 0);
-	}
-
-	private void drawImageFixSize(GraphicsContext gc, String image_path, double x, double y) {
-		System.out.println(image_path);
-		Image javafx_logo = new Image(image_path);
-
-		// image, x ,y, width, height
-		gc.drawImage(javafx_logo, 0, 0, x, y);
-	}
-
-	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position, MediaPlayer mediaPlayer) {
-		Button button = new Button(buttonText);
-		button.setPrefSize((position[2] - position[0]) * 1.5, (position[3] - position[1]) * 1.5);
-		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-				+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
-//		button.setStyle("-fx-background-radius: " + position[4] + "px;");
-//			button.setBorder(null);
-//			button.setBackground(null);
-		button.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				System.out.println("Pressed " + buttonText);
-			}
-		});
-
-		Font font = new Font(position[5]);
-		button.setFont(font);
-
-		AnchorPane.setTopAnchor(button, position[1] * 1.5);
-		AnchorPane.setLeftAnchor(button, position[0] * 1.5);
-
-		button.hoverProperty().addListener((event) -> {
-			System.out.println("Hovered " + buttonText);
-			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-					+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
-		});
-
-		button.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				System.out.println("Entered " + buttonText);
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
-			}
-		});
-		button.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				System.out.println("Exited " + buttonText);
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
-			}
-		});
-		button.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				System.out.println("Pressed " + buttonText);
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
-				playClickSound(mediaPlayer);
-				if (buttonText.equals("Button 8")) {
-					screenController.changeScene("menu");
-				}
-			}
-		});
-		button.setOnMouseReleased(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				System.out.println("Released " + buttonText);
-				if (button.isHover()) {
-					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
-				} else {
-					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
-				}
-
-			}
-
-		});
-
-		anchorpane.getChildren().addAll(button);
-	}
-
-	private void playClickSound(MediaPlayer mediaPlayer) {
-		Thread thread = new Thread(() -> {
-			try {
-				MediaPlayer newMediaPlayer = new MediaPlayer(sound);
-				newMediaPlayer.play();
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-
-					}
-				});
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		});
-		thread.start();
-
-		// System.out.println("played");
 	}
 
 	public Scene getScene() {

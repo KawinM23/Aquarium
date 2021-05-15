@@ -82,17 +82,8 @@ public class menu1 extends Application {
 	// Set background to an image
 	private void setBackGroundImage(GraphicsContext gc, String image_path) {
 		System.out.println(image_path);
-		Image javafx_logo = new Image(image_path);
-		gc.drawImage(javafx_logo, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-	}
-
-	// Draw an image on the screen at specific place
-	private void drawImage(GraphicsContext gc, String image_path, int xPos, int yPos, int width, int height) {
-		System.out.println(image_path);
-		Image javafx_logo = new Image(image_path);
-
-		// image, x ,y, width, height
-		gc.drawImage(javafx_logo, xPos, yPos, width, height);
+		Image image = new Image(image_path);
+		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
 
 	// Add buttons and set their event listeners

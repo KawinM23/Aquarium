@@ -34,7 +34,7 @@ public class ScreenController {
 	}
 
 	// Change scene of primary stage to another scene
-	public void changeScene(String name) {
+	public static void changeScene(String name) {
 		int tempIndex = nameList.indexOf(name);
 		Scene scene = sceneList.get(tempIndex);
 		stage.setScene(scene);
