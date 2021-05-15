@@ -3,6 +3,7 @@ package game;
 import manager.ViewManager;
 import manager.GameManager;
 import manager.ScreenController;
+import manager.SoundManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,8 +37,8 @@ public class menu1 extends Application {
 	private MediaPlayer mediaPlayer;
 	private Media sound;
 	private tank2 tank2;
-	
-	//ClassLoader.getSystemResource("").toString();
+
+	// ClassLoader.getSystemResource("").toString();
 	@Override
 	public void start(Stage stage) {
 		// Add ScreenController and set main stage to our stage
@@ -56,13 +57,13 @@ public class menu1 extends Application {
 		setBackGroundImage(gc, IMAGE_PATH);
 		// Set sound effect for button click
 		final String BUTTON_CLICK_PATH = ClassLoader.getSystemResource("buttonclick.mp3").toString();
-		//sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
+		// sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
 		sound = new Media(BUTTON_CLICK_PATH);
 		mediaPlayer = new MediaPlayer(sound);
 
 		// Add buttons to current menu scene
 		for (int i = 0; i < buttonDetail.length; i++) {
-			addButtons(root, ("Button " + (i + 1)), buttonDetail[i], mediaPlayer);
+			addButtons(root, ("Button " + (i + 1)), buttonDetail[i]);
 		}
 		;
 		// Add menuScene in ArrayList in String "menu"
@@ -95,7 +96,7 @@ public class menu1 extends Application {
 	}
 
 	// Add buttons and set their event listeners
-	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position, MediaPlayer mediaPlayer) {
+	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position) {
 		Button button = new Button(buttonText);
 		button.setPrefSize((position[2] - position[0]) * 1.5, (position[3] - position[1]) * 1.5);
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
@@ -139,7 +140,7 @@ public class menu1 extends Application {
 			public void handle(MouseEvent mouseEvent) {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
-				playClickSound(mediaPlayer);
+				SoundManager.playClickSound();
 				if (buttonText.equals("Button 1")) {
 					Thread thread = new Thread(() -> {
 						try {
@@ -169,14 +170,15 @@ public class menu1 extends Application {
 						try {
 							if (!screenController.sceneExist("tank1")) {
 								ViewManager vm1 = new ViewManager();
-								
+
 								Scene tank1 = vm1.getTankScene();
 								screenController.addScene("tank1", tank1);
 							}
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									if(GameManager.isLOG()) System.out.println("Change To Tank1");
+									if (GameManager.isLOG())
+										System.out.println("Change To Tank1");
 									screenController.changeScene("tank1");
 								}
 							});
@@ -190,19 +192,20 @@ public class menu1 extends Application {
 					Thread newTankthread = new Thread(() -> {
 						try {
 							if (!screenController.sceneExist("tank2")) {
-								
+
 								tank2 = new tank2();
 								Scene sceneTank2 = tank2.getScene();
 								screenController.addScene("tank2", sceneTank2);
 							} else {
-								
+
 							}
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									if(GameManager.isLOG()) System.out.println("Change To Tank2");
+									if (GameManager.isLOG())
+										System.out.println("Change To Tank2");
 									screenController.changeScene("tank2");
-									if(tank2.getThreadTank().getState() == Thread.State.WAITING) {
+									if (tank2.getThreadTank().getState() == Thread.State.WAITING) {
 										synchronized (tank2.getThreadTank()) {
 											tank2.getThreadTank().notify();
 										}
@@ -233,29 +236,6 @@ public class menu1 extends Application {
 		});
 
 		anchorpane.getChildren().addAll(button);
-	}
-
-	private void playClickSound(MediaPlayer mediaPlayer) {
-		Thread thread = new Thread(() -> {
-			try {
-				MediaPlayer newMediaPlayer = new MediaPlayer(sound);
-				newMediaPlayer.play();
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-
-					}
-				});
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		});
-		thread.start();
-
-		// System.out.println("played");
 	}
 
 	public static void main(String[] args) {
