@@ -3,6 +3,7 @@ package model;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
+import manager.PlayerController;
 import manager.TankManager;
 import model.base.Unit;
 
@@ -17,16 +18,17 @@ public class Food extends Unit {
 		if (foodType == 1) {
 			this.setWidth(30);
 			this.setHeight(30);
+			this.setFoodLevel(PlayerController.getFoodLevel());
 		} else if (foodType == 2) {
 			this.setWidth(40);
 			this.setHeight(40);
+			this.setFoodLevel(0);
 		}
 		this.setPos(posX - (getWidth() / 2), posY - (getHeight() / 2)); // Slide
 
 		this.setVel(0, 40);
 
 		this.setImg(new Image("file:res/image/Food1.png")); // TODO DifferentPic
-		// TODO Set Food Level
 
 	}
 

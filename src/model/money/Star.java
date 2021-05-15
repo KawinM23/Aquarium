@@ -12,6 +12,8 @@ public class Star extends Money {
 		this.setHeight(40);
 		
 		this.setImg(new Image("file:res/image/Star.png"));
+		
+		this.setValue(40);
 	}
 
 }

@@ -57,6 +57,7 @@ public class TankManager {
 			f.update(GameManager.getFRAMERATE());
 		}
 		fishList.removeAll(removeFishList);
+		removeFishList.clear();
 		if (fishList.size() == 0) {
 			PlayerController.setPlaying(false);
 		}
@@ -64,15 +65,17 @@ public class TankManager {
 			f.update(GameManager.getFRAMERATE());
 		}
 		foodList.removeAll(removeFoodList);
+		removeFoodList.clear();
 		for (Money m : moneyList) {
 			m.update(GameManager.getFRAMERATE());
 		}
 		moneyList.removeAll(removeMoneyList);
+		removeMoneyList.clear();
 		for (Monster m : monsterList) {
 			m.update(GameManager.getFRAMERATE());
 		}
 		monsterList.removeAll(removeMonsterList);
-//		unitList.removeAll(removeList);
+		removeMonsterList.clear();
 	}
 
 	public static void add(Unit u) {
@@ -136,6 +139,13 @@ public class TankManager {
 		removeFishList.clear();
 		removeMonsterList.clear();
 
+	}
+	
+	public static void clearRemoveList() {
+		removeFoodList.clear();
+		removeMoneyList.clear();
+		removeFishList.clear();
+		removeMonsterList.clear();
 	}
 
 	public static void endInvasion(long invasionDuration) {

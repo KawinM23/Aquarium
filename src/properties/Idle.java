@@ -33,6 +33,18 @@ public class Idle {
 		randomVel();
 		this.nextIdle = (long) (System.nanoTime() + 7e9);
 	}
+	
+	public void eatFood() {
+		setVelX(unit.getVelX()*0.2);
+		setVelY(unit.getVelY()*0.2);
+		this.nextIdle = (long) (System.nanoTime() + 1e9);
+	}
+	
+	public void slow() {
+		setVelX(unit.getVelX()*0.2);
+		setVelY(unit.getVelY()*0.2);
+		this.nextIdle = (long) (System.nanoTime() + 1e9);
+	}
 
 	private void randomVel() {
 		double angle = Math.random() * 360;

@@ -19,6 +19,8 @@ public class Hunger {
 	public int checkHunger() {
 		double deltaTime = getDeltaTime();
 		if (lifetime != 0 && deltaTime > lifetime) {
+			return 3;
+		} else if (lifetime != 0 && lifetime - deltaTime < 5) {
 			return 2;
 		} else if (cooldown != 0 && deltaTime > cooldown) {
 			return 1;

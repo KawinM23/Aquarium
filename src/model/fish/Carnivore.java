@@ -5,6 +5,7 @@ import manager.TankManager;
 import model.base.Fish;
 import model.base.Unit;
 import properties.Hunger;
+import properties.Idle;
 import properties.Production;
 
 public class Carnivore extends Fish {
@@ -20,6 +21,7 @@ public class Carnivore extends Fish {
 
 		this.setHunger(new Hunger(Guppy.class, 3, 10));
 		this.setProduction(new Production(this, 0, 5));
+		this.setIdle(new Idle(this,15));
 	}
 
 	public void findFood() {
@@ -42,18 +44,19 @@ public class Carnivore extends Fish {
 				if (isAtMounth(nearestFood)) {
 					// Eat baby guppy
 					TankManager.remove(nearestFood);
-					this.setVelZero();
+					this.getIdle();
 					this.feed(nearestFood);
 				} else {
 					// Go to food
 					this.headToUnit(nearestFood);
+					this.getIdle().slow();
 				}
 			} else {
-				this.setVelZero();
+				this.getIdle().checkIdle();
 			}
 		} else {
-			this.setVelZero();
-			System.out.println("No Food");
+			//No Food ,Idle
+			this.getIdle().checkIdle();
 		}
 	}
 

@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Food;
+import model.base.Money;
 import model.base.Monster;
 import model.fish.Carnivore;
 import model.fish.Guppy;
@@ -44,7 +45,7 @@ public class ViewManager {
 		Guppy g1 = new Guppy("g1", 500, 300);
 		TankManager.add(g1);
 
-		Guppy g2 = new Guppy("g1", 200, 100);
+		Guppy g2 = new Guppy("g2", 200, 100);
 		TankManager.add(g2);
 
 		Food f1 = new Food("f1", 200, 20, 1);
@@ -67,7 +68,7 @@ public class ViewManager {
 		PlayerController.setPlaying(true);
 		PlayerController.setMaxFood(3);
 
-		MonsterManager.setInvasionTime((long) (System.nanoTime() + 100e9));
+		MonsterManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		MonsterManager.getInvasionList().add(firstInvasion);
@@ -116,6 +117,15 @@ public class ViewManager {
 			public void handle(MouseEvent event) {
 				if (!MonsterManager.isInvaded()) {
 					// Add Food at mouse position
+					for(Money m : TankManager.getMoneyList()) {
+						if(m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
+							//TODO Collect Money
+							m.collected();
+							System.out.println(PlayerController.getMoney());
+							return;
+						}
+					}
+					System.out.println("Add Food "+ PlayerController.getFoodLevel());
 					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
 				} else {
 					//Shoot

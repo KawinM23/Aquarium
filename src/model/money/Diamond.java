@@ -18,6 +18,8 @@ public class Diamond extends Money {
 		} else if (type == 1) {
 			this.setVelY(-60); // TODO Spit Diamond Fall
 		}
+		
+		this.setValue(200);
 	}
 
 }

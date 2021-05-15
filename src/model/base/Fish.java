@@ -25,7 +25,7 @@ public class Fish extends Unit {
 		this.isFacingRight = false;
 		this.hunger = null;
 		this.production = null;
-		this.idle = null;
+		this.setIdle(new Idle(this,15));
 	}
 
 	public Idle getIdle() {
@@ -51,12 +51,12 @@ public class Fish extends Unit {
 				// eat & levelup
 				System.out.println(this.getName() + " eat " + nearestFood.getName());
 				this.feed(nearestFood);
-				this.idle.resetIdle();
+				this.idle.eatFood();
 				TankManager.remove(nearestFood);
 			} else {
 				// Go to food
-				this.idle.resetIdle();
 				this.headToFood(nearestFood);
+				this.idle.slow();
 			}
 
 		} else {
@@ -99,6 +99,10 @@ public class Fish extends Unit {
 				this.findFood();
 				break;
 			case 2:
+				//Very Hungry TODO ChangePic
+				this.findFood();
+				break;
+			case 3:
 				// die
 				this.die();
 				return;
@@ -106,7 +110,7 @@ public class Fish extends Unit {
 
 			this.production.checkProduce();
 		} else {
-			// TODO IDLE
+			idle.checkIdle();
 		}
 		this.move(fr);
 	}

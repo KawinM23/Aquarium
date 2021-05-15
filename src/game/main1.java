@@ -9,7 +9,7 @@ public class main1 extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			System.out.println("Test");
+			System.out.println("Main1");
 			ViewManager manager = new ViewManager();
 			primaryStage = manager.getTankStage();
 			
