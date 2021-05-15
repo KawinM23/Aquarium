@@ -3,6 +3,7 @@ package model.base;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import manager.GameManager;
 
 public abstract class Unit {
 	private String name;
@@ -62,7 +63,6 @@ public abstract class Unit {
 	}
 	
 	public void headToUnitX(Unit nearestFood) {
-		// TODO Auto-generated method stub
 		this.setVelX((distanceX(nearestFood)) / Math.abs(distanceX(nearestFood)) * this.getSpeed());
 	}
 
@@ -71,6 +71,16 @@ public abstract class Unit {
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
 		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+		if (getPosX() <= 0) {
+			setPosX(0);
+		} else if (getPosX() + getWidth() >= GameManager.getWIDTH()) {
+			setPosX(GameManager.getWIDTH() - getWidth());
+		}
+		if (getPosY() <= 0) {
+			setPosY(0);
+		} else if (getPosY() + getHeight() >= GameManager.getBOTTOMHEIGHT()) {
+			setPosX(GameManager.getBOTTOMHEIGHT() - getHeight());
+		}
 	}
 
 	public Rectangle2D getBoundary() {
@@ -131,12 +141,10 @@ public abstract class Unit {
 	}
 
 	public double getCenterX() {
-		// TODO Auto-generated method stub
 		return posX + (width / 2.0);
 	}
 
 	public double getCenterY() {
-		// TODO Auto-generated method stub
 		return posY + (height / 2.0);
 	}
 

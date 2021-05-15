@@ -40,7 +40,7 @@ public class Guppy extends Fish {
 
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
-		this.setGrowth(getGrowth() + 100);
+		this.setGrowth(getGrowth() + 0); //TODO FoodGrowth
 		if (this.growth >= 100 && getProduction().getProductType() != 1) {
 			this.getProduction().setProductType(1);
 		} else if (this.growth >= 200) {

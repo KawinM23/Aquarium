@@ -99,7 +99,7 @@ public class Sylvester extends Monster {
 
 	public void getHit() {
 		// TODO Onclick Mouse -> decrease Hp
-		System.out.println("Hit Monster");
+		System.out.println("Hit Monster "+getHealth());
 		this.decreaseHealth(PlayerController.getGunDamage());
 	}
 

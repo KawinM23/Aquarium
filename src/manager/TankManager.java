@@ -49,7 +49,7 @@ public class TankManager {
 	}
 
 	public static void update(GraphicsContext gc) {
-		// TODO Auto-generated method stub
+		//Update and draw all unit
 		for (Unit u : unitList) {
 			u.draw(gc);
 		}

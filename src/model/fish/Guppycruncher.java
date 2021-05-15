@@ -18,15 +18,17 @@ public class Guppycruncher extends Fish {
 	}
 
 	public void findFood() {
-		if (TankManager.getMoneyList().size() != 0) {
+		if (TankManager.getFishList().size() != 0) {
 			Unit nearestFood = null;
 			// Find NearestFood
-			for (Money m : TankManager.getMoneyList()) {
-				if (m instanceof Star) {
-					if (nearestFood == null) {
-						nearestFood = m;
-					} else if (this.distance(m) < this.distance(nearestFood)) {
-						nearestFood = m;
+			for (Fish f : TankManager.getFishList()) {
+				if (f instanceof Guppy) {
+					if (((Guppy) f).getGrowth() < 100) {
+						if (nearestFood == null) {
+							nearestFood = f;
+						} else if (this.distance(f) < this.distance(nearestFood)) {
+							nearestFood = f;
+						}
 					}
 				}
 			}

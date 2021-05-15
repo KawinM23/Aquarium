@@ -20,6 +20,7 @@ import model.base.Money;
 import model.base.Monster;
 import model.fish.Carnivore;
 import model.fish.Guppy;
+import model.fish.Guppycruncher;
 import model.fish.Starcatcher;
 import model.money.Star;
 import model.monster.Sylvester;
@@ -62,6 +63,9 @@ public class ViewManager {
 //		
 //		Star s1 = new Star("s1", 400, 200);
 //		TankManager.add(s1);
+
+//		Guppycruncher gc1 = new Guppycruncher("gc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
+//		TankManager.add(gc1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 
@@ -116,21 +120,22 @@ public class ViewManager {
 			@Override
 			public void handle(MouseEvent event) {
 				if (!MonsterManager.isInvaded()) {
-					// Add Food at mouse position
-					for(Money m : TankManager.getMoneyList()) {
-						if(m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
-							//TODO Collect Money
+					for (Money m : TankManager.getMoneyList()) {
+						if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
+							// Collect Money
 							m.collected();
 							System.out.println(PlayerController.getMoney());
 							return;
 						}
 					}
-					System.out.println("Add Food "+ PlayerController.getFoodLevel());
+					// Add Food at mouse position
+					System.out.println("Add Food " + PlayerController.getFoodLevel());
+					PlayerController.buy(5);
 					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
 				} else {
-					//Shoot
+					// Shoot
 					for (Monster m : TankManager.getMonsterList()) {
-						if(m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
+						if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
 							m.getHit();
 							break;
 						}
