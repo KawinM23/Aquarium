@@ -91,10 +91,13 @@ public class TankManager {
 		}
 	}
 
-	public static void addFood(Food f) {
+	public static boolean addFood(Food f) {
 		if (!(foodList.size() >= PlayerController.getMaxFood())) {
 			unitList.add(f);
 			foodList.add(f);
+			return true;
+		} else {
+			return false;
 		}
 	}
 

@@ -22,7 +22,7 @@ public class Sylvester extends Monster {
 
 		this.setWidth(100);
 		this.setHeight(150);
-		this.setSpeed(120);
+		this.setSpeed(80);
 
 		this.setImg(new Image("file:res/image/Guppy.png", getWidth(), getHeight(), false, true));
 

@@ -9,6 +9,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +23,7 @@ import model.fish.Carnivore;
 import model.fish.Guppy;
 import model.fish.Guppycruncher;
 import model.fish.Starcatcher;
+import model.money.SilverCoin;
 import model.money.Star;
 import model.monster.Sylvester;
 
@@ -58,11 +60,14 @@ public class ViewManager {
 //		Carnivore c1 = new Carnivore("c1", 300, 200);
 //		TankManager.add(c1);
 
-//		Starcatcher sc1 = new Starcatcher("sc1", 300, GameManager.getBOTTOMHEIGHT()-40);
-//		TankManager.add(sc1);
-//		
-//		Star s1 = new Star("s1", 400, 200);
-//		TankManager.add(s1);
+		Starcatcher sc1 = new Starcatcher("sc1", 300, GameManager.getBOTTOMHEIGHT()-40);
+		TankManager.add(sc1);
+		
+		Star s1 = new Star("s1", 400, 200);
+		TankManager.add(s1);
+		
+		SilverCoin svc = new SilverCoin("", 500, 300);
+		TankManager.add(svc);
 
 //		Guppycruncher gc1 = new Guppycruncher("gc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
 //		TankManager.add(gc1);
@@ -129,9 +134,12 @@ public class ViewManager {
 						}
 					}
 					// Add Food at mouse position
-					System.out.println("Add Food " + PlayerController.getFoodLevel());
-					PlayerController.buy(5);
-					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+					
+					if(PlayerController.buy(5) && TankManager.getFoodList().size() >= PlayerController.getMaxFood()) {
+						System.out.println("Add Food " + PlayerController.getFoodLevel());
+						TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+					}
+					
 				} else {
 					// Shoot
 					for (Monster m : TankManager.getMonsterList()) {
@@ -146,8 +154,10 @@ public class ViewManager {
 		};
 
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+		
 
 	}
+	
 
 	public Stage getTankStage() {
 		return tankStage;

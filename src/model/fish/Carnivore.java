@@ -49,7 +49,7 @@ public class Carnivore extends Fish {
 				} else {
 					// Go to food
 					this.headToUnit(nearestFood);
-					this.getIdle().slow();
+					this.getIdle().slowIdle();
 				}
 			} else {
 				this.getIdle().checkIdle();

@@ -64,6 +64,7 @@ public abstract class Unit {
 	
 	public void headToUnitX(Unit nearestFood) {
 		this.setVelX((distanceX(nearestFood)) / Math.abs(distanceX(nearestFood)) * this.getSpeed());
+		this.setVelY(0);
 	}
 
 	public void move(int fr) {
@@ -78,9 +79,10 @@ public abstract class Unit {
 		}
 		if (getPosY() <= 0) {
 			setPosY(0);
-		} else if (getPosY() + getHeight() >= GameManager.getBOTTOMHEIGHT()) {
-			setPosX(GameManager.getBOTTOMHEIGHT() - getHeight());
-		}
+		} 
+//		else if (getPosY() + getHeight() >= GameManager.getBOTTOMHEIGHT()) {
+//			setPosX(GameManager.getBOTTOMHEIGHT() - getHeight());
+//		}
 	}
 
 	public Rectangle2D getBoundary() {

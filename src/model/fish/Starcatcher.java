@@ -1,6 +1,7 @@
 package model.fish;
 
 import javafx.scene.image.Image;
+import manager.GameManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
@@ -42,8 +43,8 @@ public class Starcatcher extends Fish {
 				if (this.intersects(nearestFood)) {
 					// Eat
 					TankManager.remove(nearestFood);
-					this.setVelZero();
 					this.feed(nearestFood);
+					this.getIdle().checkIdle();
 				} else if (this.distanceX(nearestFood) > 20) {
 					// Go to food
 					this.headToUnitX(nearestFood);
@@ -55,10 +56,23 @@ public class Starcatcher extends Fish {
 					}
 				}
 			} else {
-				this.setVelZero();
+				//No food
+				this.getIdle().checkIdle();
 			}
 		} else {
-			this.setVelZero();
+			//No food
+			this.getIdle().checkIdle();
+		}
+	}
+	
+	public void move(int fr) {
+		double deltaTime = 1.0 / fr;
+		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
+		this.setPosY(this.getPosY());
+		if (getPosX() <= 0) {
+			setPosX(0);
+		} else if (getPosX() + getWidth() >= GameManager.getWIDTH()) {
+			setPosX(GameManager.getWIDTH() - getWidth());
 		}
 	}
 
@@ -66,5 +80,7 @@ public class Starcatcher extends Fish {
 		this.getHunger().setLastFedNow();
 		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY() - 20, 1));
 	}
+	
+	
 
 }

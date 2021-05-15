@@ -56,7 +56,7 @@ public class Fish extends Unit {
 			} else {
 				// Go to food
 				this.headToFood(nearestFood);
-				this.idle.slow();
+				this.idle.slowIdle();
 			}
 
 		} else {
