@@ -20,8 +20,8 @@ public class Starcatcher extends Fish {
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
-		this.setHunger(new Hunger(Star.class, 3, 10));  //TODO Hunger 10sec
-		this.setProduction(new Production(this, 5, 0));
+		this.setHunger(new Hunger(Star.class, 3, 10)); // TODO Hunger 10sec
+		this.setProduction(new Production(this, 4, 0));
 	}
 
 	public void findFood() {
@@ -50,7 +50,7 @@ public class Starcatcher extends Fish {
 				} else {
 					if (this.distanceX(nearestFood) < 5) {
 						this.setVelZero();
-					} else if(getVelX() > 5) {
+					} else if (getVelX() > 5) {
 						this.multiplyVel(0.98);
 					}
 				}
@@ -64,7 +64,7 @@ public class Starcatcher extends Fish {
 
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
-		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY()-20, 1));
+		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY() - 20, 1));
 	}
 
 }

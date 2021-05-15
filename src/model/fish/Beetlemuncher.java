@@ -1,7 +1,11 @@
 package model.fish;
 
 import javafx.scene.image.Image;
+import manager.TankManager;
 import model.base.Fish;
+import model.base.Unit;
+import model.money.Beetle;
+import model.money.Pearl;
 import properties.Hunger;
 import properties.Idle;
 import properties.Production;
@@ -16,10 +20,19 @@ public class Beetlemuncher extends Fish {
 		this.setVelZero();
 		this.setImg(new Image("file:res/image/Guppy.png"));
 
-		this.setHunger(new Hunger(Guppy.class, 3, 10));
-		this.setProduction(new Production(this, 0, 5));
-		this.setIdle(new Idle(this,15));
-		
+		this.setHunger(new Hunger(Beetle.class, 6, 20));
+		this.setProduction(new Production(this, 7, 0));
+		this.setIdle(new Idle(this, 20));
+
+	}
+	
+	public void findFood() {
+		//TODO
+	}
+
+	public void feed(Unit nearestFood) {
+		TankManager.produceMoney(new Pearl("Pearl", this.getCenterX(), this.getCenterY()));
+		this.getHunger().setLastFedNow();
 	}
 
 }
