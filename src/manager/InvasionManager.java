@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import model.base.Monster;
 
-public class MonsterManager {
+public class InvasionManager {
 	private static boolean isInvaded = false;
 	private static boolean warning = false;
 	private static int invasion = 0;
@@ -54,7 +54,7 @@ public class MonsterManager {
 	}
 
 	public static void setInvaded(boolean isInvaded) {
-		MonsterManager.isInvaded = isInvaded;
+		InvasionManager.isInvaded = isInvaded;
 	}
 
 	public static boolean isWarning() {
@@ -62,7 +62,7 @@ public class MonsterManager {
 	}
 
 	public static void setWarning(boolean warning) {
-		MonsterManager.warning = warning;
+		InvasionManager.warning = warning;
 	}
 
 	public static long getInvasionTime() {
@@ -74,7 +74,7 @@ public class MonsterManager {
 	}
 
 	public static void setInvasionTime(long invasionTime) {
-		MonsterManager.invasionTime = invasionTime;
+		InvasionManager.invasionTime = invasionTime;
 	}
 
 	public static int getInvasion() {
@@ -82,7 +82,7 @@ public class MonsterManager {
 	}
 
 	public static void setInvasion(int invasion) {
-		MonsterManager.invasion = invasion;
+		InvasionManager.invasion = invasion;
 	}
 
 	public static ArrayList<ArrayList<Monster>> getInvasionList() {
@@ -90,6 +90,6 @@ public class MonsterManager {
 	}
 
 	public static void setInvasionList(ArrayList<ArrayList<Monster>> invasionList) {
-		MonsterManager.invasionList = invasionList;
+		InvasionManager.invasionList = invasionList;
 	}
 }

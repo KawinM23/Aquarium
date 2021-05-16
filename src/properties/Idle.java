@@ -56,8 +56,8 @@ public class Idle {
 	}
 
 	public void slowIdle() {
-		setVelX(unit.getVelX() * 0.2);
-		setVelY(unit.getVelY() * 0.2);
+		setVelX(unit.getVelX() * (Math.random()/2));
+		setVelY(unit.getVelY() * (Math.random()/2));
 		this.nextIdle = (long) (System.nanoTime() + 1e9);
 	}
 

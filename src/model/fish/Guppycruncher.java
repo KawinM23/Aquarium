@@ -2,7 +2,7 @@ package model.fish;
 
 import javafx.scene.image.Image;
 import manager.GameManager;
-import manager.MonsterManager;
+import manager.InvasionManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
@@ -93,7 +93,7 @@ public class Guppycruncher extends Fish {
 
 	@Override
 	public void update(int fr) {
-		if (!MonsterManager.isInvaded()) {
+		if (!InvasionManager.isInvaded()) {
 			switch (getHunger().checkHunger()) {
 			case 0:
 				// idle
@@ -120,11 +120,7 @@ public class Guppycruncher extends Fish {
 			getIdle().checkIdleX();
 		}
 		this.move(fr);
-		if (getVelX() > 0) {
-			setFacingRight(true);
-		} else {
-			setFacingRight(false);
-		}
+		this.checkFacingLeft();
 	}
 
 	public void move(int fr) {
