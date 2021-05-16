@@ -50,6 +50,9 @@ public class ViewManager {
 
 		Guppy g2 = new Guppy("g2", 200, 100);
 		TankManager.add(g2);
+		
+		Guppy g3 = new Guppy("g3", 400, 100);
+		TankManager.add(g3);
 
 		Food f1 = new Food("f1", 200, 20, 1);
 		TankManager.add(f1);
@@ -60,24 +63,25 @@ public class ViewManager {
 //		Carnivore c1 = new Carnivore("c1", 300, 200);
 //		TankManager.add(c1);
 
-		Starcatcher sc1 = new Starcatcher("sc1", 300, GameManager.getBOTTOMHEIGHT()-40);
-		TankManager.add(sc1);
-		
+//		Starcatcher sc1 = new Starcatcher("sc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
+//		TankManager.add(sc1);
+
 		Star s1 = new Star("s1", 400, 200);
 		TankManager.add(s1);
-		
+
 		SilverCoin svc = new SilverCoin("", 500, 300);
 		TankManager.add(svc);
 
-//		Guppycruncher gc1 = new Guppycruncher("gc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
-//		TankManager.add(gc1);
+		Guppycruncher gc1 = new Guppycruncher("gc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
+		TankManager.add(gc1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 
 		PlayerController.setPlaying(true);
 		PlayerController.setMaxFood(3);
+		PlayerController.setMoney(200);
 
-		MonsterManager.setInvasionTime((long) (System.nanoTime() + 20e9));
+		MonsterManager.setInvasionTime((long) (System.nanoTime() + 200e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		MonsterManager.getInvasionList().add(firstInvasion);
@@ -124,40 +128,40 @@ public class ViewManager {
 
 			@Override
 			public void handle(MouseEvent event) {
-				if (!MonsterManager.isInvaded()) {
-					for (Money m : TankManager.getMoneyList()) {
-						if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
-							// Collect Money
-							m.collected();
-							System.out.println(PlayerController.getMoney());
-							return;
+				if (PlayerController.isPlaying()) {
+					if (!MonsterManager.isInvaded()) {
+						for (Money m : TankManager.getMoneyList()) {
+							if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
+								// Collect Money
+								m.collected();
+								System.out.println(PlayerController.getMoney());
+								return;
+							}
 						}
-					}
-					// Add Food at mouse position
-					
-					if(PlayerController.buy(5) && TankManager.getFoodList().size() >= PlayerController.getMaxFood()) {
-						System.out.println("Add Food " + PlayerController.getFoodLevel());
-						TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
-					}
-					
-				} else {
-					// Shoot
-					for (Monster m : TankManager.getMonsterList()) {
-						if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
-							m.getHit();
-							break;
+						// Add Food at mouse position
+						if (TankManager.getFoodList().size() <= PlayerController.getMaxFood()
+								&& PlayerController.buy(5)) {
+							System.out.println("Add Food " + PlayerController.getFoodLevel());
+							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
 						}
-					}
+
+					} else {
+						// Shoot
+						for (Monster m : TankManager.getMonsterList()) {
+							if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
+								m.getHit();
+								break;
+							}
+						}
+					} 
 				}
 
 			}
 		};
 
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-		
 
 	}
-	
 
 	public Stage getTankStage() {
 		return tankStage;

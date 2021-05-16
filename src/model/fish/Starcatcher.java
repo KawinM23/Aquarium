@@ -12,6 +12,8 @@ import properties.Hunger;
 import properties.Production;
 
 public class Starcatcher extends Fish {
+	
+	private Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -19,7 +21,7 @@ public class Starcatcher extends Fish {
 		this.setHeight(40);
 		this.setSpeed(40);
 		this.setVelZero();
-		this.setImg(new Image("file:res/image/Guppy.png"));
+		this.setImg(StarcatcherImage);
 
 		this.setHunger(new Hunger(Star.class, 3, 10)); // TODO Hunger 10sec
 		this.setProduction(new Production(this, 4, 0));

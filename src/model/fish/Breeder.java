@@ -8,6 +8,8 @@ import properties.Idle;
 import properties.Production;
 
 public class Breeder extends Fish {
+	
+	private Image BreederImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Breeder(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -16,7 +18,7 @@ public class Breeder extends Fish {
 		this.setHeight(80);
 		this.setSpeed(70);
 		this.setVelZero();
-		this.setImg(new Image("file:res/image/Guppy.png"));
+		this.setImg(BreederImage);
 
 		this.setHunger(new Hunger(Food.class, 3, 10));
 		this.setProduction(new Production(this, 8, 15));

@@ -9,6 +9,8 @@ import properties.Idle;
 import properties.Production;
 
 public class Carnivore extends Fish {
+	
+	private Image CarnivoreImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Carnivore(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -17,7 +19,7 @@ public class Carnivore extends Fish {
 		this.setHeight(70);
 		this.setSpeed(100);
 		this.setVelZero();
-		this.setImg(new Image("file:res/image/Guppy.png"));
+		this.setImg(CarnivoreImage);
 
 		this.setHunger(new Hunger(Guppy.class, 3, 10));
 		this.setProduction(new Production(this, 3, 6));

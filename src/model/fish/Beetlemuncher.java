@@ -11,6 +11,8 @@ import properties.Idle;
 import properties.Production;
 
 public class Beetlemuncher extends Fish {
+	
+	private Image BeetlemuncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Beetlemuncher(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -18,7 +20,8 @@ public class Beetlemuncher extends Fish {
 		this.setHeight(70);
 		this.setSpeed(100);
 		this.setVelZero();
-		this.setImg(new Image("file:res/image/Guppy.png"));
+		
+		this.setImg(BeetlemuncherImage);
 
 		this.setHunger(new Hunger(Beetle.class, 6, 20));
 		this.setProduction(new Production(this, 7, 0));

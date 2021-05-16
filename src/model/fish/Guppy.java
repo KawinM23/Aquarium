@@ -13,18 +13,21 @@ public class Guppy extends Fish {
 	private boolean isStar;
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 	private long bornTime;
+	
+	
+	private Image GuppyImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
+
 		this.setWidth(80);
 		this.setHeight(60);
 		this.setMouthPos(5, 30);
 
 		this.setSpeed(80);
 		this.setVelZero();
-		this.setImg(new Image("file:res/image/Guppy.png"));
-//		this.setImg(new Image(getClass().getResource("/res/image/Guppy.png").toString()));
+
+		this.setImg(GuppyImage);
 
 		this.isStar = false;
 		this.growth = 0;
@@ -61,7 +64,7 @@ public class Guppy extends Fish {
 
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
-		this.setGrowth(getGrowth() + 100); //TODO FoodGrowth
+		this.setGrowth(getGrowth() + 0); //TODO FoodGrowth
 		if (this.growth >= 100 && getProduction().getProductType() != 1) {
 			this.getProduction().setProductType(1);
 		} else if (this.growth >= 200) {

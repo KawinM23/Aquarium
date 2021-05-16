@@ -30,6 +30,16 @@ public class Idle {
 	}
 	
 	
+	public void checkIdleX() {
+		if (System.nanoTime() <= nextIdle) {
+			this.unit.setVel(velX,unit.getVelY());
+		} else {
+			randomVel();
+			this.unit.setVel(velX,unit.getVelY());
+			this.nextIdle = (long) (System.nanoTime() + 7e9); //TODO interval idle
+		}
+	}
+
 	public void resetIdle() {
 		randomVel();
 		this.nextIdle = (long) (System.nanoTime() + 7e9);

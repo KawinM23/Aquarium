@@ -1,20 +1,40 @@
 package model.fish;
 
+import javafx.scene.image.Image;
 import manager.GameManager;
+import manager.MonsterManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
 import model.base.Unit;
 import model.money.Star;
+import properties.Hunger;
+import properties.Idle;
+import properties.Production;
 
 public class Guppycruncher extends Fish {
 
+	private Image GuppycruncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+
 	private boolean isJumping;
-	private double fallAcc = 10;
+	private double fallAcc = 100;
 
 	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO SetMoreVar
+
+		this.setWidth(50);
+		this.setHeight(50);
+		this.setSpeed(40);
+		this.setVelZero();
+
+		this.setImg(GuppycruncherImage);
+
+		this.setJumping(false);
+
+		this.setHunger(new Hunger(Guppy.class, 6, 30));
+		this.setProduction(new Production(this, 6, 5));
+		this.setIdle(new Idle(this, 20));
 	}
 
 	public void findFood() {
@@ -32,59 +52,92 @@ public class Guppycruncher extends Fish {
 					}
 				}
 			}
+
 			// Check Food position and Fish
 			if (nearestFood != null) {
 				if (this.intersects(nearestFood)) {
-					// Eat
 					TankManager.remove(nearestFood);
-					this.setVelZero();
 					this.feed(nearestFood);
-				} else if (this.distanceX(nearestFood) > 20) {
-					// Go to food
-					this.headToUnitX(nearestFood);
-				} else {
-					if (this.distanceX(nearestFood) < 5) {
-						this.setVelZero();
-					} else if (getVelX() > 5) {
-						this.multiplyVel(0.98);
-					}
+					return;
 				}
-				if (this.distanceY(nearestFood) < 60 && !isJumping) {
+				if (Math.abs(distanceX(nearestFood)) > 20) {
+					headToUnitX(nearestFood);
+				} else {
+					setVelX(getVelX());
+				}
+				if (Math.abs(distanceY(nearestFood)) < 120 && !isJumping) {
 					jump();
 				}
 			} else {
-				this.setVelZero();
+				if (!isJumping) {
+					getIdle().checkIdleX();
+				}
 			}
 		} else {
-			this.setVelZero();
+			if (!isJumping) {
+				getIdle().checkIdleX();
+			}
 		}
 	}
-	
-
 
 	private void jump() {
 		// TODO jump
-		this.setVelY(-20);
-		this.isJumping = true;
+		System.out.println("Jump");
+		setVelY(-150);
+		setJumping(true);
 	}
 
 	@Override
 	public void update(int fr) {
-		if (this.getPosY() + getHeight() > GameManager.getBOTTOMHEIGHT()) {
-			this.setPosY(GameManager.getBOTTOMHEIGHT() - getHeight());
-			this.setJumping(false);
+		if (!MonsterManager.isInvaded()) {
+			switch (getHunger().checkHunger()) {
+			case 0:
+				// idle
+				if (!isJumping) {
+					this.getIdle().checkIdleX();
+				}
+				break;
+			case 1:
+				// find food
+				this.findFood();
+				break;
+			case 2:
+				// Very Hungry TODO ChangePic
+				this.findFood();
+				break;
+			case 3:
+				// die
+				this.die();
+				return;
+			}
+
+			this.getProduction().checkProduce();
+		} else {
+			getIdle().checkIdleX();
 		}
 		this.move(fr);
 	}
 
 	public void move(int fr) {
-		//TODO Test Jumping GC
+		// TODO Test Jumping GC
+		System.out.println(getVelX()+" "+getVelY());
 		double deltaTime = 1.0 / fr;
-		if (isJumping) {
-			this.setVelY(getVelY() + (fallAcc * deltaTime));
-		}
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
-		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+		if (isJumping) {
+			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+			this.setVelY(getVelY() + (fallAcc * deltaTime));
+			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
+				System.out.println("Hit floor");
+				this.getIdle().resetIdle();
+				this.setVelX(getVelX()*0.8);
+				this.setVelY(0);
+				this.setJumping(false);
+			}
+		}
+		if (getPosY() > GameManager.getBOTTOMHEIGHT() - getHeight()) {
+			this.setPosY(GameManager.getBOTTOMHEIGHT() - getHeight());
+		}
+
 	}
 
 	public boolean isJumping() {
@@ -94,7 +147,5 @@ public class Guppycruncher extends Fish {
 	public void setJumping(boolean isJumping) {
 		this.isJumping = isJumping;
 	}
-	
-	
 
 }

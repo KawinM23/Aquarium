@@ -43,11 +43,11 @@ public abstract class Unit {
 	}
 
 	public double distanceX(Unit u) {
-		return u.getPosX() - this.getPosX();
+		return u.getCenterX() - this.getCenterX();
 	}
 	
 	public double distanceY(Unit u) {
-		return u.getPosY() - this.getPosY();
+		return u.getCenterY() - this.getCenterY();
 	}
 
 	// HeadToUnit = set velocity
@@ -64,7 +64,7 @@ public abstract class Unit {
 	
 	public void headToUnitX(Unit nearestFood) {
 		this.setVelX((distanceX(nearestFood)) / Math.abs(distanceX(nearestFood)) * this.getSpeed());
-		this.setVelY(0);
+		this.setVelY(getVelY());
 	}
 
 	public void move(int fr) {
