@@ -33,7 +33,7 @@ public class Guppy extends Fish {
 		this.growth = 0;
 		this.setBornTime(System.nanoTime());
 		
-		this.setHunger(new Hunger(Food.class, 3, 15));
+		this.setHunger(new Hunger(Food.class, 3, 20));
 		this.setProduction(new Production(this, 0, 5 + Math.random()));
 		this.setIdle(new Idle(this,15));
 	}

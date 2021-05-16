@@ -25,7 +25,7 @@ public class Fish extends Unit {
 		this.isFacingRight = false;
 		this.hunger = null;
 		this.production = null;
-		this.setIdle(new Idle(this,15));
+		this.setIdle(new Idle(this, 15));
 	}
 
 	public Idle getIdle() {
@@ -99,7 +99,7 @@ public class Fish extends Unit {
 				this.findFood();
 				break;
 			case 2:
-				//Very Hungry TODO ChangePic
+				// Very Hungry TODO ChangePic
 				this.findFood();
 				break;
 			case 3:
@@ -113,11 +113,20 @@ public class Fish extends Unit {
 			idle.checkIdle();
 		}
 		this.move(fr);
+		if (getVelX() > 0) {
+			setFacingRight(true);
+		} else {
+			setFacingRight(false);
+		}
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
+		if (!isFacingRight) {
+			gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
+		}
 
 	}
 

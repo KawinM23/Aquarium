@@ -10,7 +10,7 @@ public class Idle {
 	private double velX;
 	private double velY;
 
-	public Idle(Unit u,int idleSpeed) {
+	public Idle(Unit u, int idleSpeed) {
 		super();
 		this.unit = u;
 		this.nextIdle = System.nanoTime();
@@ -25,18 +25,17 @@ public class Idle {
 		} else {
 			randomVel();
 			this.unit.setVel(velX, velY);
-			this.nextIdle = (long) (System.nanoTime() + 7e9); //TODO interval idle
+			this.nextIdle = (long) (System.nanoTime() + 7e9); // TODO interval idle
 		}
 	}
-	
-	
+
 	public void checkIdleX() {
 		if (System.nanoTime() <= nextIdle) {
-			this.unit.setVel(velX,unit.getVelY());
+			this.unit.setVel(velX, unit.getVelY());
 		} else {
 			randomVel();
-			this.unit.setVel(velX,unit.getVelY());
-			this.nextIdle = (long) (System.nanoTime() + 7e9); //TODO interval idle
+			this.unit.setVel(velX, unit.getVelY());
+			this.nextIdle = (long) (System.nanoTime() + 7e9); // TODO interval idle
 		}
 	}
 
@@ -44,16 +43,21 @@ public class Idle {
 		randomVel();
 		this.nextIdle = (long) (System.nanoTime() + 7e9);
 	}
-	
+
+	public void resetIdle(double time) {
+		randomVel();
+		this.nextIdle = (long) (System.nanoTime() + (time * 1e9));
+	}
+
 	public void eatFood() {
-		setVelX(unit.getVelX()*0.2);
-		setVelY(unit.getVelY()*0.2);
+		setVelX(unit.getVelX() * 0.2);
+		setVelY(unit.getVelY() * 0.2);
 		this.nextIdle = (long) (System.nanoTime() + 1e9);
 	}
-	
+
 	public void slowIdle() {
-		setVelX(unit.getVelX()*0.2);
-		setVelY(unit.getVelY()*0.2);
+		setVelX(unit.getVelX() * 0.2);
+		setVelY(unit.getVelY() * 0.2);
 		this.nextIdle = (long) (System.nanoTime() + 1e9);
 	}
 

@@ -17,7 +17,10 @@ public class Guppycruncher extends Fish {
 	private Image GuppycruncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	private boolean isJumping;
-	private double fallAcc = 100;
+	private final double fallAcc = 120;
+	private final double velYJump = -150;
+	private final double reachHeight = 150;
+	private final double reachDistance = 80;
 
 	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -63,9 +66,10 @@ public class Guppycruncher extends Fish {
 				if (Math.abs(distanceX(nearestFood)) > 20) {
 					headToUnitX(nearestFood);
 				} else {
-					setVelX(getVelX());
+					setVelX(getVelX() / Math.abs(getVelX()) * getSpeed() * 0.8);
 				}
-				if (Math.abs(distanceY(nearestFood)) < 120 && !isJumping) {
+				if (!isJumping && Math.abs(distanceY(nearestFood)) < reachHeight
+						&& Math.abs(distanceX(nearestFood)) < reachDistance) {
 					jump();
 				}
 			} else {
@@ -83,7 +87,7 @@ public class Guppycruncher extends Fish {
 	private void jump() {
 		// TODO jump
 		System.out.println("Jump");
-		setVelY(-150);
+		setVelY(velYJump);
 		setJumping(true);
 	}
 
@@ -116,20 +120,24 @@ public class Guppycruncher extends Fish {
 			getIdle().checkIdleX();
 		}
 		this.move(fr);
+		if (getVelX() > 0) {
+			setFacingRight(true);
+		} else {
+			setFacingRight(false);
+		}
 	}
 
 	public void move(int fr) {
 		// TODO Test Jumping GC
-		System.out.println(getVelX()+" "+getVelY());
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
 		if (isJumping) {
 			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
 			this.setVelY(getVelY() + (fallAcc * deltaTime));
 			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
-				System.out.println("Hit floor");
-				this.getIdle().resetIdle();
-				this.setVelX(getVelX()*0.8);
+				this.getIdle().resetIdle(1);
+				this.setVelX(getVelX() * 0.8);
+				this.getIdle().setVelX(getVelX());
 				this.setVelY(0);
 				this.setJumping(false);
 			}

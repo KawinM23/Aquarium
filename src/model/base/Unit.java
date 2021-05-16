@@ -30,12 +30,20 @@ public abstract class Unit {
 
 	public abstract void draw(GraphicsContext gc);
 
+	/**
+	 * Calculate distance between center of this unit and {@link Unit} U
+	 *
+	 * @param u The {@code Unit} that calculated with.
+	 */
 	public double distance(Unit u) {
 		double deltaX = u.getCenterX() - this.getCenterX();
 		double deltaY = u.getCenterY() - this.getCenterY();
 		return Math.hypot(deltaX, deltaY);
 	}
 
+	/**
+	 * Calculate distance between center of this unit and point(x,y)
+	 */
 	public double distance(double x, double y) {
 		double deltaX = x - this.getCenterX();
 		double deltaY = y - this.getCenterY();
@@ -45,12 +53,15 @@ public abstract class Unit {
 	public double distanceX(Unit u) {
 		return u.getCenterX() - this.getCenterX();
 	}
-	
+
 	public double distanceY(Unit u) {
 		return u.getCenterY() - this.getCenterY();
 	}
 
 	// HeadToUnit = set velocity
+	/**
+	 * Set Velocity of this {@code Unit} to head to {@code Unit} u
+	 */
 	public void headToUnit(Unit u) {
 		this.setVelX(((u.getCenterX() - this.getCenterX()) / this.distance(u)) * this.getSpeed());
 		this.setVelY(((u.getCenterY() - this.getCenterY()) / this.distance(u)) * this.getSpeed());
@@ -61,14 +72,18 @@ public abstract class Unit {
 		this.setVelX((x - this.getCenterX() / this.distance(x, y) * this.getSpeed()));
 		this.setVelY((y - this.getCenterY() / this.distance(x, y) * this.getSpeed()));
 	}
-	
-	public void headToUnitX(Unit nearestFood) {
-		this.setVelX((distanceX(nearestFood)) / Math.abs(distanceX(nearestFood)) * this.getSpeed());
+
+	public void headToUnitX(Unit u) {
+		this.setVelX((distanceX(u)) / Math.abs(distanceX(u)) * this.getSpeed());
 		this.setVelY(getVelY());
 	}
 
+	/**
+	 * Move {@code Unit} Position by one frame
+	 * 
+	 * @param fr int Framerate
+	 */
 	public void move(int fr) {
-
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
 		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
@@ -79,7 +94,7 @@ public abstract class Unit {
 		}
 		if (getPosY() <= 0) {
 			setPosY(0);
-		} 
+		}
 //		else if (getPosY() + getHeight() >= GameManager.getBOTTOMHEIGHT()) {
 //			setPosX(GameManager.getBOTTOMHEIGHT() - getHeight());
 //		}
