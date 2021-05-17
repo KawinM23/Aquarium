@@ -87,14 +87,10 @@ public class ViewManager {
 		InvasionManager.getInvasionList().add(firstInvasion);
 
 		AnchorPane ap = new AnchorPane();
-<<<<<<< Updated upstream
+
 		ShopController.setAllButtons(ap);
-||||||| constructed merge base
-		ShopController.addAllButtons(ap);
-=======
 		ShopController.setShopDetail(0);
-		ShopController.addAllButtons(ap);
->>>>>>> Stashed changes
+
 		mainPane.getChildren().add(ap);
 		//////////////////////////
 
