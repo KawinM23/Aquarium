@@ -24,7 +24,6 @@ public class Guppycruncher extends Fish implements Renderable{
 
 	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO SetMoreVar
 
 		this.setWidth(50);
 		this.setHeight(50);
@@ -84,7 +83,7 @@ public class Guppycruncher extends Fish implements Renderable{
 	}
 
 	private void jump() {
-		// TODO jump
+		// jump
 		System.out.println("Jump");
 		setVelY(velYJump);
 		setJumping(true);
@@ -126,6 +125,9 @@ public class Guppycruncher extends Fish implements Renderable{
 		// TODO Test Jumping GC
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
+		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
+			setJumping(true);
+		}
 		if (isJumping) {
 			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
 			this.setVelY(getVelY() + (fallAcc * deltaTime));
@@ -137,10 +139,6 @@ public class Guppycruncher extends Fish implements Renderable{
 				this.setJumping(false);
 			}
 		}
-		if (getPosY() > GameManager.getBOTTOMHEIGHT() - getHeight()) {
-			this.setPosY(GameManager.getBOTTOMHEIGHT() - getHeight());
-		}
-
 	}
 
 	public boolean isJumping() {

@@ -63,7 +63,7 @@ public class ViewManager {
 //		Carnivore c1 = new Carnivore("c1", 300, 200);
 //		TankManager.add(c1);
 
-//		Starcatcher sc1 = new Starcatcher("sc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
+//		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
 //		TankManager.add(sc1);
 
 		Star s1 = new Star("s1", 400, 200);
@@ -72,7 +72,7 @@ public class ViewManager {
 		SilverCoin svc = new SilverCoin("", 500, 300);
 		TankManager.add(svc);
 
-		Guppycruncher gc1 = new Guppycruncher("gc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
+		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
 		TankManager.add(gc1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
@@ -85,6 +85,7 @@ public class ViewManager {
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		InvasionManager.getInvasionList().add(firstInvasion);
+		InvasionManager.setInvasionTimeList(new int[] { 20, 30, 40 });
 
 		AnchorPane ap = new AnchorPane();
 
@@ -110,6 +111,7 @@ public class ViewManager {
 						InvasionManager.update();
 						TankManager.update(gc);
 						ShopController.drawShop(gc);
+						InvasionManager.render(gc);
 					}
 				};
 

@@ -16,6 +16,9 @@ import properties.Renderable;
 
 public class Starcatcher extends Fish implements Renderable{
 	
+	private boolean isGrounded;
+	private static final int fallAcc = 120;
+	
 	private static final Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Starcatcher(String name, double posX, double posY) {
@@ -24,6 +27,7 @@ public class Starcatcher extends Fish implements Renderable{
 		this.setHeight(40);
 		this.setSpeed(40);
 		this.setVelZero();
+		this.setGrounded(false);
 
 		this.setHunger(new Hunger(Star.class, 3, 10)); // TODO Hunger 10sec
 		this.setProduction(new Production(this, 4, 0));
@@ -74,11 +78,19 @@ public class Starcatcher extends Fish implements Renderable{
 	public void move(int fr) {
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
-		this.setPosY(this.getPosY());
-		if (getPosX() <= 0) {
-			setPosX(0);
-		} else if (getPosX() + getWidth() >= GameManager.getWIDTH()) {
-			setPosX(GameManager.getWIDTH() - getWidth());
+		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
+			setGrounded(false);
+		}
+		if (!isGrounded) {
+			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+			this.setVelY(getVelY() + (fallAcc * deltaTime));
+			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
+				this.getIdle().resetIdle(1);
+				this.setVelX(getVelX() * 0.8);
+				this.getIdle().setVelX(getVelX());
+				this.setVelY(0);
+				this.setGrounded(true);
+			}
 		}
 	}
 
@@ -95,6 +107,14 @@ public class Starcatcher extends Fish implements Renderable{
 		} else {
 			gc.drawImage(StarcatcherImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
+	}
+
+	public boolean isGrounded() {
+		return isGrounded;
+	}
+
+	public void setGrounded(boolean isGrounded) {
+		this.isGrounded = isGrounded;
 	}
 	
 	

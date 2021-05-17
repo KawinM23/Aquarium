@@ -3,9 +3,11 @@ package manager;
 import java.util.ArrayList;
 
 import model.base.Fish;
+import model.base.Monster;
 import model.base.Unit;
 import model.fish.Carnivore;
 import model.fish.Guppy;
+import model.monster.Sylvester;
 
 public class LevelManager {
 	// TODO
@@ -13,7 +15,7 @@ public class LevelManager {
 	// Level,StartMoney,StartFish,ShopDetail,InvasionDetail
 
 	private Level level1_1 = new Level("Adventure", 1, 1);
-	private Level level1_2 = new Level("Adventure", 1, 1);
+	private Level level1_2 = new Level("Adventure", 1, 2);
 	private Level level1_4 = new Level("Adventure", 1, 4);
 
 	public Level getLevel1_1() {
@@ -45,7 +47,6 @@ public class LevelManager {
 		level.setWeaponUpgrable(false);
 
 		level.setGoalPrice(150);
-		
 	}
 	
 	public void loadLevel1_2(Level level) {
@@ -65,6 +66,15 @@ public class LevelManager {
 		level.setWeaponUpgrable(false);
 
 		level.setGoalPrice(500);
+		
+		//TODO Invasion
+		Sylvester sv = new Sylvester("Sylvester", 0, 0);
+		ArrayList<Monster> wave1 = new ArrayList<Monster>();
+		wave1.add(sv);
+		level.getInvasionMonster().add(wave1);
+		
+		int[] invasionTime = new int[]{30,40,50};
+		level.setInvasionTime(invasionTime);
 		
 	}
 	

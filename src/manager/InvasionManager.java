@@ -2,40 +2,45 @@ package manager;
 
 import java.util.ArrayList;
 
+import javafx.scene.canvas.GraphicsContext;
 import model.base.Monster;
 
 public class InvasionManager {
 	private static boolean isInvaded = false;
 	private static boolean warning = false;
+	private static boolean showWarning = false;
 	private static int invasion = 0;
 	private static long invasionTime;
 	private static int[] invasionTimeList;
 	private static ArrayList<ArrayList<Monster>> invasionList = new ArrayList<ArrayList<Monster>>();
 
 	public static void update() {
-		if (!isInvaded && invasionTime - System.nanoTime() <= 7 && warning != true) {
+		if (!isInvaded && invasionTime - System.nanoTime() <= 7e9 && warning != true) {
 			setWarning(true);
 			Thread warningThread = new Thread(new Runnable() {
 
 				@Override
 				public void run() {
-					try {
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					System.out.println("Warning");
-					if (warning == false) {
-						Thread.currentThread().stop();
+					while (isWarning()) {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						if (isShowWarning()) {
+							setShowWarning(false);
+						} else {
+							setShowWarning(true);
+						}
 					}
 				}
-
 			});
 			warningThread.start();
 		} else if (!isInvaded && System.nanoTime() >= invasionTime) {
 			System.out.println("Invading");
 			setInvaded(true);
 			setWarning(false);
+			setShowWarning(false);
 			// ADD MONSTER
 			if (invasion < invasionList.size()) {
 				for (Monster m : invasionList.get(invasion)) {
@@ -64,6 +69,14 @@ public class InvasionManager {
 
 	public static void setWarning(boolean warning) {
 		InvasionManager.warning = warning;
+	}
+
+	public static boolean isShowWarning() {
+		return showWarning;
+	}
+
+	public static void setShowWarning(boolean showWarning) {
+		InvasionManager.showWarning = showWarning;
 	}
 
 	public static long getInvasionTime() {
@@ -100,5 +113,12 @@ public class InvasionManager {
 
 	public static void setInvasionList(ArrayList<ArrayList<Monster>> invasionList) {
 		InvasionManager.invasionList = invasionList;
+	}
+
+	public static void render(GraphicsContext gc) {
+		if(isShowWarning()) {
+			gc.fillText("Warning", 0, 400);
+		}
+		
 	}
 }

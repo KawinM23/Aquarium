@@ -98,6 +98,7 @@ public class TankManager {
 		f.setPos(0, 0); //TODO Random Pos
 		unitList.add(f);
 		fishList.add(f);
+		//TODO Random Hunger Fish
 	}
 
 	public static boolean addFood(Food f) {
