@@ -9,6 +9,7 @@ public class InvasionManager {
 	private static boolean warning = false;
 	private static int invasion = 0;
 	private static long invasionTime;
+	private static int[] invasionTimeList;
 	private static ArrayList<ArrayList<Monster>> invasionList = new ArrayList<ArrayList<Monster>>();
 
 	public static void update() {
@@ -24,7 +25,7 @@ public class InvasionManager {
 						e.printStackTrace();
 					}
 					System.out.println("Warning");
-					if(warning==false) {
+					if (warning == false) {
 						Thread.currentThread().stop();
 					}
 				}
@@ -45,7 +46,7 @@ public class InvasionManager {
 			setInvaded(false);
 			setInvasion(invasion + 1);
 			TankManager.endInvasion(getInvasionDuration());
-			setInvasionTime((long) (System.nanoTime() + 20e10));
+			setInvasionTime((long) (System.nanoTime() + (invasionTimeList[invasion] * 1e9)));
 		}
 	}
 
@@ -83,6 +84,14 @@ public class InvasionManager {
 
 	public static void setInvasion(int invasion) {
 		InvasionManager.invasion = invasion;
+	}
+
+	public static int[] getInvasionTimeList() {
+		return invasionTimeList;
+	}
+
+	public static void setInvasionTimeList(int[] invasionTimeList) {
+		InvasionManager.invasionTimeList = invasionTimeList;
 	}
 
 	public static ArrayList<ArrayList<Monster>> getInvasionList() {
