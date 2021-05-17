@@ -15,17 +15,19 @@ import properties.Production;
 
 public class Fish extends Unit {
 
-	private boolean isFacingLeft;
+	private int price;
 	private Hunger hunger;
 	private Production production;
 	private Idle idle;
 
+	private boolean isFacingLeft;
 	private double mouthPosX;
 	private double mouthPosY;
 
 	public Fish(String name, double posX, double posY) {
 		super(name, posX, posY);
 		this.isFacingLeft = true;
+		this.price = 0;
 		this.hunger = null;
 		this.production = null;
 		this.setIdle(new Idle(this, 15));
@@ -190,6 +192,14 @@ public class Fish extends Unit {
 
 	public void setProduction(Production production) {
 		this.production = production;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

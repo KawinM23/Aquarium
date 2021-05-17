@@ -15,7 +15,8 @@ public class Level {
 	private ArrayList<Fish> startingFish;
 
 	private Unit[] shopItem;
-	private int[] shopPrice;
+	private int maxWeaponUpgrade;
+	private int goalPrice;
 
 	private ArrayList<ArrayList<Monster>> invasionMonster;
 	private int[] invasionTime;
@@ -68,14 +69,6 @@ public class Level {
 		this.shopItem = shopItem;
 	}
 
-	public int[] getShopPrice() {
-		return shopPrice;
-	}
-
-	public void setShopPrice(int[] shopPrice) {
-		this.shopPrice = shopPrice;
-	}
-
 	public ArrayList<ArrayList<Monster>> getInvasionMonster() {
 		return invasionMonster;
 	}
@@ -90,5 +83,21 @@ public class Level {
 
 	public void setInvasionTime(int[] invasionTime) {
 		this.invasionTime = invasionTime;
+	}
+
+	public int getGoalPrice() {
+		return goalPrice;
+	}
+
+	public void setGoalPrice(int goalPrice) {
+		this.goalPrice = goalPrice;
+	}
+
+	public int getMaxWeaponUpgrade() {
+		return maxWeaponUpgrade;
+	}
+
+	public void setMaxWeaponUpgrade(int maxWeaponUpgrade) {
+		this.maxWeaponUpgrade = maxWeaponUpgrade;
 	}
 }
