@@ -90,6 +90,12 @@ public class TankManager {
 			monsterList.add((Monster) u);
 		}
 	}
+	
+	public static void addNewFish(Fish f) {
+		f.setPos(0, 0); //TODO Random Pos
+		unitList.add(f);
+		fishList.add(f);
+	}
 
 	public static boolean addFood(Food f) {
 		if (!(foodList.size() >= PlayerController.getMaxFood())) {

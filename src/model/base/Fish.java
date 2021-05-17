@@ -1,8 +1,11 @@
 package model.base;
 
+import java.awt.Rectangle;
+
 import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import manager.MonsterManager;
+import manager.InvasionManager;
 import manager.TankManager;
 import model.Food;
 import model.fish.Guppy;
@@ -12,17 +15,19 @@ import properties.Production;
 
 public class Fish extends Unit {
 
-	private boolean isFacingRight;
+	private int price;
 	private Hunger hunger;
 	private Production production;
 	private Idle idle;
 
+	private boolean isFacingLeft;
 	private double mouthPosX;
 	private double mouthPosY;
 
 	public Fish(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.isFacingRight = false;
+		this.isFacingLeft = true;
+		this.price = 0;
 		this.hunger = null;
 		this.production = null;
 		this.setIdle(new Idle(this, 15));
@@ -56,6 +61,9 @@ public class Fish extends Unit {
 			} else {
 				// Go to food
 				this.headToFood(nearestFood);
+				if (Math.abs(this.distanceX(nearestFood)) < 10) {
+					this.setVelX(0);
+				}
 				this.idle.slowIdle();
 			}
 
@@ -67,7 +75,9 @@ public class Fish extends Unit {
 	}
 
 	public boolean isAtMounth(Unit nearestFood) {
-		return nearestFood.getBoundary().contains(new Point2D(getMouthPosX(), getMouthPosY()));
+		return new Rectangle2D(getPosX() + getMouthPosX(false), getMouthPosY() - 2,
+				getWidth() - (2 * getMouthPosX(false)), 4).intersects(nearestFood.getBoundary());
+//		return nearestFood.getBoundary().contains(new Point2D(getMouthPosX(), getMouthPosY()));
 	}
 
 	public void feed(Unit nearestFood) {
@@ -75,10 +85,10 @@ public class Fish extends Unit {
 	}
 
 	public void headToFood(Unit u) {
-		this.setVelX(
-				((u.getCenterX() - getMouthPosX()) / u.distance(getMouthPosX(), getMouthPosY())) * this.getSpeed());
+		this.setVelX(((u.getCenterX() - getMouthPosX(true)) / u.distance(getMouthPosX(true), getMouthPosY()))
+				* this.getSpeed());
 		this.setVelY(
-				((u.getCenterY() - getMouthPosY()) / u.distance(getMouthPosX(), getMouthPosY())) * this.getSpeed());
+				((u.getCenterY() - getMouthPosY()) / u.distance(getMouthPosX(true), getMouthPosY())) * this.getSpeed());
 	}
 
 	public void die() {
@@ -88,7 +98,7 @@ public class Fish extends Unit {
 
 	@Override
 	public void update(int fr) {
-		if (!MonsterManager.isInvaded()) {
+		if (!InvasionManager.isInvaded()) {
 			switch (hunger.checkHunger()) {
 			case 0:
 				// idle
@@ -113,16 +123,12 @@ public class Fish extends Unit {
 			idle.checkIdle();
 		}
 		this.move(fr);
-		if (getVelX() > 0) {
-			setFacingRight(true);
-		} else {
-			setFacingRight(false);
-		}
+		this.checkFacingLeft();
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		if (!isFacingRight) {
+		if (isFacingLeft) {
 			gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
 			gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
@@ -130,8 +136,16 @@ public class Fish extends Unit {
 
 	}
 
-	public double getMouthPosX() {
-		return getPosX() + mouthPosX;
+	public double getMouthPosX(boolean abs) {
+		if (abs) {
+			if (isFacingLeft) {
+				return getPosX() + mouthPosX;
+			} else {
+				return getPosX() + getWidth() - mouthPosX;
+			}
+		} else {
+			return mouthPosX;
+		}
 	}
 
 	public void setMouthPosX(double mouthPosX) {
@@ -151,12 +165,20 @@ public class Fish extends Unit {
 		this.mouthPosY = mouthPosY;
 	}
 
-	public boolean isFacingRight() {
-		return isFacingRight;
+	public boolean isFacingLeft() {
+		return isFacingLeft;
 	}
 
-	public void setFacingRight(boolean isFacingRight) {
-		this.isFacingRight = isFacingRight;
+	public void setFacingLeft(boolean isFacingLeft) {
+		this.isFacingLeft = isFacingLeft;
+	}
+
+	public void checkFacingLeft() {
+		if (getVelX() > 0) {
+			setFacingLeft(false);
+		} else {
+			setFacingLeft(true);
+		}
 	}
 
 	public Hunger getHunger() {
@@ -173,6 +195,14 @@ public class Fish extends Unit {
 
 	public void setProduction(Production production) {
 		this.production = production;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

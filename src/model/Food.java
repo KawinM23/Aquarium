@@ -11,6 +11,7 @@ public class Food extends Unit {
 
 	private int foodType; // 1 Normal , 2 Potion
 	private int foodLevel; // 1,2,3
+	private int maxFood; //
 
 	public Food(String name, double posX, double posY, int foodType) {
 		super(name, posX, posY);
@@ -24,17 +25,16 @@ public class Food extends Unit {
 			this.setHeight(40);
 			this.setFoodLevel(0);
 		}
-		this.setPos(posX - (getWidth() / 2), posY - (getHeight() / 2)); // Slide
+		this.setPos(posX - (getWidth() / 2), posY - (getHeight() / 2)); // Slide to match mouse position
 
 		this.setVel(0, 40);
 
 		this.setImg(new Image("file:res/image/Food1.png")); // TODO DifferentPic
-
 	}
 
 	@Override
 	public void update(int fr) {
-		if (this.getPosY() + this.getHeight() > GameManager.getBOTTOMHEIGHT()) {
+		if (this.getPosY() + this.getHeight() >= GameManager.getBOTTOMHEIGHT()) {
 			TankManager.remove(this);
 			return;
 		}
@@ -60,6 +60,14 @@ public class Food extends Unit {
 
 	public void setFoodLevel(int foodLevel) {
 		this.foodLevel = foodLevel;
+	}
+
+	public int getMaxFood() {
+		return maxFood;
+	}
+
+	public void setMaxFood(int maxFood) {
+		this.maxFood = maxFood;
 	}
 
 }

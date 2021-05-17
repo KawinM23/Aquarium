@@ -81,10 +81,14 @@ public class ViewManager {
 		PlayerController.setMaxFood(3);
 		PlayerController.setMoney(200);
 
-		MonsterManager.setInvasionTime((long) (System.nanoTime() + 200e9));
+		InvasionManager.setInvasionTime((long) (System.nanoTime() + 200e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
-		MonsterManager.getInvasionList().add(firstInvasion);
+		InvasionManager.getInvasionList().add(firstInvasion);
+		
+		AnchorPane ap = new AnchorPane();
+		ShopController.addAllButtons(ap);
+		mainPane.getChildren().add(ap);
 		//////////////////////////
 
 		// TODO Change Code to new Controller
@@ -100,8 +104,9 @@ public class ViewManager {
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
 						gc.setFill(Color.rgb(102, 204, 255));
 						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
-						MonsterManager.update();
+						InvasionManager.update();
 						TankManager.update(gc);
+						ShopController.drawShop(gc);
 					}
 				};
 
@@ -122,6 +127,8 @@ public class ViewManager {
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
 		threadTank.start();
+		
+		
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -129,7 +136,7 @@ public class ViewManager {
 			@Override
 			public void handle(MouseEvent event) {
 				if (PlayerController.isPlaying()) {
-					if (!MonsterManager.isInvaded()) {
+					if (!InvasionManager.isInvaded()) {
 						for (Money m : TankManager.getMoneyList()) {
 							if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
 								// Collect Money

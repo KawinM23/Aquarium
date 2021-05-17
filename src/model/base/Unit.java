@@ -4,6 +4,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
+import manager.TankManager;
 
 public abstract class Unit {
 	private String name;
@@ -125,7 +126,14 @@ public abstract class Unit {
 	}
 
 	public void setPosX(double posX) {
-		this.posX = posX;
+		if (posX < 0) {
+			this.posX = 0;
+		} else if (posX + getWidth() > GameManager.getWIDTH()) {
+			this.posX = GameManager.getWIDTH() - getWidth();
+		} else {
+			this.posX = posX;
+		}
+
 	}
 
 	public double getPosY() {
@@ -133,7 +141,13 @@ public abstract class Unit {
 	}
 
 	public void setPosY(double posY) {
-		this.posY = posY;
+		if (posY < GameManager.getTOPHEIGHT()) {
+			this.posY = GameManager.getTOPHEIGHT();
+		} else if (posY + getHeight() > GameManager.getBOTTOMHEIGHT()) {
+			this.posY = GameManager.getBOTTOMHEIGHT() - getHeight();
+		} else {
+			this.posY = posY;
+		}
 	}
 
 	public void setPos(double posX, double posY) {
