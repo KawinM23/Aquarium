@@ -14,6 +14,9 @@ public class ShopController {
 	// TODO get money from Money class
 	static final String GUPPY_IMAGE_PATH = ClassLoader.getSystemResource("Guppy.png").toString();
 	static int[] prices;
+	private static int foodLevelPrice = 300;
+	private static int foodCountPrice = 200;
+	private static int weaponUpgradePrice = 1000;
 	Image[] images;
 	static String[] imagePaths;
 
@@ -164,6 +167,18 @@ public class ShopController {
 	private static int getDigit(int n) {
 		String str = String.valueOf(n);
 		return str.length();
+	}
+
+	public static int getFoodLevelPrice() {
+		return foodLevelPrice;
+	}
+
+	public static int getFoodCountPrice() {
+		return foodCountPrice;
+	}
+
+	public static int getWeaponUpgradePrice() {
+		return weaponUpgradePrice;
 	}
 
 }
