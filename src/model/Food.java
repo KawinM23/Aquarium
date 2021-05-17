@@ -31,18 +31,6 @@ public class Food extends Unit {
 
 		this.setImg(new Image("file:res/image/Food1.png")); // TODO DifferentPic
 	}
-	
-	public Food(int foodType,int foodLevel,int maxFood) {
-		super(null, 0, 0);
-		this.setFoodType(foodType);
-		if (foodType == 1) {
-			this.setFoodLevel(foodLevel);
-		} else if (foodType == 2) {
-			this.setFoodLevel(0);
-		}
-		setMaxFood(maxFood);
-
-	}
 
 	@Override
 	public void update(int fr) {
