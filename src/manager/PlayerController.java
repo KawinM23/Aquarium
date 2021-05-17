@@ -2,7 +2,7 @@ package manager;
 
 public class PlayerController {
 
-	private static int money = 0;
+	private static int money = 10000;
 	private static boolean isPlaying = true;
 	private static int maxFood;
 	private static int foodLevel = 1;

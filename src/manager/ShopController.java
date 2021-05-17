@@ -13,7 +13,6 @@ import javafx.scene.text.Font;
 public class ShopController {
 	// TODO get money from Money class
 	static final String GUPPY_IMAGE_PATH = ClassLoader.getSystemResource("Guppy.png").toString();
-	static int money=10000;
 	static int[] prices;
 	Image[] images;
 	static String[] imagePaths;
@@ -93,53 +92,21 @@ public class ShopController {
 				SoundManager.playClickSound();
 				switch (buttonText) {
 				case "Button 1":
-					if (prices[0]<=money) {
-						money-=prices[0];
-						// Add fish to tank here
-					}
-					System.out.println(money);
+					PlayerController.buy(prices[0]);
 					break;
 				case "Button 2":
-					if (prices[1]<=money) {
-						money-=prices[1];
-						// Add fish to tank here
-					}
-					System.out.println(money);
 					break;
 				case "Button 3":
-					if (prices[2]<=money) {
-						money-=prices[2];
-						// Add fish to tank here
-					}
-					System.out.println(money);
+					PlayerController.buy(prices[2]);
+					System.out.println(PlayerController.getMoney());
 					break;
 				case "Button 4":
-					if (prices[3]<=money) {
-						money-=prices[3];
-						// Add fish to tank here
-					}
-					System.out.println(money);
 					break;
 				case "Button 5":
-					if (prices[4]<=money) {
-						money-=prices[4];
-						// Add fish to tank here
-					}
-					System.out.println(money);
 					break;
 				case "Button 6":
-					if (prices[5]<=money) {
-						money-=prices[5];
-						// Add fish to tank here
-					}
-					System.out.println(money);
 					break;
 				case "Button 7":
-					if (prices[6]<=money) {
-						money-=prices[6];
-						// Add fish to tank here
-					}
-					System.out.println(money);
 					break;
 				case "Button 8":
 					ScreenController.changeScene("menu");
@@ -177,7 +144,7 @@ public class ShopController {
 
 		}
 		// Draw current money
-		DrawManager.drawText(gc, "" + money, 24, (int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(prices[7])*5) * 1.5 + 10),
+		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24, (int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(prices[7])*5) * 1.5 + 10),
 				(int) ((buttonDetail[7][3] * 1.5) + 45), (int) ((buttonDetail[7][2] - buttonDetail[7][0]) * 1.5));
 
 	}
