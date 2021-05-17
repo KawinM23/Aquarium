@@ -109,7 +109,7 @@ public class ShopController {
 				case "Button 7":
 					break;
 				case "Button 8":
-					ScreenController.changeScene("menu");
+					SceneController.changeScene("menu");
 					break;
 				default:
 

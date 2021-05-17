@@ -1,7 +1,7 @@
 package game;
 
 import manager.DrawManager;
-import manager.ScreenController;
+import manager.SceneController;
 import manager.ShopController;
 import manager.SoundManager;
 import manager.ViewManager;
@@ -34,11 +34,11 @@ public class tank0 extends Application {
 			{ 440.0, 3.0, 490.0, 46.0, 80.0, 20.0 }, { 532.0, 3.0, 617.0, 25.0, 80.0, 20.0 } };
 	private int money = 0;
 	private Scene scene;
-	private static ScreenController screenController;
+	private static SceneController screenController;
 
 	// ClassLoader.getSystemResource("").toString();
 	public tank0() {
-		screenController = new ScreenController();
+		screenController = new SceneController();
 		AnchorPane root = new AnchorPane();
 		scene = new Scene(root);
 		Canvas canvas = new Canvas(640 * 1.5, 480 * 1.5);
@@ -77,7 +77,7 @@ public class tank0 extends Application {
 		stage.show();
 	}
 
-	public void addScreen(ScreenController screen) {
+	public void addScreen(SceneController screen) {
 		AnchorPane root = new AnchorPane();
 		Canvas canvas = new Canvas(640 * 1.5, 480 * 1.5);
 		GraphicsContext gc = canvas.getGraphicsContext2D();

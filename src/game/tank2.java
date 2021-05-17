@@ -2,7 +2,7 @@ package game;
 
 import manager.GameManager;
 import manager.PlayerController;
-import manager.ScreenController;
+import manager.SceneController;
 import manager.TankManager;
 import manager.ViewManager;
 import model.Food;
@@ -36,13 +36,13 @@ public class tank2 {
 			{ 295.0, 3.0, 344.0, 46.0, 80.0, 20.0 }, { 367.0, 3.0, 417.0, 46.0, 80.0, 20.0 },
 			{ 440.0, 3.0, 490.0, 46.0, 80.0, 20.0 }, { 532.0, 3.0, 617.0, 25.0, 80.0, 20.0 } };
 	private Scene scene;
-	private static ScreenController screenController;
+	private static SceneController screenController;
 	private MediaPlayer mediaPlayer;
 	private Media sound;
 	private Thread threadTank;
 
 	public tank2() {
-		screenController = new ScreenController();
+		screenController = new SceneController();
 		AnchorPane root = new AnchorPane();
 		scene = new Scene(root);
 		Canvas canvas = new Canvas(640 * 1.5, 480 * 1.5);
@@ -143,7 +143,7 @@ public class tank2 {
 
 
 
-	public void addScreen(ScreenController screen) {
+	public void addScreen(SceneController screen) {
 		AnchorPane root = new AnchorPane();
 		Canvas canvas = new Canvas(640 * 1.5, 480 * 1.5);
 		GraphicsContext gc = canvas.getGraphicsContext2D();

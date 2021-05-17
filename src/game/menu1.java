@@ -2,7 +2,7 @@ package game;
 
 import manager.ViewManager;
 import manager.GameManager;
-import manager.ScreenController;
+import manager.SceneController;
 import manager.SoundManager;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -33,7 +33,7 @@ public class menu1 extends Application {
 			{ 354.0, 282.0, 576.0, 357.0, 100.0, 40.0 }, { 402.0, 377.0, 529.0, 409.0, 80.0, 20.0 },
 			{ 323.0, 412.0, 417.0, 443.0, 80.0, 20.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 20.0 },
 			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
-	private ScreenController screenController;
+	private SceneController screenController;
 	private MediaPlayer mediaPlayer;
 	private Media sound;
 	private tank2 tank2;
@@ -42,7 +42,7 @@ public class menu1 extends Application {
 	@Override
 	public void start(Stage stage) {
 		// Add ScreenController and set main stage to our stage
-		screenController = new ScreenController(stage);
+		screenController = new SceneController(stage);
 		// Create main menu scene
 		AnchorPane root = new AnchorPane();
 		Scene menuScene = new Scene(root);
