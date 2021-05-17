@@ -74,7 +74,6 @@ public class ViewManager {
 
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
 		TankManager.add(gc1);
-		System.out.println(gc1.getPrice());
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 
@@ -86,6 +85,10 @@ public class ViewManager {
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		InvasionManager.getInvasionList().add(firstInvasion);
+		
+		AnchorPane ap = new AnchorPane();
+		ShopController.addAllButtons(ap);
+		mainPane.getChildren().add(ap);
 		//////////////////////////
 
 		// TODO Change Code to new Controller
@@ -103,6 +106,7 @@ public class ViewManager {
 						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
 						InvasionManager.update();
 						TankManager.update(gc);
+						ShopController.drawShop(gc);
 					}
 				};
 
@@ -123,6 +127,8 @@ public class ViewManager {
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
 		threadTank.start();
+		
+		
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {

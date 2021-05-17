@@ -16,6 +16,18 @@ public class LevelManager {
 	private Level level1_2 = new Level("Adventure", 1, 1);
 	private Level level1_4 = new Level("Adventure", 1, 4);
 
+	public Level getLevel1_1() {
+		return level1_1;
+	}
+
+	public Level getLevel1_2() {
+		return level1_2;
+	}
+
+	public Level getLevel1_4() {
+		return level1_4;
+	}
+
 	public void loadLevel1_1(Level level) {
 		level.setStartingMoney(200);
 
