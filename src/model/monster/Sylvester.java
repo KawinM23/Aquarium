@@ -11,8 +11,11 @@ import model.base.Fish;
 import model.base.Monster;
 import model.base.Unit;
 import properties.Hunger;
+import properties.Renderable;
 
-public class Sylvester extends Monster {
+public class Sylvester extends Monster implements Renderable{
+	
+	private static final Image SylvesterImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	private Hunger hunger;
 
@@ -23,8 +26,6 @@ public class Sylvester extends Monster {
 		this.setWidth(100);
 		this.setHeight(150);
 		this.setSpeed(80);
-
-		this.setImg(new Image("file:res/image/Guppy.png", getWidth(), getHeight(), false, true));
 
 		this.setHealth(100);
 		this.hunger = new Hunger(Fish.class, 5, 0);
@@ -56,11 +57,15 @@ public class Sylvester extends Monster {
 	}
 
 	@Override
-	public void draw(GraphicsContext gc) {
+	public void render(GraphicsContext gc) {
 
 		gc.setStroke(new Color(1, 0, 0, 1));
 		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
+		if (isFacingLeft()) {
+			gc.drawImage(SylvesterImage, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(SylvesterImage, getPosX(), getPosY(), getWidth(), getHeight());
+		}
 	}
 
 	@Override

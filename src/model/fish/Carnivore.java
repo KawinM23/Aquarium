@@ -1,5 +1,6 @@
 package model.fish;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.TankManager;
 import model.base.Fish;
@@ -7,10 +8,11 @@ import model.base.Unit;
 import properties.Hunger;
 import properties.Idle;
 import properties.Production;
+import properties.Renderable;
 
-public class Carnivore extends Fish {
+public class Carnivore extends Fish implements Renderable{
 	
-	private Image CarnivoreImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image CarnivoreImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Carnivore(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -19,7 +21,6 @@ public class Carnivore extends Fish {
 		this.setHeight(70);
 		this.setSpeed(100);
 		this.setVelZero();
-		this.setImg(CarnivoreImage);
 
 		this.setHunger(new Hunger(Guppy.class, 3, 10));
 		this.setProduction(new Production(this, 3, 6));
@@ -60,6 +61,15 @@ public class Carnivore extends Fish {
 		} else {
 			//No Food ,Idle
 			this.getIdle().checkIdle();
+		}
+	}
+
+	@Override
+	public void render(GraphicsContext gc) {
+		if (isFacingLeft()) {
+			gc.drawImage(CarnivoreImage, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(CarnivoreImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}
 

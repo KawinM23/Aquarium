@@ -1,5 +1,6 @@
 package model.fish;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
 import manager.TankManager;
@@ -11,10 +12,11 @@ import model.money.Star;
 import properties.Hunger;
 import properties.Idle;
 import properties.Production;
+import properties.Renderable;
 
-public class Starcatcher extends Fish {
+public class Starcatcher extends Fish implements Renderable{
 	
-	private Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -22,7 +24,6 @@ public class Starcatcher extends Fish {
 		this.setHeight(40);
 		this.setSpeed(40);
 		this.setVelZero();
-		this.setImg(StarcatcherImage);
 
 		this.setHunger(new Hunger(Star.class, 3, 10)); // TODO Hunger 10sec
 		this.setProduction(new Production(this, 4, 0));
@@ -84,6 +85,16 @@ public class Starcatcher extends Fish {
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
 		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY() - 20, 1));
+	}
+
+	@Override
+	public void render(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		if (isFacingLeft()) {
+			gc.drawImage(StarcatcherImage, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(StarcatcherImage, getPosX(), getPosY(), getWidth(), getHeight());
+		}
 	}
 	
 	

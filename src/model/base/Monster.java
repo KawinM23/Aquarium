@@ -1,10 +1,10 @@
 package model.base;
 
-import javafx.scene.canvas.GraphicsContext;
-
 public abstract class Monster extends Unit {
 
 	private int health;
+	
+	private boolean isFacingLeft;
 
 	public Monster(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -26,6 +26,14 @@ public abstract class Monster extends Unit {
 
 	public void decreaseHealth(int damage) {
 		this.setHealth(getHealth() - damage);
+	}
+
+	public boolean isFacingLeft() {
+		return isFacingLeft;
+	}
+
+	public void setFacingLeft(boolean isFacingLeft) {
+		this.isFacingLeft = isFacingLeft;
 	}
 
 }

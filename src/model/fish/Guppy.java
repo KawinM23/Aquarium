@@ -1,5 +1,6 @@
 package model.fish;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.Food;
 import model.base.Fish;
@@ -7,15 +8,18 @@ import model.base.Unit;
 import properties.Hunger;
 import properties.Idle;
 import properties.Production;
+import properties.Renderable;
 
-public class Guppy extends Fish {
+public class Guppy extends Fish implements Renderable{
 
 	private boolean isStar;
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 	private long bornTime;
 	
 	
-	private Image GuppyImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image GuppyImageLeft = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image GuppyImageRight = new Image(ClassLoader.getSystemResource("GuppyRight.png").toString());
+	
 
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -26,8 +30,6 @@ public class Guppy extends Fish {
 
 		this.setSpeed(80);
 		this.setVelZero();
-
-		this.setImg(GuppyImage);
 
 		this.isStar = false;
 		this.growth = 0;
@@ -85,5 +87,17 @@ public class Guppy extends Fish {
 
 		}
 	}
+
+	@Override
+	public void render(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		if (isFacingLeft()) {
+			gc.drawImage(GuppyImageLeft, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(GuppyImageRight, getPosX(), getPosY(), getWidth(), getHeight());
+		}
+	}
+
+
 
 }

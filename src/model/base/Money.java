@@ -1,12 +1,10 @@
 package model.base;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import manager.GameManager;
 import manager.PlayerController;
 import manager.TankManager;
 
-public class Money extends Unit {
+public abstract class Money extends Unit{
 	
 	private int value;
 
@@ -30,11 +28,6 @@ public class Money extends Unit {
 		this.move(fr);
 	}
 
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
-	}
 
 	public int getValue() {
 		return value;

@@ -81,13 +81,20 @@ public class ViewManager {
 		PlayerController.setMaxFood(3);
 		PlayerController.setMoney(200);
 
-		InvasionManager.setInvasionTime((long) (System.nanoTime() + 200e9));
+		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		InvasionManager.getInvasionList().add(firstInvasion);
 
 		AnchorPane ap = new AnchorPane();
+<<<<<<< Updated upstream
 		ShopController.setAllButtons(ap);
+||||||| constructed merge base
+		ShopController.addAllButtons(ap);
+=======
+		ShopController.setShopDetail(0);
+		ShopController.addAllButtons(ap);
+>>>>>>> Stashed changes
 		mainPane.getChildren().add(ap);
 		//////////////////////////
 

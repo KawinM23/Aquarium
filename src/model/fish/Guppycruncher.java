@@ -1,20 +1,20 @@
 package model.fish;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
 import manager.InvasionManager;
 import manager.TankManager;
 import model.base.Fish;
-import model.base.Money;
 import model.base.Unit;
-import model.money.Star;
 import properties.Hunger;
 import properties.Idle;
 import properties.Production;
+import properties.Renderable;
 
-public class Guppycruncher extends Fish {
+public class Guppycruncher extends Fish implements Renderable{
 
-	private Image GuppycruncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image GuppycruncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	private boolean isJumping;
 	private final double fallAcc = 120;
@@ -30,8 +30,6 @@ public class Guppycruncher extends Fish {
 		this.setHeight(50);
 		this.setSpeed(40);
 		this.setVelZero();
-
-		this.setImg(GuppycruncherImage);
 
 		this.setJumping(false);
 
@@ -151,6 +149,16 @@ public class Guppycruncher extends Fish {
 
 	public void setJumping(boolean isJumping) {
 		this.isJumping = isJumping;
+	}
+
+	@Override
+	public void render(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		if (isFacingLeft()) {
+			gc.drawImage(GuppycruncherImage, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(GuppycruncherImage, getPosX(), getPosY(), getWidth(), getHeight());
+		}
 	}
 
 }

@@ -6,12 +6,16 @@ import manager.GameManager;
 import manager.PlayerController;
 import manager.TankManager;
 import model.base.Unit;
+import properties.Renderable;
 
-public class Food extends Unit {
+public class Food extends Unit implements Renderable {
 
 	private int foodType; // 1 Normal , 2 Potion
 	private int foodLevel; // 1,2,3
 	private int maxFood; //
+
+	// TODO DifferentPic
+	private static final Image Food1Image = new Image(ClassLoader.getSystemResource("Food1.png").toString());
 
 	public Food(String name, double posX, double posY, int foodType) {
 		super(name, posX, posY);
@@ -28,8 +32,6 @@ public class Food extends Unit {
 		this.setPos(posX - (getWidth() / 2), posY - (getHeight() / 2)); // Slide to match mouse position
 
 		this.setVel(0, 40);
-
-		this.setImg(new Image("file:res/image/Food1.png")); // TODO DifferentPic
 	}
 
 	@Override
@@ -42,8 +44,13 @@ public class Food extends Unit {
 	}
 
 	@Override
-	public void draw(GraphicsContext gc) {
-		gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
+	public void render(GraphicsContext gc) {
+		if (getFoodLevel() == 1) {
+			gc.drawImage(Food1Image, getPosX(), getPosY(), getWidth(), getHeight());
+		} else if (getFoodLevel() == 2) {
+
+		}
+
 	}
 
 	public int getFoodType() {

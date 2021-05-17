@@ -9,6 +9,7 @@ import model.base.Fish;
 import model.base.Money;
 import model.base.Monster;
 import model.base.Unit;
+import properties.Renderable;
 
 public class TankManager {
 
@@ -51,7 +52,9 @@ public class TankManager {
 	public static void update(GraphicsContext gc) {
 		//Update and draw all unit
 		for (Unit u : unitList) {
-			u.draw(gc);
+			if(u instanceof Renderable) {
+				((Renderable) u).render(gc);
+			}
 		}
 		for (Fish f : fishList) {
 			f.update(GameManager.getFRAMERATE());

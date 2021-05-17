@@ -1,19 +1,14 @@
 package model.base;
 
-import java.awt.Rectangle;
-
-import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
 import manager.InvasionManager;
 import manager.TankManager;
 import model.Food;
-import model.fish.Guppy;
 import properties.Hunger;
 import properties.Idle;
 import properties.Production;
 
-public class Fish extends Unit {
+public abstract class Fish extends Unit {
 
 	private int price;
 	private Hunger hunger;
@@ -124,16 +119,6 @@ public class Fish extends Unit {
 		}
 		this.move(fr);
 		this.checkFacingLeft();
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		if (isFacingLeft) {
-			gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
-		} else {
-			gc.drawImage(getImg(), getPosX(), getPosY(), getWidth(), getHeight());
-		}
-
 	}
 
 	public double getMouthPosX(boolean abs) {

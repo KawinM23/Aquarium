@@ -1,10 +1,7 @@
 package model.base;
 
 import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import manager.GameManager;
-import manager.TankManager;
 
 public abstract class Unit {
 	private String name;
@@ -18,7 +15,6 @@ public abstract class Unit {
 	private double velY;
 	private int speed;
 
-	private Image img;
 
 	public Unit(String name, double posX, double posY) {
 		super();
@@ -28,8 +24,6 @@ public abstract class Unit {
 	}
 
 	public abstract void update(int fr);
-
-	public abstract void draw(GraphicsContext gc);
 
 	/**
 	 * Calculate distance between center of this unit and {@link Unit} U
@@ -218,12 +212,5 @@ public abstract class Unit {
 		this.speed = speed;
 	}
 
-	public Image getImg() {
-		return img;
-	}
-
-	public void setImg(Image img) {
-		this.img = img;
-	}
 
 }
