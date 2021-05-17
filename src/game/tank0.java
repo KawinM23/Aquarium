@@ -50,7 +50,7 @@ public class tank0 extends Application {
 		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
 		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
 		ShopController.setShopDetail(0);
-		ShopController.addAllButtons(root);
+		ShopController.setAllButtons(root);
 		ShopController.drawShop(gc);
 	}
 
@@ -71,8 +71,8 @@ public class tank0 extends Application {
 		;
 		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
 		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
-		//Draw Shop
-		ShopController.addAllButtons(root);
+		// Draw Shop
+		ShopController.setAllButtons(root);
 
 		stage.show();
 	}
@@ -88,7 +88,7 @@ public class tank0 extends Application {
 		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
 		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
 		// Draw Shop
-		ShopController.addAllButtons(root);
+		ShopController.setAllButtons(root);
 	}
 
 	private void setBackGround(GraphicsContext gc) {

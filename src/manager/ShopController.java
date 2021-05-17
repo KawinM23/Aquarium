@@ -19,6 +19,15 @@ public class ShopController {
 	private static int weaponUpgradePrice = 1000;
 	Image[] images;
 	static String[] imagePaths;
+	static Button button1 = new Button("1");
+	static Button button2 = new Button("2");
+	static Button button3 = new Button("3");
+	static Button button4 = new Button("4");
+	static Button button5 = new Button("5");
+	static Button button6 = new Button("6");
+	static Button button7 = new Button("7");
+	static Button button8 = new Button("8");
+	static Button[] buttonList = { button1, button2, button3, button4, button5, button6, button7, button8 };
 
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
@@ -48,15 +57,14 @@ public class ShopController {
 	}
 
 	// TODO Add All button
-	public static void addAllButtons(AnchorPane anchorpane) {
-		for (int i = 1; i <= 8; i++) {
-			addButton(anchorpane, i);
+	public static void setAllButtons(AnchorPane anchorpane) {
+		for (Button eachButton : buttonList) {
+			setButtonProperty(anchorpane, eachButton);
 		}
 	}
 
-	public static void addButton(AnchorPane anchorpane, int buttonNumber) {
-		String buttonText = "Button " + buttonNumber;
-		Button button = new Button(buttonText);
+	public static void setButtonProperty(AnchorPane anchorpane, Button button) {
+		int buttonNumber = Integer.parseInt(button.getText());
 		button.setPrefSize((buttonDetail[buttonNumber - 1][2] - buttonDetail[buttonNumber - 1][0]) * 1.5,
 				(buttonDetail[buttonNumber - 1][3] - buttonDetail[buttonNumber - 1][1]) * 1.5);
 		button.setStyle("-fx-background-radius: " + buttonDetail[buttonNumber - 1][4] + "px;"
@@ -93,25 +101,25 @@ public class ShopController {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				SoundManager.playClickSound();
-				switch (buttonText) {
-				case "Button 1":
+				switch (buttonNumber) {
+				case 1:
 					PlayerController.buy(prices[0]);
 					break;
-				case "Button 2":
+				case 2:
 					break;
-				case "Button 3":
+				case 3:
 					PlayerController.buy(prices[2]);
 					System.out.println(PlayerController.getMoney());
 					break;
-				case "Button 4":
+				case 4:
 					break;
-				case "Button 5":
+				case 5:
 					break;
-				case "Button 6":
+				case 6:
 					break;
-				case "Button 7":
+				case 7:
 					break;
-				case "Button 8":
+				case 8:
 					SceneController.changeScene("menu");
 					break;
 				default:
@@ -142,12 +150,14 @@ public class ShopController {
 			DrawManager.drawImageFixSize(gc, imagePaths[i], (int) (buttonDetail[i][0] * 1.5),
 					(int) (buttonDetail[i][1] * 1.5), getButtonWidth(i + 1) * 1.5, getButtonHeight(i + 1) * 1.5);
 			// Draw Prices
-			DrawManager.drawText(gc, "" + prices[i], 18, (int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - getDigit(prices[i])*3) * 1.5),
+			DrawManager.drawText(gc, "" + prices[i], 18,
+					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - getDigit(prices[i]) * 3) * 1.5),
 					(int) ((buttonDetail[i][3] * 1.5) + 16), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
 
 		}
 		// Draw current money
-		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24, (int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(prices[7])*5) * 1.5 + 10),
+		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24,
+				(int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(prices[7]) * 5) * 1.5 + 10),
 				(int) ((buttonDetail[7][3] * 1.5) + 45), (int) ((buttonDetail[7][2] - buttonDetail[7][0]) * 1.5));
 
 	}
@@ -169,6 +179,7 @@ public class ShopController {
 		return str.length();
 	}
 
+<<<<<<< Updated upstream
 	public static int getFoodLevelPrice() {
 		return foodLevelPrice;
 	}
@@ -181,4 +192,11 @@ public class ShopController {
 		return weaponUpgradePrice;
 	}
 
+||||||| constructed merge base
+=======
+	public Button getButton(int buttonNumber) {
+		return buttonList[buttonNumber - 1];
+	}
+
+>>>>>>> Stashed changes
 }
