@@ -34,7 +34,7 @@ public class Food extends Unit {
 
 	@Override
 	public void update(int fr) {
-		if (this.getPosY() + this.getHeight() > GameManager.getBOTTOMHEIGHT()) {
+		if (this.getPosY() + this.getHeight() >= GameManager.getBOTTOMHEIGHT()) {
 			TankManager.remove(this);
 			return;
 		}

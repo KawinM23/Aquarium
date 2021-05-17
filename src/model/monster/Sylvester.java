@@ -26,7 +26,7 @@ public class Sylvester extends Monster {
 
 		this.setImg(new Image("file:res/image/Guppy.png", getWidth(), getHeight(), false, true));
 
-		this.setHealth(200);
+		this.setHealth(100);
 		this.hunger = new Hunger(Fish.class, 5, 0);
 
 	}

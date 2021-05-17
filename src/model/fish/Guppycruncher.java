@@ -38,6 +38,7 @@ public class Guppycruncher extends Fish {
 		this.setHunger(new Hunger(Guppy.class, 6, 30));
 		this.setProduction(new Production(this, 6, 5));
 		this.setIdle(new Idle(this, 20));
+		this.setPrice(750);
 	}
 
 	public void findFood() {

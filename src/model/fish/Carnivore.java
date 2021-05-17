@@ -24,6 +24,7 @@ public class Carnivore extends Fish {
 		this.setHunger(new Hunger(Guppy.class, 3, 10));
 		this.setProduction(new Production(this, 3, 6));
 		this.setIdle(new Idle(this,15));
+		this.setPrice(1000);
 	}
 
 	public void findFood() {

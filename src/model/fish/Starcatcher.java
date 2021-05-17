@@ -9,6 +9,7 @@ import model.base.Unit;
 import model.money.Diamond;
 import model.money.Star;
 import properties.Hunger;
+import properties.Idle;
 import properties.Production;
 
 public class Starcatcher extends Fish {
@@ -25,6 +26,8 @@ public class Starcatcher extends Fish {
 
 		this.setHunger(new Hunger(Star.class, 3, 10)); // TODO Hunger 10sec
 		this.setProduction(new Production(this, 4, 0));
+		this.setIdle(new Idle(this,20));
+		this.setPrice(750);
 	}
 
 	public void findFood() {

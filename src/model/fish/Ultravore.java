@@ -7,7 +7,7 @@ import properties.Idle;
 import properties.Production;
 
 public class Ultravore extends Fish {
-	
+
 	private Image UltravoreImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Ultravore(String name, double posX, double posY) {
@@ -21,8 +21,7 @@ public class Ultravore extends Fish {
 		this.setHunger(new Hunger(Carnivore.class, 5, 30));
 		this.setProduction(new Production(this, 9, 10));
 		this.setIdle(new Idle(this, 25));
+		this.setPrice(10000);
 	}
-	
-	
 
 }

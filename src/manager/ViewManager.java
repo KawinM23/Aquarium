@@ -74,6 +74,7 @@ public class ViewManager {
 
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, GameManager.getBOTTOMHEIGHT() - 40);
 		TankManager.add(gc1);
+		System.out.println(gc1.getPrice());
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 

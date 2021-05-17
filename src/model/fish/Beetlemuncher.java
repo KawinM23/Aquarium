@@ -26,7 +26,7 @@ public class Beetlemuncher extends Fish {
 		this.setHunger(new Hunger(Beetle.class, 6, 20));
 		this.setProduction(new Production(this, 7, 0));
 		this.setIdle(new Idle(this, 20));
-
+		this.setPrice(2000);
 	}
 	
 	public void findFood() {

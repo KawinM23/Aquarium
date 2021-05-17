@@ -22,7 +22,7 @@ public class Guppy extends Fish {
 
 		this.setWidth(80);
 		this.setHeight(60);
-		this.setMouthPos(15, 30);
+		this.setMouthPos(15, 45);
 
 		this.setSpeed(80);
 		this.setVelZero();

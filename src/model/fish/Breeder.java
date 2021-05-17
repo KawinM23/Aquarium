@@ -23,6 +23,7 @@ public class Breeder extends Fish {
 		this.setHunger(new Hunger(Food.class, 3, 10));
 		this.setProduction(new Production(this, 8, 15));
 		this.setIdle(new Idle(this, 20));
+		this.setPrice(200);
 	}
 
 }
