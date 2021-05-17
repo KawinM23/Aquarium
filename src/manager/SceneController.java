@@ -16,18 +16,14 @@ public class SceneController {
 	public SceneController() {
 	}
 
-	public SceneController(Stage stage) {
-		this.stage = stage;
-	}
-
 	// Add scene in ArrayList to call later (call in names as String)
-	public void addScene(String name, Scene scene) {
+	public static void addScene(String name, Scene scene) {
 		sceneList.add(scene);
 		nameList.add(name);
 	}
 
 	// Remove scene in ArrayList collection
-	public void removeScreen(String name) {
+	public static void removeScreen(String name) {
 		int tempIndex = nameList.indexOf(name);
 		sceneList.remove(tempIndex);
 		nameList.remove(tempIndex);
@@ -40,7 +36,7 @@ public class SceneController {
 		stage.setScene(scene);
 	}
 
-	public boolean sceneExist(String name) {
+	public static boolean sceneExist(String name) {
 		for (int i = 0; i < nameList.size(); i++) {
 			if (nameList.get(i).equals(name))
 				return true;

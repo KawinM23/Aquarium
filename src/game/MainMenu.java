@@ -33,16 +33,14 @@ public class MainMenu extends Application {
 			{ 354.0, 282.0, 576.0, 357.0, 100.0, 40.0 }, { 402.0, 377.0, 529.0, 409.0, 80.0, 20.0 },
 			{ 323.0, 412.0, 417.0, 443.0, 80.0, 20.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 20.0 },
 			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
-	private SceneController screenController;
-	private MediaPlayer mediaPlayer;
-	private Media sound;
 	private tank2 tank2;
+	final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted2.jpg").toString();
 
 	// ClassLoader.getSystemResource("").toString();
 	@Override
 	public void start(Stage stage) {
-		// Add ScreenController and set main stage to our stage
-		screenController = new SceneController(stage);
+		// Add SceneController and set main stage to our stage
+		SceneController.setStage(stage);
 		// Create main menu scene
 		AnchorPane root = new AnchorPane();
 		Scene menuScene = new Scene(root);
@@ -53,13 +51,11 @@ public class MainMenu extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		resetBackGround(gc);
-		final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted2.jpg").toString();
+
 		setBackGroundImage(gc, IMAGE_PATH);
 		// Set sound effect for button click
-		final String BUTTON_CLICK_PATH = ClassLoader.getSystemResource("buttonclick.mp3").toString();
+		SoundManager.playMainMenuBgm();
 		// sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
-		sound = new Media(BUTTON_CLICK_PATH);
-		mediaPlayer = new MediaPlayer(sound);
 
 		// Add buttons to current menu scene
 		for (int i = 0; i < buttonDetail.length; i++) {
@@ -67,9 +63,9 @@ public class MainMenu extends Application {
 		}
 		;
 		// Add menuScene in ArrayList in String "menu"
-		screenController.addScene("menu", menuScene);
+		SceneController.addScene("menu", menuScene);
 		// Set current scene to "menu"
-		screenController.changeScene("menu");
+		SceneController.changeScene("menu");
 		stage.show();
 	}
 
@@ -135,17 +131,18 @@ public class MainMenu extends Application {
 				if (buttonText.equals("Button 1")) {
 					Thread thread = new Thread(() -> {
 						try {
-							if (!screenController.sceneExist("tank0")) {
+							if (!SceneController.sceneExist("tank0")) {
 								tank0 tank0 = new tank0();
 								Scene tank0Scene = tank0.getScene();
-								screenController.addScene("tank0", tank0Scene);
+								SceneController.addScene("tank0", tank0Scene);
 							}
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
 									System.out.println("ran");
-									screenController.changeScene("tank0");
+									SceneController.changeScene("tank0");
+									SoundManager.stopMainMenuBgm();
 								}
 							});
 						} catch (Exception e) {
@@ -159,18 +156,18 @@ public class MainMenu extends Application {
 				} else if (buttonText.equals("Button 2")) {
 					Thread newTankthread = new Thread(() -> {
 						try {
-							if (!screenController.sceneExist("tank1")) {
+							if (!SceneController.sceneExist("tank1")) {
 								ViewManager vm1 = new ViewManager();
 
 								Scene tank1 = vm1.getTankScene();
-								screenController.addScene("tank1", tank1);
+								SceneController.addScene("tank1", tank1);
 							}
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									if (GameManager.isLOG())
 										System.out.println("Change To Tank1");
-									screenController.changeScene("tank1");
+									SceneController.changeScene("tank1");
 								}
 							});
 						} catch (Exception e) {
@@ -182,11 +179,11 @@ public class MainMenu extends Application {
 				} else if (buttonText.equals("Button 3")) {
 					Thread newTankthread = new Thread(() -> {
 						try {
-							if (!screenController.sceneExist("tank2")) {
+							if (!SceneController.sceneExist("tank2")) {
 
 								tank2 = new tank2();
 								Scene sceneTank2 = tank2.getScene();
-								screenController.addScene("tank2", sceneTank2);
+								SceneController.addScene("tank2", sceneTank2);
 							} else {
 
 							}
@@ -195,7 +192,7 @@ public class MainMenu extends Application {
 								public void run() {
 									if (GameManager.isLOG())
 										System.out.println("Change To Tank2");
-									screenController.changeScene("tank2");
+									SceneController.changeScene("tank2");
 									if (tank2.getThreadTank().getState() == Thread.State.WAITING) {
 										synchronized (tank2.getThreadTank()) {
 											tank2.getThreadTank().notify();

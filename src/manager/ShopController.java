@@ -9,9 +9,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 public class ShopController {
 	// TODO get money from Money class
+	static Stage stage;
 	static final String MENU_IMAGE_PATH = ClassLoader.getSystemResource("menubar.jpg").toString();
 	static final String GUPPY_IMAGE_PATH = ClassLoader.getSystemResource("Guppy.png").toString();
 	static int[] prices;
@@ -123,7 +125,9 @@ public class ShopController {
 				case 7:
 					break;
 				case 8:
+					SoundManager.playClickSound();
 					SceneController.changeScene("menu");
+					SoundManager.playMainMenuBgm();
 					break;
 				default:
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="res/bgm"/>
 	<classpathentry kind="src" path="res/sound"/>
 	<classpathentry kind="src" path="res/image"/>
-	<classpathentry excluding="sound/|image/|sound/|image/" kind="src" path="res"/>
+	<classpathentry excluding="sound/|image/|sound/|image/|bgm/" kind="src" path="res"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-15.0.1 with JavaFX"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/javafx-sdk-16/lib/javafx.base.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/javafx-sdk-16/lib/javafx.controls.jar"/>
