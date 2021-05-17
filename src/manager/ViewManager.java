@@ -50,7 +50,7 @@ public class ViewManager {
 
 		Guppy g2 = new Guppy("g2", 200, 100);
 		TankManager.add(g2);
-		
+
 		Guppy g3 = new Guppy("g3", 400, 100);
 		TankManager.add(g3);
 
@@ -85,9 +85,9 @@ public class ViewManager {
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		InvasionManager.getInvasionList().add(firstInvasion);
-		
+
 		AnchorPane ap = new AnchorPane();
-		ShopController.addAllButtons(ap);
+		ShopController.setAllButtons(ap);
 		mainPane.getChildren().add(ap);
 		//////////////////////////
 
@@ -127,8 +127,6 @@ public class ViewManager {
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
 		threadTank.start();
-		
-		
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -160,7 +158,7 @@ public class ViewManager {
 								break;
 							}
 						}
-					} 
+					}
 				}
 
 			}

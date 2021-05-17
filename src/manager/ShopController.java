@@ -12,12 +12,15 @@ import javafx.scene.text.Font;
 
 public class ShopController {
 	// TODO get money from Money class
+	static final String MENU_IMAGE_PATH = ClassLoader.getSystemResource("menubar.jpg").toString();
 	static final String GUPPY_IMAGE_PATH = ClassLoader.getSystemResource("Guppy.png").toString();
 	static int[] prices;
 	private static int foodLevelPrice = 300;
 	private static int foodCountPrice = 200;
 	private static int weaponUpgradePrice = 1000;
-	Image[] images;
+	static final Image guppyImage = new Image(GUPPY_IMAGE_PATH);
+	static final Image menuImage = new Image(MENU_IMAGE_PATH);
+	static Image[] images;
 	static String[] imagePaths;
 	static Button button1 = new Button("1");
 	static Button button2 = new Button("2");
@@ -41,8 +44,8 @@ public class ShopController {
 		switch (tankNumber) {
 		case 0:
 			prices = new int[] { 0, 10, 100, 1000, 100000, 0, 0, 0 };
-			imagePaths = new String[] { GUPPY_IMAGE_PATH, GUPPY_IMAGE_PATH, GUPPY_IMAGE_PATH, GUPPY_IMAGE_PATH,
-					GUPPY_IMAGE_PATH, GUPPY_IMAGE_PATH, GUPPY_IMAGE_PATH, GUPPY_IMAGE_PATH };
+			images = new Image[] { guppyImage, guppyImage, guppyImage, guppyImage, guppyImage, guppyImage, guppyImage,
+					guppyImage };
 			break;
 		case 1:
 			break;
@@ -142,12 +145,12 @@ public class ShopController {
 	// TODO Draw Shop Ui
 	public static void drawShop(GraphicsContext gc) {
 		// Draw the UI Bar
-		String imagePathMenubar = ClassLoader.getSystemResource("menubar.jpg").toString();
-		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+
+		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
 		// Draw the images
 		for (int i = 0; i < 7; i++) {
 			// Draw Images
-			DrawManager.drawImageFixSize(gc, imagePaths[i], (int) (buttonDetail[i][0] * 1.5),
+			DrawManager.drawImageFixSize(gc, images[i], (int) (buttonDetail[i][0] * 1.5),
 					(int) (buttonDetail[i][1] * 1.5), getButtonWidth(i + 1) * 1.5, getButtonHeight(i + 1) * 1.5);
 			// Draw Prices
 			DrawManager.drawText(gc, "" + prices[i], 18,
@@ -179,7 +182,6 @@ public class ShopController {
 		return str.length();
 	}
 
-<<<<<<< Updated upstream
 	public static int getFoodLevelPrice() {
 		return foodLevelPrice;
 	}
@@ -192,11 +194,8 @@ public class ShopController {
 		return weaponUpgradePrice;
 	}
 
-||||||| constructed merge base
-=======
 	public Button getButton(int buttonNumber) {
 		return buttonList[buttonNumber - 1];
 	}
 
->>>>>>> Stashed changes
 }

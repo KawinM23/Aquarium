@@ -8,22 +8,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class DrawManager {
-	public static void drawImage(GraphicsContext gc, String image_path, double positionX, double positionY) {
-		Image image = new Image(image_path);
+	public static void drawImage(GraphicsContext gc, Image image, double positionX, double positionY) {
 		gc.drawImage(image, positionX, positionY);
 	}
 
-	public static void drawImageFixSize(GraphicsContext gc, String image_path, double positionX, double positionY,
+	public static void drawImageFixSize(GraphicsContext gc, Image image, double positionX, double positionY,
 			double width, double height) {
-		Image image = new Image(image_path);
 
 		// image, x ,y, width, height
 		gc.drawImage(image, positionX, positionY, width, height);
 	}
 
-	public static Image cropImage(GraphicsContext gc, String image_path, int positionX, int positionY, int width,
+	public static Image cropImage(GraphicsContext gc, Image image, int positionX, int positionY, int width,
 			int height) {
-		Image image = new Image(image_path);
 		WritableImage croppedImage = new WritableImage(image.getPixelReader(), positionX, positionY, width, height);
 		return (Image) croppedImage;
 	}

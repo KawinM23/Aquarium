@@ -35,6 +35,10 @@ public class tank0 extends Application {
 	private int money = 0;
 	private Scene scene;
 	private static SceneController screenController;
+	static final String MENU_IMAGE_PATH = ClassLoader.getSystemResource("menubar.jpg").toString();
+	static final String BACKGROUND_IMAGE_PATH = ClassLoader.getSystemResource("aquarium1.jpg").toString();
+	static final Image menuImage = new Image(MENU_IMAGE_PATH);
+	static final Image backgroundImage = new Image(BACKGROUND_IMAGE_PATH);
 
 	// ClassLoader.getSystemResource("").toString();
 	public tank0() {
@@ -45,10 +49,8 @@ public class tank0 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
-		String imagePathMenubar = ClassLoader.getSystemResource("menubar.jpg").toString();
-		String imagePathBackground = ClassLoader.getSystemResource("aquarium1.jpg").toString();
-		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
-		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, backgroundImage, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
 		ShopController.setShopDetail(0);
 		ShopController.setAllButtons(root);
 		ShopController.drawShop(gc);
@@ -65,12 +67,8 @@ public class tank0 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
-		String imagePathMenubar = ClassLoader.getSystemResource("menubar.jpg").toString();
-		;
-		String imagePathBackground = ClassLoader.getSystemResource("aquarium1.jpg").toString();
-		;
-		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
-		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, backgroundImage, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
 		// Draw Shop
 		ShopController.setAllButtons(root);
 
@@ -83,10 +81,8 @@ public class tank0 extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		setBackGround(gc);
-		String imagePathMenubar = ClassLoader.getSystemResource("file:res/image/menubar.jpg").toString();
-		String imagePathBackground = ClassLoader.getSystemResource("file:res/image/aquarium1.jpg").toString();
-		DrawManager.drawImageFixSize(gc, imagePathBackground, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
-		DrawManager.drawImageFixSize(gc, imagePathMenubar, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, backgroundImage, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
 		// Draw Shop
 		ShopController.setAllButtons(root);
 	}
