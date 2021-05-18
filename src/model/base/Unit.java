@@ -15,7 +15,6 @@ public abstract class Unit {
 	private double velY;
 	private int speed;
 
-
 	public Unit(String name, double posX, double posY) {
 		super();
 		this.name = name;
@@ -165,6 +164,11 @@ public abstract class Unit {
 		this.height = height;
 	}
 
+	public void setSize(double width, double height) {
+		this.setWidth(width);
+		this.setHeight(height);
+	}
+
 	public double getCenterX() {
 		return posX + (width / 2.0);
 	}
@@ -211,6 +215,5 @@ public abstract class Unit {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
-
 
 }

@@ -37,8 +37,8 @@ public class ViewManager {
 	public ViewManager() {
 		mainPane = new Pane();
 		tankScene = new Scene(mainPane, GameManager.getWIDTH(), GameManager.getHEIGHT());
-//		tankStage = new Stage();
-//		tankStage.setScene(tankScene);
+		tankStage = new Stage();
+		tankStage.setScene(tankScene);
 
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		mainPane.getChildren().add(canvas);

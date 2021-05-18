@@ -27,9 +27,9 @@ public class Guppy extends Fish implements Renderable {
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);
 
-		this.setWidth(34);
-		this.setHeight(34);
-		this.setMouthPos(15, 45);
+		this.setWidth(50);
+		this.setHeight(50);
+		this.setMouthPos(15, 30);
 
 		this.setSpeed(80);
 		this.setVelZero();
@@ -83,7 +83,7 @@ public class Guppy extends Fish implements Renderable {
 			}
 			switch (((Food) nearestFood).getFoodLevel()) {
 			case 1:
-				this.setGrowth(getGrowth() + 25); //FoodGrowth 25,50,75
+				this.setGrowth(getGrowth() + 25); // FoodGrowth 25,50,75
 				break;
 			case 2:
 				this.setGrowth(getGrowth() + 50);
@@ -99,7 +99,10 @@ public class Guppy extends Fish implements Renderable {
 		}
 
 		if (this.growth >= 100 && getProduction().getProductType() != 1) {
-			//TODO Set new width and height
+			// TODO Set new width and height
+			this.setSize(75, 75);
+			this.setMouthPos(15, 55);
+			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
 			this.getProduction().setProductType(1);
 		} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
 			this.getProduction().setProductType(2);
@@ -111,8 +114,10 @@ public class Guppy extends Fish implements Renderable {
 	public void render(GraphicsContext gc) {
 		if (isFacingLeft()) {
 			gc.drawImage(GuppyImageLeft, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
 			gc.drawImage(GuppyImageRight, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}
 
