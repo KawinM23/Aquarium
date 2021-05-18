@@ -49,7 +49,13 @@ public class Guppy extends Fish implements Renderable {
 	}
 
 	public void setGrowth(int growth) {
-		this.growth = growth;
+		if (growth < 0) {
+			this.growth = growth;
+		} else if (growth > 200) {
+			this.growth = 200;
+		} else {
+			this.growth = growth;
+		}
 	}
 
 	public boolean isStar() {

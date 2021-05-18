@@ -62,8 +62,8 @@ public class ViewManager {
 		Food f2 = new Food("f2", 800, 200, 1);
 		TankManager.add(f2);
 		
-		Carnivore c1 = new Carnivore("c1", 300, 200);
-		TankManager.add(c1);
+//		Carnivore c1 = new Carnivore("c1", 300, 200);
+//		TankManager.add(c1);
 
 //		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
 //		TankManager.add(sc1);
@@ -74,8 +74,8 @@ public class ViewManager {
 //		SilverCoin svc = new SilverCoin("", 500, 300);
 //		TankManager.add(svc);
 //
-//		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
-//		TankManager.add(gc1);
+		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
+		TankManager.add(gc1);
 //
 //		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
 //		TankManager.add(bm1);
