@@ -1,5 +1,6 @@
 package manager;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
@@ -23,6 +24,7 @@ import model.money.Beetle;
 
 public class ShopController {
 	// TODO get money from Money class
+	static final int shopHeight = 113;
 	static Stage stage;
 	static final String MENU_IMAGE_PATH = ClassLoader.getSystemResource("menubar.jpg").toString();
 	static final String GUPPY_IMAGE_PATH = ClassLoader.getSystemResource("Guppy.png").toString();
@@ -54,7 +56,7 @@ public class ShopController {
 			{ 532.0, 3.0, 617.0, 25.0, 80.0, 20.0 } };
 
 	// TODO This one is a testing method for calling in Level as parameter
-	public static void setShopDetaill(Level level) {
+	public static void setShopDetail(Level level) {
 		shopItems = level.getShopItem();
 		// TODO Get details from Level and LevelManager instead
 		prices = new int[] { getUnitPrice(level.getShopItem()[0]), 200, 300, getUnitPrice(level.getShopItem()[1]),
@@ -131,7 +133,10 @@ public class ShopController {
 			// TODO Set handlers to be in sync with Unit ShopItem
 			@Override
 			public void handle(MouseEvent mouseEvent) {
+				System.out.println("ShopController Time");
+				System.out.println(System.nanoTime()/1.0e9);
 				SoundManager.playClickSound();
+				
 				System.out.println(PlayerController.getMoney());
 				switch (buttonNumber) {
 				// Guppy Fish
@@ -145,7 +150,24 @@ public class ShopController {
 				case 2:
 					if (PlayerController.buy(prices[1])) {
 						PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
-						images[1] = Food.getStaticImage(PlayerController.getFoodLevel() + 1);
+
+						Thread thread = new Thread(() -> {
+							try {
+								images[1] = Food.getStaticImage(PlayerController.getFoodLevel());
+								Platform.runLater(new Runnable() {
+									@Override
+									public void run() {
+										// TODO Auto-generated method stub
+
+									}
+								});
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+						});
+						thread.start();
 						System.out.println(PlayerController.getFoodLevel());
 					}
 					break;
@@ -214,6 +236,7 @@ public class ShopController {
 				default:
 
 				}
+				System.out.println(System.nanoTime()/1.0e9);
 			}
 		});
 		button.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -232,7 +255,7 @@ public class ShopController {
 	public static void drawShop(GraphicsContext gc) {
 		// Draw the UI Bar
 
-		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, GameManager.getWIDTH(), shopHeight);
 		// Draw the images
 		for (int i = 0; i < 7; i++) {
 			// Draw Images

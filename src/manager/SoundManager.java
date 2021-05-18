@@ -11,19 +11,17 @@ public class SoundManager {
 	private static final String BGM_PATH = ClassLoader.getSystemResource("mainmenu.mp3").toString();
 	private static final Media MAIN_MENU_BGM_SOUND = new Media(BGM_PATH);
 	private static final MediaPlayer mainMenuBgmPlayer = new MediaPlayer(MAIN_MENU_BGM_SOUND);
-
+	private static final MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
+	
 	public static void playClickSound() {
-		MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
 		Thread thread = new Thread(() -> {
-			try {
-				buttonClickPlayer.play();
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
 
-					}
-				});
+			MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
+
+			try {
+				
+				buttonClickPlayer.play();
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

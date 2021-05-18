@@ -52,12 +52,12 @@ public class tank0 extends Application {
 		root.getChildren().add(canvas);
 		setBackGround(gc);
 		DrawManager.drawImageFixSize(gc, backgroundImage, 0, 0, 640.0 * 1.5, 480.0 * 1.5);
-		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
+		//DrawManager.drawImageFixSize(gc, menuImage, 0, 0, 640.0 * 1.5, 75.0 * 1.5);
 		
 		Level level1_1 = new Level("1_1",1,1);
 		LevelManager.loadLevel1_1(level1_1);
 		
-		ShopController.setShopDetaill(level1_1);
+		ShopController.setShopDetail(level1_1);
 		ShopController.setAllButtons(root);
 		ShopController.drawShop(gc);
 	}

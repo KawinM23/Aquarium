@@ -82,6 +82,9 @@ public class ViewManager {
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 
+		SoundManager test = new SoundManager();
+		
+		
 		PlayerController.setPlaying(true);
 		PlayerController.setMaxFood(3);
 		PlayerController.setMoney(200);
@@ -98,7 +101,7 @@ public class ViewManager {
 		Level level1_1 = new Level("1_1",1,1);
 		LevelManager.loadLevel1_1(level1_1);
 		
-		ShopController.setShopDetaill(level1_1);
+		ShopController.setShopDetail(level1_1);
 		ShopController.setAllButtons(ap);
 
 		mainPane.getChildren().add(ap);

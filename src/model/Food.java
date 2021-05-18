@@ -14,18 +14,19 @@ public class Food extends Unit implements Renderable {
 	private int foodLevel; // 1,2,3
 	private int maxFood; //
 
-	// TODO DifferentPic
+	// TODO DifferentPic + LAG WHEN FIRST CALL GETTER FUNCTION !!!BUG!!!
 	private static final Image Food1Image = new Image(ClassLoader.getSystemResource("Food1.png").toString());
-	
+	private static final Image Food2Image = new Image(ClassLoader.getSystemResource("Food2.png").toString());
+	private static final Image Food3Image = new Image(ClassLoader.getSystemResource("Food3.png").toString());
 	// 1 2 3 : Food Types, 4 : Potion
 	public Image getImage(int foodNumber) {
 		// TODO Add the rest of images
 		if (foodNumber == 1) {
 			return Food1Image;
 		} else if (foodNumber == 2) {
-			return null;
+			return Food2Image;
 		} else if (foodNumber == 3) {
-			return null;
+			return Food3Image;
 		} else if (foodNumber == 4) {
 			return null;
 		}
@@ -39,9 +40,9 @@ public class Food extends Unit implements Renderable {
 			if (foodNumber == 1) {
 				return Food1Image;
 			} else if (foodNumber == 2) {
-				return null;
+				return Food2Image;
 			} else if (foodNumber == 3) {
-				return null;
+				return Food3Image;
 			} else if (foodNumber == 4) {
 				return null;
 			}
