@@ -230,8 +230,9 @@ public class ShopController {
 				// Menu
 				case 8:
 					SoundManager.playClickSound();
-					SceneController.changeScene("menu");
-					SoundManager.playMainMenuBgm();
+//					SceneController.changeScene("menu");
+//					SoundManager.playMainMenuBgm();
+					PlayerController.togglePause();
 					break;
 				default:
 

@@ -186,11 +186,11 @@ public class ViewManager {
 
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 
-		tankStage.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-			if (event.getCode() == KeyCode.SPACE) {
-				PlayerController.togglePause();
-			}
-		});
+//		tankStage.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+//			if (event.getCode() == KeyCode.SPACE) {
+//				PlayerController.togglePause();
+//			}
+//		});
 
 	}
 
