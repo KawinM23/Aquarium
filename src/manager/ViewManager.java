@@ -110,7 +110,6 @@ public class ViewManager {
 			@Override
 			public void run() {
 				Runnable updater = new Runnable() {
-
 					@Override
 					public void run() {
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -118,7 +117,8 @@ public class ViewManager {
 						gc.setFill(Color.rgb(102, 204, 255));
 						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
 						InvasionManager.update();
-						TankManager.update(gc);
+						TankManager.update();
+						TankManager.render(gc);
 						ShopController.drawShop(gc);
 						InvasionManager.render(gc);
 					}
