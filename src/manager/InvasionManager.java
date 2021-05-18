@@ -17,8 +17,9 @@ public class InvasionManager {
 	public static void update() {
 		if (!isInvaded && invasionTime - System.nanoTime() <= 7e9 && warning != true) {
 			setWarning(true);
+			
+			//TODO show warning
 			Thread warningThread = new Thread(new Runnable() {
-
 				@Override
 				public void run() {
 					while (isWarning()) {

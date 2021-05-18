@@ -54,7 +54,7 @@ public class Starcatcher extends Fish implements Renderable{
 					// Eat
 					TankManager.remove(nearestFood);
 					this.feed(nearestFood);
-					this.getIdle().checkIdle();
+					this.getIdle().checkIdleX();
 				} else if (this.distanceX(nearestFood) > 20) {
 					// Go to food
 					this.headToUnitX(nearestFood);
@@ -67,11 +67,11 @@ public class Starcatcher extends Fish implements Renderable{
 				}
 			} else {
 				//No food
-				this.getIdle().checkIdle();
+				this.getIdle().checkIdleX();
 			}
 		} else {
 			//No food
-			this.getIdle().checkIdle();
+			this.getIdle().checkIdleX();
 		}
 	}
 	

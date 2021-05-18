@@ -19,10 +19,12 @@ import javafx.stage.Stage;
 import model.Food;
 import model.base.Money;
 import model.base.Monster;
+import model.fish.Beetlemuncher;
 import model.fish.Carnivore;
 import model.fish.Guppy;
 import model.fish.Guppycruncher;
 import model.fish.Starcatcher;
+import model.money.Beetle;
 import model.money.SilverCoin;
 import model.money.Star;
 import model.monster.Sylvester;
@@ -74,6 +76,9 @@ public class ViewManager {
 
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
 		TankManager.add(gc1);
+		
+		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
+		TankManager.add(bm1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 
