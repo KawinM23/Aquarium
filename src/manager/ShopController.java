@@ -13,7 +13,13 @@ import javafx.stage.Stage;
 import model.Food;
 import model.base.Fish;
 import model.base.Unit;
+import model.fish.Beetlemuncher;
+import model.fish.Carnivore;
 import model.fish.Guppy;
+import model.fish.Guppycruncher;
+import model.fish.Starcatcher;
+import model.fish.Ultravore;
+import model.money.Beetle;
 
 public class ShopController {
 	// TODO get money from Money class
@@ -28,6 +34,7 @@ public class ShopController {
 	static final Image menuImage = new Image(MENU_IMAGE_PATH);
 	static Image[] images;
 	static String[] imagePaths;
+	static Unit[] shopItems;
 	static Button button1 = new Button("1");
 	static Button button2 = new Button("2");
 	static Button button3 = new Button("3");
@@ -48,10 +55,13 @@ public class ShopController {
 
 	// TODO This one is a testing method for calling in Level as parameter
 	public static void setShopDetaill(Level level) {
+		shopItems = level.getShopItem();
 		// TODO Get details from Level and LevelManager instead
 		prices = new int[] { getUnitPrice(level.getShopItem()[0]), 200, 300, getUnitPrice(level.getShopItem()[1]),
 				getUnitPrice(level.getShopItem()[2]), 1000, level.getGoalPrice() };
-		images = new Image[] {};
+		// TODO Get Gun Images Later (Right now is null) + Get Goal Egg Image
+		images = new Image[] { getUnitImage(level.getShopItem()[0]), Food.getStaticImage(1), null,
+				getUnitImage(level.getShopItem()[1]), getUnitImage(level.getShopItem()[2]), null, null };
 	}
 
 	public static void setShopDetail(int tankNumber) {
@@ -132,37 +142,62 @@ public class ShopController {
 				// Food Type
 				case 2:
 					if (PlayerController.buy(prices[1])) {
-
+						PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
+						images[1] = Food.getStaticImage(PlayerController.getFoodLevel() + 1);
 					}
 					break;
 				// Food Capacity
 				case 3:
 					if (PlayerController.buy(prices[2])) {
-
+						PlayerController.setMaxFood(PlayerController.getMaxFood() + 1);
 					}
 					break;
 				// Special 1
 				case 4:
 					if (PlayerController.buy(prices[3])) {
-
+						// If it is a potion
+						if (shopItems[1] instanceof Food) {
+							Food food = new Food("Food", 0, 0, PlayerController.getFoodLevel());
+							TankManager.addFood(food);
+						}
+						// If it is a carnivore
+						else if (shopItems[1] instanceof Carnivore) {
+							Carnivore fish = new Carnivore("Carnivore", 0, 0);
+							TankManager.addNewFish(fish);
+						}
+						// If it is a Guppy Crusher
+						else if (shopItems[1] instanceof Guppycruncher) {
+							Guppycruncher fish = new Guppycruncher("Cruncher", 0, 0);
+							TankManager.addNewFish(fish);
+						}
 					}
 					break;
 				// Special 2
 				case 5:
 					if (PlayerController.buy(prices[4])) {
-
+						if (shopItems[2] instanceof Starcatcher) {
+							Starcatcher fish = new Starcatcher("Starcatcher", 0, 0);
+							TankManager.addNewFish(fish);
+						} else if (shopItems[2] instanceof Beetlemuncher) {
+							Beetlemuncher fish = new Beetlemuncher("Muncher", 0, 0);
+							TankManager.addNewFish(fish);
+						} else if (shopItems[2] instanceof Ultravore) {
+							Ultravore fish = new Ultravore("Ultravore", 0, 0);
+							TankManager.addNewFish(fish);
+						}
 					}
 					break;
 				// Gun
 				case 6:
 					if (PlayerController.buy(prices[5])) {
-
+						PlayerController.setGunLevel(PlayerController.getGunLevel()+1);
+						// TODO Change image to new gun images
 					}
 					break;
 				// Goal
 				case 7:
 					if (PlayerController.buy(prices[6])) {
-
+						
 					}
 					break;
 				// Menu
