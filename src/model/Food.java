@@ -18,6 +18,9 @@ public class Food extends Unit implements Renderable {
 	private static final Image Food1Image = new Image(ClassLoader.getSystemResource("Food1.png").toString());
 	private static final Image Food2Image = new Image(ClassLoader.getSystemResource("Food2.png").toString());
 	private static final Image Food3Image = new Image(ClassLoader.getSystemResource("Food3.png").toString());
+	private static final Image Food4Image = new Image(ClassLoader.getSystemResource("Food3.png").toString());// TODO
+																												// Image
+
 	// 1 2 3 : Food Types, 4 : Potion
 	public Image getImage(int foodNumber) {
 		// TODO Add the rest of images
@@ -33,22 +36,22 @@ public class Food extends Unit implements Renderable {
 		return null;
 
 	}
-	
-	// 1 2 3 : Food Types, 4 : Potion
-		public static Image getStaticImage(int foodNumber) {
-			// TODO Add the rest of images
-			if (foodNumber == 1) {
-				return Food1Image;
-			} else if (foodNumber == 2) {
-				return Food2Image;
-			} else if (foodNumber == 3) {
-				return Food3Image;
-			} else if (foodNumber == 4) {
-				return null;
-			}
-			return null;
 
+	// 1 2 3 : Food Types, 4 : Potion
+	public static Image getStaticImage(int foodNumber) {
+		// TODO Add the rest of images
+		if (foodNumber == 1) {
+			return Food1Image;
+		} else if (foodNumber == 2) {
+			return Food2Image;
+		} else if (foodNumber == 3) {
+			return Food3Image;
+		} else if (foodNumber == 4) {
+			return null;
 		}
+		return null;
+
+	}
 
 	public Food(String name, double posX, double posY, int foodType) {
 		super(name, posX, posY);
@@ -78,10 +81,14 @@ public class Food extends Unit implements Renderable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		if (getFoodLevel() == 1) {
+		if (getFoodType() == 2) {
+			gc.drawImage(Food4Image, getPosX(), getPosY(), getWidth(), getHeight());
+		} else if (getFoodLevel() == 1) {
 			gc.drawImage(Food1Image, getPosX(), getPosY(), getWidth(), getHeight());
 		} else if (getFoodLevel() == 2) {
-
+			gc.drawImage(Food2Image, getPosX(), getPosY(), getWidth(), getHeight());
+		} else if (getFoodLevel() == 3) {
+			gc.drawImage(Food3Image, getPosX(), getPosY(), getWidth(), getHeight());
 		}
 
 	}
