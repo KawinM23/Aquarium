@@ -12,7 +12,7 @@ public class GoldCoin extends Money implements Renderable{
 	public GoldCoin(String name, double posX, double posY) {
 		super(name, posX, posY);
 		
-		this.setValue(15);
+		this.setValue(35);
 	}
 
 	@Override

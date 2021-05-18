@@ -17,6 +17,7 @@ public abstract class Fish extends Unit {
 	private Idle idle;
 
 	private boolean isFacingLeft;
+	private long turningTime;
 	private double mouthPosX;
 	private double mouthPosY;
 
@@ -161,13 +162,17 @@ public abstract class Fish extends Unit {
 	}
 
 	public void checkFacingLeft() {
-		if (getVelX() > 0) {
-			setFacingLeft(false);
-		} else {
-			setFacingLeft(true);
+		if (System.nanoTime() - turningTime >= 0.5e9) {
+			if (getVelX() > 0) {
+				setFacingLeft(false);
+				setTurningTimeNow();
+			} else {
+				setFacingLeft(true);
+				setTurningTimeNow();
+			}
 		}
 	}
-	
+
 	public abstract Image getImage();
 
 	public Hunger getHunger() {
@@ -192,6 +197,18 @@ public abstract class Fish extends Unit {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public long getTurningTime() {
+		return turningTime;
+	}
+
+	public void setTurningTime(long turningTime) {
+		this.turningTime = turningTime;
+	}
+	
+	public void setTurningTimeNow() {
+		this.turningTime = System.nanoTime();
 	}
 
 }

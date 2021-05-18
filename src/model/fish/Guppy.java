@@ -98,13 +98,16 @@ public class Guppy extends Fish implements Renderable {
 			e.printStackTrace();
 		}
 
-		if (this.growth >= 100 && getProduction().getProductType() != 1) {
+		if (this.growth >= 100 && this.growth < 200 && getProduction().getProductType() != 1) {
 			// TODO Set new width and height
 			this.setSize(75, 75);
 			this.setMouthPos(15, 55);
 			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
 			this.getProduction().setProductType(1);
 		} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
+			this.setSize(100, 100);
+			this.setMouthPos(15, 75);
+			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
 			this.getProduction().setProductType(2);
 		}
 		System.out.println(growth);

@@ -12,8 +12,6 @@ public class SilverCoin extends Money implements Renderable{
 	public SilverCoin(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO More Specfic Var
-		
-//		final String SilverCoinPath = ClassLoader.getSystemResource("SilverCoin.png").toString();
 
 		
 		this.setValue(15);
