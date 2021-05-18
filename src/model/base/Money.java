@@ -10,7 +10,6 @@ public abstract class Money extends Unit {
 
 	public Money(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
 		this.setVel(0, 50);
 		this.setWidth(40);
 		this.setHeight(40);
@@ -20,7 +19,6 @@ public abstract class Money extends Unit {
 
 	@Override
 	public void update(int fr) {
-		// TODO Auto-generated method stub
 		if (this.getPosY() + this.getHeight() >= GameManager.getBOTTOMHEIGHT()) {
 			TankManager.remove(this);
 			return;
