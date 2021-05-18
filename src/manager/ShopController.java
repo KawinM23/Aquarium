@@ -242,7 +242,6 @@ public class ShopController {
 			DrawManager.drawText(gc, "" + prices[i], 18,
 					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - getDigit(prices[i]) * 3) * 1.5),
 					(int) ((buttonDetail[i][3] * 1.5) + 16), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
-
 		}
 		// Draw current money
 		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24,
