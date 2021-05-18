@@ -132,11 +132,13 @@ public class ShopController {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				SoundManager.playClickSound();
+				System.out.println(PlayerController.getMoney());
 				switch (buttonNumber) {
 				// Guppy Fish
 				case 1:
 					if (PlayerController.buy(prices[0])) {
 						TankManager.addNewFish(new Guppy("Guppy", 0, 0));
+						System.out.println(TankManager.getFishList());
 					}
 					break;
 				// Food Type
@@ -144,12 +146,14 @@ public class ShopController {
 					if (PlayerController.buy(prices[1])) {
 						PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
 						images[1] = Food.getStaticImage(PlayerController.getFoodLevel() + 1);
+						System.out.println(PlayerController.getFoodLevel());
 					}
 					break;
 				// Food Capacity
 				case 3:
 					if (PlayerController.buy(prices[2])) {
 						PlayerController.setMaxFood(PlayerController.getMaxFood() + 1);
+						System.out.println(PlayerController.getMaxFood());
 					}
 					break;
 				// Special 1
@@ -159,6 +163,7 @@ public class ShopController {
 						if (shopItems[1] instanceof Food) {
 							Food food = new Food("Food", 0, 0, PlayerController.getFoodLevel());
 							TankManager.addFood(food);
+							System.out.println(TankManager.getFoodList());
 						}
 						// If it is a carnivore
 						else if (shopItems[1] instanceof Carnivore) {
@@ -190,14 +195,14 @@ public class ShopController {
 				// Gun
 				case 6:
 					if (PlayerController.buy(prices[5])) {
-						PlayerController.setGunLevel(PlayerController.getGunLevel()+1);
+						PlayerController.setGunLevel(PlayerController.getGunLevel() + 1);
 						// TODO Change image to new gun images
 					}
 					break;
 				// Goal
 				case 7:
 					if (PlayerController.buy(prices[6])) {
-						
+
 					}
 					break;
 				// Menu
@@ -241,7 +246,8 @@ public class ShopController {
 		}
 		// Draw current money
 		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24,
-				(int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(prices[7]) * 5) * 1.5 + 10),
+				(int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(PlayerController.getMoney()) * 5)
+						* 1.5 + 10),
 				(int) ((buttonDetail[7][3] * 1.5) + 45), (int) ((buttonDetail[7][2] - buttonDetail[7][0]) * 1.5));
 
 	}

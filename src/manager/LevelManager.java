@@ -30,7 +30,7 @@ public class LevelManager {
 		return level1_4;
 	}
 
-	public void loadLevel1_1(Level level) {
+	public static void loadLevel1_1(Level level) {
 		level.setStartingMoney(200);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
@@ -42,7 +42,8 @@ public class LevelManager {
 		shopItem[0] = new Guppy("Guppy", 0, 0);
 		shopItem[1] = null;
 		shopItem[2] = null; 
-
+		level.setShopItem(shopItem);
+		
 		level.setFoodUpgrable(false);
 		level.setWeaponUpgrable(false);
 
