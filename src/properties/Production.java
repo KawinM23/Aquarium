@@ -52,14 +52,13 @@ public class Production {
 			case 4:
 				TankManager.produceMoney(new Diamond("GoldCoin", producer.getCenterX(), producer.getCenterY(), 1));
 				setLastProduceNow();
-
 				break;
 			case 5:
 				TankManager.produceMoney(new Star("Star", producer.getCenterX(), producer.getCenterY()));
 				setLastProduceNow();
 				break;
 			case 6:
-				TankManager.produceMoney(new Beetle("Beetle", producer.getCenterX(), producer.getCenterY()));
+				TankManager.produceMoney(new Beetle("Beetle", producer.getCenterX(), producer.getCenterY() - 20));
 				setLastProduceNow();
 				break;
 			case 7:
@@ -71,7 +70,8 @@ public class Production {
 				setLastProduceNow();
 				break;
 			case 9:
-				TankManager.produceMoney(new TreasureChest("Treasure Chest", producer.getCenterX(), producer.getCenterY()));
+				TankManager.produceMoney(
+						new TreasureChest("Treasure Chest", producer.getCenterX(), producer.getCenterY()));
 				setLastProduceNow();
 				break;
 			}

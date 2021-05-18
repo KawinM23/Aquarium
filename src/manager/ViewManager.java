@@ -76,7 +76,7 @@ public class ViewManager {
 
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
 		TankManager.add(gc1);
-		
+
 		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
 		TankManager.add(bm1);
 
@@ -90,7 +90,8 @@ public class ViewManager {
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 20, 30, 40 });
+		InvasionManager.setInvasionTimeList(new int[] { 40, 30, 40 });
+		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		AnchorPane ap = new AnchorPane();
 

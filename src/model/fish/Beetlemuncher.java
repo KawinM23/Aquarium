@@ -70,7 +70,6 @@ public class Beetlemuncher extends Fish implements Renderable{
 	}
 
 	public void feed(Unit nearestFood) {
-		TankManager.produceMoney(new Pearl("Pearl", this.getCenterX(), this.getCenterY()));
 		this.getHunger().setLastFedNow();
 	}
 	
