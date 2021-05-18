@@ -16,6 +16,10 @@ public class Guppycruncher extends Fish implements Renderable{
 
 	private static final Image GuppycruncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
+	public static Image getImage() {
+		return GuppycruncherImage;
+	}
+	
 	private boolean isJumping;
 	private final double fallAcc = 120;
 	private final double velYJump = -150;

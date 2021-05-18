@@ -16,6 +16,14 @@ public class Food extends Unit implements Renderable {
 
 	// TODO DifferentPic
 	private static final Image Food1Image = new Image(ClassLoader.getSystemResource("Food1.png").toString());
+	
+	public static Image getImage(int foodLevel) {
+		if(foodLevel == 1) {
+			return Food1Image;
+		} else {
+			return null;
+		}
+	}
 
 	public Food(String name, double posX, double posY, int foodType) {
 		super(name, posX, posY);

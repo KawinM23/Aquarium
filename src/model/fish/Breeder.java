@@ -1,15 +1,21 @@
 package model.fish;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.Food;
 import model.base.Fish;
 import properties.Hunger;
 import properties.Idle;
 import properties.Production;
+import properties.Renderable;
 
-public class Breeder extends Fish {
+public class Breeder extends Fish implements Renderable{
 	
 	private static final Image BreederImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+
+	public static Image getImage() {
+		return BreederImage;
+	}
 
 	public Breeder(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -25,4 +31,14 @@ public class Breeder extends Fish {
 		this.setPrice(200);
 	}
 
+	
+	@Override
+	public void render(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		if (isFacingLeft()) {
+			gc.drawImage(BreederImage, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(BreederImage, getPosX(), getPosY(), getWidth(), getHeight());
+		}
+	}
 }

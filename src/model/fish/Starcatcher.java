@@ -16,10 +16,14 @@ import properties.Renderable;
 
 public class Starcatcher extends Fish implements Renderable{
 	
+	private static final Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+
+	public static Image getImage() {
+		return StarcatcherImage;
+	}
+	
 	private boolean isGrounded;
 	private static final int fallAcc = 120;
-	
-	private static final Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);

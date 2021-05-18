@@ -16,7 +16,11 @@ import properties.Renderable;
 
 public class Beetlemuncher extends Fish implements Renderable{
 
-	private Image BeetlemuncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image BeetlemuncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+
+	public static Image getImage() {
+		return BeetlemuncherImage;
+	}
 
 	public Beetlemuncher(String name, double posX, double posY) {
 		super(name, posX, posY);

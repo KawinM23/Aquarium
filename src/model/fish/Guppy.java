@@ -20,6 +20,9 @@ public class Guppy extends Fish implements Renderable{
 	private static final Image GuppyImageLeft = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 	private static final Image GuppyImageRight = new Image(ClassLoader.getSystemResource("GuppyRight.png").toString());
 	
+	public static Image getImage() {
+		return GuppyImageLeft;
+	}
 
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);
