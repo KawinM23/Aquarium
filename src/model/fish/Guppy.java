@@ -10,16 +10,15 @@ import properties.Idle;
 import properties.Production;
 import properties.Renderable;
 
-public class Guppy extends Fish implements Renderable{
+public class Guppy extends Fish implements Renderable {
 
 	private boolean isStar;
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 	private long bornTime;
-	
-	
+
 	private static final Image GuppyImageLeft = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 	private static final Image GuppyImageRight = new Image(ClassLoader.getSystemResource("GuppyRight.png").toString());
-	
+
 	public static Image getImage() {
 		return GuppyImageLeft;
 	}
@@ -37,11 +36,11 @@ public class Guppy extends Fish implements Renderable{
 		this.isStar = false;
 		this.growth = 0;
 		this.setBornTime(System.nanoTime());
-		
+
 		this.setPrice(100);
 		this.setHunger(new Hunger(Food.class, 3, 20));
 		this.setProduction(new Production(this, 0, 5 + Math.random()));
-		this.setIdle(new Idle(this,15));
+		this.setIdle(new Idle(this, 15));
 	}
 
 	public int getGrowth() {
@@ -71,23 +70,26 @@ public class Guppy extends Fish implements Renderable{
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
 		try {
-			switch(((Food) nearestFood).getFoodLevel()){
-				case 1:
-					this.setGrowth(getGrowth() + 25); //TODO FoodGrowth 25,50,75
-				case 2:
-					this.setGrowth(getGrowth() + 50);
-				case 3:
-					this.setGrowth(getGrowth() + 75);
+			if (growth < 100 && ((Food) nearestFood).getFoodType() == 2) {
+				this.die();
+			}
+			switch (((Food) nearestFood).getFoodLevel()) {
+			case 1:
+				this.setGrowth(getGrowth() + 25); // TODO FoodGrowth 25,50,75
+			case 2:
+				this.setGrowth(getGrowth() + 50);
+			case 3:
+				this.setGrowth(getGrowth() + 75);
 			}
 		} catch (Exception e) {
 			// TODO Catch Not Food
 			e.printStackTrace();
 		}
-		
+
 		if (this.growth >= 100 && getProduction().getProductType() != 1) {
 			this.getProduction().setProductType(1);
-		} else if (this.growth >= 200) {
-
+		} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
+			this.getProduction().setProductType(2);
 		}
 	}
 
@@ -100,7 +102,5 @@ public class Guppy extends Fish implements Renderable{
 			gc.drawImage(GuppyImageRight, getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}
-
-
 
 }
