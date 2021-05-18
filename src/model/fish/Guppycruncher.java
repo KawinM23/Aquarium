@@ -126,7 +126,7 @@ public class Guppycruncher extends Fish implements Renderable{
 	}
 
 	public void move(int fr) {
-		// TODO Test Jumping GC
+		//Jumping GC
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
 		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {

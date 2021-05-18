@@ -48,13 +48,13 @@ public class ViewManager {
 		Image bc = new Image("file:res/image/aquarium1.jpg");
 
 		Guppy g1 = new Guppy("g1", 500, 300);
-		TankManager.add(g1);
+		TankManager.addNewFish(g1);
 
 		Guppy g2 = new Guppy("g2", 200, 100);
-		TankManager.add(g2);
+		TankManager.addNewFish(g2);
 
 		Guppy g3 = new Guppy("g3", 400, 100);
-		TankManager.add(g3);
+		TankManager.addNewFish(g3);
 
 		Food f1 = new Food("f1", 200, 20, 1);
 		TankManager.add(f1);

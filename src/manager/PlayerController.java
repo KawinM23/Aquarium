@@ -7,6 +7,7 @@ public class PlayerController {
 	private static int maxFood;
 	private static int foodLevel = 1;
 	private static int gunLevel = 1;
+	private static int goal = 0;
 	//TODO GOAL Tracker
 
 	public static int getMoney() {
@@ -70,6 +71,14 @@ public class PlayerController {
 			return 25;
 		}
 		return 0;
+	}
+
+	public static int getGoal() {
+		return goal;
+	}
+
+	public static void setGoal(int goal) {
+		PlayerController.goal = goal;
 	}
 
 }
