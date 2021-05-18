@@ -21,8 +21,8 @@ public class Carnivore extends Fish implements Renderable{
 	public Carnivore(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
-		this.setWidth(100);
-		this.setHeight(70);
+		this.setWidth(76);
+		this.setHeight(66);
 		this.setMouthPos(10, 50);
 		this.setSpeed(100);
 		this.setVelZero();
