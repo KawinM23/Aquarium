@@ -48,6 +48,10 @@ public class Hunger {
 		this.lastFed = lastFed;
 	}
 
+	public void addLastFed(long duration) {
+		this.setLastFed(getLastFed() + duration);
+	}
+
 	public void setLastFedNow() {
 		this.setLastFed(System.nanoTime());
 	}
