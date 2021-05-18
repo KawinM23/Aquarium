@@ -37,8 +37,8 @@ public class ViewManager {
 	public ViewManager() {
 		mainPane = new Pane();
 		tankScene = new Scene(mainPane, GameManager.getWIDTH(), GameManager.getHEIGHT());
-		tankStage = new Stage();
-		tankStage.setScene(tankScene);
+//		tankStage = new Stage();
+//		tankStage.setScene(tankScene);
 
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		mainPane.getChildren().add(canvas);
@@ -95,8 +95,11 @@ public class ViewManager {
 
 		AnchorPane ap = new AnchorPane();
 
+		Level level1_1 = new Level("1_1",1,1);
+		LevelManager.loadLevel1_1(level1_1);
+		
+		ShopController.setShopDetaill(level1_1);
 		ShopController.setAllButtons(ap);
-		ShopController.setShopDetail(0);
 
 		mainPane.getChildren().add(ap);
 		//////////////////////////
@@ -107,7 +110,6 @@ public class ViewManager {
 			@Override
 			public void run() {
 				Runnable updater = new Runnable() {
-
 					@Override
 					public void run() {
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -115,7 +117,8 @@ public class ViewManager {
 						gc.setFill(Color.rgb(102, 204, 255));
 						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
 						InvasionManager.update();
-						TankManager.update(gc);
+						TankManager.update();
+						TankManager.render(gc);
 						ShopController.drawShop(gc);
 						InvasionManager.render(gc);
 					}

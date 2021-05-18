@@ -49,6 +49,7 @@ public class InvasionManager {
 				}
 			}
 		} else if (isInvaded && TankManager.getMonsterCount() == 0) {
+			System.out.println("END INVASION");
 			setInvaded(false);
 			setInvasion(invasion + 1);
 			TankManager.endInvasion(getInvasionDuration());

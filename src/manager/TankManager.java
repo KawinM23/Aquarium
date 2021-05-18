@@ -51,14 +51,17 @@ public class TankManager {
 	public static int getMonsterCount() {
 		return monsterList.size();
 	}
-
-	public static void update(GraphicsContext gc) {
-		// Update and draw all unit
+	
+	public static void render(GraphicsContext gc) {
 		for (Unit u : unitList) {
 			if (u instanceof Renderable) {
 				((Renderable) u).render(gc);
 			}
 		}
+	}
+
+	public static void update() {
+		// Update and draw all unit
 		for (Fish f : fishList) {
 			f.update(GameManager.getFRAMERATE());
 		}
