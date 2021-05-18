@@ -14,7 +14,7 @@ public class Carnivore extends Fish implements Renderable{
 	
 	private static final Image CarnivoreImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	public static Image getImage() {
+	public Image getImage() {
 		return CarnivoreImage;
 	}
 	

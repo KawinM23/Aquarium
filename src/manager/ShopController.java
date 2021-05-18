@@ -10,6 +10,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Food;
+import model.base.Fish;
+import model.base.Unit;
+import model.fish.Guppy;
 
 public class ShopController {
 	// TODO get money from Money class
@@ -42,10 +46,21 @@ public class ShopController {
 			{ 367.0, 3.0, 417.0, 46.0, 80.0, 20.0 }, { 440.0, 3.0, 490.0, 46.0, 80.0, 20.0 },
 			{ 532.0, 3.0, 617.0, 25.0, 80.0, 20.0 } };
 
+	// TODO This one is a testing method for calling in Level as parameter
+	public static void setShopDetaill(Level level) {
+		// TODO Get details from Level and LevelManager instead
+		prices = new int[] { getUnitPrice(level.getShopItem()[0]), 200, 300, getUnitPrice(level.getShopItem()[1]),
+				getUnitPrice(level.getShopItem()[2]), 1000, level.getGoalPrice() };
+		images = new Image[] {};
+	}
+
 	public static void setShopDetail(int tankNumber) {
+		// TODO Get details from Level and LevelManager instead
 		switch (tankNumber) {
 		case 0:
-			prices = new int[] { 0, 10, 100, 1000, 100000, 0, 0, 0 };
+			// TODO Prices ; Prices of {Button1, Button4, Button5, Button7}
+			// Fish Fish2 Fish3 Goal
+			prices = new int[] { 100, 1000, 1000, 2000 };
 			images = new Image[] { guppyImage, guppyImage, guppyImage, guppyImage, guppyImage, guppyImage, guppyImage,
 					guppyImage };
 			break;
@@ -103,27 +118,54 @@ public class ShopController {
 			}
 		});
 		button.setOnMousePressed(new EventHandler<MouseEvent>() {
+			// TODO Set handlers to be in sync with Unit ShopItem
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				SoundManager.playClickSound();
 				switch (buttonNumber) {
+				// Guppy Fish
 				case 1:
-					PlayerController.buy(prices[0]);
+					if (PlayerController.buy(prices[0])) {
+						TankManager.addNewFish(new Guppy("Guppy", 0, 0));
+					}
 					break;
+				// Food Type
 				case 2:
+					if (PlayerController.buy(prices[1])) {
+
+					}
 					break;
+				// Food Capacity
 				case 3:
-					PlayerController.buy(prices[2]);
-					System.out.println(PlayerController.getMoney());
+					if (PlayerController.buy(prices[2])) {
+
+					}
 					break;
+				// Special 1
 				case 4:
+					if (PlayerController.buy(prices[3])) {
+
+					}
 					break;
+				// Special 2
 				case 5:
+					if (PlayerController.buy(prices[4])) {
+
+					}
 					break;
+				// Gun
 				case 6:
+					if (PlayerController.buy(prices[5])) {
+
+					}
 					break;
+				// Goal
 				case 7:
+					if (PlayerController.buy(prices[6])) {
+
+					}
 					break;
+				// Menu
 				case 8:
 					SoundManager.playClickSound();
 					SceneController.changeScene("menu");
@@ -167,6 +209,39 @@ public class ShopController {
 				(int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(prices[7]) * 5) * 1.5 + 10),
 				(int) ((buttonDetail[7][3] * 1.5) + 45), (int) ((buttonDetail[7][2] - buttonDetail[7][0]) * 1.5));
 
+	}
+
+	public static int getUnitPrice(Unit unit) {
+		if (unit instanceof Fish) {
+			return ((Fish) unit).getPrice();
+		} else if (unit instanceof Food) {
+			// 1 = Normal Food
+			if (((Food) unit).getFoodType() == 1) {
+				return 200;
+			}
+			// 2 = Green Potion
+			else if (((Food) unit).getFoodType() == 2) {
+				return 250;
+			}
+		}
+		return 0;
+	}
+
+	// TODO Get image from units
+	public static Image getUnitImage(Unit unit) {
+		if (unit instanceof Fish) {
+			return ((Fish) unit).getImage();
+		} else if (unit instanceof Food) {
+			// 1 = Normal Food
+			if (((Food) unit).getFoodType() == 1) {
+				return ((Food) unit).getImage(((Food) unit).getFoodLevel());
+			}
+			// 2 = Green Potion
+			else if (((Food) unit).getFoodType() == 2) {
+				return ((Food) unit).getImage(((Food) unit).getFoodLevel());
+			}
+		}
+		return null;
 	}
 
 	public void setPrice(int ButtonNumber, int newPrice) {

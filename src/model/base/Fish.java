@@ -1,6 +1,7 @@
 package model.base;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
 import manager.InvasionManager;
 import manager.TankManager;
 import model.Food;
@@ -166,6 +167,8 @@ public abstract class Fish extends Unit {
 			setFacingLeft(true);
 		}
 	}
+	
+	public abstract Image getImage();
 
 	public Hunger getHunger() {
 		return hunger;

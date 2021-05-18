@@ -16,7 +16,7 @@ public class Guppycruncher extends Fish implements Renderable{
 
 	private static final Image GuppycruncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	public static Image getImage() {
+	public Image getImage() {
 		return GuppycruncherImage;
 	}
 	

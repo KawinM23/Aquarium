@@ -12,7 +12,7 @@ public class Ultravore extends Fish implements Renderable{
 
 	private static final Image UltravoreImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	public static Image getImage() {
+	public Image getImage() {
 		return UltravoreImage;
 	}
 	
