@@ -53,7 +53,6 @@ public abstract class Fish extends Unit {
 				System.out.println(this.getName() + " eat " + nearestFood.getName());
 				this.feed(nearestFood);
 				this.idle.eatFood();
-				TankManager.remove(nearestFood);
 			} else {
 				// Go to food
 				this.headToFood(nearestFood);
@@ -77,6 +76,7 @@ public abstract class Fish extends Unit {
 	}
 
 	public void feed(Unit nearestFood) {
+		TankManager.remove(nearestFood);
 		this.hunger.setLastFedNow();
 	}
 

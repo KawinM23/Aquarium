@@ -2,6 +2,7 @@ package model.fish;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import manager.TankManager;
 import model.Food;
 import model.base.Fish;
 import model.base.Unit;
@@ -68,6 +69,7 @@ public class Guppy extends Fish implements Renderable {
 	}
 
 	public void feed(Unit nearestFood) {
+		TankManager.remove(nearestFood);
 		this.getHunger().setLastFedNow();
 		try {
 			if (growth < 100 && ((Food) nearestFood).getFoodType() == 2) {
@@ -76,10 +78,13 @@ public class Guppy extends Fish implements Renderable {
 			switch (((Food) nearestFood).getFoodLevel()) {
 			case 1:
 				this.setGrowth(getGrowth() + 25); // TODO FoodGrowth 25,50,75
+				break;
 			case 2:
 				this.setGrowth(getGrowth() + 50);
+				break;
 			case 3:
 				this.setGrowth(getGrowth() + 75);
+				break;
 			}
 		} catch (Exception e) {
 			// TODO Catch Not Food
@@ -91,6 +96,7 @@ public class Guppy extends Fish implements Renderable {
 		} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
 			this.getProduction().setProductType(2);
 		}
+		System.out.println(growth);
 	}
 
 	@Override
