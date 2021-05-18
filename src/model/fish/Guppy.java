@@ -34,7 +34,7 @@ public class Guppy extends Fish implements Renderable {
 		this.setSpeed(80);
 		this.setVelZero();
 
-		this.isStar = false;
+		this.setStar(false);
 		this.growth = 0;
 		this.setBornTime(System.nanoTime());
 
@@ -77,9 +77,12 @@ public class Guppy extends Fish implements Renderable {
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
 		try {
-			if (growth < 100 && ((Food) nearestFood).getFoodType() == 2) {
+			if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
 				this.die();
 				return;
+			} else if (growth == 200 && ((Food) nearestFood).getFoodType() == 2) {
+				this.setStar(true);
+				this.getProduction().setProductType(5);
 			}
 			switch (((Food) nearestFood).getFoodLevel()) {
 			case 1:
@@ -97,20 +100,20 @@ public class Guppy extends Fish implements Renderable {
 			// TODO Catch Not Food
 			e.printStackTrace();
 		}
-
-		if (this.growth >= 100 && this.growth < 200 && getProduction().getProductType() != 1) {
-			// TODO Set new width and height
-			this.setSize(75, 75);
-			this.setMouthPos(15, 55);
-			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
-			this.getProduction().setProductType(1);
-		} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
-			this.setSize(100, 100);
-			this.setMouthPos(15, 75);
-			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
-			this.getProduction().setProductType(2);
+		if (!isStar) {
+			if (this.growth >= 100 && this.growth < 200 && getProduction().getProductType() != 1) {
+				// TODO Set new width and height
+				this.setSize(75, 75);
+				this.setMouthPos(15, 55);
+				this.setPos(getPosX() - 12.5, getPosY() - 12.5);
+				this.getProduction().setProductType(1);
+			} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
+				this.setSize(100, 100);
+				this.setMouthPos(15, 75);
+				this.setPos(getPosX() - 12.5, getPosY() - 12.5);
+				this.getProduction().setProductType(2);
+			}
 		}
-		System.out.println(growth);
 	}
 
 	@Override

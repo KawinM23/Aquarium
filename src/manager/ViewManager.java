@@ -11,6 +11,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -60,7 +62,7 @@ public class ViewManager {
 
 		Food f2 = new Food("f2", 800, 200, 1);
 		TankManager.add(f2);
-		
+
 //		Carnivore c1 = new Carnivore("c1", 300, 200);
 //		TankManager.add(c1);
 
@@ -82,8 +84,7 @@ public class ViewManager {
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 
 		SoundManager test = new SoundManager();
-		
-		
+
 		PlayerController.setPlaying(true);
 		PlayerController.setMaxFood(3);
 		PlayerController.setMoney(200);
@@ -97,9 +98,9 @@ public class ViewManager {
 
 		AnchorPane ap = new AnchorPane();
 
-		Level level1_1 = new Level("1_1",1,1);
+		Level level1_1 = new Level("1_1", 1, 1);
 		LevelManager.loadLevel1_1(level1_1);
-		
+
 		ShopController.setShopDetail(level1_1);
 		ShopController.setAllButtons(ap);
 
@@ -114,12 +115,15 @@ public class ViewManager {
 				Runnable updater = new Runnable() {
 					@Override
 					public void run() {
+						if (!PlayerController.isPause()) {
+							InvasionManager.update();
+							TankManager.update();
+						}
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
 						gc.setFill(Color.rgb(102, 204, 255));
 						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
-						InvasionManager.update();
-						TankManager.update();
+
 						TankManager.render(gc);
 						ShopController.drawShop(gc);
 						InvasionManager.render(gc);
@@ -181,6 +185,12 @@ public class ViewManager {
 		};
 
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+
+		tankStage.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			if (event.getCode() == KeyCode.SPACE) {
+				PlayerController.togglePause();
+			}
+		});
 
 	}
 

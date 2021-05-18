@@ -4,6 +4,9 @@ public class PlayerController {
 
 	private static int money = 10000;
 	private static boolean isPlaying = true;
+	private static boolean isPause = false;
+	private static long pauseTime;
+
 	private static int maxFood;
 	private static int foodLevel = 1;
 	private static int gunLevel = 1;
@@ -92,6 +95,32 @@ public class PlayerController {
 		} else {
 			return false;
 		}
+	}
+
+	public static boolean isPause() {
+		return isPause;
+	}
+
+	public static void setPause(boolean isPause) {
+		PlayerController.isPause = isPause;
+	}
+
+	public static void togglePause() {
+		if (isPause) {
+			setPause(false);
+			TankManager.continuePause(System.nanoTime() - pauseTime);
+		} else {
+			setPause(true);
+			setPauseTime(System.nanoTime());
+		}
+	}
+
+	public static long getPauseTime() {
+		return pauseTime;
+	}
+
+	public static void setPauseTime(long pauseTime) {
+		PlayerController.pauseTime = pauseTime;
 	}
 
 }

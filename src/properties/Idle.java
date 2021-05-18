@@ -39,6 +39,10 @@ public class Idle {
 		}
 	}
 
+	public void addNextIdle(long duration) {
+		this.nextIdle = this.nextIdle + duration;
+	}
+
 	public void resetIdle() {
 		randomVel();
 		this.nextIdle = (long) (System.nanoTime() + 7e9);
@@ -56,8 +60,8 @@ public class Idle {
 	}
 
 	public void slowIdle() {
-		setVelX(unit.getVelX() * (Math.random()/2));
-		setVelY(unit.getVelY() * (Math.random()/2));
+		setVelX(unit.getVelX() * (Math.random() / 2));
+		setVelY(unit.getVelY() * (Math.random() / 2));
 		this.nextIdle = (long) (System.nanoTime() + 1e9);
 	}
 

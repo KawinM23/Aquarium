@@ -51,7 +51,7 @@ public class TankManager {
 	public static int getMonsterCount() {
 		return monsterList.size();
 	}
-	
+
 	public static void render(GraphicsContext gc) {
 		for (Unit u : unitList) {
 			if (u instanceof Renderable) {
@@ -177,6 +177,15 @@ public class TankManager {
 			f.getHunger().endInvasion(invasionDuration);
 			f.getProduction().endInvasion(invasionDuration);
 		}
+	}
+
+	public static void continuePause(long duration) {
+		// TODO continue pause
+		for (Fish f : fishList) {
+			f.getHunger().addLastFed(duration);
+			f.getIdle().addNextIdle(duration);
+		}
+		InvasionManager.addInvasionTime(duration);
 	}
 
 }

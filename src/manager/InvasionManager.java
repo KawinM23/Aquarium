@@ -17,8 +17,8 @@ public class InvasionManager {
 	public static void update() {
 		if (!isInvaded && invasionTime - System.nanoTime() <= 7e9 && warning != true) {
 			setWarning(true);
-			
-			//TODO show warning
+
+			// TODO show warning
 			Thread warningThread = new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -53,7 +53,11 @@ public class InvasionManager {
 			setInvaded(false);
 			setInvasion(invasion + 1);
 			TankManager.endInvasion(getInvasionDuration());
-			setInvasionTime((long) (System.nanoTime() + (invasionTimeList[invasion] * 1e9)));
+			if (invasion < invasionTimeList.length) {
+				setInvasionTime((long) (System.nanoTime() + (invasionTimeList[invasion] * 1e9)));
+			} else {
+				setInvasionTime((long) (System.nanoTime() + (invasionTimeList[invasionTimeList.length - 1] * 1e9)));
+			}
 		}
 	}
 
@@ -93,6 +97,10 @@ public class InvasionManager {
 		InvasionManager.invasionTime = invasionTime;
 	}
 
+	public static void addInvasionTime(long duration) {
+		InvasionManager.invasionTime = invasionTime + duration;
+	}
+
 	public static int getInvasion() {
 		return invasion;
 	}
@@ -118,9 +126,9 @@ public class InvasionManager {
 	}
 
 	public static void render(GraphicsContext gc) {
-		if(isShowWarning()) {
+		if (isShowWarning()) {
 			gc.fillText("Warning", 0, 400);
 		}
-		
+
 	}
 }
