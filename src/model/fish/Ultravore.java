@@ -20,8 +20,8 @@ public class Ultravore extends Fish implements Renderable {
 
 	public Ultravore(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.setWidth(100);
-		this.setHeight(70);
+		this.setWidth(143);
+		this.setHeight(103);
 		this.setSpeed(100);
 		this.setVelZero();
 

@@ -53,8 +53,8 @@ public class Food extends Unit implements Renderable {
 		super(name, posX, posY);
 		this.setFoodType(foodType);
 		if (foodType == 1) {
-			this.setWidth(30);
-			this.setHeight(30);
+			this.setWidth(20);
+			this.setHeight(15);
 			this.setFoodLevel(PlayerController.getFoodLevel());
 		} else if (foodType == 2) {
 			this.setWidth(40);

@@ -27,8 +27,8 @@ public class Starcatcher extends Fish implements Renderable{
 
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.setWidth(40);
-		this.setHeight(40);
+		this.setWidth(53);
+		this.setHeight(66);
 		this.setSpeed(40);
 		this.setVelZero();
 		this.setGrounded(false);

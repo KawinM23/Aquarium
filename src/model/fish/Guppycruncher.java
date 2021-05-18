@@ -29,8 +29,8 @@ public class Guppycruncher extends Fish implements Renderable{
 	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
 
-		this.setWidth(50);
-		this.setHeight(50);
+		this.setWidth(66);
+		this.setHeight(69);
 		this.setSpeed(40);
 		this.setVelZero();
 

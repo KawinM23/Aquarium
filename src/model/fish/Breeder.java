@@ -20,8 +20,8 @@ public class Breeder extends Fish implements Renderable{
 	public Breeder(String name, double posX, double posY) {
 		super(name, posX, posY);
 
-		this.setWidth(80);
-		this.setHeight(80);
+		this.setWidth(46);
+		this.setHeight(42);
 		this.setSpeed(70);
 		this.setVelZero();
 

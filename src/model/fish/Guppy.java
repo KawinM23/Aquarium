@@ -27,8 +27,8 @@ public class Guppy extends Fish implements Renderable {
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);
 
-		this.setWidth(80);
-		this.setHeight(60);
+		this.setWidth(34);
+		this.setHeight(34);
 		this.setMouthPos(15, 45);
 
 		this.setSpeed(80);
