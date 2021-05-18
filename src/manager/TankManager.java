@@ -2,6 +2,7 @@ package manager;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
 import model.Food;
@@ -12,6 +13,8 @@ import model.base.Unit;
 import properties.Renderable;
 
 public class TankManager {
+
+	static Random rand = new Random();
 
 	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
 
@@ -50,9 +53,9 @@ public class TankManager {
 	}
 
 	public static void update(GraphicsContext gc) {
-		//Update and draw all unit
+		// Update and draw all unit
 		for (Unit u : unitList) {
-			if(u instanceof Renderable) {
+			if (u instanceof Renderable) {
 				((Renderable) u).render(gc);
 			}
 		}
@@ -93,12 +96,16 @@ public class TankManager {
 			monsterList.add((Monster) u);
 		}
 	}
-	
+
 	public static void addNewFish(Fish f) {
-		f.setPos(0, 0); //TODO Random Pos
+		// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+		double posX = 0 + (GameManager.getWIDTH() - f.getWidth() - 0) * rand.nextDouble();
+		double posY = GameManager.getTOPHEIGHT()
+				+ (GameManager.getBOTTOMHEIGHT() - f.getHeight() - GameManager.getTOPHEIGHT()) * rand.nextDouble();
+		f.setPos(posX, posY / 2); // TODO Random Pos
 		unitList.add(f);
 		fishList.add(f);
-		//TODO Random Hunger Fish
+		// TODO Random Hunger Fish
 	}
 
 	public static boolean addFood(Food f) {
@@ -153,7 +160,7 @@ public class TankManager {
 		removeMonsterList.clear();
 
 	}
-	
+
 	public static void clearRemoveList() {
 		removeFoodList.clear();
 		removeMoneyList.clear();
@@ -162,8 +169,8 @@ public class TankManager {
 	}
 
 	public static void endInvasion(long invasionDuration) {
-		//Add TIME ti Hunger AND Production to every fish
-		for(Fish f : fishList) {
+		// Add TIME ti Hunger AND Production to every fish
+		for (Fish f : fishList) {
 			f.getHunger().endInvasion(invasionDuration);
 			f.getProduction().endInvasion(invasionDuration);
 		}
