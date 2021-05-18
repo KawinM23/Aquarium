@@ -105,10 +105,11 @@ public class TankManager {
 		double posX = 0 + (GameManager.getWIDTH() - f.getWidth() - 0) * rand.nextDouble();
 		double posY = GameManager.getTOPHEIGHT()
 				+ (GameManager.getBOTTOMHEIGHT() - f.getHeight() - GameManager.getTOPHEIGHT()) * rand.nextDouble();
-		f.setPos(posX, posY / 2); // TODO Random Pos
+		f.setPos(posX, posY / 2);
 		unitList.add(f);
 		fishList.add(f);
-		// TODO Random Hunger Fish
+		//Random Hunger Fish
+		f.getHunger().addLastFedRandom(2, 4);
 	}
 
 	public static boolean addFood(Food f) {

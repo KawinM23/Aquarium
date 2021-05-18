@@ -76,6 +76,7 @@ public class Guppy extends Fish implements Renderable {
 
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
+		this.getHunger().addLastFedRandom(0,1);
 		try {
 			if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
 				this.die();

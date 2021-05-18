@@ -1,6 +1,10 @@
 package properties;
 
+import java.util.Random;
+
 public class Hunger {
+
+	private static Random rand = new Random();
 
 	private Class<?> foodType;
 
@@ -54,6 +58,12 @@ public class Hunger {
 
 	public void setLastFedNow() {
 		this.setLastFed(System.nanoTime());
+	}
+
+	public void addLastFedRandom(int min, int max) {
+		// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+		long randomTime = (long) ((min + ((max - min) * rand.nextDouble())) * 1.0e9);
+		this.setLastFed(getLastFed() + randomTime);
 	}
 
 	public double getDeltaTime() {

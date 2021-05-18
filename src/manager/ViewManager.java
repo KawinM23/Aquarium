@@ -76,7 +76,7 @@ public class ViewManager {
 //		TankManager.add(svc);
 //
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
-		TankManager.add(gc1);
+		TankManager.addNewFish(gc1);
 //
 //		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
 //		TankManager.add(bm1);
@@ -159,12 +159,11 @@ public class ViewManager {
 							if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
 								// Collect Money
 								m.collected();
-								System.out.println(PlayerController.getMoney());
 								return;
 							}
 						}
 						// Add Food at mouse position
-						if (TankManager.getFoodList().size() <= PlayerController.getMaxFood()
+						if (TankManager.getFoodList().size() < PlayerController.getMaxFood()
 								&& PlayerController.buy(5)) {
 							System.out.println("Add Food " + PlayerController.getFoodLevel());
 							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));

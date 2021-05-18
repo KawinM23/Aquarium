@@ -80,6 +80,7 @@ public abstract class Fish extends Unit {
 	public void feed(Unit nearestFood) {
 		TankManager.remove(nearestFood);
 		this.hunger.setLastFedNow();
+		this.hunger.addLastFedRandom(0, 1);
 	}
 
 	public void headToFood(Unit u) {
