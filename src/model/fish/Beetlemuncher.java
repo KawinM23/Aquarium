@@ -18,7 +18,7 @@ public class Beetlemuncher extends Fish implements Renderable{
 
 	private static final Image BeetlemuncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	public static Image getImage() {
+	public Image getImage() {
 		return BeetlemuncherImage;
 	}
 

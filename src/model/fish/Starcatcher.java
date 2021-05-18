@@ -18,7 +18,7 @@ public class Starcatcher extends Fish implements Renderable{
 	
 	private static final Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	public static Image getImage() {
+	public Image getImage() {
 		return StarcatcherImage;
 	}
 	
