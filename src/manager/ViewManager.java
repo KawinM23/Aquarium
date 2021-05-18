@@ -45,7 +45,6 @@ public class ViewManager {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		///////////////////////// TEST
-		Image bc = new Image("file:res/image/aquarium1.jpg");
 
 		Guppy g1 = new Guppy("g1", 500, 300);
 		TankManager.addNewFish(g1);

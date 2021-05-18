@@ -7,8 +7,7 @@ public class PlayerController {
 	private static int maxFood;
 	private static int foodLevel = 1;
 	private static int gunLevel = 1;
-	private static int goal = 0;
-	//TODO GOAL Tracker
+	private static int goal = 0; // TODO GOAL Tracker
 
 	public static int getMoney() {
 		return money;
@@ -17,13 +16,13 @@ public class PlayerController {
 	public static void setMoney(int money) {
 		PlayerController.money = money;
 	}
-	
+
 	public static void addMoney(int value) {
 		PlayerController.money += value;
 	}
-	
+
 	public static boolean buy(int value) {
-		if(PlayerController.money >= value) {
+		if (PlayerController.money >= value) {
 			PlayerController.money -= value;
 			return true;
 		} else {
@@ -79,6 +78,20 @@ public class PlayerController {
 
 	public static void setGoal(int goal) {
 		PlayerController.goal = goal;
+	}
+
+	public static void buyGoal() {
+		if (goal < 3) {
+			PlayerController.setGoal(goal + 1);
+		}
+	}
+
+	public static boolean checkGoal() {
+		if (goal == 3) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

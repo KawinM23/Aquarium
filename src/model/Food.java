@@ -31,7 +31,7 @@ public class Food extends Unit implements Renderable {
 		} else if (foodNumber == 3) {
 			return Food3Image;
 		} else if (foodNumber == 4) {
-			return null;
+			return Food4Image;
 		}
 		return null;
 
