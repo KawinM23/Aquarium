@@ -134,107 +134,109 @@ public class ShopController {
 			// TODO Set handlers to be in sync with Unit ShopItem
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				SoundManager.playClickSound();
-				
-				switch (buttonNumber) {
-				// Guppy Fish
-				case 1:
-					if (PlayerController.buy(prices[0])) {
-						TankManager.addNewFish(new Guppy("Guppy", 0, 0));
-					}
-					break;
-				// Food Type
-				case 2:
-					if (PlayerController.buy(prices[1])) {
-						PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
-
-						Thread thread = new Thread(() -> {
-							try {
-								images[1] = Food.getStaticImage(PlayerController.getFoodLevel());
-								Platform.runLater(new Runnable() {
-									@Override
-									public void run() {
-										// TODO Auto-generated method stub
-
-									}
-								});
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-
-						});
-						thread.start();
-						System.out.println(PlayerController.getFoodLevel());
-					}
-					break;
-				// Food Capacity
-				case 3:
-					if (PlayerController.buy(prices[2])) {
-						PlayerController.setMaxFood(PlayerController.getMaxFood() + 1);
-						System.out.println(PlayerController.getMaxFood());
-					}
-					break;
-				// Special 1
-				case 4:
-					if (PlayerController.buy(prices[3])) {
-						// If it is a potion
-						if (shopItems[1] instanceof Food) {
-							Food food = new Food("Food", 0, 0, PlayerController.getFoodLevel());
-							TankManager.addFood(food);
-							System.out.println(TankManager.getFoodList());
-						}
-						// If it is a carnivore
-						else if (shopItems[1] instanceof Carnivore) {
-							Carnivore fish = new Carnivore("Carnivore", 0, 0);
-							TankManager.addNewFish(fish);
-						}
-						// If it is a Guppy Crusher
-						else if (shopItems[1] instanceof Guppycruncher) {
-							Guppycruncher fish = new Guppycruncher("Cruncher", 0, 0);
-							TankManager.addNewFish(fish);
-						}
-					}
-					break;
-				// Special 2
-				case 5:
-					if (PlayerController.buy(prices[4])) {
-						if (shopItems[2] instanceof Starcatcher) {
-							Starcatcher fish = new Starcatcher("Starcatcher", 0, 0);
-							TankManager.addNewFish(fish);
-						} else if (shopItems[2] instanceof Beetlemuncher) {
-							Beetlemuncher fish = new Beetlemuncher("Muncher", 0, 0);
-							TankManager.addNewFish(fish);
-						} else if (shopItems[2] instanceof Ultravore) {
-							Ultravore fish = new Ultravore("Ultravore", 0, 0);
-							TankManager.addNewFish(fish);
-						}
-					}
-					break;
-				// Gun
-				case 6:
-					if (PlayerController.buy(prices[5])) {
-						PlayerController.setGunLevel(PlayerController.getGunLevel() + 1);
-						// TODO Change image to new gun images
-					}
-					break;
-				// Goal
-				case 7:
-					if (PlayerController.buy(prices[6])) {
-						PlayerController.buyGoal();
-					}
-					break;
-				// Menu
-				case 8:
+				if (!PlayerController.isPause()) {
 					SoundManager.playClickSound();
+
+					switch (buttonNumber) {
+					// Guppy Fish
+					case 1:
+						if (PlayerController.buy(prices[0])) {
+							TankManager.addNewFish(new Guppy("Guppy", 0, 0));
+						}
+						break;
+					// Food Type
+					case 2:
+						if (PlayerController.buy(prices[1])) {
+							PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
+
+							Thread thread = new Thread(() -> {
+								try {
+									images[1] = Food.getStaticImage(PlayerController.getFoodLevel());
+									Platform.runLater(new Runnable() {
+										@Override
+										public void run() {
+											// TODO Auto-generated method stub
+
+										}
+									});
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
+							});
+							thread.start();
+							System.out.println(PlayerController.getFoodLevel());
+						}
+						break;
+					// Food Capacity
+					case 3:
+						if (PlayerController.buy(prices[2])) {
+							PlayerController.setMaxFood(PlayerController.getMaxFood() + 1);
+							System.out.println(PlayerController.getMaxFood());
+						}
+						break;
+					// Special 1
+					case 4:
+						if (PlayerController.buy(prices[3])) {
+							// If it is a potion
+							if (shopItems[1] instanceof Food) {
+								Food food = new Food("Food", 0, 0, PlayerController.getFoodLevel());
+								TankManager.addFood(food);
+								System.out.println(TankManager.getFoodList());
+							}
+							// If it is a carnivore
+							else if (shopItems[1] instanceof Carnivore) {
+								Carnivore fish = new Carnivore("Carnivore", 0, 0);
+								TankManager.addNewFish(fish);
+							}
+							// If it is a Guppy Crusher
+							else if (shopItems[1] instanceof Guppycruncher) {
+								Guppycruncher fish = new Guppycruncher("Cruncher", 0, 0);
+								TankManager.addNewFish(fish);
+							}
+						}
+						break;
+					// Special 2
+					case 5:
+						if (PlayerController.buy(prices[4])) {
+							if (shopItems[2] instanceof Starcatcher) {
+								Starcatcher fish = new Starcatcher("Starcatcher", 0, 0);
+								TankManager.addNewFish(fish);
+							} else if (shopItems[2] instanceof Beetlemuncher) {
+								Beetlemuncher fish = new Beetlemuncher("Muncher", 0, 0);
+								TankManager.addNewFish(fish);
+							} else if (shopItems[2] instanceof Ultravore) {
+								Ultravore fish = new Ultravore("Ultravore", 0, 0);
+								TankManager.addNewFish(fish);
+							}
+						}
+						break;
+					// Gun
+					case 6:
+						if (PlayerController.buy(prices[5])) {
+							PlayerController.setGunLevel(PlayerController.getGunLevel() + 1);
+							// TODO Change image to new gun images
+						}
+						break;
+					// Goal
+					case 7:
+						if (PlayerController.buy(prices[6])) {
+							PlayerController.buyGoal();
+						}
+						break;
+					// Menu
+					case 8:
+						SoundManager.playClickSound();
 //					SceneController.changeScene("menu");
 //					SoundManager.playMainMenuBgm();
-					PlayerController.togglePause();
-					break;
-				default:
+						PlayerController.togglePause();
+						break;
+					default:
 
+					}
 				}
-				System.out.println(System.nanoTime()/1.0e9);
+
 			}
 		});
 		button.setOnMouseReleased(new EventHandler<MouseEvent>() {

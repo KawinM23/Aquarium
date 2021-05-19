@@ -99,7 +99,11 @@ public class ViewManager {
 		ShopController.setShopDetail(level1_1);
 		ShopController.setAllButtons(ap);
 		ShopController.prices[6] = 50;
-
+		
+		pause1.setAnchorPane(ap);
+		pause1.setPauseButtons();
+		pause1.hideButtons();
+		
 		mainPane.getChildren().add(ap);
 		//////////////////////////
 
@@ -115,6 +119,7 @@ public class ViewManager {
 							InvasionManager.update();
 							TankManager.update();
 							PlayerController.checkPlaying();
+							pause1.hideButtons();
 						}
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
@@ -125,6 +130,7 @@ public class ViewManager {
 						ShopController.drawShop(gc);
 						if (PlayerController.isPause()) {
 							pause1.drawPane(gc);
+							pause1.showButtons();
 						}
 						InvasionManager.render(gc);
 					}
