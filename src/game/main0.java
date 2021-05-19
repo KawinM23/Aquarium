@@ -3,6 +3,7 @@ package game;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import manager.SceneController;
+import manager.SoundManager;
 import manager.ViewManager;
 
 public class main0 extends Application {
@@ -14,6 +15,7 @@ public class main0 extends Application {
 			SceneController.setStage(primaryStage);
 			SceneController.initializeScenes();
 			SceneController.changeScene("MainMenu");
+			SoundManager.playMainMenuBgm();
 			
 			primaryStage.setTitle("AQUARIUM");
 			primaryStage.setResizable(false);
