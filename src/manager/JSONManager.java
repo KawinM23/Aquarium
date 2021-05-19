@@ -20,6 +20,12 @@ public class JSONManager {
 	private static long tank = 0;
 	private static long level = 0;
 
+	private static int moneyGained;
+	private static int fishBought;
+	private static long playTime;
+	private static int foodBought;
+	private static int monsterDefeated;
+
 	private static JSONArray playerList = new JSONArray();
 	private static ArrayList<JSONObject> jsonList = new ArrayList<JSONObject>();
 
@@ -39,7 +45,7 @@ public class JSONManager {
 			playerList.forEach(emp -> JSONManager.parsePlayerObject((JSONObject) emp));
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			// write new file
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -85,6 +91,8 @@ public class JSONManager {
 				setCurrentPlayer(false);
 			}
 		}
+		writeJSON();
+		readJSON();
 	}
 
 	public static void removePlayer(String playerName) {
@@ -92,7 +100,7 @@ public class JSONManager {
 		JSONObject removedJSONobj = null;
 		for (JSONObject eachJSONobj : jsonList) {
 			JSONObject eachPlayer = (JSONObject) eachJSONobj.get("player");
-			if (eachPlayer.get("playerName").equals(playerName)) {
+			if (eachPlayer.get("playerName").equals(playerName) || eachPlayer.get("playerName").equals(null)) {
 				removedJSONobj = eachJSONobj;
 			}
 		}
@@ -122,11 +130,18 @@ public class JSONManager {
 	@SuppressWarnings("unchecked")
 	public static void addCurrentPlayer() {
 		JSONObject playerDetails = new JSONObject();
+		if(playerName == null) {
+			return;
+		}
 		playerDetails.put("playerName", playerName);
 		playerDetails.put("currentPlayer", currentPlayer);
 		playerDetails.put("tank", tank);// Next Level
 		playerDetails.put("level", level);
-		playerDetails.put("stat", "TestStat");
+		playerDetails.put("moneyGained", moneyGained);
+		playerDetails.put("fishBought", fishBought);
+		playerDetails.put("playTime", playTime);
+		playerDetails.put("foodBought", foodBought);
+		playerDetails.put("monsterDefeated", monsterDefeated);
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 
@@ -134,13 +149,18 @@ public class JSONManager {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void addToPlayerList(String playerName, boolean currentPlayer, int tank, int level) {
+	public static void addToPlayerList(String playerName, boolean currentPlayer, int tank, int level, int moneyGained,
+			int fishBought, int playTime, int foodBought, int monsterDefeated) {
 		JSONObject playerDetails = new JSONObject();
 		playerDetails.put("playerName", playerName);
 		playerDetails.put("currentPlayer", currentPlayer);
 		playerDetails.put("tank", tank);// Next Level
 		playerDetails.put("level", level);
-		playerDetails.put("stat", "TestStat");
+		playerDetails.put("moneyGained", moneyGained);
+		playerDetails.put("fishBought", fishBought);
+		playerDetails.put("playTime", playTime);
+		playerDetails.put("foodBought", foodBought);
+		playerDetails.put("monsterDefeated", monsterDefeated);
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 
@@ -148,9 +168,56 @@ public class JSONManager {
 	}
 
 	@SuppressWarnings("unchecked")
+	public static boolean addNewPlayer(String playerName) {
+		boolean nameExist = false;
+		if (JSONManager.playerName.equals(playerName)) {
+			return false;
+		}
+		for (JSONObject eachJSONobj : jsonList) {
+			JSONObject eachPlayer = (JSONObject) eachJSONobj.get("player");
+			if (eachPlayer.get("playerName").equals(playerName)) {
+				return false;
+			}
+		}
+
+		JSONObject playerDetails = new JSONObject();
+		playerDetails.put("playerName", playerName);
+		playerDetails.put("currentPlayer", false);
+		playerDetails.put("tank", 1);// Next Level
+		playerDetails.put("level", 1);
+		playerDetails.put("moneyGained", 0);
+		playerDetails.put("fishBought", 0);
+		playerDetails.put("playTime", 0);
+		playerDetails.put("foodBought", 0);
+		playerDetails.put("monsterDefeated", 0);
+		JSONObject playerObject = new JSONObject();
+		playerObject.put("player", playerDetails);
+		playerList.add(playerObject);
+		
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
 	public static void addOtherPlayer(ArrayList<JSONObject> jsonList) {
-		for (JSONObject jsonObj : jsonList) {
-			playerList.add(jsonObj);
+		for (JSONObject eachJSONObj : jsonList) {
+			JSONObject eachPlayer = (JSONObject) eachJSONObj.get("player");
+			if (eachPlayer.get("playerName").equals(playerName)) {
+				continue;
+			}
+			playerList.add(eachJSONObj);
+		}
+	}
+
+	public static void clear() {
+
+		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
+			// We can write any JSONArray or JSONObject instance to the file
+
+			file.write(playerList.toJSONString());
+			file.flush();
+			playerList.clear();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -200,6 +267,46 @@ public class JSONManager {
 
 	public static void setCurrentPlayer(boolean currentPlayer) {
 		JSONManager.currentPlayer = currentPlayer;
+	}
+
+	public static int getMoneyGained() {
+		return moneyGained;
+	}
+
+	public static void setMoneyGained(int moneyGained) {
+		JSONManager.moneyGained = moneyGained;
+	}
+
+	public static int getFishBought() {
+		return fishBought;
+	}
+
+	public static void setFishBought(int fishBought) {
+		JSONManager.fishBought = fishBought;
+	}
+
+	public static long getPlayTime() {
+		return playTime;
+	}
+
+	public static void setPlayTime(long playTime) {
+		JSONManager.playTime = playTime;
+	}
+
+	public static int getFoodBought() {
+		return foodBought;
+	}
+
+	public static void setFoodBought(int foodBought) {
+		JSONManager.foodBought = foodBought;
+	}
+
+	public static int getMonsterDefeated() {
+		return monsterDefeated;
+	}
+
+	public static void setMonsterDefeated(int monsterDefeated) {
+		JSONManager.monsterDefeated = monsterDefeated;
 	}
 
 }

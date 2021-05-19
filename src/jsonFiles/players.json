@@ -1,1 +1,1 @@
-[{"player":{"stat":"TestStat","playerName":"TESTING2","currentPlayer":false,"level":2,"tank":2}},{"player":{"stat":"TestStat","playerName":"MrTest1","level":1,"currentPlayer":true,"tank":1}}]
+[{"player":{"playerName":"TERRA","currentPlayer":true,"level":1,"fishBought":0,"moneyGained":0,"monsterDefeated":0,"playTime":0,"foodBought":0,"tank":1}}]
