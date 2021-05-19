@@ -55,7 +55,6 @@ public class menu2 {
 
 	// Set background to an image
 	private void setBackGroundImage(GraphicsContext gc, String image_path) {
-		System.out.println(image_path);
 		Image image = new Image(image_path);
 		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}

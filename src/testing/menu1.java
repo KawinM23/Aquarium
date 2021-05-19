@@ -57,7 +57,6 @@ public class menu1 {
 
 	// Set background to an image
 	private void setBackGroundImage(GraphicsContext gc, String image_path) {
-		System.out.println(image_path);
 		Image image = new Image(image_path);
 		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
@@ -128,14 +127,16 @@ public class menu1 {
 					});
 					thread.start();
 
-				} else if (buttonText.equals("Tank 1")) {
+				} else if (buttonText.equals("Quit")) {
 					Thread thread = new Thread(() -> {
 						try {
+							Thread.sleep(100);
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank1");
+									
+									System.exit(0);
 								}
 							});
 

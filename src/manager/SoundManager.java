@@ -12,16 +12,16 @@ public class SoundManager {
 	private static final Media MAIN_MENU_BGM_SOUND = new Media(BGM_PATH);
 	private static final MediaPlayer mainMenuBgmPlayer = new MediaPlayer(MAIN_MENU_BGM_SOUND);
 	private static final MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
-	
+
 	public static void playClickSound() {
 		Thread thread = new Thread(() -> {
 
 			MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
 
 			try {
-				
+
 				buttonClickPlayer.play();
-				
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

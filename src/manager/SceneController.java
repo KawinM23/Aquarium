@@ -15,7 +15,7 @@ public class SceneController {
 	private static String currentSceneName;
 	private static Stage stage;
 	private static String[] startingMenuTexts = { "Start", "Undefined", "Undefined", "Undefined", "Undefined",
-			"Undefined", "Undefined", "Undefined" };
+			"Undefined", "Undefined", "Quit" };
 	private static Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
 	private static String[] tankLevelTexts = { "Tank 1", "Tank 2", "Tank 3", "Tank 4", "Back" };
 	private static Scene tankLevelScene = (new menu2(tankLevelTexts)).getScene();
