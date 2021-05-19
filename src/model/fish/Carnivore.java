@@ -28,8 +28,8 @@ public class Carnivore extends Fish implements Renderable{
 		this.setSpeed(90);
 		this.setVelZero();
 
-		this.setHunger(new Hunger(Guppy.class, 3, 10));
-		this.setProduction(new Production(this, 3, 6));
+		this.setHunger(new Hunger(Guppy.class, 5, 20));
+		this.setProduction(new Production(this, 3, 3));
 		this.setIdle(new Idle(this,20));
 		this.setPrice(1000);
 	}

@@ -105,20 +105,20 @@ public class TankManager {
 		f.setPos(posX, posY / 2);
 		unitList.add(f);
 		fishList.add(f);
-		//Random Hunger Fish
+		// Random Hunger Fish
 		f.getHunger().addLastFedRandom(3, 6);
-		
-		//Stat Tracker
+
+		// Stat Tracker
 		StatTracker.addFishBought();
 	}
-	
+
 	public static void addBornedFish(Fish f) {
 		unitList.add(f);
 		fishList.add(f);
-		//Random Hunger Fish
+		// Random Hunger Fish
 		f.getHunger().addLastFedRandom(3, 6);
-		
-		//Stat Tracker
+
+		// Stat Tracker
 		StatTracker.addFishBought();
 	}
 
@@ -195,6 +195,9 @@ public class TankManager {
 		for (Fish f : fishList) {
 			f.getHunger().addLastFed(duration);
 			f.getIdle().addNextIdle(duration);
+		}
+		for (Money m : moneyList) {
+			m.addDisappearTime(duration);
 		}
 		InvasionManager.addInvasionTime(duration);
 	}
