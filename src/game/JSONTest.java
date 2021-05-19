@@ -13,17 +13,20 @@ public class JSONTest {
 		// TODO Auto-generated method stub
 		// First Employee
 		JSONObject playerDetails = new JSONObject();
-		playerDetails.put("playerName", "Lokesh");
 		playerDetails.put("tank", 1);// Next Level
 		playerDetails.put("level", 1);
 		playerDetails.put("stat", "TestStat");
 
 		JSONObject playerObject = new JSONObject();
-		playerObject.put("player", playerDetails);
+		playerObject.put("MrTest", playerDetails);
+		
+		JSONObject lastPlayerObject = new JSONObject();
+		lastPlayerObject.put("lastPlayer", "MrTest");
 
 		// Add employees to list
 		JSONArray playerList = new JSONArray();
 		playerList.add(playerObject);
+		playerList.add(lastPlayerObject);
 
 		String workingDir = System.getProperty("user.dir");
 		// Write JSON file
