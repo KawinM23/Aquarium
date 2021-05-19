@@ -14,8 +14,6 @@ public class main1 extends Application{
 			primaryStage.setScene(manager.getTankScene());
 			
 			
-			
-			
 			primaryStage.setTitle("AQUARIUM");
 			primaryStage.setResizable(false);
 			primaryStage.show();

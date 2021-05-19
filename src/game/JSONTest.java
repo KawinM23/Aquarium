@@ -19,7 +19,7 @@ public class JSONTest {
 		playerDetails.put("stat", "TestStat");
 
 		JSONObject playerObject = new JSONObject();
-		playerObject.put("employee", playerDetails);
+		playerObject.put("player", playerDetails);
 
 		// Add employees to list
 		JSONArray playerList = new JSONArray();
