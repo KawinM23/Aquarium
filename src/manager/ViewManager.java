@@ -150,7 +150,6 @@ public class ViewManager {
 
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
-		threadTank.start();
 		
 		StatTracker.clear();
 
@@ -200,16 +199,17 @@ public class ViewManager {
 
 	}
 	
+	public void startLevel() {
+		StatTracker.clear();
+		threadTank.start();
+	}
+	
 	public static void setScene(Stage stage) {
 		stage.setScene(getStaticTankScene());
 	}
 
 	public static Thread getThreadTank() {
 		return threadTank;
-	}
-
-	public void setThreadTank(Thread threadTank) {
-		ViewManager.threadTank = threadTank;
 	}
 
 	public Stage getTankStage() {

@@ -15,7 +15,19 @@ public class StatTracker {
 		System.out.println(getFoodBought());
 		System.out.println(getMonsterDefeated());
 		
-		//TODO JSON Calculate
+		//JSON Calculate
+		addStatToJSON();
+		
+	}
+
+	private static void addStatToJSON() {
+		JSONManager.addMoneyGained(getMoneyGained());
+		JSONManager.addFishBought(getFishBought());
+		JSONManager.addPlayTime(getDuration());
+		JSONManager.addFoodBought(getFoodBought());
+		JSONManager.addMonsterDefeated(getMonsterDefeated());
+		JSONManager.writeJSON();
+		JSONManager.readJSON();
 	}
 
 	public static void clear() {
