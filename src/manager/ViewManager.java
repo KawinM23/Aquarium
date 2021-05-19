@@ -65,8 +65,8 @@ public class ViewManager {
 		Food f2 = new Food("f2", 800, 200, 1);
 		TankManager.add(f2);
 
-//		Carnivore c1 = new Carnivore("c1", 300, 200);
-//		TankManager.add(c1);
+		Carnivore c1 = new Carnivore("c1", 300, 200);
+		TankManager.addNewFish(c1);
 
 //		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
 //		TankManager.add(sc1);
