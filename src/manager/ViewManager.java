@@ -30,6 +30,7 @@ import model.money.Beetle;
 import model.money.SilverCoin;
 import model.money.Star;
 import model.monster.Sylvester;
+import testing.pause1;
 
 public class ViewManager {
 	private Pane mainPane;
@@ -130,6 +131,9 @@ public class ViewManager {
 
 						TankManager.render(gc);
 						ShopController.drawShop(gc);
+						if (PlayerController.isPause()) {
+							pause1.drawPane(gc);
+						}
 						InvasionManager.render(gc);
 					}
 				};
