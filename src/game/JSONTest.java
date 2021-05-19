@@ -1,44 +1,33 @@
 package game;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import manager.JSONManager;
 
 public class JSONTest {
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// First Employee
-		JSONObject playerDetails = new JSONObject();
-		playerDetails.put("tank", 1);// Next Level
-		playerDetails.put("level", 1);
-		playerDetails.put("stat", "TestStat");
 
-		JSONObject playerObject = new JSONObject();
-		playerObject.put("MrTest", playerDetails);
-		
-		JSONObject lastPlayerObject = new JSONObject();
-		lastPlayerObject.put("lastPlayer", "MrTest");
-
-		// Add employees to list
-		JSONArray playerList = new JSONArray();
-		playerList.add(playerObject);
-		playerList.add(lastPlayerObject);
-
-		String workingDir = System.getProperty("user.dir");
-		// Write JSON file
-		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
-			// We can write any JSONArray or JSONObject instance to the file
-
-			file.write(playerList.toJSONString());
-			file.flush();
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		boolean read = true;
+		if(read) {
+			JSONManager.readJSON();
 		}
+		
+//		JSONManager.addToPlayerList("MrTest1", false, 1, 1);
+//		JSONManager.setLevel(1);
+		JSONManager.changePlayer("MrTest1");
+		
+		boolean write = true;
+		if (write) {
+			// TODO Auto-generated method stub
+			// First Employee
+
+			JSONManager.writeJSON();
+		}
+
+		
+		
+
 	}
 
 }

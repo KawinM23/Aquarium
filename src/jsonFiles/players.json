@@ -1,1 +1,1 @@
-[{"MrTest":{"stat":"TestStat","level":1,"tank":1}},{"lastPlayer":"MrTest"}]
+[{"player":{"stat":"TestStat","playerName":"TESTING2","currentPlayer":false,"level":2,"tank":2}},{"player":{"stat":"TestStat","playerName":"MrTest1","level":1,"currentPlayer":true,"tank":1}}]
