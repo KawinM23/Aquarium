@@ -23,7 +23,10 @@ public abstract class Fish extends Unit {
 
 	public Fish(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.setMouthPos(0, 0);
+		this.setMouthPos(10, 30);
+		this.setSize(50, 50);
+		this.setSpeed(80);
+		
 		this.isFacingLeft = true;
 		this.price = 0;
 		this.hunger = null;

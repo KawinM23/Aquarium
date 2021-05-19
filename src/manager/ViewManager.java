@@ -65,8 +65,8 @@ public class ViewManager {
 		Food f2 = new Food("f2", 800, 200, 1);
 		TankManager.add(f2);
 
-//		Carnivore c1 = new Carnivore("c1", 300, 200);
-//		TankManager.add(c1);
+		Carnivore c1 = new Carnivore("c1", 300, 200);
+		TankManager.addNewFish(c1);
 
 //		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
 //		TankManager.add(sc1);
@@ -95,7 +95,7 @@ public class ViewManager {
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 40, 30, 40 });
+		InvasionManager.setInvasionTimeList(new int[] { 20, 30, 40 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		AnchorPane ap = new AnchorPane();
@@ -151,6 +151,8 @@ public class ViewManager {
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
 		threadTank.start();
+		
+		StatTracker.clear();
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -170,6 +172,7 @@ public class ViewManager {
 						if (TankManager.getFoodList().size() < PlayerController.getMaxFood()
 								&& PlayerController.buy(5)) {
 							System.out.println("Add Food " + PlayerController.getFoodLevel());
+							StatTracker.addFoodBought();
 							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
 						}
 

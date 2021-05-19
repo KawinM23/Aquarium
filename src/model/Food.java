@@ -67,7 +67,7 @@ public class Food extends Unit implements Renderable {
 		}
 		this.setPos(posX - (getWidth() / 2), posY - (getHeight() / 2)); // Slide to match mouse position
 
-		this.setVel(0, 40);
+		this.setVel(0, 50);
 	}
 
 	@Override

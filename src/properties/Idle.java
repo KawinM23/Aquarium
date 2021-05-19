@@ -1,8 +1,12 @@
 package properties;
 
+import java.util.Random;
+
 import model.base.Unit;
 
 public class Idle {
+
+	private static Random rand = new Random(0);
 
 	private Unit unit;
 	private long nextIdle;
@@ -25,7 +29,7 @@ public class Idle {
 		} else {
 			randomVel();
 			this.unit.setVel(velX, velY);
-			this.nextIdle = (long) (System.nanoTime() + 7e9); // TODO interval idle
+			this.setNextIdleRandom(2, 7); // interval idle
 		}
 	}
 
@@ -35,7 +39,7 @@ public class Idle {
 		} else {
 			randomVel();
 			this.unit.setVel(velX, unit.getVelY());
-			this.nextIdle = (long) (System.nanoTime() + 7e9); // TODO interval idle
+			this.setNextIdleRandom(3, 6); // interval idle
 		}
 	}
 
@@ -43,14 +47,10 @@ public class Idle {
 		this.nextIdle = this.nextIdle + duration;
 	}
 
-	public void resetIdle() {
-		randomVel();
-		this.nextIdle = (long) (System.nanoTime() + 7e9);
-	}
-
-	public void resetIdle(double time) {
-		randomVel();
-		this.nextIdle = (long) (System.nanoTime() + (time * 1e9));
+	public void setNextIdleRandom(int min, int max) {
+		// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+		long randomTime = (long) ((min + ((max - min) * rand.nextDouble())) * 1.0e9);
+		this.setNextIdle(System.nanoTime() + randomTime);
 	}
 
 	public void eatFood() {
@@ -65,18 +65,18 @@ public class Idle {
 		this.nextIdle = (long) (System.nanoTime() + 1e9);
 	}
 
-	private void randomVel() {
+	public void randomVel() {
 		double angle = Math.random() * 360;
 		this.setVelX(Math.cos(angle) * getSpeed());
 		this.setVelY(Math.sin(angle) * getSpeed());
 	}
 
-	public long getLastIdle() {
+	public long getNextIdle() {
 		return nextIdle;
 	}
 
-	public void setLastIdle(long lastIdle) {
-		this.nextIdle = lastIdle;
+	public void setNextIdle(long setNextIdle) {
+		this.nextIdle = setNextIdle;
 	}
 
 	public double getVelX() {

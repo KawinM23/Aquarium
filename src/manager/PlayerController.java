@@ -56,6 +56,7 @@ public class PlayerController {
 		setPlaying(false);
 		ViewManager.getThreadTank().stop();
 		System.out.println("WIN");
+		StatTracker.calculateStat();
 	}
 
 	private static void lose() {
@@ -63,6 +64,7 @@ public class PlayerController {
 		setPlaying(false);
 		ViewManager.getThreadTank().stop();
 		System.out.println("LOSE");
+		StatTracker.calculateStat();
 	}
 
 	public static int getMaxFood() {

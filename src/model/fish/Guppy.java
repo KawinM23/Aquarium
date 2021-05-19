@@ -39,7 +39,7 @@ public class Guppy extends Fish implements Renderable {
 		this.setBornTime(System.nanoTime());
 
 		this.setPrice(100);
-		this.setHunger(new Hunger(Food.class, 3, 20));
+		this.setHunger(new Hunger(Food.class, 6, 20));
 		this.setProduction(new Production(this, 0, 5 + Math.random()));
 		this.setIdle(new Idle(this, 15));
 	}
@@ -76,7 +76,7 @@ public class Guppy extends Fish implements Renderable {
 
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
-		this.getHunger().addLastFedRandom(0,1);
+		this.getHunger().addLastFedRandom(0,2);
 		try {
 			if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
 				this.die();

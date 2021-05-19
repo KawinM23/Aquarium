@@ -66,7 +66,7 @@ public class Production {
 				setLastProduceNow();
 				break;
 			case 8:
-				TankManager.add(new Guppy("Guppy", producer.getCenterX(), producer.getCenterY()));
+				TankManager.addBornedFish(new Guppy("Guppy", producer.getCenterX(), producer.getCenterY()));
 				setLastProduceNow();
 				break;
 			case 9:

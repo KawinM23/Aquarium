@@ -2,6 +2,7 @@ package model.base;
 
 import manager.GameManager;
 import manager.PlayerController;
+import manager.StatTracker;
 import manager.TankManager;
 
 public abstract class Money extends Unit {
@@ -10,9 +11,8 @@ public abstract class Money extends Unit {
 
 	public Money(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.setVel(0, 50);
-		this.setWidth(45);
-		this.setHeight(45);
+		this.setVel(0, 35);
+		this.setSize(45, 45);
 
 		this.setValue(0);
 	}
@@ -40,6 +40,7 @@ public abstract class Money extends Unit {
 	public void collected() {
 		TankManager.remove(this);
 		PlayerController.addMoney(value);
+		StatTracker.addMoneyGain(value);
 	}
 
 }

@@ -23,13 +23,14 @@ public class Carnivore extends Fish implements Renderable{
 		// TODO Auto-generated constructor stub
 		this.setWidth(115);
 		this.setHeight(100);
-		this.setMouthPos(10, 50);
-		this.setSpeed(100);
+		this.setMouthPos(20, 70);
+		
+		this.setSpeed(90);
 		this.setVelZero();
 
 		this.setHunger(new Hunger(Guppy.class, 3, 10));
 		this.setProduction(new Production(this, 3, 6));
-		this.setIdle(new Idle(this,15));
+		this.setIdle(new Idle(this,20));
 		this.setPrice(1000);
 	}
 
