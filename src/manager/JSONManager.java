@@ -121,7 +121,6 @@ public class JSONManager {
 		addCurrentPlayer();
 		addOtherPlayer(jsonList);
 
-		System.out.println(playerList);
 		// Write JSON file
 		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
 			// We can write any JSONArray or JSONObject instance to the file
