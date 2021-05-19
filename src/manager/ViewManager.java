@@ -151,6 +151,8 @@ public class ViewManager {
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
 		threadTank.start();
+		
+		StatTracker.clear();
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -170,6 +172,7 @@ public class ViewManager {
 						if (TankManager.getFoodList().size() < PlayerController.getMaxFood()
 								&& PlayerController.buy(5)) {
 							System.out.println("Add Food " + PlayerController.getFoodLevel());
+							StatTracker.addFoodBought();
 							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
 						}
 

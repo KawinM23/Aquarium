@@ -1,5 +1,8 @@
 package model.base;
 
+import manager.StatTracker;
+import manager.TankManager;
+
 public abstract class Monster extends Unit {
 
 	private int health;
@@ -15,6 +18,12 @@ public abstract class Monster extends Unit {
 
 	public abstract void attack();
 	public abstract void getHit();
+	
+	public void defeated() {
+		TankManager.remove(this);
+		System.out.println("Defeat");
+		StatTracker.addMonsterDefeated();
+	}
 
 	public int getHealth() {
 		return health;

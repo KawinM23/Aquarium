@@ -2,6 +2,7 @@ package model.base;
 
 import manager.GameManager;
 import manager.PlayerController;
+import manager.StatTracker;
 import manager.TankManager;
 
 public abstract class Money extends Unit {
@@ -39,6 +40,7 @@ public abstract class Money extends Unit {
 	public void collected() {
 		TankManager.remove(this);
 		PlayerController.addMoney(value);
+		StatTracker.addMoneyGain(value);
 	}
 
 }

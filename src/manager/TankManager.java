@@ -107,6 +107,9 @@ public class TankManager {
 		fishList.add(f);
 		//Random Hunger Fish
 		f.getHunger().addLastFedRandom(2, 4);
+		
+		//Stat Tracker
+		StatTracker.addFishBought();
 	}
 
 	public static boolean addFood(Food f) {

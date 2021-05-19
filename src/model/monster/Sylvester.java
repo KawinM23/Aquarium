@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import manager.PlayerController;
+import manager.StatTracker;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Monster;
@@ -39,8 +40,7 @@ public class Sylvester extends Monster implements Renderable {
 		// TODO Auto-generated method stub
 		if (this.getHealth() <= 0) {
 			// TODO Defeat
-			System.out.println("Defeat");
-			TankManager.remove(this);
+			defeated();
 			return;
 		}
 
@@ -57,6 +57,8 @@ public class Sylvester extends Monster implements Renderable {
 
 		this.move(fr);
 	}
+
+
 
 	@Override
 	public void render(GraphicsContext gc) {
