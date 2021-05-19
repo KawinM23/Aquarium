@@ -50,7 +50,7 @@ public class Production {
 				setLastProduceNow();
 				break;
 			case 4:
-				TankManager.produceMoney(new Diamond("Diamond", producer.getCenterX(), producer.getCenterY(), 1));
+				TankManager.produceMoney(new Diamond("Diamond", producer.getCenterX(), producer.getCenterY() - 20, 1));
 				setLastProduceNow();
 				break;
 			case 5:

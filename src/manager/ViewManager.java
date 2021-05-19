@@ -62,11 +62,11 @@ public class ViewManager {
 		Carnivore c1 = new Carnivore("c1", 300, 200);
 		TankManager.addNewFish(c1);
 
-//		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
-//		TankManager.add(sc1);
+		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
+		TankManager.add(sc1);
 //
-//		Star s1 = new Star("s1", 400, 200);
-//		TankManager.add(s1);
+		Star s1 = new Star("s1", 400, 200);
+		TankManager.add(s1);
 //
 //
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
