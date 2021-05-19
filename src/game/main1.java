@@ -11,7 +11,7 @@ public class main1 extends Application{
 		try {
 			System.out.println("Main1");
 			ViewManager manager = new ViewManager();
-			primaryStage = manager.getTankStage();
+			primaryStage.setScene(manager.getTankScene());
 			
 			
 			

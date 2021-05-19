@@ -52,7 +52,7 @@ public class PlayerController {
 	}
 
 	private static void win() {
-		// TODO Auto-generated method stub
+		// TODO Winning ,Change scene
 		setPlaying(false);
 		ViewManager.getThreadTank().stop();
 		System.out.println("WIN");
