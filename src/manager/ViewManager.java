@@ -95,7 +95,7 @@ public class ViewManager {
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(sv);
 		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 40, 30, 40 });
+		InvasionManager.setInvasionTimeList(new int[] { 20, 30, 40 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		AnchorPane ap = new AnchorPane();

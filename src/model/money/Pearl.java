@@ -12,6 +12,7 @@ public class Pearl extends Money implements Renderable{
 	public Pearl(String name, double posX, double posY) {
 		super(name, posX, posY);
 		
+		this.setSize(52, 52);
 		this.setValue(500);
 	}
 
