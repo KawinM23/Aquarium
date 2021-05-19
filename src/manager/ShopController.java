@@ -224,7 +224,7 @@ public class ShopController {
 				// Goal
 				case 7:
 					if (PlayerController.buy(prices[6])) {
-
+						PlayerController.buyGoal();
 					}
 					break;
 				// Menu

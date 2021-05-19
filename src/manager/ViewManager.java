@@ -35,6 +35,8 @@ public class ViewManager {
 	private Pane mainPane;
 	private Scene tankScene;
 	private Stage tankStage;
+	
+	private static Thread threadTank;
 
 	public ViewManager() {
 		mainPane = new Pane();
@@ -103,12 +105,13 @@ public class ViewManager {
 
 		ShopController.setShopDetail(level1_1);
 		ShopController.setAllButtons(ap);
+		ShopController.prices[6] = 50;
 
 		mainPane.getChildren().add(ap);
 		//////////////////////////
 
 		// TODO Change Code to new Controller
-		Thread threadTank = new Thread(new Runnable() {
+		threadTank = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
@@ -118,6 +121,7 @@ public class ViewManager {
 						if (!PlayerController.isPause()) {
 							InvasionManager.update();
 							TankManager.update();
+							PlayerController.checkPlaying();
 						}
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
@@ -138,7 +142,7 @@ public class ViewManager {
 					Platform.runLater(updater);
 				}
 				if (!PlayerController.isPlaying()) {
-					System.out.println("LOSE");
+
 				}
 			}
 
@@ -191,6 +195,14 @@ public class ViewManager {
 //			}
 //		});
 
+	}
+
+	public static Thread getThreadTank() {
+		return threadTank;
+	}
+
+	public void setThreadTank(Thread threadTank) {
+		ViewManager.threadTank = threadTank;
 	}
 
 	public Stage getTankStage() {

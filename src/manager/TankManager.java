@@ -67,9 +67,6 @@ public class TankManager {
 		}
 		fishList.removeAll(removeFishList);
 		removeFishList.clear();
-		if (fishList.size() == 0) {
-			PlayerController.setPlaying(false);
-		}
 		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
 		}
