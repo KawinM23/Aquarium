@@ -133,17 +133,13 @@ public class ShopController {
 			// TODO Set handlers to be in sync with Unit ShopItem
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				System.out.println("ShopController Time");
-				System.out.println(System.nanoTime()/1.0e9);
 				SoundManager.playClickSound();
 				
-				System.out.println(PlayerController.getMoney());
 				switch (buttonNumber) {
 				// Guppy Fish
 				case 1:
 					if (PlayerController.buy(prices[0])) {
 						TankManager.addNewFish(new Guppy("Guppy", 0, 0));
-						System.out.println(TankManager.getFishList());
 					}
 					break;
 				// Food Type
