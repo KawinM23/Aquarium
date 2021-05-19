@@ -12,8 +12,6 @@ public class Star extends Money implements Renderable{
 	public Star(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
-		this.setWidth(36);
-		this.setHeight(40);
 		
 		this.setValue(40);
 	}

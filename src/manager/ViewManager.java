@@ -60,23 +60,15 @@ public class ViewManager {
 		Guppy g3 = new Guppy("g3", 400, 100);
 		TankManager.addNewFish(g3);
 
-		Food f1 = new Food("f1", 200, 20, 1);
-		TankManager.add(f1);
-
-		Food f2 = new Food("f2", 800, 200, 1);
-		TankManager.add(f2);
-
 		Carnivore c1 = new Carnivore("c1", 300, 200);
 		TankManager.addNewFish(c1);
 
-//		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
-//		TankManager.add(sc1);
+		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
+		TankManager.add(sc1);
 //
-//		Star s1 = new Star("s1", 400, 200);
-//		TankManager.add(s1);
+		Star s1 = new Star("s1", 400, 200);
+		TankManager.add(s1);
 //
-//		SilverCoin svc = new SilverCoin("", 500, 300);
-//		TankManager.add(svc);
 //
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
 		TankManager.addNewFish(gc1);
@@ -162,7 +154,7 @@ public class ViewManager {
 
 			@Override
 			public void handle(MouseEvent event) {
-				if (PlayerController.isPlaying()) {
+				if (PlayerController.isPlaying() && !PlayerController.isPause()) {
 					if (!InvasionManager.isInvaded()) {
 						for (Money m : TankManager.getMoneyList()) {
 							if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {

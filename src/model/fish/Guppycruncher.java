@@ -23,14 +23,15 @@ public class Guppycruncher extends Fish implements Renderable{
 	private boolean isJumping;
 	private final double fallAcc = 120;
 	private final double velYJump = -150;
-	private final double reachHeight = 150;
+	private final double reachHeight = 160;
 	private final double reachDistance = 80;
 
 	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
 
-		this.setWidth(66);
-		this.setHeight(69);
+		this.setSize(100, 100);
+		this.setMouthPos(20, 10);
+		
 		this.setSpeed(40);
 		this.setVelZero();
 

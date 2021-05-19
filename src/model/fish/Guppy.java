@@ -2,6 +2,7 @@ package model.fish;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import manager.GameManager;
 import manager.TankManager;
 import model.Food;
 import model.base.Fish;
@@ -41,7 +42,7 @@ public class Guppy extends Fish implements Renderable {
 		this.setPrice(100);
 		this.setHunger(new Hunger(Food.class, 6, 20));
 		this.setProduction(new Production(this, 0, 5 + Math.random()));
-		this.setIdle(new Idle(this, 15));
+		this.setIdle(new Idle(this, 30));
 	}
 
 	public int getGrowth() {
@@ -76,7 +77,7 @@ public class Guppy extends Fish implements Renderable {
 
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
-		this.getHunger().addLastFedRandom(0,2);
+		this.getHunger().addLastFedRandom(0, 2);
 		try {
 			if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
 				this.die();
@@ -115,6 +116,24 @@ public class Guppy extends Fish implements Renderable {
 				this.getProduction().setProductType(2);
 			}
 		}
+	}
+
+	@Override
+	public void move(int fr) {
+		double deltaTime = 1.0 / fr;
+		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
+		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+		if (getPosX() <= 0) {
+			setPosX(0);
+		} else if (getPosX() + getWidth() >= GameManager.getWIDTH()) {
+			setPosX(GameManager.getWIDTH() - getWidth());
+		}
+		if (getPosY() < GameManager.getTOPHEIGHT() + 40) {
+			setPosY(GameManager.getTOPHEIGHT() + 40);
+		}
+//		else if (getPosY() + getHeight() >= GameManager.getBOTTOMHEIGHT()) {
+//			setPosX(GameManager.getBOTTOMHEIGHT() - getHeight());
+//		}
 	}
 
 	@Override

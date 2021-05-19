@@ -81,17 +81,6 @@ public abstract class Unit {
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
 		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
-		if (getPosX() <= 0) {
-			setPosX(0);
-		} else if (getPosX() + getWidth() >= GameManager.getWIDTH()) {
-			setPosX(GameManager.getWIDTH() - getWidth());
-		}
-		if (getPosY() <= 0) {
-			setPosY(0);
-		}
-//		else if (getPosY() + getHeight() >= GameManager.getBOTTOMHEIGHT()) {
-//			setPosX(GameManager.getBOTTOMHEIGHT() - getHeight());
-//		}
 	}
 
 	public Rectangle2D getBoundary() {

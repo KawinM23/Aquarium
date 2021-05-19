@@ -3,6 +3,7 @@ package model.fish;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
+import manager.InvasionManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
@@ -27,16 +28,47 @@ public class Starcatcher extends Fish implements Renderable{
 
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.setWidth(53);
-		this.setHeight(66);
+		this.setSize(80, 100);
 		this.setSpeed(40);
 		this.setVelZero();
 		this.setGrounded(false);
 
-		this.setHunger(new Hunger(Star.class, 3, 10)); // TODO Hunger 10sec
+		this.setHunger(new Hunger(Star.class, 10, 20)); // TODO Hunger 10sec
 		this.setProduction(new Production(this, 4, 0));
 		this.setIdle(new Idle(this,20));
 		this.setPrice(750);
+	}
+	
+	@Override
+	public void update(int fr) {
+		if (!InvasionManager.isInvaded()) {
+			switch (getHunger().checkHunger()) {
+			case 0:
+				// idle
+				if (isGrounded) {
+					this.getIdle().checkIdleX();
+				}
+				break;
+			case 1:
+				// find food
+				this.findFood();
+				break;
+			case 2:
+				// Very Hungry TODO ChangePic
+				this.findFood();
+				break;
+			case 3:
+				// die
+				this.die();
+				return;
+			}
+
+			this.getProduction().checkProduce();
+		} else {
+			getIdle().checkIdleX();
+		}
+		this.move(fr);
+		this.checkFacingLeft();
 	}
 
 	public void findFood() {
@@ -84,6 +116,8 @@ public class Starcatcher extends Fish implements Renderable{
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
 		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
 			setGrounded(false);
+		}else if(getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()){
+			setGrounded(true);
 		}
 		if (!isGrounded) {
 			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
