@@ -89,7 +89,8 @@ public class Starcatcher extends Fish implements Renderable{
 			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
 			this.setVelY(getVelY() + (fallAcc * deltaTime));
 			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
-				this.getIdle().resetIdle(1);
+				this.getIdle().randomVel();
+				this.getIdle().setNextIdleRandom(1, 2);
 				this.setVelX(getVelX() * 0.8);
 				this.getIdle().setVelX(getVelX());
 				this.setVelY(0);

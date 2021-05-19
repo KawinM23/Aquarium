@@ -53,16 +53,6 @@ public class Idle {
 		this.setNextIdle(System.nanoTime() + randomTime);
 	}
 
-	public void resetIdle() {
-		randomVel();
-		this.nextIdle = (long) (System.nanoTime() + 7e9);
-	}
-
-	public void resetIdle(double time) {
-		randomVel();
-		this.nextIdle = (long) (System.nanoTime() + (time * 1e9));
-	}
-
 	public void eatFood() {
 		setVelX(unit.getVelX() * 0.2);
 		setVelY(unit.getVelY() * 0.2);
@@ -75,7 +65,7 @@ public class Idle {
 		this.nextIdle = (long) (System.nanoTime() + 1e9);
 	}
 
-	private void randomVel() {
+	public void randomVel() {
 		double angle = Math.random() * 360;
 		this.setVelX(Math.cos(angle) * getSpeed());
 		this.setVelY(Math.sin(angle) * getSpeed());
