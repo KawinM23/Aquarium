@@ -62,6 +62,12 @@ public class SceneController {
 		stage.setScene(scene);
 		setCurrentSceneName(name);
 	}
+	
+	public static void changeScene(Scene scene) {
+		stage.setScene(scene);
+		setCurrentSceneName("Playing");
+	}
+	
 
 	public static boolean sceneExist(String name) {
 		for (int i = 0; i < nameList.size(); i++) {

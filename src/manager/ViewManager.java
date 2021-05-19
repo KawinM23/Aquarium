@@ -33,7 +33,7 @@ import model.monster.Sylvester;
 
 public class ViewManager {
 	private Pane mainPane;
-	private Scene tankScene;
+	private static Scene tankScene;
 	private Stage tankStage;
 	
 	private static Thread threadTank;
@@ -199,6 +199,10 @@ public class ViewManager {
 //		});
 
 	}
+	
+	public static void setScene(Stage stage) {
+		stage.setScene(getStaticTankScene());
+	}
 
 	public static Thread getThreadTank() {
 		return threadTank;
@@ -213,6 +217,10 @@ public class ViewManager {
 	}
 
 	public Scene getTankScene() {
+		return tankScene;
+	}
+	
+	public static Scene getStaticTankScene() {
 		return tankScene;
 	}
 

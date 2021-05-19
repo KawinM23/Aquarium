@@ -16,6 +16,7 @@ import javafx.scene.text.Font;
 import manager.GameManager;
 import manager.SceneController;
 import manager.SoundManager;
+import manager.ViewManager;
 
 public class menu2 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
@@ -190,6 +191,25 @@ public class menu2 {
 								public void run() {
 									// TODO Auto-generated method stub
 									SceneController.changeScene("Tank4");
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+				} else if (buttonText.equals("Tank 1-1")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									ViewManager manager = new ViewManager();
+									SceneController.changeScene(manager.getTankScene());
 								}
 							});
 
