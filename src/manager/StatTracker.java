@@ -27,6 +27,7 @@ public class StatTracker {
 		JSONManager.addFoodBought(getFoodBought());
 		JSONManager.addMonsterDefeated(getMonsterDefeated());
 		JSONManager.writeJSON();
+		JSONManager.readJSON();
 	}
 
 	public static void clear() {

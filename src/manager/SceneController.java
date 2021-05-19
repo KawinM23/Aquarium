@@ -10,8 +10,8 @@ import testing.menu1;
 import testing.menu2;
 
 public class SceneController {
-	private static ArrayList<Scene> sceneList = new ArrayList();
-	private static ArrayList<String> nameList = new ArrayList();
+	private static ArrayList<Scene> sceneList = new ArrayList<Scene>();
+	private static ArrayList<String> nameList = new ArrayList<String>();
 	private static String currentSceneName;
 	private static Stage stage;
 	private static String[] startingMenuTexts = { "Start", "Undefined", "Undefined", "Undefined", "Undefined",
