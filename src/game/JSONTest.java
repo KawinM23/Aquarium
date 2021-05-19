@@ -16,7 +16,7 @@ public class JSONTest {
 //		JSONManager.addToPlayerList("MrTest1", false, 1, 1);
 //		JSONManager.setLevel(1);
 //		JSONManager.setCurrentPlayer(false);
-		JSONManager.changePlayer("TERRA");
+//		JSONManager.changePlayer("TERRA");
 		
 		
 

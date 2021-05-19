@@ -17,8 +17,8 @@ public class JSONManager {
 
 	private static String playerName = null;
 	private static boolean currentPlayer = true;
-	private static long tank = 0;
-	private static long level = 0;
+	private static int tank = 0;
+	private static int level = 0;
 
 	private static int moneyGained;
 	private static int fishBought;
@@ -59,20 +59,27 @@ public class JSONManager {
 		if (playerObject != null) {
 			// Get employee first name
 			String eplayerName = (String) playerObject.get("playerName");
-
 			boolean ecurrentPlayer = (boolean) playerObject.get("currentPlayer");
 
-			// Get employee last name
 			long etank = (long) playerObject.get("tank");
-
-			// Get employee website name
 			long elevel = (long) playerObject.get("level");
+			long emoney = (long) playerObject.get("moneyGained");
+			long efish = (long) playerObject.get("fishBought");
+			long eplaytime = (long) playerObject.get("playTime");
+			long efood = (long) playerObject.get("foodBought");
+			long emonster = (long) playerObject.get("monsterDefeated");
 
 			if (ecurrentPlayer) {
 				playerName = eplayerName;
 				currentPlayer = ecurrentPlayer;
-				tank = etank;
-				level = elevel;
+				tank = (int) etank;
+				level = (int) elevel;
+				moneyGained = (int) emoney;
+				fishBought = (int) efish;
+				playTime = eplaytime;
+				foodBought = (int) efood;
+				monsterDefeated = (int) emonster;
+
 			} else {
 				jsonList.add(player);
 			}
@@ -130,7 +137,7 @@ public class JSONManager {
 	@SuppressWarnings("unchecked")
 	public static void addCurrentPlayer() {
 		JSONObject playerDetails = new JSONObject();
-		if(playerName == null) {
+		if (playerName == null) {
 			return;
 		}
 		playerDetails.put("playerName", playerName);
@@ -193,7 +200,7 @@ public class JSONManager {
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 		playerList.add(playerObject);
-		
+
 		return true;
 	}
 
@@ -229,19 +236,19 @@ public class JSONManager {
 		JSONManager.playerName = playerName;
 	}
 
-	public static long getTank() {
+	public static int getTank() {
 		return tank;
 	}
 
-	public static void setTank(long tank) {
+	public static void setTank(int tank) {
 		JSONManager.tank = tank;
 	}
 
-	public static long getLevel() {
+	public static int getLevel() {
 		return level;
 	}
 
-	public static void setLevel(long level) {
+	public static void setLevel(int level) {
 		JSONManager.level = level;
 	}
 
@@ -277,12 +284,20 @@ public class JSONManager {
 		JSONManager.moneyGained = moneyGained;
 	}
 
+	public static void addMoneyGained(int moneyGained) {
+		JSONManager.moneyGained = JSONManager.moneyGained + moneyGained;
+	}
+
 	public static int getFishBought() {
 		return fishBought;
 	}
 
 	public static void setFishBought(int fishBought) {
 		JSONManager.fishBought = fishBought;
+	}
+
+	public static void addFishBought(int fishBought) {
+		JSONManager.fishBought = JSONManager.fishBought + fishBought;
 	}
 
 	public static long getPlayTime() {
@@ -293,6 +308,10 @@ public class JSONManager {
 		JSONManager.playTime = playTime;
 	}
 
+	public static void addPlayTime(long duration) {
+		JSONManager.playTime = JSONManager.playTime + duration;
+	}
+
 	public static int getFoodBought() {
 		return foodBought;
 	}
@@ -301,12 +320,20 @@ public class JSONManager {
 		JSONManager.foodBought = foodBought;
 	}
 
+	public static void addFoodBought(int foodBought) {
+		JSONManager.foodBought = JSONManager.foodBought + foodBought;
+	}
+
 	public static int getMonsterDefeated() {
 		return monsterDefeated;
 	}
 
 	public static void setMonsterDefeated(int monsterDefeated) {
 		JSONManager.monsterDefeated = monsterDefeated;
+	}
+
+	public static void addMonsterDefeated(int monsterDefeated) {
+		JSONManager.monsterDefeated = JSONManager.monsterDefeated + monsterDefeated;
 	}
 
 }
