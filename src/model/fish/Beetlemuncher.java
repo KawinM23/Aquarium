@@ -24,8 +24,9 @@ public class Beetlemuncher extends Fish implements Renderable{
 
 	public Beetlemuncher(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.setWidth(67);
-		this.setHeight(74);
+		this.setSize(100, 110);
+		this.setMouthPos(15, 80);
+		
 		this.setSpeed(100);
 		this.setVelZero();
 

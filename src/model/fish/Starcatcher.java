@@ -29,13 +29,15 @@ public class Starcatcher extends Fish implements Renderable{
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
 		this.setSize(80, 100);
-		this.setSpeed(40);
+		this.setMouthPos(15, 60);
+		
+		this.setSpeed(60);
 		this.setVelZero();
 		this.setGrounded(false);
 
-		this.setHunger(new Hunger(Star.class, 10, 20)); // TODO Hunger 10sec
+		this.setHunger(new Hunger(Star.class, 10, 20)); // Hunger 10sec
 		this.setProduction(new Production(this, 4, 0));
-		this.setIdle(new Idle(this,20));
+		this.setIdle(new Idle(this,30));
 		this.setPrice(750);
 	}
 	

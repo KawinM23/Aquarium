@@ -14,7 +14,7 @@ import properties.Renderable;
 
 public class Guppy extends Fish implements Renderable {
 
-	private boolean isStar;
+	private boolean isStar; // TODO StarGuppy
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 	private long bornTime;
 
@@ -78,7 +78,8 @@ public class Guppy extends Fish implements Renderable {
 	public void feed(Unit nearestFood) {
 		this.getHunger().setLastFedNow();
 		this.getHunger().addLastFedRandom(0, 2);
-		try {
+
+		if (nearestFood instanceof Food) {
 			if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
 				this.die();
 				return;
@@ -98,9 +99,6 @@ public class Guppy extends Fish implements Renderable {
 				break;
 			}
 			TankManager.remove(nearestFood);
-		} catch (Exception e) {
-			// TODO Catch Not Food
-			e.printStackTrace();
 		}
 		if (!isStar) {
 			if (this.growth >= 100 && this.growth < 200 && getProduction().getProductType() != 1) {
