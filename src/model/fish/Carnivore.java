@@ -12,10 +12,11 @@ import properties.Renderable;
 
 public class Carnivore extends Fish implements Renderable{
 	
-	private static final Image CarnivoreImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image CarnivoreLeftImage = new Image(ClassLoader.getSystemResource("CarnivoreLeft.png").toString());
+	private static final Image CarnivoreRightImage = new Image(ClassLoader.getSystemResource("CarnivoreRight.png").toString());
 
 	public Image getImage() {
-		return CarnivoreImage;
+		return CarnivoreLeftImage;
 	}
 	
 	public Carnivore(String name, double posX, double posY) {
@@ -23,7 +24,7 @@ public class Carnivore extends Fish implements Renderable{
 		// TODO Auto-generated constructor stub
 		this.setWidth(115);
 		this.setHeight(100);
-		this.setMouthPos(20, 70);
+		this.setMouthPos(20, 75);
 		
 		this.setSpeed(90);
 		this.setVelZero();
@@ -72,9 +73,9 @@ public class Carnivore extends Fish implements Renderable{
 	@Override
 	public void render(GraphicsContext gc) {
 		if (isFacingLeft()) {
-			gc.drawImage(CarnivoreImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(CarnivoreLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
-			gc.drawImage(CarnivoreImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(CarnivoreRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}
 
