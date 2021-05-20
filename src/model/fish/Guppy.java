@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.GameManager;
+import manager.SoundManager;
 import manager.TankManager;
 import model.Food;
 import model.base.Fish;
@@ -77,6 +78,9 @@ public class Guppy extends Fish implements Renderable {
 	}
 
 	public void feed(Unit nearestFood) {
+		// Play Sound Effect
+		SoundManager.playEatSound();
+		
 		this.getHunger().setLastFedNow();
 		this.getHunger().addLastFedRandom(0, 2);
 
