@@ -22,6 +22,7 @@ public class Gus extends Monster implements Renderable {
 
 		this.setSize(100, 100);
 		this.setInner(20, 20);
+		this.setSpeed(60);
 
 		this.setHealth(300);
 		this.setHunger(new Hunger(0.1, 0));
@@ -62,7 +63,7 @@ public class Gus extends Monster implements Renderable {
 	private void eat(Unit nearestFood) {
 		TankManager.remove(nearestFood);
 		if (nearestFood instanceof Fish) {
-			decreaseHealth(20);
+			decreaseHealth(40);
 		} else if (nearestFood instanceof Food) {
 			if (((Food) nearestFood).getFoodType() == 2) {
 				decreaseHealth(100);
@@ -80,6 +81,7 @@ public class Gus extends Monster implements Renderable {
 				}
 			}
 		}
+		getHunger().setLastFedNow();
 
 	}
 
