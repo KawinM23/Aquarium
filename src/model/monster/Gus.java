@@ -19,7 +19,7 @@ public class Gus extends Monster implements Renderable {
 	public Gus(String name, double posX, double posY) {
 		super(name, posX, posY);
 
-		this.setSize(100, 100);
+		this.setSize(150, 200);
 		this.setInner(20, 20);
 		this.setSpeed(60);
 

@@ -28,6 +28,7 @@ public class JSONManager {
 
 	private static JSONArray newPlayerList = new JSONArray();
 	
+	private static ArrayList<String> jsonNameList = new ArrayList<String>();
 	private static ArrayList<JSONObject> jsonList = new ArrayList<JSONObject>();
 
 	@SuppressWarnings("unchecked")
@@ -103,6 +104,7 @@ public class JSONManager {
 				SoundManager.setSoundVolumeLevel((int) eeffect);
 
 			} else {
+				jsonNameList.add(eplayerName);
 				jsonList.add(player);
 			}
 		}
@@ -122,7 +124,6 @@ public class JSONManager {
 			}
 		}
 		writeJSON();
-		readJSON();
 	}
 
 	public static void removePlayer(String playerName) {
@@ -153,9 +154,13 @@ public class JSONManager {
 			file.write(newPlayerList.toJSONString());
 			file.flush();
 			newPlayerList.clear();
+			jsonNameList.clear();
+			jsonList.clear();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		readJSON();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -375,6 +380,14 @@ public class JSONManager {
 
 	public static void addMonsterDefeated(int monsterDefeated) {
 		JSONManager.monsterDefeated = JSONManager.monsterDefeated + monsterDefeated;
+	}
+
+	public static ArrayList<String> getJsonNameList() {
+		return jsonNameList;
+	}
+
+	public static void setJsonNameList(ArrayList<String> jsonNameList) {
+		JSONManager.jsonNameList = jsonNameList;
 	}
 
 }
