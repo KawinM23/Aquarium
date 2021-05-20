@@ -19,9 +19,6 @@ public class Balrog extends Monster implements Renderable {
 
 	private Hunger hunger;
 
-	private int innerX = 20;
-	private int innerY = 20;
-
 	public Balrog(String name, double posX, double posY) {
 		super(name, posX, posY);
 
@@ -52,7 +49,7 @@ public class Balrog extends Monster implements Renderable {
 			break;
 		}
 		for (Fish f : TankManager.getFishList()) {
-			if (this.getInnerHitbox(innerX, innerY).contains(f.getCenterX(), f.getCenterY())) {
+			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(f.getCenterX(), f.getCenterY())) {
 				// eat & levelup
 				System.out.println(this.getName() + " eat " + f.getName());
 				this.eat(f,0);
@@ -73,7 +70,7 @@ public class Balrog extends Monster implements Renderable {
 				}
 			}
 			// Check Food position and Fish
-			if (this.getInnerHitbox(innerX, innerY).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
+			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
 				// eat & levelup
 				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish,1);
@@ -106,7 +103,7 @@ public class Balrog extends Monster implements Renderable {
 	public void render(GraphicsContext gc) {
 		gc.setStroke(new Color(1, 0, 0, 1));
 		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.strokeRect(getPosX() + innerX, getPosY() + innerY, getWidth() - (2 * innerX), getHeight() - (2 * innerY));
+		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()), getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
 			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
@@ -128,8 +125,6 @@ public class Balrog extends Monster implements Renderable {
 		this.hunger = hunger;
 	}
 	
-	public Rectangle2D getInnerHitbox(double x, double y) {
-		return new Rectangle2D(getPosX() + x, getPosY() + y, getWidth() - (2*x), getHeight() - (2*y));
-	}
+
 
 }

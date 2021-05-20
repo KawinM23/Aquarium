@@ -21,9 +21,6 @@ public class Sylvester extends Monster implements Renderable {
 
 	private Hunger hunger;
 
-	private final int innerX = 40;
-	private final int innerY = 40;
-
 	public Sylvester(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
@@ -65,7 +62,7 @@ public class Sylvester extends Monster implements Renderable {
 
 		gc.setStroke(new Color(1, 0, 0, 1));
 		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.strokeRect(getPosX() + innerX, getPosY() + innerY, getWidth() - (2 * innerX), getHeight() - (2 * innerY));
+		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()), getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
 			gc.drawImage(SylvesterImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
@@ -85,7 +82,7 @@ public class Sylvester extends Monster implements Renderable {
 				}
 			}
 			// Check Food position and Fish
-			if (this.getInnerHitbox(innerX, innerY).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
+			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
 				// eat & levelup
 				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish);
@@ -111,10 +108,6 @@ public class Sylvester extends Monster implements Renderable {
 		// TODO Onclick Mouse -> decrease Hp
 		System.out.println("Hit Monster " + getHealth());
 		this.decreaseHealth(PlayerController.getGunDamage());
-	}
-
-	public Rectangle2D getInnerHitbox(double x, double y) {
-		return new Rectangle2D(getPosX() + x, getPosY() + y, getWidth() - (2 * x), getPosY() + getHeight() - (2 * y));
 	}
 
 	public Hunger getHunger() {
