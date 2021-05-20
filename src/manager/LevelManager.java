@@ -10,7 +10,6 @@ import model.fish.Guppy;
 import model.monster.Sylvester;
 
 public class LevelManager {
-	// TODO
 	// Store Each Level Information
 	// Level,StartMoney,StartFish,ShopDetail,InvasionDetail
 
@@ -68,10 +67,12 @@ public class LevelManager {
 
 		level.setGoalPrice(500);
 		
-		//TODO Invasion
+		//Invasion
 		Sylvester sv = new Sylvester("Sylvester", 0, 0);
 		ArrayList<Monster> wave1 = new ArrayList<Monster>();
 		wave1.add(sv);
+		
+		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 		
 		int[] invasionTime = new int[]{30,40,50};

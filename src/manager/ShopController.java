@@ -60,6 +60,7 @@ public class ShopController {
 	public static void setShopDetail(Level level) {
 		shopItems = level.getShopItem();
 		// TODO Get details from Level and LevelManager instead
+		//TODO NULL POINTER of getshop
 		prices = new int[] { getUnitPrice(level.getShopItem()[0]), 200, 300, getUnitPrice(level.getShopItem()[1]),
 				getUnitPrice(level.getShopItem()[2]), 1000, level.getGoalPrice() };
 		// TODO Get Gun Images Later (Right now is null) + Get Goal Egg Image

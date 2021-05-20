@@ -6,6 +6,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import manager.JSONManager;
+import manager.LevelManager;
 import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
@@ -17,9 +18,13 @@ public class main0 extends Application {
 //			ViewManager manager = new ViewManager();
 //			primaryStage.setScene(manager.getTankScene());
 			JSONManager.readJSON();
+			
 			SceneController.setStage(primaryStage);
 			SceneController.initializeScenes();
 			SceneController.changeScene("MainMenu");
+			
+			LevelManager.loadAllLevel();
+			
 			SoundManager.setBgm(0);
 			SoundManager.playBgm();
 

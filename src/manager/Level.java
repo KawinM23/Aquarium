@@ -20,7 +20,7 @@ public class Level {
 	private int goalPrice;
 
 	private ArrayList<ArrayList<Monster>> invasionMonster;
-	private int[] invasionTime;
+	private int[] invasionTime; //[First wave,second wave,min,max]
 
 	public Level(String mode, int tankId, int levelId) {
 		super();

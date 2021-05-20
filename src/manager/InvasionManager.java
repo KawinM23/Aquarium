@@ -1,11 +1,14 @@
 package manager;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
 import model.base.Monster;
 
 public class InvasionManager {
+	private static Random rand = new Random();
+
 	private static boolean isInvaded = false;
 	private static boolean warning = false;
 	private static boolean showWarning = false;
@@ -47,16 +50,25 @@ public class InvasionManager {
 				for (Monster m : invasionList.get(invasion)) {
 					TankManager.add(m);
 				}
+			} else {
+				for (Monster m : invasionList.get(invasionList.size() - 1)) {
+					TankManager.add(m);
+				}
 			}
 		} else if (isInvaded && TankManager.getMonsterCount() == 0) {
 			System.out.println("END INVASION");
 			setInvaded(false);
 			setInvasion(invasion + 1);
 			TankManager.endInvasion(getInvasionDuration());
-			if (invasion < invasionTimeList.length) {
+			if (invasion < invasionList.size()) {
 				setInvasionTime((long) (System.nanoTime() + (invasionTimeList[invasion] * 1e9)));
 			} else {
-				setInvasionTime((long) (System.nanoTime() + (invasionTimeList[invasionTimeList.length - 1] * 1e9)));
+				// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+				double min = invasionTimeList[invasionTimeList.length - 2];
+				double max = invasionTimeList[invasionTimeList.length - 1];
+				long randomTime = (long) ((min + ((max - min) * rand.nextDouble())) * 1.0e9);
+
+				setInvasionTime((long) (System.nanoTime() + randomTime));
 			}
 		}
 	}
