@@ -30,7 +30,7 @@ import model.money.Beetle;
 import model.money.SilverCoin;
 import model.money.Star;
 import model.monster.Sylvester;
-import testing.pause1;
+import template.pause1;
 
 public class ViewManager {
 	private Pane mainPane;

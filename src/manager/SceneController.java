@@ -6,8 +6,8 @@ import java.util.HashMap;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import testing.menu1;
-import testing.menu2;
+import template.menu1;
+import template.menu2;
 
 public class SceneController {
 	private static ArrayList<Scene> sceneList = new ArrayList<Scene>();
