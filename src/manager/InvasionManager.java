@@ -108,6 +108,14 @@ public class InvasionManager {
 	public static void setInvasionTime(long invasionTime) {
 		InvasionManager.invasionTime = invasionTime;
 	}
+	
+	public static void setStartInvasionTime() {
+		InvasionManager.invasionTime = (long) (System.nanoTime() + (invasionTimeList[0] * 1.0e9));
+	}
+
+	public static void setNextInvasionTime(int nextDuration) {
+		InvasionManager.invasionTime = (long) (System.nanoTime() + (nextDuration * 1.0e9));
+	}
 
 	public static void addInvasionTime(long duration) {
 		InvasionManager.invasionTime = invasionTime + duration;

@@ -231,6 +231,7 @@ public class ViewManager {
 
 		InvasionManager.setInvasionList(level.getInvasionMonster());
 		InvasionManager.setInvasionTimeList(level.getInvasionTime());
+		InvasionManager.setStartInvasionTime();
 
 		PlayerController.setPlaying(true);
 		threadTank.start();

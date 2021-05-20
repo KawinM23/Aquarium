@@ -37,7 +37,7 @@ public class LevelManager {
 		startingFishList.add(new Guppy("Guppy", 0, 0));
 		level.setStartingFish(startingFishList);
 
-		Unit[] shopItem = new Unit[4];
+		Unit[] shopItem = new Unit[3];
 		shopItem[0] = new Guppy("Guppy", 0, 0);
 		shopItem[1] = null;
 		shopItem[2] = null; 
@@ -57,10 +57,11 @@ public class LevelManager {
 		startingFishList.add(new Guppy("Guppy", 0, 0));
 		level.setStartingFish(startingFishList);
 
-		Unit[] shopItem = new Unit[4];
+		Unit[] shopItem = new Unit[3];
 		shopItem[0] = new Guppy("Guppy", 0, 0);
 		shopItem[1] = new Carnivore("Carnivore", 0, 0);
 		shopItem[2] = null; 
+		level.setShopItem(shopItem);
 
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(false);
