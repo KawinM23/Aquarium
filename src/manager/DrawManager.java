@@ -33,7 +33,7 @@ public class DrawManager {
 		gc.setFill(Color.LIMEGREEN);
 		gc.setStroke(Color.BLACK);
 		// set font
-		Font theFont = Font.font("Times New Roman", FontWeight.LIGHT, fontSize);
+		Font theFont = Font.font("Comic Sans MS", FontWeight.LIGHT, fontSize);
 		gc.setFont(theFont);
 		// text,x,y,maxWidth - maximum width the text string can have.
 		gc.fillText(text, positionX, positionY, width);

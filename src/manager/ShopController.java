@@ -290,7 +290,7 @@ public class ShopController {
 
 			DrawManager.drawText(gc, priceText, 18,
 					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
-					(int) ((buttonDetail[i][3] * 1.5) + 16), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
+					(int) ((buttonDetail[i][3] * 1.5) + 19), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
 		}
 
 		// Draw Max Food Number

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import template.Credits;
 import template.menu1;
 import template.menu2;
 
@@ -14,7 +15,7 @@ public class SceneController {
 	private static ArrayList<String> nameList = new ArrayList<String>();
 	private static String currentSceneName;
 	private static Stage stage;
-	private static String[] startingMenuTexts = { "Start", "Undefined", "Undefined", "Undefined", "Undefined",
+	private static String[] startingMenuTexts = { "Start", "Undefined", "Undefined", "Undefined", "Credits",
 			"Music: Normal", "Sound: Normal", "Quit" };
 	private static Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
 	private static String[] tankLevelTexts = { "Tank 1", "Tank 2", "Tank 3", "Tank 4", "Back" };
@@ -27,6 +28,8 @@ public class SceneController {
 	private static Scene tankLevel2Scene = (new menu2(tankLevel2Texts)).getScene();
 	private static Scene tankLevel3Scene = (new menu2(tankLevel3Texts)).getScene();
 	private static Scene tankLevel4Scene = (new menu2(tankLevel4Texts)).getScene();
+	private static String[] creditsTexts = { "Back" };
+	private static Scene creditsScene = (new Credits(creditsTexts)).getScene();
 
 	// Declare a primary stage to change scenes in
 	public SceneController() {
@@ -39,6 +42,7 @@ public class SceneController {
 		addScene("Tank2", tankLevel2Scene);
 		addScene("Tank3", tankLevel3Scene);
 		addScene("Tank4", tankLevel4Scene);
+		addScene("Credits", creditsScene);
 
 	}
 
@@ -62,12 +66,11 @@ public class SceneController {
 		stage.setScene(scene);
 		setCurrentSceneName(name);
 	}
-	
+
 	public static void changeScene(Scene scene) {
 		stage.setScene(scene);
 		setCurrentSceneName("Playing");
 	}
-	
 
 	public static boolean sceneExist(String name) {
 		for (int i = 0; i < nameList.size(); i++) {
@@ -81,13 +84,15 @@ public class SceneController {
 		if (getCurrentSceneName().equals("Tank1") || getCurrentSceneName().equals("Tank2")
 				|| getCurrentSceneName().equals("Tank3") || getCurrentSceneName().equals("Tank4")) {
 			return true;
-		} return false;
+		}
+		return false;
 	}
-	
+
 	public static boolean isAtAllTank() {
 		if (getCurrentSceneName().equals("TankAll")) {
 			return true;
-		} return false;
+		}
+		return false;
 	}
 
 	public static ArrayList<Scene> getSceneList() {

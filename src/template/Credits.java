@@ -18,19 +18,18 @@ import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
 
-public class menu2 {
+public class Credits {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
 	// THIS IS MEASURED IN 940 x 720 PIXELS
-	final double[][] buttonDetail = { { 553, 68, 899, 157, 20, 40 }, { 557, 203, 897, 291, 20, 40 },
-			{ 563, 338, 898, 423, 20, 40 }, { 564, 460, 903, 543, 20, 40 }, { 578, 597, 882, 681, 40, 40 } };
+	final double[][] buttonDetail = { { 578, 597, 882, 681, 40, 40 } };
 
-	final String IMAGE_PATH = ClassLoader.getSystemResource("menu2_editted3.jpg").toString();
+	final String IMAGE_PATH = ClassLoader.getSystemResource("Credits.jpg").toString();
 	Scene scene;
 	String[] buttonTexts;
 	// ClassLoader.getSystemResource("").toString();
 
-	public menu2(String[] buttonTexts) {
+	public Credits(String[] buttonTexts) {
 		this.buttonTexts = buttonTexts;
 		AnchorPane root = new AnchorPane();
 		this.scene = new Scene(root);
@@ -73,7 +72,7 @@ public class menu2 {
 			}
 		});
 
-		Font font = new Font("Arial Black",position[5]);
+		Font font = new Font("Arial Black", position[5]);
 		button.setFont(font);
 
 		AnchorPane.setTopAnchor(button, position[1]);
@@ -112,11 +111,9 @@ public class menu2 {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									if (SceneController.isAtAllTank()) {
-										SceneController.changeScene("MainMenu");
-									} else if (SceneController.isAtNumberTank()) {
-										SceneController.changeScene("TankAll");
-									}
+
+									SceneController.changeScene("MainMenu");
+
 								}
 							});
 
@@ -229,6 +226,7 @@ public class menu2 {
 			}
 		});
 		button.setOnMouseReleased(new EventHandler<MouseEvent>() {
+
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				if (button.isHover()) {
@@ -240,6 +238,7 @@ public class menu2 {
 				}
 
 			}
+
 		});
 
 		anchorpane.getChildren().addAll(button);
