@@ -18,6 +18,7 @@ public abstract class Monster extends Unit {
 
 	public abstract void attack();
 	public abstract void getHit();
+	public abstract void continuePause(long duration);
 	
 	public void defeated() {
 		TankManager.remove(this);

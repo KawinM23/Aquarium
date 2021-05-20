@@ -80,11 +80,7 @@ public class ViewManager {
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
 
-		SoundManager test = new SoundManager();
 
-		PlayerController.setPlaying(true);
-		PlayerController.setMaxFood(3);
-		PlayerController.setMoney(200);
 
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
@@ -93,7 +89,13 @@ public class ViewManager {
 		InvasionManager.setInvasionTimeList(new int[] { 20, 30, 40 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
+		
+		////////////////////////////Setting
 		AnchorPane ap = new AnchorPane();
+		
+		PlayerController.setPlaying(true);
+		PlayerController.setMaxFood(3);
+		PlayerController.setMoney(200);
 
 		Level level1_1 = new Level("1_1", 1, 1);
 		LevelManager.loadLevel1_1(level1_1);
@@ -130,11 +132,12 @@ public class ViewManager {
 
 						TankManager.render(gc);
 						ShopController.drawShop(gc);
+						InvasionManager.render(gc);
 						if (PlayerController.isPause()) {
 							pause1.drawPane(gc);
 							pause1.showButtons();
 						}
-						InvasionManager.render(gc);
+						
 					}
 				};
 
@@ -172,7 +175,11 @@ public class ViewManager {
 							}
 						}
 						// Add Food at mouse position
-						if (TankManager.getFoodList().size() < PlayerController.getMaxFood()
+						if (PlayerController.isPotion()) {
+							StatTracker.addFoodBought();
+							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 2));
+							PlayerController.setPotion(false);
+						} else if (TankManager.getFoodList().size() < PlayerController.getMaxFood()
 								&& PlayerController.buy(5)) {
 							System.out.println("Add Food " + PlayerController.getFoodLevel());
 							StatTracker.addFoodBought();

@@ -117,4 +117,18 @@ public class Sylvester extends Monster implements Renderable {
 		return new Rectangle2D(getPosX() + x, getPosY() + y, getPosX() + getWidth() - x, getPosY() + getHeight() - y);
 	}
 
+	public Hunger getHunger() {
+		return hunger;
+	}
+
+	public void setHunger(Hunger hunger) {
+		this.hunger = hunger;
+	}
+
+	@Override
+	public void continuePause(long duration) {
+		// TODO Auto-generated method stub
+		this.getHunger().addLastFed(duration);
+	}
+
 }

@@ -199,6 +199,10 @@ public class TankManager {
 		for (Money m : moneyList) {
 			m.addDisappearTime(duration);
 		}
+
+		for (Monster m : monsterList) {
+			m.continuePause(duration);
+		}
 		InvasionManager.addInvasionTime(duration);
 	}
 
