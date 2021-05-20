@@ -251,6 +251,19 @@ public class JSONManager {
 			newPlayerList.add(eachJSONObj);
 		}
 	}
+	
+	public static boolean isNameExist(String name) {
+		if(name.equals(playerName)) {
+			return true;
+		}
+		for (JSONObject eachJSONobj : jsonList) {
+			JSONObject eachPlayer = (JSONObject) eachJSONobj.get("player");
+			if (eachPlayer.get("playerName").equals(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public static void nextLevel() {
 		if (level < 4) {
