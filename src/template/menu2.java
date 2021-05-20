@@ -201,12 +201,17 @@ public class menu2 {
 					});
 					thread.start();
 				} else if (buttonText.equals("Tank 1-1")) {
+					SoundManager.stopBgm();
 					Thread thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
+									//TODO Change Bgm later
+									SoundManager.setBgm(SoundManager.getMainmenubgmplayer());
+									SoundManager.playBgm();
+									
 									ViewManager manager = new ViewManager();
 									manager.startLevel(1,1);
 									SceneController.changeScene(manager.getTankScene());

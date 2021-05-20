@@ -71,7 +71,7 @@ public class menu1 {
 //			button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				System.out.println("Pressed " + buttonText);
+				System.out.println("Pressed " + button.getText());
 			}
 		});
 
@@ -117,7 +117,6 @@ public class menu1 {
 									SceneController.changeScene("TankAll");
 								}
 							});
-							
 
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
@@ -135,7 +134,7 @@ public class menu1 {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									
+
 									System.exit(0);
 								}
 							});
@@ -167,14 +166,17 @@ public class menu1 {
 					});
 					thread.start();
 
-				} else if (buttonText.equals("Tank 3")) {
+				} else if (((button.getText()).substring(0, 7)).equals("Music: ")) {
+					System.out.println("Came in Music");
 					Thread thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank3");
+									SoundManager.nextBgmVolumeLevel();
+									button.setText("Music: "
+											+ SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel()));
 								}
 							});
 

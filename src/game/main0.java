@@ -17,7 +17,8 @@ public class main0 extends Application {
 			SceneController.setStage(primaryStage);
 			SceneController.initializeScenes();
 			SceneController.changeScene("MainMenu");
-			SoundManager.playMainMenuBgm();
+			SoundManager.setBgm(SoundManager.getMainmenubgmplayer());
+			SoundManager.playBgm();
 			
 			primaryStage.setTitle("AQUARIUM");
 			primaryStage.setResizable(false);
