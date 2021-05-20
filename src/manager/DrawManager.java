@@ -39,4 +39,12 @@ public class DrawManager {
 		gc.fillText(text, positionX, positionY, width);
 
 	}
+
+	public static void drawOval(GraphicsContext gc, int posX, int posY, int width, int height) {
+		gc.setLineWidth(2);
+		gc.setFill(Color.rgb(77,52,178));
+		// x,y,w,h
+		gc.fillOval(posX, posY, width, height);
+
+	}
 }

@@ -263,8 +263,15 @@ public class ShopController {
 		// Draw the images
 		for (int i = 0; i < 7; i++) {
 			// Draw Images
+
+			if (prices[i] != 0) {
+				DrawManager.drawOval(gc, (int) (buttonDetail[i][0] * 1.5), (int) (buttonDetail[i][1] * 1.5),
+						(int) (getButtonWidth(i + 1) * 1.5+1), (int) (getButtonHeight(i + 1) * 1.5+5));
+			}
+
 			DrawManager.drawImageFixSize(gc, images[i], (int) (buttonDetail[i][0] * 1.5),
 					(int) (buttonDetail[i][1] * 1.5), getButtonWidth(i + 1) * 1.5, getButtonHeight(i + 1) * 1.5);
+
 			// Draw Prices
 			String priceText = "" + prices[i];
 			int relay = priceText.length() * 3;
