@@ -237,7 +237,7 @@ public class JSONManager {
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 		newPlayerList.add(playerObject);
-
+		writeJSON();
 		return true;
 	}
 
