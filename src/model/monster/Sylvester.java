@@ -19,8 +19,6 @@ public class Sylvester extends Monster implements Renderable {
 
 	private static final Image SylvesterImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-
-
 	public Sylvester(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
@@ -29,7 +27,7 @@ public class Sylvester extends Monster implements Renderable {
 		this.setSpeed(80);
 
 		this.setHealth(100);
-		this.setHunger(new Hunger(Fish.class, 5, 0));
+		this.setHunger(new Hunger(5, 0));
 		this.setIdle(new Idle(this, 20));
 
 	}

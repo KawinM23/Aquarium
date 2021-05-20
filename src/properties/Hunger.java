@@ -6,15 +6,12 @@ public class Hunger {
 
 	private static Random rand = new Random();
 
-	private Class<?> foodType;
-
 	private long lastFed;
 	private double cooldown;
 	private double lifetime;
 
-	public Hunger(Class<?> foodType, double cooldown, double lifetime) {
+	public Hunger(double cooldown, double lifetime) {
 		super();
-		this.foodType = foodType;
 		this.lastFed = System.nanoTime();
 		this.cooldown = cooldown;
 		this.lifetime = lifetime;
@@ -33,15 +30,9 @@ public class Hunger {
 		}
 	}
 
-	public Class<?> getFoodType() {
-		// 0 food
-		// 1 MiniGuppy
-		// 2 Coin
-		return foodType;
-	}
+
 
 	public void setFoodType(Class<?> foodType) {
-		this.foodType = foodType;
 	}
 
 	public long getLastFed() {

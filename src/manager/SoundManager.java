@@ -166,6 +166,7 @@ public class SoundManager {
 		else if (bgmVolumeLevel < 3)
 			bgmVolumeLevel++;
 		setVolume(currentBgmPlayer, bgmVolumeLevel);
+		JSONManager.writeJSON();
 	}
 
 	public static void nextSoundVolumeLevel() {
@@ -173,6 +174,7 @@ public class SoundManager {
 			soundVolumeLevel = 0;
 		else if (soundVolumeLevel < 3)
 			soundVolumeLevel++;
+		JSONManager.writeJSON();
 	}
 
 	public static String getVolumeLevelWord(int currentVolumeLevel) {

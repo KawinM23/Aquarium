@@ -1,6 +1,8 @@
 package model.monster;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import manager.TankManager;
 import model.Food;
 import model.base.Fish;
@@ -12,32 +14,34 @@ import properties.Renderable;
 
 public class Gus extends Monster implements Renderable {
 
+	private static final Image GusImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+
 	public Gus(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
 
 		this.setSize(100, 100);
+		this.setInner(20, 20);
+		this.setSpeed(60);
 
 		this.setHealth(300);
-		this.setHunger(new Hunger(Fish.class, 0.1, 0));
+		this.setHunger(new Hunger(0.1, 0));
 		this.setIdle(new Idle(this, 30));
 	}
 
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
-		Unit nearestFood = null;
+		Unit nearestFood = TankManager.getFishList().get(0);
 		if (TankManager.getFoodList().size() != 0) {
 			nearestFood = TankManager.getFoodList().get(0);
-			for (Food f : TankManager.getFoodList()) {
-				if (this.distance(f) < this.distance(nearestFood)) {
-					nearestFood = f;
+			for (Food food : TankManager.getFoodList()) {
+				if (this.distance(food) < this.distance(nearestFood)) {
+					nearestFood = food;
 				}
 			}
 		}
-		for (Fish f : TankManager.getFishList()) {
-			if (this.distance(f) < this.distance(nearestFood)) {
-				nearestFood = f;
+		for (Fish fish : TankManager.getFishList()) {
+			if (this.distance(fish) < this.distance(nearestFood)) {
+				nearestFood = fish;
 			}
 		}
 
@@ -57,12 +61,12 @@ public class Gus extends Monster implements Renderable {
 	private void eat(Unit nearestFood) {
 		TankManager.remove(nearestFood);
 		if (nearestFood instanceof Fish) {
-			decreaseHealth(20);
+			decreaseHealth(40);
 		} else if (nearestFood instanceof Food) {
 			if (((Food) nearestFood).getFoodType() == 2) {
 				decreaseHealth(100);
-			} else if(((Food) nearestFood).getFoodType() == 1) {
-				switch(((Food) nearestFood).getFoodLevel()){
+			} else if (((Food) nearestFood).getFoodType() == 1) {
+				switch (((Food) nearestFood).getFoodLevel()) {
 				case 1:
 					decreaseHealth(10);
 					break;
@@ -72,9 +76,10 @@ public class Gus extends Monster implements Renderable {
 				case 3:
 					decreaseHealth(30);
 					break;
-			}
+				}
 			}
 		}
+		getHunger().setLastFedNow();
 
 	}
 
@@ -89,9 +94,7 @@ public class Gus extends Monster implements Renderable {
 
 	@Override
 	public void update(int fr) {
-		// TODO Auto-generated method stub
 		if (this.getHealth() <= 0) {
-			// TODO Defeat
 			defeated();
 			return;
 		}
@@ -113,7 +116,15 @@ public class Gus extends Monster implements Renderable {
 	@Override
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-
+		gc.setStroke(new Color(1, 0, 0, 1));
+		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
+		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
+				getHeight() - (2 * getInnerY()));
+		if (isFacingLeft()) {
+			gc.drawImage(GusImage, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(GusImage, getPosX(), getPosY(), getWidth(), getHeight());
+		}
 	}
 
 }
