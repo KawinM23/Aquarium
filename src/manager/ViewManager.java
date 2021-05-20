@@ -53,9 +53,10 @@ public class ViewManager {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		anchorPane = new AnchorPane();
 		tankPane.getChildren().add(anchorPane);
-		///////////////////////// TEST
-
-		//////////////////////////
+		
+		pause1.setAnchorPane(anchorPane);
+		pause1.setPauseButtons();
+		pause1.hideButtons();
 
 		// TODO Change Code to new Controller
 		threadTank = new Thread(new Runnable() {
@@ -206,12 +207,6 @@ public class ViewManager {
 		ShopController.setShopDetail(LevelManager.getLevel1_1());
 		ShopController.setAllButtons(anchorPane);
 		ShopController.prices[6] = 50;
-
-		pause1.setAnchorPane(anchorPane);
-		pause1.setPauseButtons();
-		pause1.hideButtons();
-
-		
 
 		threadTank.start();
 	}
