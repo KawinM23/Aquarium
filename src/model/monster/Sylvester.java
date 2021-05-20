@@ -19,8 +19,6 @@ public class Sylvester extends Monster implements Renderable {
 
 	private static final Image SylvesterImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-
-
 	public Sylvester(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub

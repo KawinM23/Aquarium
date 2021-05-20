@@ -18,7 +18,6 @@ public class Gus extends Monster implements Renderable {
 
 	public Gus(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
 
 		this.setSize(100, 100);
 		this.setInner(20, 20);
@@ -31,7 +30,6 @@ public class Gus extends Monster implements Renderable {
 
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
 		Unit nearestFood = TankManager.getFishList().get(0);
 		if (TankManager.getFoodList().size() != 0) {
 			nearestFood = TankManager.getFoodList().get(0);
@@ -96,9 +94,7 @@ public class Gus extends Monster implements Renderable {
 
 	@Override
 	public void update(int fr) {
-		// TODO Auto-generated method stub
 		if (this.getHealth() <= 0) {
-			// TODO Defeat
 			defeated();
 			return;
 		}
