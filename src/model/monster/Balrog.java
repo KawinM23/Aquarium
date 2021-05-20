@@ -58,7 +58,6 @@ public class Balrog extends Monster implements Renderable {
 				this.eat(f,0);
 			} 
 		}
-		System.out.println(getCenterX()+" "+getCenterY());
 		this.move(fr);
 	}
 
@@ -130,7 +129,7 @@ public class Balrog extends Monster implements Renderable {
 	}
 	
 	public Rectangle2D getInnerHitbox(double x, double y) {
-		return new Rectangle2D(getPosX() + x, getPosY() + y, getPosX() + getWidth() - x, getPosY() + getHeight() - y);
+		return new Rectangle2D(getPosX() + x, getPosY() + y, getWidth() - (2*x), getHeight() - (2*y));
 	}
 
 }

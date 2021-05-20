@@ -114,7 +114,7 @@ public class Sylvester extends Monster implements Renderable {
 	}
 
 	public Rectangle2D getInnerHitbox(double x, double y) {
-		return new Rectangle2D(getPosX() + x, getPosY() + y, getPosX() + getWidth() - x, getPosY() + getHeight() - y);
+		return new Rectangle2D(getPosX() + x, getPosY() + y, getWidth() - (2 * x), getPosY() + getHeight() - (2 * y));
 	}
 
 	public Hunger getHunger() {

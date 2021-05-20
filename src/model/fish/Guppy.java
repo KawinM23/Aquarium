@@ -127,12 +127,9 @@ public class Guppy extends Fish implements Renderable {
 		} else if (getPosX() + getWidth() >= GameManager.getWIDTH()) {
 			setPosX(GameManager.getWIDTH() - getWidth());
 		}
-		if (getPosY() < GameManager.getTOPHEIGHT() + 40) {
+		if (growth < 100 && getPosY() < GameManager.getTOPHEIGHT() + 40) {
 			setPosY(GameManager.getTOPHEIGHT() + 40);
 		}
-//		else if (getPosY() + getHeight() >= GameManager.getBOTTOMHEIGHT()) {
-//			setPosX(GameManager.getBOTTOMHEIGHT() - getHeight());
-//		}
 	}
 
 	@Override
