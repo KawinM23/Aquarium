@@ -266,14 +266,21 @@ public class ShopController {
 			DrawManager.drawImageFixSize(gc, images[i], (int) (buttonDetail[i][0] * 1.5),
 					(int) (buttonDetail[i][1] * 1.5), getButtonWidth(i + 1) * 1.5, getButtonHeight(i + 1) * 1.5);
 			// Draw Prices
-			DrawManager.drawText(gc, "" + prices[i], 18,
-					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - getDigit(prices[i]) * 3) * 1.5),
+			String priceText = "" + prices[i];
+			int relay = priceText.length() * 3;
+			if (prices[i] == 0) {
+				priceText = "MAX";
+				relay += 10;
+			}
+
+			DrawManager.drawText(gc, priceText, 18,
+					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
 					(int) ((buttonDetail[i][3] * 1.5) + 16), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
 		}
 
 		// Draw Max Food Number
-		DrawManager.drawText(gc, "" + PlayerController.getMaxFood(), 40, (int) (buttonDetail[2][0] * 1.5 +30),
-				(int) (buttonDetail[2][3] * 1.5-15), (int) (((buttonDetail[2][2] - buttonDetail[2][0])) * 1.5));
+		DrawManager.drawText(gc, "" + PlayerController.getMaxFood(), 40, (int) (buttonDetail[2][0] * 1.5 + 30),
+				(int) (buttonDetail[2][3] * 1.5 - 15), (int) (((buttonDetail[2][2] - buttonDetail[2][0])) * 1.5));
 
 		// Draw current money
 		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24,
