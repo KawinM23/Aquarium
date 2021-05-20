@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import manager.GameManager;
+import manager.Level;
+import manager.LevelManager;
 import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
@@ -238,7 +240,7 @@ public class menu2 {
 									SoundManager.playBgm();
 
 									ViewManager manager = new ViewManager();
-									manager.startLevel(1,1);
+									manager.startLevel(LevelManager.getLevel1_2());
 									SceneController.changeScene(manager.getTankScene());
 								}
 							});

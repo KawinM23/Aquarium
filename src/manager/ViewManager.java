@@ -150,7 +150,7 @@ public class ViewManager {
 
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 
-		startLevelTest(1, 1);
+//		startLevelTest(1, 1);
 	}
 
 	public void startLevelTest(int tank, int level) {

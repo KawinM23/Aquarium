@@ -2,6 +2,7 @@ package game;
 
 import manager.ViewManager;
 import manager.GameManager;
+import manager.LevelManager;
 import manager.SceneController;
 import manager.SoundManager;
 import javafx.application.Application;
@@ -47,6 +48,8 @@ public class MainMenu extends Application {
 		stage.setScene(menuScene);
 		stage.setTitle("Aquarium Demastered");
 		stage.setResizable(false);
+		LevelManager.loadAllLevel();
+		
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);

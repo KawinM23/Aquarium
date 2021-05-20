@@ -50,7 +50,7 @@ public class LevelManager {
 		level.setGoalPrice(150);
 	}
 	
-	public void loadLevel1_2(Level level) {
+	public static void loadLevel1_2(Level level) {
 		level.setStartingMoney(200);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
@@ -99,7 +99,7 @@ public class LevelManager {
 		
 	}
 	
-	public void loadLevel1_4(Level level) {
+	public static void loadLevel1_4(Level level) {
 		level.setStartingMoney(200);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
@@ -117,5 +117,11 @@ public class LevelManager {
 
 		level.setGoalPrice(3000);
 		
+	}
+	
+	public static void loadAllLevel() {
+		loadLevel1_1(level1_1);
+		loadLevel1_2(level1_2);
+		loadLevel1_4(level1_4);
 	}
 }
