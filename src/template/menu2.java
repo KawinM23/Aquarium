@@ -1,7 +1,6 @@
-package testing;
+package template;
 
 import game.tank0;
-import game.tank2;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,20 +18,19 @@ import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
 
-public class menu1 {
+public class menu2 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
-	final double[][] buttonDetail = { { 354.0, 43.0, 576.0, 116.0, 100.0, 40.0 },
-			{ 354.0, 138.0, 576.0, 192.0, 30.0, 40.0 }, { 354.0, 207.0, 576.0, 262.0, 30.0, 40.0 },
-			{ 354.0, 282.0, 576.0, 357.0, 100.0, 40.0 }, { 402.0, 377.0, 529.0, 409.0, 80.0, 20.0 },
-			{ 323.0, 412.0, 417.0, 443.0, 80.0, 20.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 20.0 },
-			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
-	final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted4.jpg").toString();
+	// THIS IS MEASURED IN 940 x 720 PIXELS
+	final double[][] buttonDetail = { { 553, 68, 899, 157, 20, 40 }, { 557, 203, 897, 291, 20, 40 },
+			{ 563, 338, 898, 423, 20, 40 }, { 564, 460, 903, 543, 20, 40 }, { 578, 597, 882, 681, 40, 40 } };
+
+	final String IMAGE_PATH = ClassLoader.getSystemResource("menu2_editted2.jpg").toString();
 	Scene scene;
 	String[] buttonTexts;
 	// ClassLoader.getSystemResource("").toString();
 
-	public menu1(String[] buttonTexts) {
+	public menu2(String[] buttonTexts) {
 		this.buttonTexts = buttonTexts;
 		AnchorPane root = new AnchorPane();
 		this.scene = new Scene(root);
@@ -64,11 +62,11 @@ public class menu1 {
 	// Add buttons and set their event listeners
 	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position) {
 		Button button = new Button(buttonText);
-		button.setPrefSize((position[2] - position[0]) * 1.5, (position[3] - position[1]) * 1.5);
+		button.setPrefSize((position[2] - position[0]), (position[3] - position[1]));
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 				+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
-//			button.setBorder(null);
-//			button.setBackground(null);
+//				button.setBorder(null);
+//				button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				System.out.println("Pressed " + buttonText);
@@ -78,8 +76,8 @@ public class menu1 {
 		Font font = new Font(position[5]);
 		button.setFont(font);
 
-		AnchorPane.setTopAnchor(button, position[1] * 1.5);
-		AnchorPane.setLeftAnchor(button, position[0] * 1.5);
+		AnchorPane.setTopAnchor(button, position[1]);
+		AnchorPane.setLeftAnchor(button, position[0]);
 
 		button.hoverProperty().addListener((event) -> {
 			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
@@ -107,36 +105,18 @@ public class menu1 {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
 				SoundManager.playClickSound();
-				if (buttonText.equals("Start")) {
+				if (buttonText.equals("Back")) {
 					Thread thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.changeScene("TankAll");
-								}
-							});
-							
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-
-				} else if (buttonText.equals("Quit")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Thread.sleep(100);
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									
-									System.exit(0);
+									if (SceneController.isAtAllTank()) {
+										SceneController.changeScene("MainMenu");
+									} else if (SceneController.isAtNumberTank()) {
+										SceneController.changeScene("TankAll");
+									}
 								}
 							});
 
@@ -148,6 +128,24 @@ public class menu1 {
 					});
 					thread.start();
 
+				} else if (buttonText.equals("Tank 1")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									SceneController.changeScene("Tank1");
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
 				} else if (buttonText.equals("Tank 2")) {
 					Thread thread = new Thread(() -> {
 						try {
@@ -166,7 +164,6 @@ public class menu1 {
 
 					});
 					thread.start();
-
 				} else if (buttonText.equals("Tank 3")) {
 					Thread thread = new Thread(() -> {
 						try {
@@ -185,7 +182,6 @@ public class menu1 {
 
 					});
 					thread.start();
-
 				} else if (buttonText.equals("Tank 4")) {
 					Thread thread = new Thread(() -> {
 						try {
@@ -204,7 +200,26 @@ public class menu1 {
 
 					});
 					thread.start();
+				} else if (buttonText.equals("Tank 1-1")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									ViewManager manager = new ViewManager();
+									manager.startLevel(1,1);
+									SceneController.changeScene(manager.getTankScene());
+								}
+							});
 
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
 				}
 			}
 		});
@@ -228,5 +243,4 @@ public class menu1 {
 	public Scene getScene() {
 		return this.scene;
 	}
-
 }
