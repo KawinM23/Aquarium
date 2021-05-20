@@ -56,7 +56,7 @@ public class pause1 {
 
 		button.setPrefSize((position[2] - position[0]), (position[3] - position[1]));
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-				+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+				+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 //			button.setBorder(null);
 //			button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
@@ -65,7 +65,7 @@ public class pause1 {
 			}
 		});
 
-		Font font = new Font(position[5]);
+		Font font = new Font("Arial Black", position[5]);
 		button.setFont(font);
 
 		AnchorPane.setTopAnchor(button, position[1] + posY);
@@ -73,7 +73,7 @@ public class pause1 {
 
 		button.hoverProperty().addListener((event) -> {
 			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-					+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+					+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 		});
 
 		button.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -81,21 +81,21 @@ public class pause1 {
 			public void handle(MouseEvent mouseEvent) {
 
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 			}
 		});
 		button.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 			}
 		});
 		button.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 				SoundManager.playClickSound();
 				if (buttonText.equals("Resume")) {
 					Thread thread = new Thread(() -> {
@@ -223,10 +223,10 @@ public class pause1 {
 			public void handle(MouseEvent mouseEvent) {
 				if (button.isHover()) {
 					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+							+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 				} else {
 					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+							+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 				}
 
 			}

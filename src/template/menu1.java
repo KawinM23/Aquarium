@@ -191,14 +191,14 @@ public class menu1 {
 					});
 					thread.start();
 
-				} else if (buttonText.equals("Tank 4")) {
+				} else if (buttonText.equals("Credits")) {
 					Thread thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank4");
+									SceneController.changeScene("Credits");
 								}
 							});
 
