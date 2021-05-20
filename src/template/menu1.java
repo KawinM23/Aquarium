@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import manager.GameManager;
+import manager.JSONManager;
 import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
@@ -134,7 +135,7 @@ public class menu1 {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-
+									JSONManager.writeJSON();
 									System.exit(0);
 								}
 							});

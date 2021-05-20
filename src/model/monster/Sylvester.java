@@ -12,6 +12,7 @@ import model.base.Fish;
 import model.base.Monster;
 import model.base.Unit;
 import properties.Hunger;
+import properties.Idle;
 import properties.Renderable;
 
 public class Sylvester extends Monster implements Renderable {
@@ -31,7 +32,8 @@ public class Sylvester extends Monster implements Renderable {
 		this.setSpeed(80);
 
 		this.setHealth(100);
-		this.hunger = new Hunger(Fish.class, 5, 0);
+		this.setHunger(new Hunger(Fish.class, 5, 0));
+		this.setIdle(new Idle(this, 20));
 
 	}
 
@@ -47,7 +49,7 @@ public class Sylvester extends Monster implements Renderable {
 		switch (hunger.checkHunger()) {
 		case 0:
 			// idle
-			this.setVelZero();
+			this.getIdle().checkIdleMonster();
 			break;
 		case 1:
 			// find food
@@ -57,8 +59,6 @@ public class Sylvester extends Monster implements Renderable {
 
 		this.move(fr);
 	}
-
-
 
 	@Override
 	public void render(GraphicsContext gc) {
@@ -89,7 +89,7 @@ public class Sylvester extends Monster implements Renderable {
 				// eat & levelup
 				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish);
-				this.setVelZero();
+				this.getIdle().checkIdleMonster();
 			} else {
 				// Go to food
 				this.headToUnit(nearestFish);
@@ -97,7 +97,7 @@ public class Sylvester extends Monster implements Renderable {
 
 		} else {
 			// Idle No food
-			this.setVelZero();
+			this.getIdle().checkIdleMonster();
 		}
 	}
 

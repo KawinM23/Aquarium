@@ -13,8 +13,8 @@ public class SoundManager {
 	private static final MediaPlayer mainMenuBgmPlayer = new MediaPlayer(MAIN_MENU_BGM_SOUND);
 	private static final MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
 	// 0 Mute, 1 Quiet, 2 Normal, 3 Loud
-	private static int clickVolumeLevel = 2;
 	private static int bgmVolumeLevel = 2;
+	private static int clickVolumeLevel = 2;
 	private static MediaPlayer currentBgmPlayer;
 
 	public static void playClickSound() {
@@ -196,6 +196,10 @@ public class SoundManager {
 	
 	public static int getClickVolumeLevel() {
 		return clickVolumeLevel;
+	}
+
+	public static void setClickVolumeLevel(int clickVolumeLevel) {
+		SoundManager.clickVolumeLevel = clickVolumeLevel;
 	}
 
 }

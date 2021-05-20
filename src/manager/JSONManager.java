@@ -39,13 +39,30 @@ public class JSONManager {
 			Object obj = jsonParser.parse(reader);
 
 			JSONArray playerList = (JSONArray) obj;
+
 			System.out.println(playerList);
 
 			// Iterate over employee array
 			playerList.forEach(emp -> JSONManager.parsePlayerObject((JSONObject) emp));
 
+			if (playerList.size() == 0) {
+				addNewPlayer("New Player");
+				writeJSON();
+				changePlayer("New Player");
+			} else if (playerList.size() == 1 && jsonList.size() == 1) {
+				JSONObject eachPlayer = (JSONObject) jsonList.get(0).get("player");
+				eachPlayer.remove("currentPlayer");
+				eachPlayer.put("currentPlayer", true);
+				setCurrentPlayer(false);
+				writeJSON();
+			}
+
 		} catch (FileNotFoundException e) {
 			// write new file
+			addNewPlayer("New Player");
+			writeJSON();
+			changePlayer("New Player");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -68,6 +85,8 @@ public class JSONManager {
 			long eplaytime = (long) playerObject.get("playTime");
 			long efood = (long) playerObject.get("foodBought");
 			long emonster = (long) playerObject.get("monsterDefeated");
+			long emusic = (long) playerObject.get("musicLevel");
+			long eeffect = (long) playerObject.get("effectLevel");
 
 			if (ecurrentPlayer) {
 				playerName = eplayerName;
@@ -79,6 +98,8 @@ public class JSONManager {
 				playTime = eplaytime;
 				foodBought = (int) efood;
 				monsterDefeated = (int) emonster;
+				SoundManager.setBgmVolumeLevel((int) emusic);
+				SoundManager.setClickVolumeLevel((int) eeffect);
 
 			} else {
 				jsonList.add(player);
@@ -90,6 +111,7 @@ public class JSONManager {
 	@SuppressWarnings("unchecked")
 	public static void changePlayer(String playerName) {
 		// TODO Auto-generated method stub
+		readJSON();
 		for (JSONObject eachJSONobj : jsonList) {
 			JSONObject eachPlayer = (JSONObject) eachJSONobj.get("player");
 			if (eachPlayer.get("playerName").equals(playerName)) {
@@ -121,6 +143,7 @@ public class JSONManager {
 		addCurrentPlayer();
 		addOtherPlayer(jsonList);
 
+		System.out.println(playerList);
 		// Write JSON file
 		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
 			// We can write any JSONArray or JSONObject instance to the file
@@ -148,6 +171,8 @@ public class JSONManager {
 		playerDetails.put("playTime", playTime);
 		playerDetails.put("foodBought", foodBought);
 		playerDetails.put("monsterDefeated", monsterDefeated);
+		playerDetails.put("musicLevel", SoundManager.getBgmVolumeLevel());
+		playerDetails.put("effectLevel", SoundManager.getClickVolumeLevel());
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 
@@ -156,7 +181,7 @@ public class JSONManager {
 
 	@SuppressWarnings("unchecked")
 	public static void addToPlayerList(String playerName, boolean currentPlayer, int tank, int level, int moneyGained,
-			int fishBought, int playTime, int foodBought, int monsterDefeated) {
+			int fishBought, int playTime, int foodBought, int monsterDefeated, int musicLevel, int effectLevel) {
 		JSONObject playerDetails = new JSONObject();
 		playerDetails.put("playerName", playerName);
 		playerDetails.put("currentPlayer", currentPlayer);
@@ -167,6 +192,8 @@ public class JSONManager {
 		playerDetails.put("playTime", playTime);
 		playerDetails.put("foodBought", foodBought);
 		playerDetails.put("monsterDefeated", monsterDefeated);
+		playerDetails.put("musicLevel", musicLevel);
+		playerDetails.put("effectLevel", effectLevel);
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 
@@ -175,9 +202,10 @@ public class JSONManager {
 
 	@SuppressWarnings("unchecked")
 	public static boolean addNewPlayer(String playerName) {
-		boolean nameExist = false;
-		if (JSONManager.playerName.equals(playerName)) {
-			return false;
+		if (JSONManager.playerName != null) {
+			if (JSONManager.playerName.equals(playerName)) {
+				return false;
+			}
 		}
 		for (JSONObject eachJSONobj : jsonList) {
 			JSONObject eachPlayer = (JSONObject) eachJSONobj.get("player");
@@ -196,6 +224,9 @@ public class JSONManager {
 		playerDetails.put("playTime", 0);
 		playerDetails.put("foodBought", 0);
 		playerDetails.put("monsterDefeated", 0);
+		playerDetails.put("musicLevel", 2);
+		playerDetails.put("effectLevel", 2);
+
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 		playerList.add(playerObject);

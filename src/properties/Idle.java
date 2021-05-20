@@ -42,6 +42,16 @@ public class Idle {
 			this.setNextIdleRandom(3, 6); // interval idle
 		}
 	}
+	
+	public void checkIdleMonster() {
+		if (System.nanoTime() <= nextIdle) {
+			this.unit.setVel(velX, velY);
+		} else {
+			randomVel();
+			this.unit.setVel(velX, velY);
+			this.setNextIdleRandom(2, 4); // interval idle
+		}
+	}
 
 	public void addNextIdle(long duration) {
 		this.nextIdle = this.nextIdle + duration;

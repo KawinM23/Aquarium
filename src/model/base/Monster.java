@@ -2,10 +2,12 @@ package model.base;
 
 import manager.StatTracker;
 import manager.TankManager;
+import properties.Idle;
 
 public abstract class Monster extends Unit {
 
 	private int health;
+	private Idle idle;
 	
 	private boolean isFacingLeft;
 
@@ -44,6 +46,14 @@ public abstract class Monster extends Unit {
 
 	public void setFacingLeft(boolean isFacingLeft) {
 		this.isFacingLeft = isFacingLeft;
+	}
+
+	public Idle getIdle() {
+		return idle;
+	}
+
+	public void setIdle(Idle idle) {
+		this.idle = idle;
 	}
 
 }
