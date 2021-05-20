@@ -37,7 +37,7 @@ public class Guppycruncher extends Fish implements Renderable{
 
 		this.setJumping(false);
 
-		this.setHunger(new Hunger(Guppy.class, 6, 30));
+		this.setHunger(new Hunger(6, 30));
 		this.setProduction(new Production(this, 6, 5));
 		this.setIdle(new Idle(this, 20));
 		this.setPrice(750);
