@@ -29,6 +29,7 @@ import model.fish.Starcatcher;
 import model.money.Beetle;
 import model.money.SilverCoin;
 import model.money.Star;
+import model.monster.Balrog;
 import model.monster.Sylvester;
 import template.pause1;
 
@@ -79,14 +80,16 @@ public class ViewManager {
 //		TankManager.add(bm1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
+		
+		Balrog br = new Balrog("Br", 400, 500);
 
 
 
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(sv);
+		firstInvasion.add(br);
 		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 20, 30, 40 });
+		InvasionManager.setInvasionTimeList(new int[] { 10, 30, 40 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		

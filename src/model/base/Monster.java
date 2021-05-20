@@ -1,11 +1,17 @@
 package model.base;
 
+import javafx.geometry.Rectangle2D;
 import manager.StatTracker;
 import manager.TankManager;
+import properties.Idle;
 
 public abstract class Monster extends Unit {
 
 	private int health;
+	private Idle idle;
+	
+	private int innerX = 40;
+	private int innerY = 40;
 	
 	private boolean isFacingLeft;
 
@@ -44,6 +50,34 @@ public abstract class Monster extends Unit {
 
 	public void setFacingLeft(boolean isFacingLeft) {
 		this.isFacingLeft = isFacingLeft;
+	}
+
+	public Idle getIdle() {
+		return idle;
+	}
+
+	public void setIdle(Idle idle) {
+		this.idle = idle;
+	}
+	
+	public Rectangle2D getInnerHitbox(double x, double y) {
+		return new Rectangle2D(getPosX() + x, getPosY() + y, getWidth() - (2*x), getHeight() - (2*y));
+	}
+
+	public int getInnerX() {
+		return innerX;
+	}
+
+	public void setInnerX(int innerX) {
+		this.innerX = innerX;
+	}
+
+	public int getInnerY() {
+		return innerY;
+	}
+
+	public void setInnerY(int innerY) {
+		this.innerY = innerY;
 	}
 
 }

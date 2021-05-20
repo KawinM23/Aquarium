@@ -12,6 +12,7 @@ import model.base.Fish;
 import model.base.Monster;
 import model.base.Unit;
 import properties.Hunger;
+import properties.Idle;
 import properties.Renderable;
 
 public class Sylvester extends Monster implements Renderable {
@@ -19,9 +20,6 @@ public class Sylvester extends Monster implements Renderable {
 	private static final Image SylvesterImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	private Hunger hunger;
-
-	private final int innerX = 40;
-	private final int innerY = 40;
 
 	public Sylvester(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -31,7 +29,8 @@ public class Sylvester extends Monster implements Renderable {
 		this.setSpeed(80);
 
 		this.setHealth(100);
-		this.hunger = new Hunger(Fish.class, 5, 0);
+		this.setHunger(new Hunger(Fish.class, 5, 0));
+		this.setIdle(new Idle(this, 20));
 
 	}
 
@@ -47,7 +46,7 @@ public class Sylvester extends Monster implements Renderable {
 		switch (hunger.checkHunger()) {
 		case 0:
 			// idle
-			this.setVelZero();
+			this.getIdle().checkIdleMonster();
 			break;
 		case 1:
 			// find food
@@ -58,14 +57,12 @@ public class Sylvester extends Monster implements Renderable {
 		this.move(fr);
 	}
 
-
-
 	@Override
 	public void render(GraphicsContext gc) {
 
 		gc.setStroke(new Color(1, 0, 0, 1));
 		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.strokeRect(getPosX() + innerX, getPosY() + innerY, getWidth() - (2 * innerX), getHeight() - (2 * innerY));
+		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()), getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
 			gc.drawImage(SylvesterImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
@@ -85,11 +82,11 @@ public class Sylvester extends Monster implements Renderable {
 				}
 			}
 			// Check Food position and Fish
-			if (this.getInnerHitbox(innerX, innerY).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
+			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
 				// eat & levelup
 				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish);
-				this.setVelZero();
+				this.getIdle().checkIdleMonster();
 			} else {
 				// Go to food
 				this.headToUnit(nearestFish);
@@ -97,7 +94,7 @@ public class Sylvester extends Monster implements Renderable {
 
 		} else {
 			// Idle No food
-			this.setVelZero();
+			this.getIdle().checkIdleMonster();
 		}
 	}
 
@@ -111,10 +108,6 @@ public class Sylvester extends Monster implements Renderable {
 		// TODO Onclick Mouse -> decrease Hp
 		System.out.println("Hit Monster " + getHealth());
 		this.decreaseHealth(PlayerController.getGunDamage());
-	}
-
-	public Rectangle2D getInnerHitbox(double x, double y) {
-		return new Rectangle2D(getPosX() + x, getPosY() + y, getPosX() + getWidth() - x, getPosY() + getHeight() - y);
 	}
 
 	public Hunger getHunger() {

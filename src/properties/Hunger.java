@@ -66,6 +66,12 @@ public class Hunger {
 		this.setLastFed(getLastFed() + randomTime);
 	}
 
+	public void setLastFedRandom(int min, int max) {
+		// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+		long randomTime = (long) ((min + ((max - min) * rand.nextDouble())) * 1.0e9);
+		this.setLastFed(System.nanoTime() + randomTime);
+	}
+
 	public double getDeltaTime() {
 		return (System.nanoTime() - getLastFed()) / 1.0e9;
 	}
