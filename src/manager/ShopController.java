@@ -63,7 +63,7 @@ public class ShopController {
 		prices = new int[] { getUnitPrice(level.getShopItem()[0]), 200, 300, getUnitPrice(level.getShopItem()[1]),
 				getUnitPrice(level.getShopItem()[2]), 1000, level.getGoalPrice() };
 		// TODO Get Gun Images Later (Right now is null) + Get Goal Egg Image
-		images = new Image[] { getUnitImage(level.getShopItem()[0]), Food.getStaticImage(1), null,
+		images = new Image[] { getUnitImage(level.getShopItem()[0]), Food.getStaticImage(2), null,
 				getUnitImage(level.getShopItem()[1]), getUnitImage(level.getShopItem()[2]), null, null };
 	}
 
@@ -146,12 +146,17 @@ public class ShopController {
 						break;
 					// Food Type
 					case 2:
-						if (PlayerController.buy(prices[1])) {
+						// If enough money AND Food Level not maxed
+						if (PlayerController.buy(prices[1]) && PlayerController.getFoodLevel()<=2) {
 							PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
+							if (PlayerController.getFoodLevel()==3) {
+								prices[1]=0;
+								button.setVisible(false);
+							}
 
 							Thread thread = new Thread(() -> {
 								try {
-									images[1] = Food.getStaticImage(PlayerController.getFoodLevel());
+									images[1] = Food.getStaticImage(PlayerController.getFoodLevel()+1);
 									Platform.runLater(new Runnable() {
 										@Override
 										public void run() {
