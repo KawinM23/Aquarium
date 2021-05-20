@@ -19,9 +19,9 @@ import manager.SoundManager;
 public class pause1 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
-	static final double[][] buttonDetail = { { 53, 138, 340, 217, 20, 40.0 }, { 54, 253, 340, 325, 20, 40.0 },
-			{ 59, 363, 342, 434, 20.0, 40.0 }, { 63, 467, 342, 537, 100.0, 30.0 } };
-	static String[] buttonTexts = {"Resume","Undefined","Undefined","Back to Menu"};
+	static final double[][] buttonDetail = { { 53, 138, 340, 217, 20, 40.0 }, { 54, 253, 340, 325, 20, 30.0 },
+			{ 59, 363, 342, 434, 20.0, 30.0 }, { 63, 467, 342, 537, 100.0, 30.0 } };
+	static String[] buttonTexts = { "Resume", "Music: ", "Sound: ", "Back to Menu" };
 	private static final String IMAGE_PATH = ClassLoader.getSystemResource("pause.jpg").toString();
 	private static Image image = new Image(IMAGE_PATH);
 	private static final int posX = 275;
@@ -37,7 +37,7 @@ public class pause1 {
 
 	public static void setPauseButtons() {
 		for (int i = 0; i <= 3; i++) {
-			addButtons(buttonTexts[i],buttonDetail[i]);
+			addButtons(buttonTexts[i], buttonDetail[i]);
 		}
 	}
 
@@ -47,6 +47,13 @@ public class pause1 {
 
 	private static void addButtons(String buttonText, double[] position) {
 		Button button = new Button(buttonText);
+
+		if (buttonText == "Music: ") {
+			button.setText("Music: " + SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel()));
+		} else if (buttonText == "Sound: ") {
+			button.setText("Sound: " + SoundManager.getVolumeLevelWord(SoundManager.getClickVolumeLevel()));
+		}
+
 		button.setPrefSize((position[2] - position[0]), (position[3] - position[1]));
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
 				+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
@@ -61,8 +68,8 @@ public class pause1 {
 		Font font = new Font(position[5]);
 		button.setFont(font);
 
-		AnchorPane.setTopAnchor(button, position[1]+posY);
-		AnchorPane.setLeftAnchor(button, position[0]+posX);
+		AnchorPane.setTopAnchor(button, position[1] + posY);
+		AnchorPane.setLeftAnchor(button, position[0] + posX);
 
 		button.hoverProperty().addListener((event) -> {
 			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
@@ -128,14 +135,37 @@ public class pause1 {
 					});
 					thread.start();
 
-				} else if (buttonText.equals("Tank 2")) {
+				} else if (((button.getText()).substring(0, 7)).equals("Sound: ")) {
 					Thread thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank2");
+									SoundManager.nextClickVolumeLevel();
+									button.setText("Sound: "
+											+ SoundManager.getVolumeLevelWord(SoundManager.getClickVolumeLevel()));
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
+				} else if (((button.getText()).substring(0, 7)).equals("Music: ")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									SoundManager.nextBgmVolumeLevel();
+									button.setText("Music: "
+											+ SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel()));
 								}
 							});
 
@@ -201,20 +231,20 @@ public class pause1 {
 
 			}
 		});
-		
+
 		buttonList.add(button);
-		
+
 		anchorPane.getChildren().addAll(button);
 	}
-	
+
 	public static void hideButtons() {
-		for (int i=0;i<buttonList.size();i++) {
+		for (int i = 0; i < buttonList.size(); i++) {
 			buttonList.get(i).setVisible(false);
 		}
 	}
-	
+
 	public static void showButtons() {
-		for (int i=0;i<buttonList.size();i++) {
+		for (int i = 0; i < buttonList.size(); i++) {
 			buttonList.get(i).setVisible(true);
 		}
 	}
