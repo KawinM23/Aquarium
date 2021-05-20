@@ -178,8 +178,8 @@ public class ShopController {
 					case 3:
 						if (PlayerController.buy(prices[2]) && PlayerController.getFoodLevel() <= 9) {
 							PlayerController.setMaxFood(PlayerController.getMaxFood() + 1);
-							if (PlayerController.getFoodLevel() == 10) {
-								prices[1] = 0;
+							if (PlayerController.getMaxFood() == 10) {
+								prices[2] = 0;
 								button.setVisible(false);
 							}
 							System.out.println(PlayerController.getMaxFood());
@@ -294,7 +294,11 @@ public class ShopController {
 		}
 
 		// Draw Max Food Number
-		DrawManager.drawText(gc, "" + (PlayerController.getMaxFood()+1), 40, (int) (buttonDetail[2][0] * 1.5 + 30),
+		String maxFoodString = "" + (PlayerController.getMaxFood() + 1);
+		if (PlayerController.getMaxFood() == 10) {
+			maxFoodString = "";
+		}
+		DrawManager.drawText(gc, maxFoodString, 40, (int) (buttonDetail[2][0] * 1.5 + 30),
 				(int) (buttonDetail[2][3] * 1.5 - 15), (int) (((buttonDetail[2][2] - buttonDetail[2][0])) * 1.5));
 
 		// Draw current money
