@@ -43,6 +43,8 @@ public class JSONManager {
 			JSONArray playerList = (JSONArray) obj;
 
 			System.out.println(playerList);
+			jsonList.clear();
+			jsonNameList.clear();
 
 			// Iterate over employee array
 			playerList.forEach(emp -> JSONManager.parsePlayerObject((JSONObject) emp));
@@ -51,13 +53,14 @@ public class JSONManager {
 				addNewPlayer("New Player");
 				writeJSON();
 				changePlayer("New Player");
-			} else if (playerList.size() == 1 && jsonList.size() == 1) {
-				JSONObject eachPlayer = (JSONObject) jsonList.get(0).get("player");
-				eachPlayer.remove("currentPlayer");
-				eachPlayer.put("currentPlayer", true);
-				setCurrentPlayer(false);
-				writeJSON();
-			}
+			} 
+//			else if (playerList.size() == 1 && jsonList.size() == 1) {
+//				JSONObject eachPlayer = (JSONObject) jsonList.get(0).get("player");
+//				eachPlayer.remove("currentPlayer");
+//				eachPlayer.put("currentPlayer", true);
+//				setCurrentPlayer(false);
+//				writeJSON();
+//			}
 
 		} catch (FileNotFoundException e) {
 			// write new file
