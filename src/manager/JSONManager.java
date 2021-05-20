@@ -26,7 +26,8 @@ public class JSONManager {
 	private static int foodBought;
 	private static int monsterDefeated;
 
-	private static JSONArray playerList = new JSONArray();
+	private static JSONArray newPlayerList = new JSONArray();
+	
 	private static ArrayList<JSONObject> jsonList = new ArrayList<JSONObject>();
 
 	@SuppressWarnings("unchecked")
@@ -135,6 +136,7 @@ public class JSONManager {
 		}
 		if (removedJSONobj != null) {
 			jsonList.remove(removedJSONobj);
+			writeJSON();
 		}
 	}
 
@@ -143,14 +145,14 @@ public class JSONManager {
 		addCurrentPlayer();
 		addOtherPlayer(jsonList);
 
-		System.out.println(playerList);
+		System.out.println(newPlayerList);
 		// Write JSON file
 		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
 			// We can write any JSONArray or JSONObject instance to the file
 
-			file.write(playerList.toJSONString());
+			file.write(newPlayerList.toJSONString());
 			file.flush();
-			playerList.clear();
+			newPlayerList.clear();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -176,7 +178,7 @@ public class JSONManager {
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 
-		playerList.add(playerObject);
+		newPlayerList.add(playerObject);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -197,7 +199,7 @@ public class JSONManager {
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 
-		playerList.add(playerObject);
+		newPlayerList.add(playerObject);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -229,7 +231,7 @@ public class JSONManager {
 
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
-		playerList.add(playerObject);
+		newPlayerList.add(playerObject);
 
 		return true;
 	}
@@ -241,7 +243,7 @@ public class JSONManager {
 			if (eachPlayer.get("playerName").equals(playerName)) {
 				continue;
 			}
-			playerList.add(eachJSONObj);
+			newPlayerList.add(eachJSONObj);
 		}
 	}
 
@@ -259,9 +261,9 @@ public class JSONManager {
 		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
 			// We can write any JSONArray or JSONObject instance to the file
 
-			file.write(playerList.toJSONString());
+			file.write(newPlayerList.toJSONString());
 			file.flush();
-			playerList.clear();
+			newPlayerList.clear();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -291,12 +293,12 @@ public class JSONManager {
 		JSONManager.level = level;
 	}
 
-	public static JSONArray getPlayerList() {
-		return playerList;
+	public static JSONArray getNewPlayerList() {
+		return newPlayerList;
 	}
 
-	public static void setPlayerList(JSONArray playerList) {
-		JSONManager.playerList = playerList;
+	public static void setNewPlayerList(JSONArray playerList) {
+		JSONManager.newPlayerList = playerList;
 	}
 
 	public static ArrayList<JSONObject> getJsonList() {
