@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import manager.GameManager;
 import manager.JSONManager;
 import manager.SceneController;
@@ -23,12 +24,12 @@ import manager.ViewManager;
 public class menu1 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
-	final double[][] buttonDetail = { { 354.0, 43.0, 576.0, 116.0, 100.0, 40.0 },
+	final double[][] buttonDetail = { { 354.0, 43.0, 576.0, 116.0, 100.0, 50.0 },
 			{ 354.0, 138.0, 576.0, 192.0, 30.0, 40.0 }, { 354.0, 207.0, 576.0, 262.0, 30.0, 40.0 },
 			{ 354.0, 282.0, 576.0, 357.0, 100.0, 40.0 }, { 402.0, 377.0, 529.0, 409.0, 80.0, 20.0 },
-			{ 323.0, 410.0, 417.0, 443.0, 78.0, 18.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 16.0 },
+			{ 323.0, 410.0, 417.0, 443.0, 78.0, 15.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 15.0 },
 			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
-	final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted4.jpg").toString();
+	final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted5.jpg").toString();
 	Scene scene;
 	String[] buttonTexts;
 	// ClassLoader.getSystemResource("").toString();
@@ -67,7 +68,7 @@ public class menu1 {
 		Button button = new Button(buttonText);
 		button.setPrefSize((position[2] - position[0]) * 1.5, (position[3] - position[1]) * 1.5);
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-				+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+				+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 //			button.setBorder(null);
 //			button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
@@ -76,7 +77,7 @@ public class menu1 {
 			}
 		});
 
-		Font font = new Font(position[5]);
+		Font font = new Font("Arial Black", position[5]);
 		button.setFont(font);
 
 		AnchorPane.setTopAnchor(button, position[1] * 1.5);
@@ -84,7 +85,7 @@ public class menu1 {
 
 		button.hoverProperty().addListener((event) -> {
 			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-					+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+					+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 		});
 
 		button.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -92,21 +93,21 @@ public class menu1 {
 			public void handle(MouseEvent mouseEvent) {
 
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 			}
 		});
 		button.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 			}
 		});
 		button.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 				SoundManager.playClickSound();
 				if (buttonText.equals("Start")) {
 					Thread thread = new Thread(() -> {
@@ -217,10 +218,10 @@ public class menu1 {
 			public void handle(MouseEvent mouseEvent) {
 				if (button.isHover()) {
 					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+							+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 				} else {
 					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+							+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 				}
 
 			}

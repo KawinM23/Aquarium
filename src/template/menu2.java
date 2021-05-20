@@ -25,7 +25,7 @@ public class menu2 {
 	final double[][] buttonDetail = { { 553, 68, 899, 157, 20, 40 }, { 557, 203, 897, 291, 20, 40 },
 			{ 563, 338, 898, 423, 20, 40 }, { 564, 460, 903, 543, 20, 40 }, { 578, 597, 882, 681, 40, 40 } };
 
-	final String IMAGE_PATH = ClassLoader.getSystemResource("menu2_editted2.jpg").toString();
+	final String IMAGE_PATH = ClassLoader.getSystemResource("menu2_editted3.jpg").toString();
 	Scene scene;
 	String[] buttonTexts;
 	// ClassLoader.getSystemResource("").toString();
@@ -64,7 +64,7 @@ public class menu2 {
 		Button button = new Button(buttonText);
 		button.setPrefSize((position[2] - position[0]), (position[3] - position[1]));
 		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-				+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+				+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 //				button.setBorder(null);
 //				button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
@@ -81,7 +81,7 @@ public class menu2 {
 
 		button.hoverProperty().addListener((event) -> {
 			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-					+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+					+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 		});
 
 		button.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -89,21 +89,21 @@ public class menu2 {
 			public void handle(MouseEvent mouseEvent) {
 
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 			}
 		});
 		button.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 			}
 		});
 		button.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: yellow");
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 				SoundManager.playClickSound();
 				if (buttonText.equals("Back")) {
 					Thread thread = new Thread(() -> {
@@ -208,12 +208,12 @@ public class menu2 {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									//TODO Change Bgm later
+									// TODO Change Bgm later
 									SoundManager.setBgm(SoundManager.getMainmenubgmplayer());
 									SoundManager.playBgm();
-									
+
 									ViewManager manager = new ViewManager();
-									manager.startLevel(1,1);
+									manager.startLevel(1, 1);
 									SceneController.changeScene(manager.getTankScene());
 								}
 							});
@@ -233,10 +233,10 @@ public class menu2 {
 			public void handle(MouseEvent mouseEvent) {
 				if (button.isHover()) {
 					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: red");
+							+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
 				} else {
 					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: white");
+							+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
 				}
 
 			}

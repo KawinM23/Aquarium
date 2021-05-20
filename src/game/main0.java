@@ -1,6 +1,7 @@
 package game;
 
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import manager.JSONManager;
 import manager.SceneController;
@@ -19,6 +20,7 @@ public class main0 extends Application {
 			SceneController.changeScene("MainMenu");
 			SoundManager.setBgm(SoundManager.getMainmenubgmplayer());
 			SoundManager.playBgm();
+			System.out.println(Font.getFamilies());
 			
 			primaryStage.setTitle("AQUARIUM");
 			primaryStage.setResizable(false);
