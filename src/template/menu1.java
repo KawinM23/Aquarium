@@ -210,6 +210,25 @@ public class menu1 {
 					});
 					thread.start();
 
+				} else if (buttonText.equals("Change Player")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									PlayerMenu.display();
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
 				}
 			}
 		});

@@ -117,13 +117,17 @@ public class pause1 {
 					thread.start();
 
 				} else if (buttonText.equals("Back to Menu")) {
+					SoundManager.stopBgm();
 					Thread thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
+									SoundManager.setBgm(0);
+									SoundManager.playBgm();
 									SceneController.changeScene("MainMenu");
+
 								}
 							});
 
