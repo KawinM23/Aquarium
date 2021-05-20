@@ -29,7 +29,7 @@ public class Carnivore extends Fish implements Renderable{
 		this.setVelZero();
 
 		this.setHunger(new Hunger(Guppy.class, 5, 20));
-		this.setProduction(new Production(this, 3, 3));
+		this.setProduction(new Production(this, 3, 8));
 		this.setIdle(new Idle(this,20));
 		this.setPrice(1000);
 	}
@@ -53,9 +53,8 @@ public class Carnivore extends Fish implements Renderable{
 			if (nearestFood != null) {
 				if (isAtMounth(nearestFood)) {
 					// Eat baby guppy
-					TankManager.remove(nearestFood);
-					this.getIdle();
 					this.feed(nearestFood);
+					this.getIdle().eatFood();;
 				} else {
 					// Go to food
 					this.headToUnit(nearestFood);

@@ -47,7 +47,7 @@ public class Idle {
 		this.nextIdle = this.nextIdle + duration;
 	}
 
-	public void setNextIdleRandom(int min, int max) {
+	public void setNextIdleRandom(double min, double max) {
 		// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
 		long randomTime = (long) ((min + ((max - min) * rand.nextDouble())) * 1.0e9);
 		this.setNextIdle(System.nanoTime() + randomTime);
@@ -56,7 +56,7 @@ public class Idle {
 	public void eatFood() {
 		setVelX(unit.getVelX() * 0.2);
 		setVelY(unit.getVelY() * 0.2);
-		this.nextIdle = (long) (System.nanoTime() + 1e9);
+		setNextIdleRandom(1, 1.75);
 	}
 
 	public void slowIdle() {

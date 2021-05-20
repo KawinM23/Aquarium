@@ -208,7 +208,7 @@ public class menu2 {
 								public void run() {
 									// TODO Auto-generated method stub
 									ViewManager manager = new ViewManager();
-									manager.startLevel();
+									manager.startLevel(1,1);
 									SceneController.changeScene(manager.getTankScene());
 								}
 							});

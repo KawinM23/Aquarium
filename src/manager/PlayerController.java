@@ -42,20 +42,22 @@ public class PlayerController {
 	public static void setPlaying(boolean isPlaying) {
 		PlayerController.isPlaying = isPlaying;
 	}
-	
+
 	public static void checkPlaying() {
-		if(TankManager.getFishList().size()<=0) {
+		if (TankManager.getFishList().size() <= 0) {
 			lose();
-		}else if(checkGoal()) {
+		} else if (checkGoal()) {
 			win();
 		}
 	}
 
 	private static void win() {
 		// TODO Winning ,Change scene
+		System.out.println("WIN");
 		setPlaying(false);
 		ViewManager.getThreadTank().stop();
-		System.out.println("WIN");
+		
+		ViewManager.winLevel();
 		StatTracker.calculateStat();
 	}
 

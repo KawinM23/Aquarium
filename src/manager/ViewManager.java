@@ -36,7 +36,9 @@ public class ViewManager {
 	private Pane mainPane;
 	private static Scene tankScene;
 	private Stage tankStage;
-	
+
+	private static int currentTank;
+	private static int currentLevel;
 	private static Thread threadTank;
 
 	public ViewManager() {
@@ -99,11 +101,11 @@ public class ViewManager {
 		ShopController.setShopDetail(level1_1);
 		ShopController.setAllButtons(ap);
 		ShopController.prices[6] = 50;
-		
+
 		pause1.setAnchorPane(ap);
 		pause1.setPauseButtons();
 		pause1.hideButtons();
-		
+
 		mainPane.getChildren().add(ap);
 		//////////////////////////
 
@@ -152,7 +154,7 @@ public class ViewManager {
 
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
-		
+
 		StatTracker.clear();
 
 		// MouseClick Position
@@ -200,12 +202,20 @@ public class ViewManager {
 //		});
 
 	}
-	
-	public void startLevel() {
+
+	public void startLevel(int tank, int level) {
+		ViewManager.setCurrentTank(tank);
+		ViewManager.setCurrentLevel(level);
 		StatTracker.clear();
 		threadTank.start();
 	}
-	
+
+	public static void winLevel() {
+		if (currentTank == JSONManager.getTank() && currentLevel == JSONManager.getLevel()) {
+			JSONManager.nextLevel();
+		}
+	}
+
 	public static void setScene(Stage stage) {
 		stage.setScene(getStaticTankScene());
 	}
@@ -221,9 +231,25 @@ public class ViewManager {
 	public Scene getTankScene() {
 		return tankScene;
 	}
-	
+
 	public static Scene getStaticTankScene() {
 		return tankScene;
+	}
+
+	public static int getCurrentTank() {
+		return currentTank;
+	}
+
+	public static void setCurrentTank(int currentTank) {
+		ViewManager.currentTank = currentTank;
+	}
+
+	public static int getCurrentLevel() {
+		return currentLevel;
+	}
+
+	public static void setCurrentLevel(int currentLevel) {
+		ViewManager.currentLevel = currentLevel;
 	}
 
 }

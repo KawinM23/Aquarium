@@ -214,6 +214,15 @@ public class JSONManager {
 		}
 	}
 
+	public static void nextLevel() {
+		if (level < 4) {
+			setLevel(level + 1);
+		} else if (level == 4 && tank != 4) {
+			setLevel(1);
+			setTank(tank + 1);
+		}
+	}
+
 	public static void clear() {
 
 		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
