@@ -10,6 +10,7 @@ import model.base.Fish;
 import model.base.Money;
 import model.base.Monster;
 import model.base.Unit;
+import model.fish.Guppy;
 import properties.Renderable;
 
 public class TankManager {
@@ -114,6 +115,20 @@ public class TankManager {
 		StatTracker.addFishBought();
 	}
 
+	public static void addStartFish(Fish f) {
+		double posX = 0 + (GameManager.getWIDTH() - f.getWidth() - 0) * rand.nextDouble();
+		double posY = GameManager.getTOPHEIGHT()
+				+ (GameManager.getBOTTOMHEIGHT() - f.getHeight() - GameManager.getTOPHEIGHT()) * rand.nextDouble();
+		f.setPos(posX, posY / 2);
+		if (f instanceof Guppy) {
+			((Guppy) f).setBornTime(System.nanoTime());
+		}
+		unitList.add(f);
+		fishList.add(f);
+		// Random Hunger Fish
+		f.getHunger().addLastFedRandom(3, 6);
+	}
+
 	public static void addBornedFish(Fish f) {
 		unitList.add(f);
 		fishList.add(f);
@@ -127,7 +142,7 @@ public class TankManager {
 	public static boolean addFood(Food f) {
 		// Play Sound Effect
 		SoundManager.playDropFoodSound();
-		
+
 		if (!(foodList.size() >= PlayerController.getMaxFood())) {
 			unitList.add(f);
 			foodList.add(f);

@@ -161,5 +161,16 @@ public class PlayerController {
 		PlayerController.isPotion = isPotion;
 	}
 
+	public static void clear() {
+		setMoney(0);
+		setPlaying(false);
+		setPause(false);
+		setPotion(false);
+		setMaxFood(1);
+		setFoodLevel(1);
+		setGunLevel(1);
+		setGoal(0);
+	}
+
 
 }

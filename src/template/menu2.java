@@ -213,7 +213,7 @@ public class menu2 {
 									SoundManager.playBgm();
 
 									ViewManager manager = new ViewManager();
-									manager.startLevel(1, 1);
+									manager.startLevelTest(1, 1);
 									SceneController.changeScene(manager.getTankScene());
 								}
 							});

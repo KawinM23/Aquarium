@@ -1,6 +1,8 @@
 package game;
 
 import javafx.application.Application;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import manager.JSONManager;
@@ -25,6 +27,12 @@ public class main0 extends Application {
 			primaryStage.setTitle("AQUARIUM");
 			primaryStage.setResizable(false);
 			primaryStage.show();
+			
+			primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+				if (event.getCode() == KeyCode.SPACE) {
+					System.out.println(JSONManager.getJsonNameList());
+				}
+			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

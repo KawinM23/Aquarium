@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Food;
+import model.base.Fish;
 import model.base.Money;
 import model.base.Monster;
 import model.fish.Beetlemuncher;
@@ -35,83 +36,25 @@ import model.monster.Sylvester;
 import template.pause1;
 
 public class ViewManager {
-	private Pane mainPane;
+	private Pane tankPane;
+	private AnchorPane anchorPane;
 	private static Scene tankScene;
-	private Stage tankStage;
 
 	private static int currentTank;
 	private static int currentLevel;
 	private static Thread threadTank;
 
 	public ViewManager() {
-		mainPane = new Pane();
-		tankScene = new Scene(mainPane, GameManager.getWIDTH(), GameManager.getHEIGHT());
-//		tankStage = new Stage();
-//		tankStage.setScene(tankScene);
+		tankPane = new Pane();
+		tankScene = new Scene(tankPane, GameManager.getWIDTH(), GameManager.getHEIGHT());
 
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
-		mainPane.getChildren().add(canvas);
+		tankPane.getChildren().add(canvas);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-
+		anchorPane = new AnchorPane();
+		tankPane.getChildren().add(anchorPane);
 		///////////////////////// TEST
 
-		Guppy g1 = new Guppy("g1", 500, 300);
-		TankManager.addNewFish(g1);
-
-		Guppy g2 = new Guppy("g2", 200, 100);
-		TankManager.addNewFish(g2);
-
-		Guppy g3 = new Guppy("g3", 400, 100);
-		TankManager.addNewFish(g3);
-
-		Carnivore c1 = new Carnivore("c1", 300, 200);
-		TankManager.addNewFish(c1);
-
-		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
-		TankManager.add(sc1);
-//
-		Star s1 = new Star("s1", 400, 200);
-		TankManager.add(s1);
-//
-//
-		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
-		TankManager.addNewFish(gc1);
-//
-//		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
-//		TankManager.add(bm1);
-
-		Sylvester sv = new Sylvester("Sv", 400, 500);
-
-		Balrog br = new Balrog("Br", 400, 500);
-
-		Gus g = new Gus("GUS", 400, 500);
-
-		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
-		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(g);
-		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 10, 30, 40 });
-		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
-
-		//////////////////////////// Setting
-		AnchorPane ap = new AnchorPane();
-
-		PlayerController.setPlaying(true);
-		PlayerController.setMaxFood(3);
-		PlayerController.setMoney(200);
-
-		Level level1_1 = new Level("1_1", 1, 1);
-		LevelManager.loadLevel1_1(level1_1);
-
-		ShopController.setShopDetail(level1_1);
-		ShopController.setAllButtons(ap);
-		ShopController.prices[6] = 50;
-
-		pause1.setAnchorPane(ap);
-		pause1.setPauseButtons();
-		pause1.hideButtons();
-
-		mainPane.getChildren().add(ap);
 		//////////////////////////
 
 		// TODO Change Code to new Controller
@@ -161,8 +104,6 @@ public class ViewManager {
 		// don't let thread prevent JVM shutdown
 		threadTank.setDaemon(true);
 
-		StatTracker.clear();
-
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 
@@ -209,19 +150,98 @@ public class ViewManager {
 
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 
-//		tankStage.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-//			if (event.getCode() == KeyCode.SPACE) {
-//				PlayerController.togglePause();
-//			}
-//		});
-
+		startLevelTest(1, 1);
 	}
 
-	public void startLevel(int tank, int level) {
+	public void startLevelTest(int tank, int level) {
 		ViewManager.setCurrentTank(tank);
 		ViewManager.setCurrentLevel(level);
 		StatTracker.clear();
+
+		//////////////////////////
+		Guppy g1 = new Guppy("g1", 500, 300);
+		TankManager.addNewFish(g1);
+
+		Guppy g2 = new Guppy("g2", 200, 100);
+		TankManager.addNewFish(g2);
+
+		Guppy g3 = new Guppy("g3", 400, 100);
+		TankManager.addNewFish(g3);
+
+		Carnivore c1 = new Carnivore("c1", 300, 200);
+		TankManager.addNewFish(c1);
+
+		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
+		TankManager.add(sc1);
+
+		Star s1 = new Star("s1", 400, 200);
+		TankManager.add(s1);
+//
+//
+		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
+		TankManager.addNewFish(gc1);
+//
+//		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
+//		TankManager.add(bm1);
+
+		Sylvester sv = new Sylvester("Sv", 400, 500);
+
+		Balrog br = new Balrog("Br", 400, 500);
+
+		Gus g = new Gus("GUS", 400, 500);
+
+		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
+		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
+		firstInvasion.add(g);
+		InvasionManager.getInvasionList().add(firstInvasion);
+		InvasionManager.setInvasionTimeList(new int[] { 10, 30, 40 });
+		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
+
+		//////////////////////////// Setting
+
+		PlayerController.setPlaying(true);
+		PlayerController.setMaxFood(3);
+		PlayerController.setMoney(200);
+
+		ShopController.setShopDetail(LevelManager.getLevel1_1());
+		ShopController.setAllButtons(anchorPane);
+		ShopController.prices[6] = 50;
+
+		pause1.setAnchorPane(anchorPane);
+		pause1.setPauseButtons();
+		pause1.hideButtons();
+
+		
+
 		threadTank.start();
+	}
+
+	public void startLevel(Level level) {
+		clearLevel();
+		ViewManager.setCurrentTank(level.getId()[0]);
+		ViewManager.setCurrentLevel(level.getId()[1]);
+
+		PlayerController.setMoney(level.getStartingMoney());
+		for (Fish fish : level.getStartingFish()) {
+			TankManager.addStartFish(fish);
+		}
+		
+		ShopController.setShopDetail(level);
+		ShopController.setAllButtons(anchorPane);
+
+		InvasionManager.setInvasionList(level.getInvasionMonster());
+		InvasionManager.setInvasionTimeList(level.getInvasionTime());
+
+		PlayerController.setPlaying(true);
+		threadTank.start();
+	}
+
+	private void clearLevel() {
+		// TODO Clear
+		TankManager.clear();
+		StatTracker.clear();
+		PlayerController.clear();
+
 	}
 
 	public static void winLevel() {
@@ -262,10 +282,6 @@ public class ViewManager {
 
 	public static Thread getThreadTank() {
 		return threadTank;
-	}
-
-	public Stage getTankStage() {
-		return tankStage;
 	}
 
 	public Scene getTankScene() {

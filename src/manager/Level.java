@@ -15,8 +15,8 @@ public class Level {
 	private ArrayList<Fish> startingFish;
 
 	private Unit[] shopItem;
-	private boolean foodUpgrable;
-	private boolean weaponUpgrable;
+	private boolean foodUpgradable;
+	private boolean weaponUpgradable;
 	private int goalPrice;
 
 	private ArrayList<ArrayList<Monster>> invasionMonster;
@@ -94,19 +94,21 @@ public class Level {
 		this.goalPrice = goalPrice;
 	}
 
-	public boolean isFoodUpgrable() {
-		return foodUpgrable;
+	public boolean isFoodUpgradable() {
+		return foodUpgradable;
 	}
 
-	public void setFoodUpgrable(boolean foodUpgrable) {
-		this.foodUpgrable = foodUpgrable;
+	public void setFoodUpgradable(boolean foodUpgradable) {
+		this.foodUpgradable = foodUpgradable;
 	}
 
-	public boolean isWeaponUpgrable() {
-		return weaponUpgrable;
+	public boolean isWeaponUpgradable() {
+		return weaponUpgradable;
 	}
 
-	public void setWeaponUpgrable(boolean weaponUpgrable) {
-		this.weaponUpgrable = weaponUpgrable;
+	public void setWeaponUpgradable(boolean weaponUpgradable) {
+		this.weaponUpgradable = weaponUpgradable;
 	}
+
+
 }
