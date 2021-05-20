@@ -19,7 +19,7 @@ public class Sylvester extends Monster implements Renderable {
 
 	private static final Image SylvesterImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	private Hunger hunger;
+
 
 	public Sylvester(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -43,7 +43,7 @@ public class Sylvester extends Monster implements Renderable {
 			return;
 		}
 
-		switch (hunger.checkHunger()) {
+		switch (getHunger().checkHunger()) {
 		case 0:
 			// idle
 			this.getIdle().checkIdleMonster();
@@ -101,7 +101,7 @@ public class Sylvester extends Monster implements Renderable {
 	private void eat(Unit nearestFish) {
 		// TODO Auto-generated method stub
 		TankManager.remove(nearestFish);
-		this.hunger.setLastFedNow();
+		this.getHunger().setLastFedNow();
 	}
 
 	public void getHit() {
@@ -110,13 +110,7 @@ public class Sylvester extends Monster implements Renderable {
 		this.decreaseHealth(PlayerController.getGunDamage());
 	}
 
-	public Hunger getHunger() {
-		return hunger;
-	}
 
-	public void setHunger(Hunger hunger) {
-		this.hunger = hunger;
-	}
 
 	@Override
 	public void continuePause(long duration) {

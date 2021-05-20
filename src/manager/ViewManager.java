@@ -30,6 +30,7 @@ import model.money.Beetle;
 import model.money.SilverCoin;
 import model.money.Star;
 import model.monster.Balrog;
+import model.monster.Gus;
 import model.monster.Sylvester;
 import template.pause1;
 
@@ -80,10 +81,8 @@ public class ViewManager {
 //		TankManager.add(bm1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500);
-		
+
 		Balrog br = new Balrog("Br", 400, 500);
-
-
 
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
@@ -92,10 +91,9 @@ public class ViewManager {
 		InvasionManager.setInvasionTimeList(new int[] { 10, 30, 40 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
-		
-		////////////////////////////Setting
+		//////////////////////////// Setting
 		AnchorPane ap = new AnchorPane();
-		
+
 		PlayerController.setPlaying(true);
 		PlayerController.setMaxFood(3);
 		PlayerController.setMoney(200);
@@ -140,7 +138,7 @@ public class ViewManager {
 							pause1.drawPane(gc);
 							pause1.showButtons();
 						}
-						
+
 					}
 				};
 
@@ -178,29 +176,33 @@ public class ViewManager {
 							}
 						}
 						// Add Food at mouse position
-						if (PlayerController.isPotion()) {
-							StatTracker.addFoodBought();
-							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 2));
-							PlayerController.setPotion(false);
-						} else if (TankManager.getFoodList().size() < PlayerController.getMaxFood()
-								&& PlayerController.buy(5)) {
-							System.out.println("Add Food " + PlayerController.getFoodLevel());
-							StatTracker.addFoodBought();
-							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
-						}
+						clickAddFood(event, 0);
 
 					} else {
-						// Shoot
+
+						boolean hasGus = false;
 						for (Monster m : TankManager.getMonsterList()) {
-							if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
-								m.getHit();
-								break;
+							if (m instanceof Gus) {
+								hasGus = true;
 							}
+						}
+						if (!hasGus) {
+							// Shoot
+							for (Monster m : TankManager.getMonsterList()) {
+								if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
+									m.getHit();
+									break;
+								}
+							}
+						} else {
+							// Feed
+							clickAddFood(event, 1);
 						}
 					}
 				}
 
 			}
+
 		};
 
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -223,6 +225,29 @@ public class ViewManager {
 	public static void winLevel() {
 		if (currentTank == JSONManager.getTank() && currentLevel == JSONManager.getLevel()) {
 			JSONManager.nextLevel();
+		}
+	}
+
+	public void clickAddFood(MouseEvent event, int i) {
+		if (i == 0) {
+			if (PlayerController.isPotion()) {
+				StatTracker.addFoodBought();
+				TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 2));
+				PlayerController.setPotion(false);
+			} else if (TankManager.getFoodList().size() < PlayerController.getMaxFood() && PlayerController.buy(5)) {
+				System.out.println("Add Food " + PlayerController.getFoodLevel());
+				StatTracker.addFoodBought();
+				TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+			}
+		} else if (i == 1) {
+			if (PlayerController.isPotion()) {
+				StatTracker.addFoodBought();
+				TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 2));
+				PlayerController.setPotion(false);
+			} else if (TankManager.getFoodList().size() < PlayerController.getMaxFood()) {
+				System.out.println("Add Food " + PlayerController.getFoodLevel());
+				TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+			}
 		}
 	}
 
