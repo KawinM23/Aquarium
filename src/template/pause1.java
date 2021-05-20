@@ -51,7 +51,7 @@ public class pause1 {
 		if (buttonText == "Music: ") {
 			button.setText("Music: " + SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel()));
 		} else if (buttonText == "Sound: ") {
-			button.setText("Sound: " + SoundManager.getVolumeLevelWord(SoundManager.getClickVolumeLevel()));
+			button.setText("Sound: " + SoundManager.getVolumeLevelWord(SoundManager.getSoundVolumeLevel()));
 		}
 
 		button.setPrefSize((position[2] - position[0]), (position[3] - position[1]));
@@ -142,9 +142,9 @@ public class pause1 {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SoundManager.nextClickVolumeLevel();
+									SoundManager.nextSoundVolumeLevel();
 									button.setText("Sound: "
-											+ SoundManager.getVolumeLevelWord(SoundManager.getClickVolumeLevel()));
+											+ SoundManager.getVolumeLevelWord(SoundManager.getSoundVolumeLevel()));
 								}
 							});
 

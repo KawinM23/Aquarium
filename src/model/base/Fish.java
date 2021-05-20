@@ -3,6 +3,7 @@ package model.base;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import manager.InvasionManager;
+import manager.SoundManager;
 import manager.TankManager;
 import model.Food;
 import properties.Hunger;
@@ -81,6 +82,9 @@ public abstract class Fish extends Unit {
 	}
 
 	public void feed(Unit nearestFood) {
+		// Play Sound Effect
+		SoundManager.playEatSound();
+		
 		TankManager.remove(nearestFood);
 		this.hunger.setLastFedNow();
 		this.hunger.addLastFedRandom(0, 1);
@@ -94,6 +98,9 @@ public abstract class Fish extends Unit {
 	}
 
 	public void die() {
+		// Play Sound Effect
+		SoundManager.playDieSound();
+		
 		System.out.println(this.getName() + " die");
 		TankManager.remove(this);
 	}

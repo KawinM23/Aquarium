@@ -156,9 +156,9 @@ public class menu1 {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SoundManager.nextClickVolumeLevel();
+									SoundManager.nextSoundVolumeLevel();
 									button.setText("Sound: "
-											+ SoundManager.getVolumeLevelWord(SoundManager.getClickVolumeLevel()));
+											+ SoundManager.getVolumeLevelWord(SoundManager.getSoundVolumeLevel()));
 								}
 							});
 

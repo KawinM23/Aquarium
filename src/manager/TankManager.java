@@ -98,6 +98,8 @@ public class TankManager {
 	}
 
 	public static void addNewFish(Fish f) {
+		// Play Sound Effect
+		SoundManager.playSplashSound();
 		// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
 		double posX = 0 + (GameManager.getWIDTH() - f.getWidth() - 0) * rand.nextDouble();
 		double posY = GameManager.getTOPHEIGHT()
@@ -123,6 +125,9 @@ public class TankManager {
 	}
 
 	public static boolean addFood(Food f) {
+		// Play Sound Effect
+		SoundManager.playDropFoodSound();
+		
 		if (!(foodList.size() >= PlayerController.getMaxFood())) {
 			unitList.add(f);
 			foodList.add(f);

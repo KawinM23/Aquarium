@@ -100,7 +100,7 @@ public class JSONManager {
 				foodBought = (int) efood;
 				monsterDefeated = (int) emonster;
 				SoundManager.setBgmVolumeLevel((int) emusic);
-				SoundManager.setClickVolumeLevel((int) eeffect);
+				SoundManager.setSoundVolumeLevel((int) eeffect);
 
 			} else {
 				jsonList.add(player);
@@ -174,7 +174,7 @@ public class JSONManager {
 		playerDetails.put("foodBought", foodBought);
 		playerDetails.put("monsterDefeated", monsterDefeated);
 		playerDetails.put("musicLevel", SoundManager.getBgmVolumeLevel());
-		playerDetails.put("effectLevel", SoundManager.getClickVolumeLevel());
+		playerDetails.put("effectLevel", SoundManager.getSoundVolumeLevel());
 		JSONObject playerObject = new JSONObject();
 		playerObject.put("player", playerDetails);
 

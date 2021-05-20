@@ -2,6 +2,7 @@ package model.base;
 
 import manager.GameManager;
 import manager.PlayerController;
+import manager.SoundManager;
 import manager.StatTracker;
 import manager.TankManager;
 
@@ -43,6 +44,9 @@ public abstract class Money extends Unit {
 	}
 
 	public void collected() {
+		// Play Sound Effect
+		SoundManager.playCollectSound();
+		
 		TankManager.remove(this);
 		PlayerController.addMoney(value);
 		StatTracker.addMoneyGain(value);
