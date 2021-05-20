@@ -63,7 +63,7 @@ public class ShopController {
 		prices = new int[] { getUnitPrice(level.getShopItem()[0]), 200, 300, getUnitPrice(level.getShopItem()[1]),
 				getUnitPrice(level.getShopItem()[2]), 1000, level.getGoalPrice() };
 		// TODO Get Gun Images Later (Right now is null) + Get Goal Egg Image
-		images = new Image[] { getUnitImage(level.getShopItem()[0]), Food.getStaticImage(1), null,
+		images = new Image[] { getUnitImage(level.getShopItem()[0]), Food.getStaticImage(2), null,
 				getUnitImage(level.getShopItem()[1]), getUnitImage(level.getShopItem()[2]), null, null };
 	}
 
@@ -146,12 +146,17 @@ public class ShopController {
 						break;
 					// Food Type
 					case 2:
-						if (PlayerController.buy(prices[1])) {
+						// If enough money AND Food Level not maxed
+						if (PlayerController.buy(prices[1]) && PlayerController.getFoodLevel() <= 2) {
 							PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
+							if (PlayerController.getFoodLevel() == 3) {
+								prices[1] = 0;
+								button.setVisible(false);
+							}
 
 							Thread thread = new Thread(() -> {
 								try {
-									images[1] = Food.getStaticImage(PlayerController.getFoodLevel());
+									images[1] = Food.getStaticImage(PlayerController.getFoodLevel() + 1);
 									Platform.runLater(new Runnable() {
 										@Override
 										public void run() {
@@ -254,16 +259,36 @@ public class ShopController {
 		// Draw the UI Bar
 
 		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, GameManager.getWIDTH(), shopHeight);
+
 		// Draw the images
 		for (int i = 0; i < 7; i++) {
 			// Draw Images
+
+			if (prices[i] != 0) {
+				DrawManager.drawOval(gc, (int) (buttonDetail[i][0] * 1.5), (int) (buttonDetail[i][1] * 1.5),
+						(int) (getButtonWidth(i + 1) * 1.5+1), (int) (getButtonHeight(i + 1) * 1.5+5));
+			}
+
 			DrawManager.drawImageFixSize(gc, images[i], (int) (buttonDetail[i][0] * 1.5),
 					(int) (buttonDetail[i][1] * 1.5), getButtonWidth(i + 1) * 1.5, getButtonHeight(i + 1) * 1.5);
+
 			// Draw Prices
-			DrawManager.drawText(gc, "" + prices[i], 18,
-					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - getDigit(prices[i]) * 3) * 1.5),
+			String priceText = "" + prices[i];
+			int relay = priceText.length() * 3;
+			if (prices[i] == 0) {
+				priceText = "MAX";
+				relay += 10;
+			}
+
+			DrawManager.drawText(gc, priceText, 18,
+					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
 					(int) ((buttonDetail[i][3] * 1.5) + 16), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
 		}
+
+		// Draw Max Food Number
+		DrawManager.drawText(gc, "" + PlayerController.getMaxFood(), 40, (int) (buttonDetail[2][0] * 1.5 + 30),
+				(int) (buttonDetail[2][3] * 1.5 - 15), (int) (((buttonDetail[2][2] - buttonDetail[2][0])) * 1.5));
+
 		// Draw current money
 		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24,
 				(int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(PlayerController.getMoney()) * 5)
