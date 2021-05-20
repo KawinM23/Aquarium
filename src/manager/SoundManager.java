@@ -18,13 +18,12 @@ public class SoundManager {
 	private static MediaPlayer currentBgmPlayer;
 
 	public static void playClickSound() {
-		setVolume(buttonClickPlayer, clickVolumeLevel);
 		Thread thread = new Thread(() -> {
 
 			MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
 
 			try {
-
+				setVolume(buttonClickPlayer, clickVolumeLevel);
 				buttonClickPlayer.play();
 
 			} catch (Exception e) {
@@ -154,7 +153,14 @@ public class SoundManager {
 			bgmVolumeLevel = 0;
 		else if (bgmVolumeLevel < 3)
 			bgmVolumeLevel++;
-		setVolume(currentBgmPlayer,bgmVolumeLevel);
+		setVolume(currentBgmPlayer, bgmVolumeLevel);
+	}
+
+	public static void nextClickVolumeLevel() {
+		if (clickVolumeLevel == 3)
+			clickVolumeLevel = 0;
+		else if (clickVolumeLevel < 3)
+			clickVolumeLevel++;
 	}
 
 	public static void setBgm(MediaPlayer mediaPlayer) {
@@ -186,6 +192,10 @@ public class SoundManager {
 
 	public static void setBgmVolumeLevel(int level) {
 		bgmVolumeLevel = level;
+	}
+	
+	public static int getClickVolumeLevel() {
+		return clickVolumeLevel;
 	}
 
 }
