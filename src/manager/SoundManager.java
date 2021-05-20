@@ -154,6 +154,7 @@ public class SoundManager {
 		else if (bgmVolumeLevel < 3)
 			bgmVolumeLevel++;
 		setVolume(currentBgmPlayer, bgmVolumeLevel);
+		JSONManager.writeJSON();
 	}
 
 	public static void nextClickVolumeLevel() {
@@ -161,6 +162,7 @@ public class SoundManager {
 			clickVolumeLevel = 0;
 		else if (clickVolumeLevel < 3)
 			clickVolumeLevel++;
+		JSONManager.writeJSON();
 	}
 
 	public static void setBgm(MediaPlayer mediaPlayer) {
