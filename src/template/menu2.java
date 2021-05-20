@@ -73,7 +73,7 @@ public class menu2 {
 			}
 		});
 
-		Font font = new Font("Arial Black",position[5]);
+		Font font = new Font("Arial Black", position[5]);
 		button.setFont(font);
 
 		AnchorPane.setTopAnchor(button, position[1]);
@@ -209,11 +209,36 @@ public class menu2 {
 								public void run() {
 									// TODO Auto-generated method stub
 									// TODO Change Bgm later
-									SoundManager.setBgm(SoundManager.getMainmenubgmplayer());
+									SoundManager.setBgm(1);
 									SoundManager.playBgm();
 
 									ViewManager manager = new ViewManager();
 									manager.startLevelTest(1, 1);
+									SceneController.changeScene(manager.getTankScene());
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+				} else if (buttonText.equals("Tank 1-2")) {
+					SoundManager.stopBgm();
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									// TODO Change Bgm later
+									SoundManager.setBgm(0);
+									SoundManager.playBgm();
+
+									ViewManager manager = new ViewManager();
+									manager.startLevel(1,1);
 									SceneController.changeScene(manager.getTankScene());
 								}
 							});

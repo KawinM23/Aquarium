@@ -89,8 +89,26 @@ public class SoundManager {
 		thread.start();
 	}
 
-	public static void setBgm(MediaPlayer mediaPlayer) {
-		currentBgmPlayer = mediaPlayer;
+	public static void setBgm(int tankNumber) {
+		switch (tankNumber) {
+		case 0:
+			currentBgmPlayer = mainMenuBgmPlayer;
+			break;
+		case 1:
+			currentBgmPlayer = tank1BgmPlayer;
+			break;
+		case 2:
+			currentBgmPlayer = tank2BgmPlayer;
+			break;
+		case 3:
+			currentBgmPlayer = tank3BgmPlayer;
+			break;
+		case 4:
+			currentBgmPlayer = tank4BgmPlayer;
+			break;
+		default:
+		}
+		
 	}
 
 	public static void playBgm() {
@@ -127,6 +145,7 @@ public class SoundManager {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
+						System.out.println("STOP");
 						currentBgmPlayer.stop();
 					}
 				});
