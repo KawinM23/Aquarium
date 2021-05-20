@@ -84,27 +84,13 @@ public class Destructor extends Monster implements Renderable{
 					nearestFish = f;
 				}
 			}
-			// Check Food position and Fish
-			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
-				// eat & levelup
-				System.out.println(this.getName() + " eat " + nearestFish.getName());
-				this.eat(nearestFish);
-				this.getIdle().checkIdleMonster();
-			} else {
-				// Go to food
-				this.headToUnit(nearestFish);
-			}
+			
+			this.getIdle().checkIdleMonster();
 
 		} else {
 			// Idle No food
 			this.getIdle().checkIdleMonster();
 		}
-	}
-
-	private void eat(Unit nearestFish) {
-		// TODO Auto-generated method stub
-		TankManager.remove(nearestFish);
-		this.getHunger().setLastFedNow();
 	}
 
 	public void getHit() {
