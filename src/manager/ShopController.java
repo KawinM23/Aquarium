@@ -147,16 +147,16 @@ public class ShopController {
 					// Food Type
 					case 2:
 						// If enough money AND Food Level not maxed
-						if (PlayerController.buy(prices[1]) && PlayerController.getFoodLevel()<=2) {
+						if (PlayerController.buy(prices[1]) && PlayerController.getFoodLevel() <= 2) {
 							PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
-							if (PlayerController.getFoodLevel()==3) {
-								prices[1]=0;
+							if (PlayerController.getFoodLevel() == 3) {
+								prices[1] = 0;
 								button.setVisible(false);
 							}
 
 							Thread thread = new Thread(() -> {
 								try {
-									images[1] = Food.getStaticImage(PlayerController.getFoodLevel()+1);
+									images[1] = Food.getStaticImage(PlayerController.getFoodLevel() + 1);
 									Platform.runLater(new Runnable() {
 										@Override
 										public void run() {
@@ -261,6 +261,7 @@ public class ShopController {
 		// Draw the UI Bar
 
 		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, GameManager.getWIDTH(), shopHeight);
+
 		// Draw the images
 		for (int i = 0; i < 7; i++) {
 			// Draw Images
@@ -271,6 +272,11 @@ public class ShopController {
 					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - getDigit(prices[i]) * 3) * 1.5),
 					(int) ((buttonDetail[i][3] * 1.5) + 16), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
 		}
+
+		// Draw Max Food Number
+		DrawManager.drawText(gc, "" + PlayerController.getMaxFood(), 40, (int) (buttonDetail[2][0] * 1.5 +30),
+				(int) (buttonDetail[2][3] * 1.5-15), (int) (((buttonDetail[2][2] - buttonDetail[2][0])) * 1.5));
+
 		// Draw current money
 		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24,
 				(int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(PlayerController.getMoney()) * 5)
