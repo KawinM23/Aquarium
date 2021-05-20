@@ -2,6 +2,7 @@ package model.fish;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import manager.GameManager;
 import manager.TankManager;
 import model.Food;
@@ -138,9 +139,15 @@ public class Guppy extends Fish implements Renderable {
 	public void render(GraphicsContext gc) {
 		if (isFacingLeft()) {
 			gc.drawImage(GuppyImageLeft, getPosX(), getPosY(), getWidth(), getHeight());
+			if (isStar) {
+				gc.setStroke(new Color(1, 1, 0, 1));
+			}
 			gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
 			gc.drawImage(GuppyImageRight, getPosX(), getPosY(), getWidth(), getHeight());
+			if (isStar) {
+				gc.setStroke(new Color(1, 1, 0, 1));
+			}
 			gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}

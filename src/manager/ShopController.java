@@ -181,9 +181,7 @@ public class ShopController {
 						if (PlayerController.buy(prices[3])) {
 							// If it is a potion
 							if (shopItems[1] instanceof Food) {
-								Food food = new Food("Food", 0, 0, PlayerController.getFoodLevel());
-								TankManager.addFood(food);
-								System.out.println(TankManager.getFoodList());
+								PlayerController.setPotion(true);
 							}
 							// If it is a carnivore
 							else if (shopItems[1] instanceof Carnivore) {

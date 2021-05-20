@@ -9,10 +9,12 @@ public class PlayerController {
 	private static boolean isPause = false;
 	private static long pauseTime;
 
+	private static boolean isPotion;//Is next food Potion?
+	
 	private static int maxFood;
 	private static int foodLevel = 1;
 	private static int gunLevel = 1;
-	private static int goal = 0; // TODO GOAL Tracker
+	private static int goal = 0; //GOAL Tracker
 
 	public static int getMoney() {
 		return money;
@@ -150,5 +152,14 @@ public class PlayerController {
 	public static void setPauseTime(long pauseTime) {
 		PlayerController.pauseTime = pauseTime;
 	}
+
+	public static boolean isPotion() {
+		return isPotion;
+	}
+
+	public static void setPotion(boolean isPotion) {
+		PlayerController.isPotion = isPotion;
+	}
+
 
 }
