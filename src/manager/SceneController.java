@@ -9,13 +9,14 @@ import javafx.stage.Stage;
 import template.Credits;
 import template.menu1;
 import template.menu2;
+import template.stats;
 
 public class SceneController {
 	private static ArrayList<Scene> sceneList = new ArrayList<Scene>();
 	private static ArrayList<String> nameList = new ArrayList<String>();
 	private static String currentSceneName;
 	private static Stage stage;
-	private static String[] startingMenuTexts = { "Start", "Undefined", "Undefined", "Change Player", "Credits",
+	private static String[] startingMenuTexts = { "Start", "Undefined", "Statistics", "Change Player", "Credits",
 			"Music: Normal", "Sound: Normal", "Quit" };
 	private static Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
 	private static String[] tankLevelTexts = { "Tank 1", "Tank 2", "Tank 3", "Tank 4", "Back" };
@@ -30,6 +31,8 @@ public class SceneController {
 	private static Scene tankLevel4Scene = (new menu2(tankLevel4Texts)).getScene();
 	private static String[] creditsTexts = { "Back" };
 	private static Scene creditsScene = (new Credits(creditsTexts)).getScene();
+	private static String[] statsTexts = { "Back" };
+	private static Scene statsScene = (new stats(statsTexts)).getScene();
 
 	// Declare a primary stage to change scenes in
 	public SceneController() {
@@ -43,6 +46,7 @@ public class SceneController {
 		addScene("Tank3", tankLevel3Scene);
 		addScene("Tank4", tankLevel4Scene);
 		addScene("Credits", creditsScene);
+		addScene("Stats", statsScene);
 
 	}
 
