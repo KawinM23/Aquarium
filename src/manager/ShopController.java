@@ -298,7 +298,7 @@ public class ShopController {
 		if (PlayerController.getMaxFood() == 10) {
 			maxFoodString = "";
 		}
-		DrawManager.drawText(gc, maxFoodString, 40, (int) (buttonDetail[2][0] * 1.5 + 30),
+		DrawManager.drawText(gc, maxFoodString, 40, (int) (buttonDetail[2][0] * 1.5 + 25),
 				(int) (buttonDetail[2][3] * 1.5 - 15), (int) (((buttonDetail[2][2] - buttonDetail[2][0])) * 1.5));
 
 		// Draw current money
