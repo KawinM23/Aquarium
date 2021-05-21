@@ -12,6 +12,8 @@ public class TreasureChest extends Money implements Renderable{
 	public TreasureChest(String name, double posX, double posY) {
 		super(name, posX, posY);
 		
+		this.setSize(70, 70);
+		
 		this.setValue(2000);
 	}
 
