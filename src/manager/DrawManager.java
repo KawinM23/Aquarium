@@ -62,4 +62,16 @@ public class DrawManager {
 		gc.fillOval(posX, posY, width, height);
 
 	}
+	
+	// Set background to BLACK
+	public static void resetBackGround(GraphicsContext gc) {
+		gc.setFill(Color.BLACK);
+		gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+	}
+
+	// Set background to an image
+	public static void setBackGroundImage(GraphicsContext gc, String image_path) {
+		Image image = new Image(image_path);
+		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+	}
 }

@@ -5,14 +5,16 @@ public class PlayerController {
 	private static int money = 10000;
 	private static boolean isPlaying = true;
 	private static boolean isPause = false;
+	private static boolean isBack = false;
+
 	private static long pauseTime;
 
-	private static boolean isPotion;//Is next food Potion?
-	
+	private static boolean isPotion;// Is next food Potion?
+
 	private static int maxFood;
 	private static int foodLevel = 1;
 	private static int gunLevel = 1;
-	private static int goal = 0; //GOAL Tracker
+	private static int goal = 0; // GOAL Tracker
 
 	public static int getMoney() {
 		return money;
@@ -57,9 +59,11 @@ public class PlayerController {
 		System.out.println("WIN");
 		setPlaying(false);
 		ViewManager.getTankThread().stop();
-		
+
 		ViewManager.winLevel();
 		StatTracker.calculateStat();
+
+		SceneController.changeScene("Win");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -69,12 +73,15 @@ public class PlayerController {
 		ViewManager.getTankThread().stop();
 		System.out.println("LOSE");
 		StatTracker.calculateStat();
+
+		SceneController.changeScene("Lose");
 	}
 
 	public static void clear() {
 		setMoney(0);
 		setPlaying(false);
 		setPause(false);
+		setBack(false);
 		setPotion(false);
 		setMaxFood(1);
 		setFoodLevel(1);
@@ -107,7 +114,7 @@ public class PlayerController {
 	}
 
 	public static int getGunDamage() {
-		//TODO Gun Damage
+		// TODO Gun Damage
 		switch (gunLevel) {
 		case 1:
 			return 10;
@@ -173,5 +180,11 @@ public class PlayerController {
 		PlayerController.isPotion = isPotion;
 	}
 
+	public static boolean isBack() {
+		return isBack;
+	}
 
+	public static void setBack(boolean isBack) {
+		PlayerController.isBack = isBack;
+	}
 }

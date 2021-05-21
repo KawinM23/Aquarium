@@ -124,12 +124,15 @@ public class pause1 {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									SceneController.getManager().clearLevel();
-									
-									// TODO Auto-generated method stub
 									SoundManager.setBgm(0);
 									SoundManager.playBgm();
 									SceneController.changeScene("MainMenu");
+									
+									SceneController.getManager().clearLevel();
+									ViewManager.clearLevel();
+									PlayerController.setBack(true);
+									
+									// TODO Auto-generated method stub
 
 								}
 							});

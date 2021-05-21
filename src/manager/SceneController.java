@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import template.Credits;
+import template.WinLose;
 import template.menu1;
 import template.menu2;
 import template.stats;
@@ -33,6 +34,8 @@ public class SceneController {
 	private static Scene creditsScene = (new Credits(creditsTexts)).getScene();
 	private static String[] statsTexts = { "Back" };
 	private static Scene statsScene = (new stats(statsTexts)).getScene();
+	private static Scene winScene = (new WinLose(1)).getScene();
+	private static Scene loseScene = (new WinLose(0)).getScene();
 
 	private static ViewManager manager = new ViewManager();
 
@@ -50,6 +53,8 @@ public class SceneController {
 		addScene("Tank4", tankLevel4Scene);
 		addScene("Credits", creditsScene);
 		addScene("Stats", statsScene);
+		addScene("Win", winScene);
+		addScene("Lose", loseScene);
 
 	}
 

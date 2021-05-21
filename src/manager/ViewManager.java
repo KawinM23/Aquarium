@@ -57,7 +57,6 @@ public class ViewManager {
 		tankThread = newTankThread(canvas, gc);
 
 		// don't let thread prevent JVM shutdown
-		
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -113,7 +112,9 @@ public class ViewManager {
 						if (!PlayerController.isPause()) {
 							InvasionManager.update();
 							TankManager.update();
-							PlayerController.checkPlaying();
+							if (!PlayerController.isBack()) {
+								PlayerController.checkPlaying();
+							}
 							pause1.hideButtons();
 						}
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -162,8 +163,8 @@ public class ViewManager {
 		g3.setGrowth(200);
 		g3.setStar(true);
 		TankManager.addStartFish(g3);
-		
-		Breeder b1 = new Breeder("b1",400,288);
+
+		Breeder b1 = new Breeder("b1", 400, 288);
 		TankManager.addStartFish(b1);
 
 		Carnivore c1 = new Carnivore("c1", 300, 200);
@@ -182,13 +183,13 @@ public class ViewManager {
 //		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
 //		TankManager.add(bm1);
 
-		Sylvester sv = new Sylvester("Sv", 400, 500,0);
+		Sylvester sv = new Sylvester("Sv", 400, 500, 0);
 
-		Balrog br = new Balrog("Br", 400, 500,0);
+		Balrog br = new Balrog("Br", 400, 500, 0);
 
-		Gus g = new Gus("GUS", 400, 500,0);
+		Gus g = new Gus("GUS", 400, 500, 0);
 
-		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200,0);
+		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200, 0);
 
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
@@ -237,7 +238,7 @@ public class ViewManager {
 		tankThread.start();
 	}
 
-	public void clearLevel() {
+	public static void clearLevel() {
 		// Clear Level
 		TankManager.clear();
 		StatTracker.clear();

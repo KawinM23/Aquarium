@@ -12,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import manager.ButtonManager;
+import manager.DrawManager;
 import manager.GameManager;
 import manager.Level;
 import manager.LevelManager;
@@ -39,237 +41,19 @@ public class menu2 {
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
-		resetBackGround(gc);
+		DrawManager.resetBackGround(gc);
 
-		setBackGroundImage(gc, IMAGE_PATH);
+		DrawManager.setBackGroundImage(gc, IMAGE_PATH);
 
 		for (int i = 0; i < buttonDetail.length; i++) {
-			addButtons(root, buttonTexts[i], buttonDetail[i]);
+			Button button = new Button(buttonTexts[i]);
+			ButtonManager.setFont(button, (int) buttonDetail[i][5]);
+			ButtonManager.setHighlightProperty(button, (int) buttonDetail[i][4]);
+			ButtonManager.setMenu2ButtonHandler(button);
+			ButtonManager.setButtonLocationNoZoom(root, button, buttonDetail[i]);
+			//addButtons(root, buttonTexts[i], buttonDetail[i]);
 		}
 		;
-	}
-
-	// Set background to BLACK
-	private void resetBackGround(GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-	}
-
-	// Set background to an image
-	private void setBackGroundImage(GraphicsContext gc, String image_path) {
-		Image image = new Image(image_path);
-		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-	}
-
-	// Add buttons and set their event listeners
-	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position) {
-		Button button = new Button(buttonText);
-		button.setPrefSize((position[2] - position[0]), (position[3] - position[1]));
-		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-				+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
-//				button.setBorder(null);
-//				button.setBackground(null);
-		button.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				System.out.println("Pressed " + buttonText);
-			}
-		});
-
-		Font font = new Font("Arial Black", position[5]);
-		button.setFont(font);
-
-		AnchorPane.setTopAnchor(button, position[1]);
-		AnchorPane.setLeftAnchor(button, position[0]);
-
-		button.hoverProperty().addListener((event) -> {
-			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-					+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
-		});
-
-		button.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
-			}
-		});
-		button.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
-			}
-		});
-		button.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
-				SoundManager.playClickSound();
-				if (buttonText.equals("Back")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									if (SceneController.isAtAllTank()) {
-										SceneController.changeScene("MainMenu");
-									} else if (SceneController.isAtNumberTank()) {
-										SceneController.changeScene("TankAll");
-									}
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-
-				} else if (buttonText.equals("Tank 1")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank1");
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (buttonText.equals("Tank 2")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank2");
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (buttonText.equals("Tank 3")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank3");
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (buttonText.equals("Tank 4")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank4");
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (buttonText.equals("Tank 1-1")) {
-					SoundManager.stopBgm();
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									// TODO Change Bgm later
-									SoundManager.setBgm(1);
-									SoundManager.playBgm();
-
-									ViewManager manager = new ViewManager();
-									manager.startLevelTest(1, 1);
-									SceneController.changeScene(manager.getTankScene());
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (buttonText.equals("Tank 1-2")) {
-					SoundManager.stopBgm();
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									// TODO Change Bgm later
-									SoundManager.setBgm(1);
-									SoundManager.playBgm();
-
-									ViewManager manager = new ViewManager();
-									manager.startLevel(LevelManager.getLevel1_2());
-									SceneController.changeScene(manager.getTankScene());
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				}
-			}
-		});
-		button.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (button.isHover()) {
-					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
-				} else {
-					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
-				}
-
-			}
-		});
-
-		anchorpane.getChildren().addAll(button);
 	}
 
 	public Scene getScene() {
