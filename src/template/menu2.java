@@ -44,6 +44,7 @@ public class menu2 {
 		DrawManager.resetBackGround(gc);
 
 		DrawManager.setBackGroundImage(gc, IMAGE_PATH);
+		DrawManager.drawGuraGreeting(gc, "Tank");
 
 		for (int i = 0; i < buttonDetail.length; i++) {
 			Button button = new Button(buttonTexts[i]);

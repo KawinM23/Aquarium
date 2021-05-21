@@ -58,6 +58,7 @@ public class stats {
 		;
 
 		gcc = gc;
+		
 	}
 
 	// Set background to BLACK
@@ -187,7 +188,9 @@ public class stats {
 		String monsterDefeatedText = "Total Monsters Defeated: " + monsterDefeated;
 		String[] statsList = { tankLevelText, line, moneyGainedText, fishBoughtText, playTimeText, foodBoughtText,
 				monsterDefeatedText };
-
+		
+		DrawManager.drawGuraGreeting(gcc, "Statistics");
+		
 		for (int i = 0; i < statsList.length; i++) {
 			// GraphicsContext, Font Size, posX, posY, Width
 			if (i != 1) {

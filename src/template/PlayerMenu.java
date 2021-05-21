@@ -17,7 +17,7 @@ import manager.SceneController;
 
 public class PlayerMenu {
 	static Label currentPlayerText = new Label();
-	
+
 	public static void display() {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
@@ -53,6 +53,10 @@ public class PlayerMenu {
 		Label newPlayerText = new Label("New Player Name: ");
 
 		TextField newPlayerName = new TextField();
+		newPlayerName.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue.length() > 12)
+				newPlayerName.setText(oldValue);
+		});
 
 		Button newButton = new Button("New");
 		newButton.setOnAction(e -> {
@@ -77,6 +81,10 @@ public class PlayerMenu {
 		Label changePlayerNameText = new Label("Change Name");
 
 		TextField changePlayerName = new TextField();
+		changePlayerName.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue.length() > 12)
+				newPlayerName.setText(oldValue);
+		});
 
 		Button changeButton = new Button("Change");
 		changeButton.setOnAction(e -> {
@@ -131,7 +139,7 @@ public class PlayerMenu {
 			comboBox.getItems().add(JSONManager.getJsonNameList().get(i));
 		}
 	}
-	
+
 	public static void setCurrentPlayer(String playerName) {
 		currentPlayerText.setText("Current Player: " + playerName);
 	}

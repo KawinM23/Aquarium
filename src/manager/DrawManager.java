@@ -39,7 +39,7 @@ public class DrawManager {
 		gc.fillText(text, positionX, positionY, width);
 
 	}
-	
+
 	public static void drawStatsText(GraphicsContext gc, String text, int fontSize, int positionX, int positionY,
 			int width) {
 		// Set line width
@@ -57,12 +57,12 @@ public class DrawManager {
 
 	public static void drawOval(GraphicsContext gc, int posX, int posY, int width, int height) {
 		gc.setLineWidth(2);
-		gc.setFill(Color.rgb(77,52,178));
+		gc.setFill(Color.rgb(77, 52, 178));
 		// x,y,w,h
 		gc.fillOval(posX, posY, width, height);
 
 	}
-	
+
 	// Set background to BLACK
 	public static void resetBackGround(GraphicsContext gc) {
 		gc.setFill(Color.BLACK);
@@ -73,5 +73,28 @@ public class DrawManager {
 	public static void setBackGroundImage(GraphicsContext gc, String image_path) {
 		Image image = new Image(image_path);
 		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+	}
+
+	public static void drawGuraGreeting(GraphicsContext gc, String key) {
+		String speech = "Welcome, " + JSONManager.getPlayerName() + "!";
+		switch (key) {
+		case "MainMenu":
+			break;
+		case "Credits":
+			speech = "They're awesome!";
+			break;
+		case "Tank":
+			speech = "Choose a level!";
+			break;
+		case "Statistics":
+			speech = "I hate numbers...";
+			break;
+		default:
+		}
+		
+		String quote = "\" " + speech + " \"";
+		String quoteBy = "- Gawr Gura 2021";
+		drawStatsText(gc, quote, 40, 15, 539, 420);
+		drawStatsText(gc, quoteBy, 20, 190, 580, 240);
 	}
 }

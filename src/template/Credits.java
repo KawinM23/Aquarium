@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import manager.DrawManager;
 import manager.GameManager;
 import manager.SceneController;
 import manager.SoundManager;
@@ -36,26 +37,15 @@ public class Credits {
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
-		resetBackGround(gc);
+		DrawManager.resetBackGround(gc);
 
-		setBackGroundImage(gc, IMAGE_PATH);
+		DrawManager.setBackGroundImage(gc, IMAGE_PATH);
+		DrawManager.drawGuraGreeting(gc, "Credits");
 
 		for (int i = 0; i < buttonDetail.length; i++) {
 			addButtons(root, buttonTexts[i], buttonDetail[i]);
 		}
 		;
-	}
-
-	// Set background to BLACK
-	private void resetBackGround(GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-	}
-
-	// Set background to an image
-	private void setBackGroundImage(GraphicsContext gc, String image_path) {
-		Image image = new Image(image_path);
-		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
 
 	// Add buttons and set their event listeners
