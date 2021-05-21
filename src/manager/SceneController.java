@@ -108,7 +108,7 @@ public class SceneController {
 	}
 
 	public static void startTankLevel(int tankNumber, int levelNumber) {
-		SoundManager.stopBgm();
+		SoundManager.changeBgmTo(tankNumber);
 		Thread thread = new Thread(() -> {
 			try {
 				Platform.runLater(new Runnable() {
@@ -116,8 +116,6 @@ public class SceneController {
 					public void run() {
 						// TODO Auto-generated method stub
 						// TODO Change Bgm later
-						SoundManager.setBgm(1);
-						SoundManager.playBgm();
 
 						manager.startLevel(LevelManager.getLevel(tankNumber, levelNumber));
 						SceneController.changeScene(manager.getTankScene());
@@ -134,7 +132,7 @@ public class SceneController {
 	}
 
 	public static void startLatestLevel() {
-		SoundManager.stopBgm();
+		SoundManager.changeBgmTo(LevelManager.getLatestLevel().getId()[0]);
 		Thread thread = new Thread(() -> {
 			try {
 				Platform.runLater(new Runnable() {
@@ -142,8 +140,6 @@ public class SceneController {
 					public void run() {
 						// TODO Auto-generated method stub
 						// TODO Change Bgm later
-						SoundManager.setBgm(1);
-						SoundManager.playBgm();
 
 						manager.startLevel(LevelManager.getLatestLevel());
 						SceneController.changeScene(manager.getTankScene());
@@ -158,6 +154,28 @@ public class SceneController {
 		});
 		thread.start();
 	}
+	
+	public static void changeToTank(int tankNumber) {
+		Thread thread = new Thread(() -> {
+			try {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						String tankCode = "Tank"+tankNumber;
+						// TODO Auto-generated method stub
+						SceneController.changeScene(tankCode);
+					}
+				});
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		});
+		thread.start();
+	}
+	
 
 	public static void updatePlayerSettings() {
 		if (JSONManager.getTank() == 1 && JSONManager.getLevel() == 1) {

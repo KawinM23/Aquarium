@@ -27,7 +27,7 @@ public class InvasionManager {
 	public static void update() {
 		if (!isInvaded && invasionTime - System.nanoTime() <= 7e9 && warning != true) {
 			setWarning(true);
-
+			SoundManager.playWarningSound();
 			// TODO show warning
 			Thread warningThread = new Thread(new Runnable() {
 				@Override
@@ -63,6 +63,12 @@ public class InvasionManager {
 	}
 
 	public static void startInvasion() {
+		// SOUND
+		SoundManager.playAlienScreamSound();
+		SoundManager.stopBgm();
+		SoundManager.setBgm(5);
+		SoundManager.playBgm();
+
 		System.out.println("Invading");
 		setInvaded(true);
 		setWarning(false);
@@ -85,11 +91,16 @@ public class InvasionManager {
 				TankManager.addMonster(m);
 			}
 		}
-		
 
 	}
 
 	public static void endInvasion() {
+		// SOUND
+		SoundManager.playAlienDieSound();
+		SoundManager.stopBgm();
+		SoundManager.setBgm(ViewManager.getCurrentTank());
+		SoundManager.playBgm();
+
 		System.out.println("END INVASION");
 		setInvaded(false);
 		setHasGus(false);
@@ -116,7 +127,7 @@ public class InvasionManager {
 		setInvasionTime(0);
 		setInvasionTimeList(new int[] { 0 });
 		setInvasionList(new ArrayList<>());
-		
+
 		setHasGus(false);
 		setHasDestructor(false);
 	}

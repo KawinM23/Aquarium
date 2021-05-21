@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.PlayerController;
+import manager.SoundManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Monster;
@@ -98,6 +99,12 @@ public class Balrog extends Monster implements Renderable {
 
 	@Override
 	public void getHit() {
+		double hpPercent = (getHealth()/getMaxHealth())*100;
+		if (hpPercent>=50) {
+			SoundManager.playShieldHitSound();
+		} else if (hpPercent<50) {
+			SoundManager.playBodyHitSound();
+		}
 		this.decreaseHealth(PlayerController.getGunDamage());
 	}
 

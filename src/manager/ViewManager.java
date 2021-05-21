@@ -110,11 +110,13 @@ public class ViewManager {
 					@Override
 					public void run() {
 						if (!PlayerController.isPause()) {
-							InvasionManager.update();
 							TankManager.update();
 							if (!PlayerController.isBack()) {
 								PlayerController.checkPlaying();
+								InvasionManager.update();
+
 							}
+
 							pause1.hideButtons();
 						}
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -194,7 +196,7 @@ public class ViewManager {
 
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(sv);
+		firstInvasion.add(g);
 		InvasionManager.setInvasionList(new ArrayList<>());
 		InvasionManager.getInvasionList().add(firstInvasion);
 		InvasionManager.setInvasionTimeList(new int[] { 10, 10, 10 });

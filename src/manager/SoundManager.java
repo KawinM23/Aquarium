@@ -30,6 +30,9 @@ public class SoundManager {
 	private static final MediaPlayer tank4BgmPlayer = new MediaPlayer(
 			new Media(ClassLoader.getSystemResource("Tank4.mp3").toString()));
 
+	private static final MediaPlayer alienBgmPlayer = new MediaPlayer(
+			new Media(ClassLoader.getSystemResource("AlienBgm.mp3").toString()));
+
 	// Sound Effects
 	private static final Media DIE_SOUND = new Media(ClassLoader.getSystemResource("DIE.mp3").toString());
 
@@ -65,6 +68,16 @@ public class SoundManager {
 
 	private static final Media ALIEN_SCREAM_SOUND = new Media(ClassLoader.getSystemResource("bigchomp.mp3").toString());
 
+	private static final Media ALIEN_DIE_SOUND = new Media(ClassLoader.getSystemResource("explode.mp3").toString());
+
+	private static final Media HIT_SHIELD_SOUND = new Media(ClassLoader.getSystemResource("ShieldHit.mp3").toString());
+
+	private static final Media HIT_BODY_SOUND = new Media(ClassLoader.getSystemResource("BodyHit.mp3").toString());
+
+	private static final Media WIN_SOUND = new Media(ClassLoader.getSystemResource("win.mp3").toString());
+	
+	private static final Media LOSE_SOUND = new Media(ClassLoader.getSystemResource("lose.mp3").toString());
+	
 	// 0 Mute, 1 Quiet, 2 Normal, 3 Loud
 	private static int bgmVolumeLevel = 2;
 	private static int soundVolumeLevel = 2;
@@ -105,6 +118,8 @@ public class SoundManager {
 		case 4:
 			currentBgmPlayer = tank4BgmPlayer;
 			break;
+		case 5:
+			currentBgmPlayer = alienBgmPlayer;
 		default:
 		}
 
@@ -148,6 +163,29 @@ public class SoundManager {
 						currentBgmPlayer.stop();
 					}
 				});
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		});
+		thread.start();
+	}
+
+	public static void changeBgmTo(int tankNumber) {
+		SoundManager.stopBgm();
+		Thread thread = new Thread(() -> {
+			try {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						// TODO Change Bgm later
+						SoundManager.setBgm(tankNumber);
+						SoundManager.playBgm();
+					}
+				});
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -280,6 +318,18 @@ public class SoundManager {
 
 	public static void playAlienScreamSound() {
 		playSoundEffect(ALIEN_SCREAM_SOUND);
+	}
+
+	public static void playAlienDieSound() {
+		playSoundEffect(ALIEN_DIE_SOUND);
+	}
+
+	public static void playShieldHitSound() {
+		playSoundEffect(HIT_SHIELD_SOUND);
+	}
+
+	public static void playBodyHitSound() {
+		playSoundEffect(HIT_BODY_SOUND);
 	}
 
 	public static void playSplashSound() {

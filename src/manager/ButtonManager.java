@@ -81,6 +81,18 @@ public class ButtonManager {
 		ac.getChildren().addAll(button);
 	}
 
+	// Set button location on an AnchorPane
+	// Pixel from Platform
+	public static void setPauseButtonLocation(AnchorPane ac, Button button, double[] position, int posX, int posY) {
+
+		button.setPrefSize((position[2] - position[0]), (position[3] - position[1]));
+
+		AnchorPane.setTopAnchor(button, position[1] + posY);
+		AnchorPane.setLeftAnchor(button, position[0] + posX);
+
+		ac.getChildren().addAll(button);
+	}
+
 	// Set up global button handlers
 	public static void setMenu1ButtonHandler(Button button) {
 
@@ -321,81 +333,8 @@ public class ButtonManager {
 
 					});
 					thread.start();
-
-				} else if (key.equals("Tank 1")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank1");
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (key.equals("Tank 2")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank2");
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (key.equals("Tank 3")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank3");
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (key.equals("Tank 4")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									SceneController.changeScene("Tank4");
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
 				} else if (key.equals("Tank 1-1")) {
-					SoundManager.stopBgm();
+					SoundManager.changeBgmTo(1);
 					Thread thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
@@ -403,8 +342,6 @@ public class ButtonManager {
 								public void run() {
 									// TODO Auto-generated method stub
 									// TODO Change Bgm later
-									SoundManager.setBgm(1);
-									SoundManager.playBgm();
 
 									ViewManager manager = new ViewManager();
 									manager.startLevelTest(1, 1);
@@ -419,56 +356,16 @@ public class ButtonManager {
 
 					});
 					thread.start();
-				} else if (key.equals("Tank 1-2")) {
-					SoundManager.stopBgm();
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									// TODO Change Bgm later
-									SoundManager.setBgm(1);
-									SoundManager.playBgm();
 
-									ViewManager manager = new ViewManager();
-									manager.startLevel(LevelManager.getLevel1_2());
-									SceneController.changeScene(manager.getTankScene());
-								}
-							});
+				}
 
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-				} else if (key.equals("Tank 1-3")) {
-					SoundManager.stopBgm();
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									// TODO Change Bgm later
-									SoundManager.setBgm(1);
-									SoundManager.playBgm();
-
-									ViewManager manager = new ViewManager();
-									manager.startLevel(LevelManager.getLevel1_3());
-									SceneController.changeScene(manager.getTankScene());
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
+				else if (key.length() == 6) {
+					int tankNumber = Integer.parseInt(key.substring(key.length() - 1));
+					SceneController.changeToTank(tankNumber);
+				} else if (key.length() == 8) {
+					int tankNumber = Integer.parseInt(key.substring(key.length() - 3, key.length() - 2));
+					int levelNumber = Integer.parseInt(key.substring(key.length() - 1));
+					SceneController.startTankLevel(tankNumber, levelNumber);
 				}
 
 			}
@@ -496,7 +393,7 @@ public class ButtonManager {
 									// TODO Auto-generated method stub
 									SceneController.getManager().clearLevel();
 									ViewManager.clearLevel();
-									
+
 									SceneController.startLatestLevel();
 								}
 							});
@@ -544,7 +441,7 @@ public class ButtonManager {
 									// TODO Auto-generated method stub
 									SceneController.getManager().clearLevel();
 									ViewManager.clearLevel();
-									
+
 									SceneController.startTankLevel(ViewManager.getCurrentTank(),
 											ViewManager.getCurrentLevel());
 								}
@@ -559,6 +456,157 @@ public class ButtonManager {
 					thread.start();
 					break;
 				default:
+				}
+
+			}
+		};
+
+		button.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonHandler);
+	}
+
+	// CREDIT
+	public static void setCreditsButtonHandler(Button button) {
+		EventHandler<MouseEvent> buttonHandler = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				SoundManager.playClickSound();
+				String key = button.getText();
+
+				Thread thread;
+
+				switch (key) {
+				case "Back":
+					thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									SceneController.changeScene("MainMenu");
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+					break;
+				default:
+				}
+
+			}
+		};
+
+		button.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonHandler);
+	}
+
+	// PAUSE
+	public static void setPauseButtonHandler(Button button) {
+		String buttonText = button.getText();
+		if (buttonText == "Music: ") {
+			button.setText("Music: " + SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel()));
+		} else if (buttonText == "Sound: ") {
+			button.setText("Sound: " + SoundManager.getVolumeLevelWord(SoundManager.getSoundVolumeLevel()));
+		}
+
+		EventHandler<MouseEvent> buttonHandler = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				SoundManager.playClickSound();
+				String buttonText = button.getText();
+
+				if (buttonText.equals("Resume")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									PlayerController.togglePause();
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
+				} else if (buttonText.equals("Back to Menu")) {
+					SoundManager.stopBgm();
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									SoundManager.setBgm(0);
+									SoundManager.playBgm();
+									SceneController.changeScene("MainMenu");
+
+									SceneController.getManager().clearLevel();
+									ViewManager.clearLevel();
+									PlayerController.setBack(true);
+
+									// TODO Auto-generated method stub
+
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
+				} else if ((buttonText.substring(0, 7)).equals("Sound: ")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									SoundManager.nextSoundVolumeLevel();
+									button.setText("Sound: "
+											+ SoundManager.getVolumeLevelWord(SoundManager.getSoundVolumeLevel()));
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
+				} else if ((buttonText.substring(0, 7)).equals("Music: ")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									SoundManager.nextBgmVolumeLevel();
+									button.setText("Music: "
+											+ SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel()));
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
 				}
 
 			}

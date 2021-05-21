@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import manager.PlayerController;
+import manager.SoundManager;
 import manager.StatTracker;
 import manager.TankManager;
 import model.base.Fish;
@@ -108,7 +109,12 @@ public class Sylvester extends Monster implements Renderable {
 
 	public void getHit() {
 		// TODO Onclick Mouse -> decrease Hp
-		System.out.println("Hit Monster " + getHealth());
+		double hpPercent = (getHealth()/getMaxHealth())*100;
+		if (hpPercent>=50) {
+			SoundManager.playShieldHitSound();
+		} else if (hpPercent<50) {
+			SoundManager.playBodyHitSound();
+		}
 		this.decreaseHealth(PlayerController.getGunDamage());
 	}
 

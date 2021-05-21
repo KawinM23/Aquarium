@@ -110,6 +110,17 @@ public class LevelManager {
 
 		level.setGoalPrice(2000);
 
+		// Invasion
+		Sylvester sv = new Sylvester("Sylvester", 0, 0, 0);
+		ArrayList<Monster> wave1 = new ArrayList<Monster>();
+		wave1.add(sv);
+
+		level.setInvasionMonster(new ArrayList<>());
+		level.getInvasionMonster().add(wave1);
+
+		int[] invasionTime = new int[] { 30, 40, 50 };
+		level.setInvasionTime(invasionTime);
+
 	}
 
 	public static void loadLevel1_4(Level level) {
@@ -130,6 +141,17 @@ public class LevelManager {
 		level.setWeaponUpgradable(true);
 
 		level.setGoalPrice(3000);
+		
+		// Invasion
+		Sylvester sv = new Sylvester("Sylvester", 0, 0, 0);
+		ArrayList<Monster> wave1 = new ArrayList<Monster>();
+		wave1.add(sv);
+
+		level.setInvasionMonster(new ArrayList<>());
+		level.getInvasionMonster().add(wave1);
+
+		int[] invasionTime = new int[] { 30, 40, 50 };
+		level.setInvasionTime(invasionTime);
 
 	}
 

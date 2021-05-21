@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.GameManager;
 import manager.PlayerController;
+import manager.SoundManager;
 import manager.StatTracker;
 import manager.TankManager;
 import model.Food;
@@ -181,6 +182,12 @@ public class Destructor extends Monster implements Renderable {
 
 	public void getHit() {
 		// Onclick Mouse -> decrease Hp
+		double hpPercent = (getHealth()/getMaxHealth())*100;
+		if (hpPercent>=50) {
+			SoundManager.playShieldHitSound();
+		} else if (hpPercent<50) {
+			SoundManager.playBodyHitSound();
+		}
 		this.decreaseHealth(PlayerController.getGunDamage());
 		System.out.println(getHealth());
 	}
