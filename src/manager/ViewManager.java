@@ -59,7 +59,7 @@ public class ViewManager {
 		pause1.setPauseButtons();
 		pause1.hideButtons();
 
-		//tankThread
+		// tankThread
 		tankThread = new Thread(new Runnable() {
 
 			@Override
@@ -81,6 +81,7 @@ public class ViewManager {
 						TankManager.render(gc);
 						ShopController.drawShop(gc);
 						InvasionManager.render(gc);
+
 						if (PlayerController.isPause()) {
 							pause1.drawPane(gc);
 							pause1.showButtons();
@@ -154,18 +155,18 @@ public class ViewManager {
 
 		//////////////////////////
 		Guppy g1 = new Guppy("g1", 500, 300);
-		TankManager.addNewFish(g1);
+		TankManager.addStartFish(g1);
 
 		Guppy g2 = new Guppy("g2", 200, 100);
-		TankManager.addNewFish(g2);
+		TankManager.addStartFish(g2);
 
 		Guppy g3 = new Guppy("g3", 400, 100);
 		g3.setGrowth(200);
 		g3.setStar(true);
-		TankManager.addNewFish(g3);
+		TankManager.addStartFish(g3);
 
 		Carnivore c1 = new Carnivore("c1", 300, 200);
-		TankManager.addNewFish(c1);
+		TankManager.addStartFish(c1);
 
 		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
 		TankManager.add(sc1);
@@ -175,7 +176,7 @@ public class ViewManager {
 //
 //
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
-		TankManager.addNewFish(gc1);
+		TankManager.addStartFish(gc1);
 //
 //		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
 //		TankManager.add(bm1);
@@ -230,7 +231,7 @@ public class ViewManager {
 	}
 
 	private void clearLevel() {
-		//Clear Level
+		// Clear Level
 		TankManager.clear();
 		StatTracker.clear();
 		PlayerController.clear();
@@ -272,7 +273,7 @@ public class ViewManager {
 					}
 				}
 			} catch (Exception e) {
-				
+
 			}
 		});
 		addFoodThread.start();

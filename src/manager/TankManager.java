@@ -61,6 +61,8 @@ public class TankManager {
 				((Renderable) u).render(gc);
 			}
 		}
+		unitList.removeAll(removeUnitList);
+		removeUnitList.clear();
 	}
 
 	public static void update() {
@@ -86,8 +88,6 @@ public class TankManager {
 		monsterList.removeAll(removeMonsterList);
 		removeMonsterList.clear();
 		
-		unitList.removeAll(removeUnitList);
-		removeUnitList.clear();
 		System.gc();
 	}
 
@@ -102,6 +102,11 @@ public class TankManager {
 		} else if (u instanceof Monster) {
 			monsterList.add((Monster) u);
 		}
+	}
+	
+	public static void addMonster(Monster m) {
+		unitList.add(m);
+		monsterList.add(m);
 	}
 
 	public static void addNewFish(Fish f) {
@@ -177,6 +182,15 @@ public class TankManager {
 
 		if (unitList.contains(u)) {
 			removeUnitList.add(u);
+			
+//			Iterator<Unit> itr = unitList.iterator();
+//			while (itr.hasNext()) {
+//				Unit unit = itr.next();
+//				if (unit.equals(u)) {
+//					itr.remove();
+//
+//				}
+//			}
 			if (u instanceof Food) {
 				removeFoodList.add(u);
 			} else if (u instanceof Money) {

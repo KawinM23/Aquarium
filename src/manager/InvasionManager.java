@@ -60,19 +60,19 @@ public class InvasionManager {
 			gc.fillText("Warning", 0, 400);
 		}
 
-		if (isInvaded && hasDestructor) {
-			for (Monster m : TankManager.getMonsterList()) {
-				if (m instanceof Destructor) {
-					if (((Destructor) m).getTargetFishes() != null) {
-						for (Unit f : ((Destructor) m).getTargetFishes()) {
-							gc.setStroke(new Color(1, 0, 0, 1));
-							gc.strokeOval(f.getCenterX() - 20, f.getCenterY() - 20, 40, 40);
-						} 
-					}
-
-				}
-			}
-		}
+//		if (isInvaded && hasDestructor) {
+//			for (Monster m : TankManager.getMonsterList()) {
+//				if (m instanceof Destructor) {
+//					if (((Destructor) m).getTargetFishes() != null) {
+//						for (Unit f : ((Destructor) m).getTargetFishes()) {
+//							gc.setStroke(new Color(1, 0, 0, 1));
+//							gc.strokeOval(f.getCenterX() - 20, f.getCenterY() - 20, 40, 40);
+//						} 
+//					}
+//
+//				}
+//			}
+//		}
 
 	}
 

@@ -63,15 +63,14 @@ public class Balrog extends Monster implements Renderable {
 		// TODO Auto-generated method stub
 		if (TankManager.getFishList().size() != 0) {
 			Unit nearestFish = TankManager.getFishList().get(0);
-			// Find NearestFood
+			// Find NearestFish
 			for (Fish f : TankManager.getFishList()) {
 				if (this.distance(f) < this.distance(nearestFish)) {
 					nearestFish = f;
 				}
 			}
-			// Check Food position and Fish
+			// CheckFish
 			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
-				// eat & levelup
 				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish,1);
 
@@ -82,7 +81,7 @@ public class Balrog extends Monster implements Renderable {
 			}
 
 		} else {
-			// Idle No food
+			// Idle
 			this.getIdle().checkIdleMonster();
 		}
 	}

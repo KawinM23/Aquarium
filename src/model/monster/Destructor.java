@@ -7,7 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.GameManager;
 import manager.PlayerController;
+import manager.StatTracker;
 import manager.TankManager;
+import model.Food;
 import model.base.Fish;
 import model.base.Monster;
 import model.base.Unit;
@@ -99,6 +101,10 @@ public class Destructor extends Monster implements Renderable {
 			}
 			// TODO SHOOT MISSLIES
 			System.out.println(targetFishes);
+			for(Unit f :targetFishes) {
+				shootMissile(f);
+			}
+			
 
 			this.getHunger().setLastFedNow();
 
@@ -108,6 +114,16 @@ public class Destructor extends Monster implements Renderable {
 			// Idle No food
 			this.getIdle().checkIdleMonster();
 		}
+	}
+
+	private void shootMissile(Unit u) {
+		// TODO Auto-generated method stub
+
+		Thread shootThread = new Thread(() -> {
+			Missile mis = new Missile("Missile", getCenterX(), getCenterY(), u);
+			TankManager.addMonster(mis);
+		});
+		shootThread.start();
 	}
 
 	private void replaceTargetFishes(ArrayList<Unit> targetFishes, Unit u) {
