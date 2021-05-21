@@ -1,5 +1,6 @@
 package model.base;
 
+import javafx.scene.media.MediaPlayer;
 import manager.GameManager;
 import manager.PlayerController;
 import manager.SoundManager;
@@ -47,9 +48,18 @@ public abstract class Money extends Unit {
 		// Play Sound Effect
 		SoundManager.playCollectSound();
 		
-		TankManager.remove(this);
-		PlayerController.addMoney(value);
-		StatTracker.addMoneyGain(value);
+		Thread collectedThread = new Thread(() -> {
+			try {
+				TankManager.remove(this);
+				PlayerController.addMoney(value);
+				StatTracker.addMoneyGain(value);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		collectedThread.start();
+
 	}
 
 	public long getDisappearTime() {

@@ -99,20 +99,30 @@ public class TankManager {
 	}
 
 	public static void addNewFish(Fish f) {
-		// Play Sound Effect
-		SoundManager.playSplashSound();
-		// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-		double posX = 0 + (GameManager.getWIDTH() - f.getWidth() - 0) * rand.nextDouble();
-		double posY = GameManager.getTOPHEIGHT()
-				+ (GameManager.getBOTTOMHEIGHT() - f.getHeight() - GameManager.getTOPHEIGHT()) * rand.nextDouble();
-		f.setPos(posX, posY / 2);
-		unitList.add(f);
-		fishList.add(f);
-		// Random Hunger Fish
-		f.getHunger().addLastFedRandom(3, 6);
+		Thread addNewFishThread = new Thread(() -> {
+			try {
+				// Play Sound Effect
+				SoundManager.playSplashSound();
+				// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+				double posX = 0 + (GameManager.getWIDTH() - f.getWidth() - 0) * rand.nextDouble();
+				double posY = GameManager.getTOPHEIGHT()
+						+ (GameManager.getBOTTOMHEIGHT() - f.getHeight() - GameManager.getTOPHEIGHT())
+								* rand.nextDouble();
+				f.setPos(posX, posY / 2);
+				unitList.add(f);
+				fishList.add(f);
+				// Random Hunger Fish
+				f.getHunger().addLastFedRandom(3, 6);
 
-		// Stat Tracker
-		StatTracker.addFishBought();
+				// Stat Tracker
+				StatTracker.addFishBought();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		addNewFishThread.start();
+
 	}
 
 	public static void addStartFish(Fish f) {
@@ -177,7 +187,10 @@ public class TankManager {
 			} else if (u instanceof Monster) {
 				removeMonsterList.add(u);
 			}
+			u = null;
+			System.gc();
 		}
+		
 	}
 
 	public static void clear() {

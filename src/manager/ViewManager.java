@@ -53,7 +53,7 @@ public class ViewManager {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		anchorPane = new AnchorPane();
 		tankPane.getChildren().add(anchorPane);
-		
+
 		pause1.setAnchorPane(anchorPane);
 		pause1.setPauseButtons();
 		pause1.hideButtons();
@@ -220,7 +220,7 @@ public class ViewManager {
 		for (Fish fish : level.getStartingFish()) {
 			TankManager.addStartFish(fish);
 		}
-		
+
 		ShopController.setShopDetail(level);
 		ShopController.setAllButtons(anchorPane);
 
@@ -247,29 +247,40 @@ public class ViewManager {
 	}
 
 	public void clickAddFood(MouseEvent event, int i) {
-		if (event.getSceneY() >= GameManager.getTOPHEIGHT()) {
-			if (i == 0) {
-				if (PlayerController.isPotion()) {
-					StatTracker.addFoodBought();
-					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 2));
-					PlayerController.setPotion(false);
-				} else if (TankManager.getFoodList().size() < PlayerController.getMaxFood()
-						&& PlayerController.buy(5)) {
-					System.out.println("Add Food " + PlayerController.getFoodLevel());
-					StatTracker.addFoodBought();
-					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+
+		Thread addFoodThread = new Thread(() -> {
+			try {
+				if (event.getSceneY() >= GameManager.getTOPHEIGHT()
+						&& event.getSceneY() <= GameManager.getBOTTOMHEIGHT()) {
+					if (i == 0) {
+						if (PlayerController.isPotion()) {
+							StatTracker.addFoodBought();
+							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 2));
+							PlayerController.setPotion(false);
+						} else if (TankManager.getFoodList().size() < PlayerController.getMaxFood()
+								&& PlayerController.buy(5)) {
+							System.out.println("Add Food " + PlayerController.getFoodLevel());
+							StatTracker.addFoodBought();
+							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+						}
+					} else if (i == 1) {
+						if (PlayerController.isPotion()) {
+							StatTracker.addFoodBought();
+							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 2));
+							PlayerController.setPotion(false);
+						} else if (TankManager.getFoodList().size() < PlayerController.getMaxFood()) {
+							System.out.println("Add Food " + PlayerController.getFoodLevel());
+							TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
+						}
+					}
 				}
-			} else if (i == 1) {
-				if (PlayerController.isPotion()) {
-					StatTracker.addFoodBought();
-					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 2));
-					PlayerController.setPotion(false);
-				} else if (TankManager.getFoodList().size() < PlayerController.getMaxFood()) {
-					System.out.println("Add Food " + PlayerController.getFoodLevel());
-					TankManager.addFood(new Food("Food", event.getSceneX(), event.getSceneY(), 1));
-				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
+		});
+		addFoodThread.start();
+
 	}
 
 	public static void setScene(Stage stage) {
