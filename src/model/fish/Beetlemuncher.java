@@ -28,7 +28,6 @@ public class Beetlemuncher extends Fish implements Renderable{
 		this.setMouthPos(15, 80);
 		
 		this.setSpeed(100);
-		this.setVelZero();
 
 		this.setHunger(new Hunger(6, 20));
 		this.setProduction(new Production(this, 7, 9));

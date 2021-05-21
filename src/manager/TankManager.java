@@ -167,6 +167,7 @@ public class TankManager {
 		addUnitList.add(f);
 		addFishList.add(f);
 		// Random Hunger Fish
+		f.getHunger().setLastFedNow();
 		f.getHunger().addLastFedRandom(3, 6);
 	}
 

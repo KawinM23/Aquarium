@@ -1,6 +1,5 @@
 package model.base;
 
-import javafx.scene.media.MediaPlayer;
 import manager.GameManager;
 import manager.PlayerController;
 import manager.SoundManager;

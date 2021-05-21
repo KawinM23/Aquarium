@@ -25,8 +25,8 @@ public class Breeder extends Fish implements Renderable{
 	public Breeder(String name, double posX, double posY) {
 		super(name, posX, posY);
 		//TODO SIze
-		this.setWidth(46);
-		this.setHeight(42);
+		this.setSize(67,67);
+		this.setMouthPos(10, 50);
 		this.setSpeed(70);
 		
 		this.growth = 0;
@@ -77,17 +77,17 @@ public class Breeder extends Fish implements Renderable{
 		}
 		//TODO SIze
 		if (string.equals("Small")) {
-			this.setSize(50,50);
-			this.setMouthPos(15, 30);
+			this.setSize(65,65);
+			this.setMouthPos(10, 50);
 		} else if (string.equals("Medium")) {
-			this.setSize(75, 75);
+			this.setSize(80, 80);
 			this.setMouthPos(15, 55);
-			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
+			this.setPos(getPosX() - 7.5, getPosY() - 7.5);
 			this.getProduction().setCooldown(20);
 		} else if (string.equals("Large")) {
-			this.setSize(100, 100);
-			this.setMouthPos(15, 75);
-			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
+			this.setSize(95, 95);
+			this.setMouthPos(20, 75);
+			this.setPos(getPosX() - 7.5, getPosY() - 7.5);
 			this.getProduction().setCooldown(25);
 		}
 	}
