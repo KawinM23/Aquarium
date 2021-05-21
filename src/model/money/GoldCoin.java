@@ -7,7 +7,7 @@ import properties.Renderable;
 
 public class GoldCoin extends Money implements Renderable{
 	
-	private Image GoldCoinImage = new Image(ClassLoader.getSystemResource("SilverCoin.png").toString());
+	private Image GoldCoinImage = new Image(ClassLoader.getSystemResource("GoldCoin.png").toString());
 
 	public GoldCoin(String name, double posX, double posY) {
 		super(name, posX, posY);
