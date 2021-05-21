@@ -123,7 +123,9 @@ public class ViewManager {
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
 						gc.setFill(Color.rgb(102, 204, 255));
 						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
-
+						
+						DrawManager.setTankBg(gc, currentTank);
+						
 						TankManager.render(gc);
 						ShopController.drawShop(gc);
 						InvasionManager.render(gc);
