@@ -20,11 +20,12 @@ public class Gus extends Monster implements Renderable {
 		super(name, posX, posY);
 
 		this.setSize(150, 200);
-		this.setInner(50,50);
 		this.setSpeed(60);
 
-		this.setHealth(300);
-		this.setHealth(health);
+		this.setMaxHealth(300);
+		this.setMaxHealth(health);
+		this.setHealth(getMaxHealth());
+		
 		this.setHunger(new Hunger(0.1, 0));
 		this.setIdle(new Idle(this, 30));
 	}

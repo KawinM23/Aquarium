@@ -29,8 +29,11 @@ public class Destructor extends Monster implements Renderable {
 		this.setSize(135, 200);
 		this.setSpeed(80);
 
-		this.setHealth(300);
-		this.setHealth(health);
+
+		this.setMaxHealth(300);
+		this.setMaxHealth(health);
+		this.setHealth(getMaxHealth());
+		
 		this.setHunger(new Hunger(8, 0));
 		this.setIdle(new Idle(this, 20));
 
@@ -119,7 +122,7 @@ public class Destructor extends Monster implements Renderable {
 
 		Thread shootThread = new Thread(() -> {
 			for (Unit u : targetFishes) {
-				Missile mis = new Missile("Missile", getCenterX(), getCenterY(), u);
+				Missile mis = new Missile("Missile", getCenterX(), getCenterY(), 0, u);
 				TankManager.add(mis);
 			}
 		});

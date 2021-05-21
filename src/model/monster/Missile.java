@@ -20,14 +20,17 @@ public class Missile extends Monster implements Renderable {
 
 	private Unit targetFish;
 
-	public Missile(String name, double posX, double posY, Unit targetFish) {
+	public Missile(String name, double posX, double posY,int health, Unit targetFish) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
 		this.setSize(60, 60);
-		this.setInner(20, 20);
 		this.setSpeed(80);
 
-		this.setHealth(10);
+
+		this.setMaxHealth(10);
+		this.setMaxHealth(health);
+		this.setHealth(getMaxHealth());
+		
 		this.setHunger(new Hunger(0, 0));
 		this.setIdle(new Idle(this, 30));
 

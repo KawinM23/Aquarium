@@ -173,7 +173,7 @@ public class ViewManager {
 		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
 		TankManager.add(sc1);
 
-		Star s1 = new Star("s1", 400, 200);
+		Star s1 = new Star("s1", 400, 100);
 		TankManager.add(s1);
 //
 //
@@ -193,10 +193,10 @@ public class ViewManager {
 
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(d);
+		firstInvasion.add(sv);
 		InvasionManager.setInvasionList(new ArrayList<>());
 		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 10, 30, 40 });
+		InvasionManager.setInvasionTimeList(new int[] { 10, 10, 10 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		//////////////////////////// Setting

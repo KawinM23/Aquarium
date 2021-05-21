@@ -1,7 +1,6 @@
 package manager;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -12,6 +11,7 @@ import model.base.Monster;
 import model.base.Unit;
 import model.fish.Guppy;
 import model.monster.Destructor;
+import model.monster.Missile;
 import properties.Renderable;
 
 public class TankManager {
@@ -117,13 +117,15 @@ public class TankManager {
 	}
 	
 	public static void addMonster(Monster m) {
-		if(!(m instanceof Destructor) && !(m instanceof Destructor)) {
+		if(!(m instanceof Destructor) && !(m instanceof Missile)) {
 			double posX = 0 + (GameManager.getWIDTH() - m.getWidth() - 0) * rand.nextDouble();
 			double posY = GameManager.getTOPHEIGHT()
 					+ (GameManager.getBOTTOMHEIGHT() - m.getHeight() - GameManager.getTOPHEIGHT())
 							* rand.nextDouble();
 			m.setPos(posX, posY);
 		}
+		
+		m.setHealth(m.getMaxHealth());
 		
 		addUnitList.add(m);
 		addMonsterList.add(m);

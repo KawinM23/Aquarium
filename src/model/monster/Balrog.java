@@ -25,8 +25,10 @@ public class Balrog extends Monster implements Renderable {
 		this.setSize(135, 200);
 		this.setSpeed(80);
 
-		this.setHealth(220);
-		this.setHealth(health);
+		this.setMaxHealth(220);
+		this.setMaxHealth(health);
+		this.setHealth(getMaxHealth());
+		
 		this.setHunger(new Hunger(5, 0));
 		this.setIdle(new Idle(this, 25));
 	}

@@ -9,12 +9,13 @@ import properties.Idle;
 
 public abstract class Monster extends Unit {
 
+	private int maxHealth;
 	private int health;
 	private Hunger hunger;
 	private Idle idle;
 
-	private int innerX = 40;
-	private int innerY = 40;
+	private int innerX = 20;
+	private int innerY = 20;
 
 	private boolean isFacingLeft;
 
@@ -22,6 +23,7 @@ public abstract class Monster extends Unit {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
 
+		this.setMaxHealth(100);
 		this.setHealth(100);
 	}
 
@@ -43,7 +45,7 @@ public abstract class Monster extends Unit {
 	}
 
 	public void setHealth(int health) {
-		if(health != 0) {
+		if (health != 0) {
 			this.health = health;
 		}
 	}
@@ -99,6 +101,17 @@ public abstract class Monster extends Unit {
 
 	public void setHunger(Hunger hunger) {
 		this.hunger = hunger;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		if (maxHealth != 0) {
+			this.maxHealth = maxHealth;
+		}
+
 	}
 
 }
