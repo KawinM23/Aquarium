@@ -24,13 +24,14 @@ public class Destructor extends Monster implements Renderable {
 	
 	private ArrayList<Unit> targetFishes;
 	
-	public Destructor(String name, double posX, double posY) {
+	public Destructor(String name, double posX, double posY,int health) {
 		super(name, posX, posY);
 
 		this.setSize(135, 200);
 		this.setSpeed(80);
 
-		this.setHealth(100);
+		this.setHealth(400);
+		this.setHealth(health);
 		this.setHunger(new Hunger(8, 0));
 		this.setIdle(new Idle(this, 20));
 		

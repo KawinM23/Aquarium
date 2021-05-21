@@ -19,13 +19,14 @@ public class Balrog extends Monster implements Renderable {
 
 	private Hunger hunger;
 
-	public Balrog(String name, double posX, double posY) {
+	public Balrog(String name, double posX, double posY,int health) {
 		super(name, posX, posY);
 
 		this.setSize(135, 200);
 		this.setSpeed(80);
 
 		this.setHealth(220);
+		this.setHealth(health);
 		this.setHunger(new Hunger(5, 0));
 		this.setIdle(new Idle(this, 25));
 	}

@@ -16,7 +16,7 @@ public class Gus extends Monster implements Renderable {
 
 	private static final Image GusImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	public Gus(String name, double posX, double posY) {
+	public Gus(String name, double posX, double posY,int health) {
 		super(name, posX, posY);
 
 		this.setSize(150, 200);
@@ -24,6 +24,7 @@ public class Gus extends Monster implements Renderable {
 		this.setSpeed(60);
 
 		this.setHealth(300);
+		this.setHealth(health);
 		this.setHunger(new Hunger(0.1, 0));
 		this.setIdle(new Idle(this, 30));
 	}

@@ -51,11 +51,11 @@ public class LevelManager {
 		level.setWeaponUpgradable(false);
 
 		level.setGoalPrice(150);
-		
-		//Invasion
+
+		// Invasion
 		level.setInvasionMonster(new ArrayList<>());
 
-		int[] invasionTime = new int[] {0};
+		int[] invasionTime = new int[] { 0 };
 		level.setInvasionTime(invasionTime);
 	}
 
@@ -79,7 +79,7 @@ public class LevelManager {
 		level.setGoalPrice(500);
 
 		// Invasion
-		Sylvester sv = new Sylvester("Sylvester", 0, 0);
+		Sylvester sv = new Sylvester("Sylvester", 0, 0, 0);
 		ArrayList<Monster> wave1 = new ArrayList<Monster>();
 		wave1.add(sv);
 
@@ -104,7 +104,7 @@ public class LevelManager {
 		shopItem[1] = new Carnivore("Carnivore", 0, 0);
 		shopItem[2] = null;
 		level.setShopItem(shopItem);
-		
+
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(true);
 
@@ -125,7 +125,7 @@ public class LevelManager {
 		shopItem[1] = null;
 		shopItem[2] = null;
 		level.setShopItem(shopItem);
-		
+
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(true);
 

@@ -43,7 +43,9 @@ public abstract class Monster extends Unit {
 	}
 
 	public void setHealth(int health) {
-		this.health = health;
+		if(health != 0) {
+			this.health = health;
+		}
 	}
 
 	public void decreaseHealth(int damage) {

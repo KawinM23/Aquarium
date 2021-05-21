@@ -11,6 +11,7 @@ import model.base.Money;
 import model.base.Monster;
 import model.base.Unit;
 import model.fish.Guppy;
+import model.monster.Destructor;
 import properties.Renderable;
 
 public class TankManager {
@@ -108,6 +109,14 @@ public class TankManager {
 	}
 	
 	public static void addMonster(Monster m) {
+		if(!(m instanceof Destructor) && !(m instanceof Destructor)) {
+			double posX = 0 + (GameManager.getWIDTH() - m.getWidth() - 0) * rand.nextDouble();
+			double posY = GameManager.getTOPHEIGHT()
+					+ (GameManager.getBOTTOMHEIGHT() - m.getHeight() - GameManager.getTOPHEIGHT())
+							* rand.nextDouble();
+			m.setPos(posX, posY);
+		}
+		
 		addUnitList.add(m);
 		monsterList.add(m);
 	}

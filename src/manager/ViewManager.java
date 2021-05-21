@@ -187,13 +187,13 @@ public class ViewManager {
 //		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
 //		TankManager.add(bm1);
 
-		Sylvester sv = new Sylvester("Sv", 400, 500);
+		Sylvester sv = new Sylvester("Sv", 400, 500,0);
 
-		Balrog br = new Balrog("Br", 400, 500);
+		Balrog br = new Balrog("Br", 400, 500,0);
 
-		Gus g = new Gus("GUS", 400, 500);
+		Gus g = new Gus("GUS", 400, 500,0);
 
-		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200);
+		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200,0);
 
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();

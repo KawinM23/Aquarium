@@ -42,7 +42,6 @@ public class JSONManager {
 
 			JSONArray playerList = (JSONArray) obj;
 
-			System.out.println(playerList);
 			jsonList.clear();
 			jsonNameList.clear();
 
@@ -149,7 +148,6 @@ public class JSONManager {
 		addCurrentPlayer();
 		addOtherPlayer(jsonList);
 
-//		System.out.println(newPlayerList);
 		// Write JSON file
 		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
 			// We can write any JSONArray or JSONObject instance to the file
