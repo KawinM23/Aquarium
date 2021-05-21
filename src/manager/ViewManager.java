@@ -208,6 +208,7 @@ public class ViewManager {
 		PlayerController.setPlaying(true);
 		PlayerController.setMaxFood(3);
 		PlayerController.setMoney(200);
+		PlayerController.setGunLevel(2);
 
 		ShopController.setShopDetail(LevelManager.getLevel1_1());
 		ShopController.setAllButtons(anchorPane);
@@ -246,8 +247,7 @@ public class ViewManager {
 		TankManager.clear();
 		StatTracker.clear();
 		PlayerController.clear();
-		
-
+		InvasionManager.clear();
 	}
 
 	public static void winLevel() {

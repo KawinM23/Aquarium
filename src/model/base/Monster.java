@@ -49,7 +49,7 @@ public abstract class Monster extends Unit {
 	}
 
 	public void decreaseHealth(int damage) {
-		this.setHealth(getHealth() - damage);
+		this.health = (getHealth() - damage);
 	}
 
 	public boolean isFacingLeft() {

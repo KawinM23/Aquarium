@@ -29,7 +29,7 @@ public class Destructor extends Monster implements Renderable {
 		this.setSize(135, 200);
 		this.setSpeed(80);
 
-		this.setHealth(400);
+		this.setHealth(300);
 		this.setHealth(health);
 		this.setHunger(new Hunger(8, 0));
 		this.setIdle(new Idle(this, 20));
@@ -179,6 +179,7 @@ public class Destructor extends Monster implements Renderable {
 	public void getHit() {
 		// Onclick Mouse -> decrease Hp
 		this.decreaseHealth(PlayerController.getGunDamage());
+		System.out.println(getHealth());
 	}
 
 	@Override

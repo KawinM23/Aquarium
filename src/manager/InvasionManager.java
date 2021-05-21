@@ -77,7 +77,9 @@ public class InvasionManager {
 				TankManager.add(m);
 			}
 		}
-
+		
+		setHasGus(false);
+		setHasDestructor(false);
 		for (Monster m : TankManager.getMonsterList()) {
 			if (m instanceof Gus) {
 				setHasGus(true);
@@ -105,6 +107,19 @@ public class InvasionManager {
 
 			setInvasionTime((long) (System.nanoTime() + randomTime));
 		}
+	}
+
+	public static void clear() {
+		setInvaded(false);
+		setWarning(false);
+		setShowWarning(false);
+		setInvasion(0);
+		setInvasionTime(0);
+		setInvasionTimeList(new int[] { 0 });
+		setInvasionList(new ArrayList<>());
+		
+		setHasGus(false);
+		setHasDestructor(false);
 	}
 
 	public static boolean isInvaded() {
