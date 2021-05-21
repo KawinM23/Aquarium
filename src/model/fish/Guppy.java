@@ -52,43 +52,28 @@ public class Guppy extends Fish implements Renderable {
 		this.setIdle(new Idle(this, 30));
 	}
 
-	public int getGrowth() {
-		return growth;
-	}
-
-	public void setGrowth(int growth) {
-		if (growth < 0) {
-			this.growth = growth;
-		} else if (growth > 200) {
-			this.growth = 200;
-		} else {
-			this.growth = growth;
+	@Override
+	public void move(int fr) {
+		double deltaTime = 1.0 / fr;
+		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
+		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+		if (getPosX() <= 0) {
+			setPosX(0);
+		} else if (getPosX() + getWidth() >= GameManager.getWIDTH()) {
+			setPosX(GameManager.getWIDTH() - getWidth());
 		}
-	}
-
-	public boolean isStar() {
-		return isStar;
-	}
-
-	public void setStar(boolean isStar) {
-		this.isStar = isStar;
-	}
-
-	public long getBornTime() {
-		return bornTime;
-	}
-
-	public void setBornTime(long bornTime) {
-		this.bornTime = bornTime;
+		if (growth < 100 && getPosY() < GameManager.getTOPHEIGHT() + 40) {
+			setPosY(GameManager.getTOPHEIGHT() + 40);
+		}
 	}
 
 	public void feed(Unit nearestFood) {
 		// Play Sound Effect
 		SoundManager.playEatSound();
-
+	
 		this.getHunger().setLastFedNow();
 		this.getHunger().addLastFedRandom(0, 2);
-
+	
 		if (nearestFood instanceof Food) {
 			if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
 				this.die();
@@ -121,8 +106,63 @@ public class Guppy extends Fish implements Renderable {
 		}
 	}
 
+	@Override
+	public void render(GraphicsContext gc) {
+		if (isStar) {
+			gc.setGlobalAlpha(0.8);
+			gc.setEffect(new Glow(0.8));
+		}
+		if (isHungry()) {
+			if (isFacingLeft()) {
+				gc.drawImage(GuppyHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(GuppyHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
+		} else {
+	
+			if (isFacingLeft()) {
+				gc.drawImage(GuppyLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(GuppyRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
+		}
+	
+		gc.setGlobalAlpha(1);
+		gc.setEffect(null);
+	
+	}
+
+	public int getGrowth() {
+		return growth;
+	}
+
+	public void setGrowth(int growth) {
+		if (growth < 0) {
+			this.growth = growth;
+		} else if (growth > 200) {
+			this.growth = 200;
+		} else {
+			this.growth = growth;
+		}
+	}
+
+	public boolean isStar() {
+		return isStar;
+	}
+
+	public void setStar(boolean isStar) {
+		this.isStar = isStar;
+	}
+
+	public long getBornTime() {
+		return bornTime;
+	}
+
+	public void setBornTime(long bornTime) {
+		this.bornTime = bornTime;
+	}
+
 	private void setGuppy(String string) {
-		// TODO Auto-generated method stub
 		if (string == null) {
 			return;
 		}
@@ -141,47 +181,6 @@ public class Guppy extends Fish implements Renderable {
 			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
 			this.getProduction().setProductType(2);
 		}
-	}
-
-	@Override
-	public void move(int fr) {
-		double deltaTime = 1.0 / fr;
-		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
-		this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
-		if (getPosX() <= 0) {
-			setPosX(0);
-		} else if (getPosX() + getWidth() >= GameManager.getWIDTH()) {
-			setPosX(GameManager.getWIDTH() - getWidth());
-		}
-		if (growth < 100 && getPosY() < GameManager.getTOPHEIGHT() + 40) {
-			setPosY(GameManager.getTOPHEIGHT() + 40);
-		}
-	}
-
-	@Override
-	public void render(GraphicsContext gc) {
-		if (isStar) {
-			gc.setGlobalAlpha(0.8);
-			gc.setEffect(new Glow(0.8));
-		}
-		if (isHungry()) {
-			if (isFacingLeft()) {
-				gc.drawImage(GuppyHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
-			} else {
-				gc.drawImage(GuppyHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
-			}
-		} else {
-
-			if (isFacingLeft()) {
-				gc.drawImage(GuppyLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
-			} else {
-				gc.drawImage(GuppyRightImage, getPosX(), getPosY(), getWidth(), getHeight());
-			}
-		}
-
-		gc.setGlobalAlpha(1);
-		gc.setEffect(null);
-
 	}
 
 }

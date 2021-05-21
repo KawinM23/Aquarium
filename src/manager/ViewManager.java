@@ -23,6 +23,7 @@ import model.base.Fish;
 import model.base.Money;
 import model.base.Monster;
 import model.fish.Beetlemuncher;
+import model.fish.Breeder;
 import model.fish.Carnivore;
 import model.fish.Guppy;
 import model.fish.Guppycruncher;
@@ -170,6 +171,9 @@ public class ViewManager {
 		g3.setGrowth(200);
 		g3.setStar(true);
 		TankManager.addStartFish(g3);
+		
+		Breeder b1 = new Breeder("b1",400,288);
+		TankManager.addStartFish(b1);
 
 		Carnivore c1 = new Carnivore("c1", 300, 200);
 		TankManager.addStartFish(c1);
