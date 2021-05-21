@@ -1,7 +1,5 @@
 package template;
 
-import game.tank0;
-import game.tank2;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +18,8 @@ import manager.JSONManager;
 import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
+import testing.tank0;
+import testing.tank2;
 
 public class menu1 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,

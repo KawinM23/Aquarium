@@ -1,6 +1,5 @@
 package template;
 
-import game.tank0;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,6 +16,7 @@ import manager.GameManager;
 import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
+import testing.tank0;
 
 public class Credits {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,

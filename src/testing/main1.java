@@ -1,4 +1,4 @@
-package game;
+package testing;
 
 import manager.ViewManager;
 import javafx.application.Application;

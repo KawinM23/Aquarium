@@ -1,4 +1,4 @@
-package game;
+package testing;
 
 import manager.GameManager;
 import manager.PlayerController;

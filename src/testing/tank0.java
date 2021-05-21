@@ -1,4 +1,4 @@
-package game;
+package testing;
 
 import manager.DrawManager;
 import manager.Level;
