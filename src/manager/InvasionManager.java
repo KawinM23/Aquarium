@@ -70,11 +70,11 @@ public class InvasionManager {
 		// ADD MONSTER
 		if (invasion < invasionList.size()) {
 			for (Monster m : invasionList.get(invasion)) {
-				TankManager.add(m);
+				TankManager.addMonster(m);
 			}
 		} else {
 			for (Monster m : invasionList.get(invasionList.size() - 1)) {
-				TankManager.add(m);
+				TankManager.addMonster(m);
 			}
 		}
 		
