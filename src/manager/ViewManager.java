@@ -31,6 +31,7 @@ import model.money.Beetle;
 import model.money.SilverCoin;
 import model.money.Star;
 import model.monster.Balrog;
+import model.monster.Destructor;
 import model.monster.Gus;
 import model.monster.Sylvester;
 import template.pause1;
@@ -42,7 +43,7 @@ public class ViewManager {
 
 	private static int currentTank;
 	private static int currentLevel;
-	private static Thread threadTank;
+	private static Thread tankThread;
 
 	public ViewManager() {
 		tankPane = new Pane();
@@ -59,7 +60,7 @@ public class ViewManager {
 		pause1.hideButtons();
 
 		// TODO Change Code to new Controller
-		threadTank = new Thread(new Runnable() {
+		tankThread = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
@@ -103,7 +104,7 @@ public class ViewManager {
 		});
 
 		// don't let thread prevent JVM shutdown
-		threadTank.setDaemon(true);
+		tankThread.setDaemon(true);
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -192,9 +193,11 @@ public class ViewManager {
 
 		Gus g = new Gus("GUS", 400, 500);
 
+		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200);
+
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(g);
+		firstInvasion.add(d);
 		InvasionManager.getInvasionList().add(firstInvasion);
 		InvasionManager.setInvasionTimeList(new int[] { 10, 30, 40 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
@@ -209,7 +212,7 @@ public class ViewManager {
 		ShopController.setAllButtons(anchorPane);
 		ShopController.prices[6] = 50;
 
-		threadTank.start();
+		tankThread.start();
 	}
 
 	public void startLevel(Level level) {
@@ -230,7 +233,7 @@ public class ViewManager {
 		InvasionManager.setStartInvasionTime();
 
 		PlayerController.setPlaying(true);
-		threadTank.start();
+		tankThread.start();
 	}
 
 	private void clearLevel() {
@@ -288,8 +291,8 @@ public class ViewManager {
 		stage.setScene(getStaticTankScene());
 	}
 
-	public static Thread getThreadTank() {
-		return threadTank;
+	public static Thread getTankThread() {
+		return tankThread;
 	}
 
 	public Scene getTankScene() {

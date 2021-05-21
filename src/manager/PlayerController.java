@@ -57,7 +57,7 @@ public class PlayerController {
 		// TODO Winning ,Change scene
 		System.out.println("WIN");
 		setPlaying(false);
-		ViewManager.getThreadTank().stop();
+		ViewManager.getTankThread().stop();
 		
 		ViewManager.winLevel();
 		StatTracker.calculateStat();
@@ -66,7 +66,7 @@ public class PlayerController {
 	private static void lose() {
 		// TODO Losing ,Change scene
 		setPlaying(false);
-		ViewManager.getThreadTank().stop();
+		ViewManager.getTankThread().stop();
 		System.out.println("LOSE");
 		StatTracker.calculateStat();
 	}

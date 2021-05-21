@@ -37,39 +37,48 @@ public class InvasionManager {
 							setShowWarning(true);
 						}
 					}
+					setShowWarning(false);
 				}
 			});
 			warningThread.start();
 		} else if (!isInvaded && System.nanoTime() >= invasionTime) {
-			System.out.println("Invading");
-			setInvaded(true);
-			setWarning(false);
-			setShowWarning(false);
-			// ADD MONSTER
-			if (invasion < invasionList.size()) {
-				for (Monster m : invasionList.get(invasion)) {
-					TankManager.add(m);
-				}
-			} else {
-				for (Monster m : invasionList.get(invasionList.size() - 1)) {
-					TankManager.add(m);
-				}
-			}
+			startInvasion();
 		} else if (isInvaded && TankManager.getMonsterCount() == 0) {
-			System.out.println("END INVASION");
-			setInvaded(false);
-			setInvasion(invasion + 1);
-			TankManager.endInvasion(getInvasionDuration());
-			if (invasion < invasionList.size()) {
-				setInvasionTime((long) (System.nanoTime() + (invasionTimeList[invasion] * 1e9)));
-			} else {
-				// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-				double min = invasionTimeList[invasionTimeList.length - 2];
-				double max = invasionTimeList[invasionTimeList.length - 1];
-				long randomTime = (long) ((min + ((max - min) * rand.nextDouble())) * 1.0e9);
+			endInvasion();
+		}
+	}
 
-				setInvasionTime((long) (System.nanoTime() + randomTime));
+	public static void startInvasion() {
+		System.out.println("Invading");
+		setInvaded(true);
+		setWarning(false);
+		setShowWarning(false);
+		// ADD MONSTER
+		if (invasion < invasionList.size()) {
+			for (Monster m : invasionList.get(invasion)) {
+				TankManager.add(m);
 			}
+		} else {
+			for (Monster m : invasionList.get(invasionList.size() - 1)) {
+				TankManager.add(m);
+			}
+		}
+	}
+
+	public static void endInvasion() {
+		System.out.println("END INVASION");
+		setInvaded(false);
+		setInvasion(invasion + 1);
+		TankManager.endInvasion(getInvasionDuration());
+		if (invasion < invasionList.size()) {
+			setInvasionTime((long) (System.nanoTime() + (invasionTimeList[invasion] * 1e9)));
+		} else {
+			// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+			double min = invasionTimeList[invasionTimeList.length - 2];
+			double max = invasionTimeList[invasionTimeList.length - 1];
+			long randomTime = (long) ((min + ((max - min) * rand.nextDouble())) * 1.0e9);
+
+			setInvasionTime((long) (System.nanoTime() + randomTime));
 		}
 	}
 

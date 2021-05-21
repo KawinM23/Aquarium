@@ -1,5 +1,7 @@
 package model.monster;
 
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -13,20 +15,21 @@ import properties.Hunger;
 import properties.Idle;
 import properties.Renderable;
 
-public class Destructor extends Monster implements Renderable{
+public class Destructor extends Monster implements Renderable {
 
 	private static final Image DestructorImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
-	
+
 	public Destructor(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
-		
+
 		this.setSize(135, 200);
 		this.setSpeed(80);
 
 		this.setHealth(100);
-		this.setHunger(new Hunger(7, 0));
+		this.setHunger(new Hunger(8, 0));
 		this.setIdle(new Idle(this, 20));
+		
+		this.getHunger().setLastFedRandom(3, 4);
 	}
 
 	@Override
@@ -51,12 +54,12 @@ public class Destructor extends Monster implements Renderable{
 
 		this.move(fr);
 	}
-	
+
 	public void move(int fr) {
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
-		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
-			setPosY(GameManager.getBOTTOMHEIGHT()-getHeight());
+		if (getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
+			setPosY(GameManager.getBOTTOMHEIGHT() - getHeight());
 		}
 	}
 
@@ -65,7 +68,6 @@ public class Destructor extends Monster implements Renderable{
 
 		gc.setStroke(new Color(1, 0, 0, 1));
 		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()), getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
 			gc.drawImage(DestructorImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
@@ -76,15 +78,27 @@ public class Destructor extends Monster implements Renderable{
 	@Override
 	public void attack() {
 		// TODO Shoot
+		ArrayList<Unit> targetFishes = new ArrayList<Unit>();
 		if (TankManager.getFishList().size() != 0) {
-			Unit nearestFish = TankManager.getFishList().get(0);
-			// Find NearestFood
-			for (Fish f : TankManager.getFishList()) {
-				if (this.distance(f) < this.distance(nearestFish)) {
-					nearestFish = f;
+			if (TankManager.getFishList().size() <= 3) {
+				for (Fish f : TankManager.getFishList()) {
+					targetFishes.add(f);
+				}
+			} else {
+				for (int i = 0; i < 3; i++) {
+					targetFishes.add(TankManager.getFishList().get(i));
+				}
+
+				// Find TargetFishes
+				for (int j = 3; j < TankManager.getFishList().size(); j++) {
+					replaceTargetFishes(targetFishes, TankManager.getFishList().get(j));
 				}
 			}
-			
+			// TODO SHOOT MISSLIES
+			System.out.println(targetFishes);
+
+			this.getHunger().setLastFedNow();
+
 			this.getIdle().checkIdleMonster();
 
 		} else {
@@ -93,13 +107,60 @@ public class Destructor extends Monster implements Renderable{
 		}
 	}
 
-	public void getHit() {
-		// TODO Onclick Mouse -> decrease Hp
-		System.out.println("Hit Monster " + getHealth());
-		this.decreaseHealth(PlayerController.getGunDamage());
+	private void replaceTargetFishes(ArrayList<Unit> targetFishes, Unit u) {
+		double[] disList = new double[4];
+		disList[0] = this.distance(targetFishes.get(0));
+		disList[1] = this.distance(targetFishes.get(1));
+		disList[2] = this.distance(targetFishes.get(2));
+		disList[3] = this.distance(u);
+
+		if (disList[3] <= disList[0] && disList[3] <= disList[1] && disList[3] <= disList[2]) {
+			return;
+		} else {
+			if (disList[3] > disList[0] && disList[3] <= disList[1] && disList[3] <= disList[2]) {
+				targetFishes.remove(0);
+				targetFishes.add(u);
+			} else if ((disList[3] <= disList[0] && disList[3] > disList[1] && disList[3] <= disList[2])) {
+				targetFishes.remove(1);
+				targetFishes.add(u);
+			} else if ((disList[3] <= disList[0] && disList[3] <= disList[1] && disList[3] > disList[2])) {
+				targetFishes.remove(2);
+				targetFishes.add(u);
+			} else {
+				if (disList[3] > disList[0] && disList[3] > disList[1] && disList[3] <= disList[2]) {
+					if (disList[0] < disList[1]) {
+						targetFishes.remove(0);
+						targetFishes.add(u);
+					} else {
+						targetFishes.remove(1);
+						targetFishes.add(u);
+					}
+				} else if (disList[3] > disList[0] && disList[3] <= disList[1] && disList[3] > disList[2]) {
+					if (disList[0] < disList[2]) {
+						targetFishes.remove(0);
+						targetFishes.add(u);
+					} else {
+						targetFishes.remove(2);
+						targetFishes.add(u);
+					}
+				} else if (disList[3] <= disList[0] && disList[3] > disList[1] && disList[3] > disList[2]) {
+					if (disList[1] < disList[2]) {
+						targetFishes.remove(1);
+						targetFishes.add(u);
+					} else {
+						targetFishes.remove(2);
+						targetFishes.add(u);
+					}
+				}
+			}
+		}
+
 	}
 
-
+	public void getHit() {
+		// Onclick Mouse -> decrease Hp
+		this.decreaseHealth(PlayerController.getGunDamage());
+	}
 
 	@Override
 	public void continuePause(long duration) {
