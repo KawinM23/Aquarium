@@ -7,10 +7,11 @@ import properties.Renderable;
 
 public class Beetle extends Money implements Renderable{
 
-	private static final Image BeetleImage = new Image(ClassLoader.getSystemResource("SilverCoin.png").toString());
+	private static final Image BeetleImage = new Image(ClassLoader.getSystemResource("Beetle.png").toString());
 	
 	public Beetle(String name, double posX, double posY) {
 		super(name, posX, posY);
+		this.setSize(45, 40);
 		
 		this.setVelY(-50);
 		
