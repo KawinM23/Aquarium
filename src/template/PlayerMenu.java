@@ -2,10 +2,12 @@ package template;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -13,14 +15,14 @@ import javafx.stage.Stage;
 import manager.JSONManager;
 
 public class PlayerMenu {
-
+	static Label currentPlayerText = new Label();
+	
 	public static void display() {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("Player Menu");
 		window.setWidth(400);
-		window.setHeight(200);
-		Label currentPlayerText = new Label();
+		window.setHeight(300);
 		currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());
 
 		// CHANGE PLAYER LINE
@@ -84,19 +86,33 @@ public class PlayerMenu {
 
 		changePlayerNameBox.getChildren().addAll(changePlayerNameText, changePlayerName, changeButton);
 		changePlayerNameBox.setAlignment(Pos.CENTER);
-		
+
 		// DELETE
 		Button deleteButton = new Button("Delete");
 		deleteButton.setOnAction(e -> {
 			// TODO MAKE ANOTHER WINDOW TO COMFIRM DELETION
-			System.out.println("Pressed Delete");
+			if (JSONManager.getJsonNameList().size() >= 1) {
+				DeletePlayerWindow.display();
+			} else if (JSONManager.getJsonNameList().size() <= 0) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error");
+				alert.setHeaderText(null);
+				alert.setContentText(
+						"Cannot delete while there are no other players. Please create another player first.");
+				alert.showAndWait();
+			}
 		});
-		
-		
-		
+
+		// BACK TO MENU
+		Button backToMenuButton = new Button("Back to Menu");
+		backToMenuButton.setOnAction(e -> {
+			window.close();
+		});
+
 		// Set up everything
 		VBox layout = new VBox(10);
-		layout.getChildren().addAll(currentPlayerText, changePlayer, newPlayer, changePlayerNameBox);
+		layout.getChildren().addAll(currentPlayerText, changePlayer, newPlayer, changePlayerNameBox, deleteButton,
+				backToMenuButton);
 		layout.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
@@ -110,6 +126,10 @@ public class PlayerMenu {
 		for (int i = 0; i < JSONManager.getJsonNameList().size(); i++) {
 			comboBox.getItems().add(JSONManager.getJsonNameList().get(i));
 		}
+	}
+	
+	public static void setCurrentPlayer(String playerName) {
+		currentPlayerText.setText("Current Player: " + playerName);
 	}
 
 }
