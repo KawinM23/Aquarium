@@ -113,7 +113,34 @@ public class SceneController {
 						SoundManager.playBgm();
 
 						ViewManager manager = new ViewManager();
-						manager.startLevel(LevelManager.getLevel1_2());
+						manager.startLevel(LevelManager.getLevel(tankNumber, levelNumber));
+						SceneController.changeScene(manager.getTankScene());
+					}
+				});
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		});
+		thread.start();
+	}
+	
+	public static void startLatestLevel() {
+		SoundManager.stopBgm();
+		Thread thread = new Thread(() -> {
+			try {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						// TODO Change Bgm later
+						SoundManager.setBgm(1);
+						SoundManager.playBgm();
+
+						ViewManager manager = new ViewManager();
+						manager.startLevel(LevelManager.getLatestLevel());
 						SceneController.changeScene(manager.getTankScene());
 					}
 				});
