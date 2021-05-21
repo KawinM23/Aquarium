@@ -1,6 +1,7 @@
 package model.fish;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.GameManager;
@@ -142,35 +143,27 @@ public class Guppy extends Fish implements Renderable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		float alpha = (float) 0.5; // draw half transparent
+		if (isStar) {
+			gc.setGlobalAlpha(0.8);
+			gc.setEffect(new Glow(0.8));
+		}
 		if (getHunger().checkHunger() == 2) {
-			if (isStar) {
-				gc.setGlobalAlpha(alpha);
-
-			}
 			if (isFacingLeft()) {
 				gc.drawImage(GuppyHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
-				gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 			} else {
 				gc.drawImage(GuppyHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
-				gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 			}
-			gc.setGlobalAlpha(1);
-
 		} else {
-			if (isStar) {
-				gc.setGlobalAlpha(alpha);
-			}
+			
 			if (isFacingLeft()) {
 				gc.drawImage(GuppyLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
-				gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 			} else {
 				gc.drawImage(GuppyRightImage, getPosX(), getPosY(), getWidth(), getHeight());
-				gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 			}
-			gc.setGlobalAlpha(1);
-
 		}
+
+		gc.setGlobalAlpha(1);
+		gc.setEffect(null);
 
 	}
 
