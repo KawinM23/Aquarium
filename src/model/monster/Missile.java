@@ -4,10 +4,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.PlayerController;
+import manager.StatTracker;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Monster;
 import model.base.Unit;
+import model.money.Diamond;
 import properties.Hunger;
 import properties.Idle;
 import properties.Renderable;
@@ -21,8 +23,8 @@ public class Missile extends Monster implements Renderable {
 	public Missile(String name, double posX, double posY, Unit targetFish) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub
-		this.setSize(50, 50);
-		this.setInner(10, 10);
+		this.setSize(60, 60);
+		this.setInner(20, 20);
 		this.setSpeed(80);
 
 		this.setHealth(10);
@@ -59,6 +61,10 @@ public class Missile extends Monster implements Renderable {
 	@Override
 	public void continuePause(long duration) {
 		// TODO Auto-generated method stub
+	}
+	
+	public void defeated() {
+		TankManager.remove(this);
 	}
 
 	@Override
