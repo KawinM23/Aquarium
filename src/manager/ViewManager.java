@@ -65,7 +65,7 @@ public class ViewManager {
 		tankThread = newTankThread(canvas, gc);
 
 		// don't let thread prevent JVM shutdown
-		tankThread.setDaemon(true);
+		
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -235,6 +235,7 @@ public class ViewManager {
 
 		PlayerController.setPlaying(true);
 		tankThread = newTankThread(canvas, gc);
+		tankThread.setDaemon(true);
 		tankThread.start();
 	}
 
