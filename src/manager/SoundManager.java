@@ -313,10 +313,12 @@ public class SoundManager {
 
 			try {
 				for (int i = 0; i < 3; i++) {
-					MediaPlayer player = new MediaPlayer(WARNING_SOUND);
-					setVolume(player, soundVolumeLevel);
-					player.play();
-					Thread.sleep(2000);
+					if (PlayerController.isPlaying()) {
+						MediaPlayer player = new MediaPlayer(WARNING_SOUND);
+						setVolume(player, soundVolumeLevel);
+						player.play();
+						Thread.sleep(2000);
+					}
 				}
 
 			} catch (Exception e) {
