@@ -59,7 +59,7 @@ public class ViewManager {
 		pause1.setPauseButtons();
 		pause1.hideButtons();
 
-		// TODO Change Code to new Controller
+		//tankThread
 		tankThread = new Thread(new Runnable() {
 
 			@Override
@@ -96,9 +96,7 @@ public class ViewManager {
 					}
 					Platform.runLater(updater);
 				}
-				if (!PlayerController.isPlaying()) {
 
-				}
 			}
 
 		});
@@ -125,13 +123,7 @@ public class ViewManager {
 
 					} else {
 
-						boolean hasGus = false;
-						for (Monster m : TankManager.getMonsterList()) {
-							if (m instanceof Gus) {
-								hasGus = true;
-							}
-						}
-						if (!hasGus) {
+						if (!InvasionManager.isHasGus()) {
 							// Shoot
 							for (Monster m : TankManager.getMonsterList()) {
 								if (m.getBoundary().contains(event.getSceneX(), event.getSceneY())) {
@@ -168,6 +160,7 @@ public class ViewManager {
 		TankManager.addNewFish(g2);
 
 		Guppy g3 = new Guppy("g3", 400, 100);
+		g3.setGrowth(200);
 		g3.setStar(true);
 		TankManager.addNewFish(g3);
 
@@ -237,7 +230,7 @@ public class ViewManager {
 	}
 
 	private void clearLevel() {
-		// TODO Clear
+		//Clear Level
 		TankManager.clear();
 		StatTracker.clear();
 		PlayerController.clear();
@@ -279,8 +272,7 @@ public class ViewManager {
 					}
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			}
 		});
 		addFoodThread.start();

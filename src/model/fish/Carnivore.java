@@ -10,28 +10,28 @@ import properties.Idle;
 import properties.Production;
 import properties.Renderable;
 
-public class Carnivore extends Fish implements Renderable{
-	
-	private static final Image CarnivoreLeftImage = new Image(ClassLoader.getSystemResource("CarnivoreLeft.png").toString());
-	private static final Image CarnivoreRightImage = new Image(ClassLoader.getSystemResource("CarnivoreRight.png").toString());
+public class Carnivore extends Fish implements Renderable {
+
+	private static final Image CarnivoreLeftImage = new Image(
+			ClassLoader.getSystemResource("CarnivoreLeft.png").toString());
+	private static final Image CarnivoreRightImage = new Image(
+			ClassLoader.getSystemResource("CarnivoreRight.png").toString());
 
 	public Image getImage() {
 		return CarnivoreLeftImage;
 	}
-	
+
 	public Carnivore(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
-		this.setWidth(115);
-		this.setHeight(100);
+		this.setSize(115,100);
 		this.setMouthPos(20, 75);
-		
+
 		this.setSpeed(90);
 		this.setVelZero();
 
-		this.setHunger(new Hunger(5, 20));
-		this.setProduction(new Production(this, 3, 8));
-		this.setIdle(new Idle(this,20));
+		this.setHunger(new Hunger(10, 30));
+		this.setProduction(new Production(this, 3, 9.5 + Math.random()));
+		this.setIdle(new Idle(this, 20));
 		this.setPrice(1000);
 	}
 
@@ -55,7 +55,8 @@ public class Carnivore extends Fish implements Renderable{
 				if (isAtMounth(nearestFood)) {
 					// Eat baby guppy
 					this.feed(nearestFood);
-					this.getIdle().eatFood();;
+					this.getIdle().eatFood();
+					;
 				} else {
 					// Go to food
 					this.headToUnit(nearestFood);
@@ -65,7 +66,7 @@ public class Carnivore extends Fish implements Renderable{
 				this.getIdle().checkIdle();
 			}
 		} else {
-			//No Food ,Idle
+			// No Food ,Idle
 			this.getIdle().checkIdle();
 		}
 	}

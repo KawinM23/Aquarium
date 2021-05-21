@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import model.base.Monster;
+import model.base.Unit;
+import model.monster.Destructor;
+import model.monster.Gus;
 
 public class InvasionManager {
 	private static Random rand = new Random();
@@ -16,6 +20,9 @@ public class InvasionManager {
 	private static long invasionTime;
 	private static int[] invasionTimeList;
 	private static ArrayList<ArrayList<Monster>> invasionList = new ArrayList<ArrayList<Monster>>();
+
+	private static boolean hasGus;
+	private static boolean hasDestructor;
 
 	public static void update() {
 		if (!isInvaded && invasionTime - System.nanoTime() <= 7e9 && warning != true) {
@@ -48,6 +55,27 @@ public class InvasionManager {
 		}
 	}
 
+	public static void render(GraphicsContext gc) {
+		if (isShowWarning()) {
+			gc.fillText("Warning", 0, 400);
+		}
+
+		if (isInvaded && hasDestructor) {
+			for (Monster m : TankManager.getMonsterList()) {
+				if (m instanceof Destructor) {
+					if (((Destructor) m).getTargetFishes() != null) {
+						for (Unit f : ((Destructor) m).getTargetFishes()) {
+							gc.setStroke(new Color(1, 0, 0, 1));
+							gc.strokeOval(f.getCenterX() - 20, f.getCenterY() - 20, 40, 40);
+						} 
+					}
+
+				}
+			}
+		}
+
+	}
+
 	public static void startInvasion() {
 		System.out.println("Invading");
 		setInvaded(true);
@@ -63,11 +91,22 @@ public class InvasionManager {
 				TankManager.add(m);
 			}
 		}
+
+		for (Monster m : TankManager.getMonsterList()) {
+			if (m instanceof Gus) {
+				setHasGus(true);
+			}
+			if (m instanceof Destructor) {
+				setHasDestructor(true);
+			}
+		}
 	}
 
 	public static void endInvasion() {
 		System.out.println("END INVASION");
 		setInvaded(false);
+		setHasGus(false);
+		setHasDestructor(false);
 		setInvasion(invasion + 1);
 		TankManager.endInvasion(getInvasionDuration());
 		if (invasion < invasionList.size()) {
@@ -117,7 +156,7 @@ public class InvasionManager {
 	public static void setInvasionTime(long invasionTime) {
 		InvasionManager.invasionTime = invasionTime;
 	}
-	
+
 	public static void setStartInvasionTime() {
 		InvasionManager.invasionTime = (long) (System.nanoTime() + (invasionTimeList[0] * 1.0e9));
 	}
@@ -154,10 +193,19 @@ public class InvasionManager {
 		InvasionManager.invasionList = invasionList;
 	}
 
-	public static void render(GraphicsContext gc) {
-		if (isShowWarning()) {
-			gc.fillText("Warning", 0, 400);
-		}
+	public static boolean isHasGus() {
+		return hasGus;
+	}
 
+	public static void setHasGus(boolean hasGus) {
+		InvasionManager.hasGus = hasGus;
+	}
+
+	public static boolean isHasDestructor() {
+		return hasDestructor;
+	}
+
+	public static void setHasDestructor(boolean hasDestructor) {
+		InvasionManager.hasDestructor = hasDestructor;
 	}
 }

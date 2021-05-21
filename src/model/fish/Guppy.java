@@ -17,7 +17,7 @@ import properties.Renderable;
 
 public class Guppy extends Fish implements Renderable {
 
-	private boolean isStar; // TODO StarGuppy
+	private boolean isStar; // StarGuppy
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 	private long bornTime;
 
@@ -112,17 +112,34 @@ public class Guppy extends Fish implements Renderable {
 		}
 		if (!isStar) {
 			if (this.growth >= 100 && this.growth < 200 && getProduction().getProductType() != 1) {
-				// TODO Set new width and height
-				this.setSize(75, 75);
-				this.setMouthPos(15, 55);
-				this.setPos(getPosX() - 12.5, getPosY() - 12.5);
-				this.getProduction().setProductType(1);
+				this.setGuppy("Medium");
 			} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
-				this.setSize(100, 100);
-				this.setMouthPos(15, 75);
-				this.setPos(getPosX() - 12.5, getPosY() - 12.5);
-				this.getProduction().setProductType(2);
+				this.setGuppy("Large");
 			}
+		} else if (this.getProduction().getProductType() != 5) {
+			this.getProduction().setProductType(5);
+		}
+	}
+
+	private void setGuppy(String string) {
+		// TODO Auto-generated method stub
+		if (string == null) {
+			return;
+		}
+		if (string.equals("Small")) {
+			this.setSize(50,50);
+			this.setMouthPos(15, 30);
+			this.getProduction().setProductType(1);
+		} else if (string.equals("Medium")) {
+			this.setSize(75, 75);
+			this.setMouthPos(15, 55);
+			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
+			this.getProduction().setProductType(1);
+		} else if (string.equals("Large")) {
+			this.setSize(100, 100);
+			this.setMouthPos(15, 75);
+			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
+			this.getProduction().setProductType(2);
 		}
 	}
 
@@ -154,7 +171,7 @@ public class Guppy extends Fish implements Renderable {
 				gc.drawImage(GuppyHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 			}
 		} else {
-			
+
 			if (isFacingLeft()) {
 				gc.drawImage(GuppyLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 			} else {

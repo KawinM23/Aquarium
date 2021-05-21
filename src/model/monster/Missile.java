@@ -1,11 +1,14 @@
 package model.monster;
 
 import javafx.scene.canvas.GraphicsContext;
+import model.base.Fish;
 import model.base.Monster;
 import properties.Renderable;
 
 public class Missile extends Monster implements Renderable{
 
+	private Fish targetFish;
+	
 	public Missile(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO Auto-generated constructor stub

@@ -19,6 +19,9 @@ public class Destructor extends Monster implements Renderable {
 
 	private static final Image DestructorImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
+	
+	private ArrayList<Unit> targetFishes;
+	
 	public Destructor(String name, double posX, double posY) {
 		super(name, posX, posY);
 
@@ -78,7 +81,7 @@ public class Destructor extends Monster implements Renderable {
 	@Override
 	public void attack() {
 		// TODO Shoot
-		ArrayList<Unit> targetFishes = new ArrayList<Unit>();
+		targetFishes = new ArrayList<Unit>();
 		if (TankManager.getFishList().size() != 0) {
 			if (TankManager.getFishList().size() <= 3) {
 				for (Fish f : TankManager.getFishList()) {
@@ -166,6 +169,18 @@ public class Destructor extends Monster implements Renderable {
 	public void continuePause(long duration) {
 		// TODO Auto-generated method stub
 		this.getHunger().addLastFed(duration);
+	}
+
+	public ArrayList<Unit> getTargetFishes() {
+		return targetFishes;
+	}
+
+	public void setTargetFishes(ArrayList<Unit> targetFishes) {
+		this.targetFishes = targetFishes;
+	}
+
+	public static Image getDestructorimage() {
+		return DestructorImage;
 	}
 
 }
