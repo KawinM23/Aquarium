@@ -1,7 +1,5 @@
 package manager;
 
-import com.sun.glass.ui.View;
-
 public class PlayerController {
 
 	private static int money = 10000;
@@ -53,6 +51,7 @@ public class PlayerController {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private static void win() {
 		// TODO Winning ,Change scene
 		System.out.println("WIN");
@@ -63,12 +62,24 @@ public class PlayerController {
 		StatTracker.calculateStat();
 	}
 
+	@SuppressWarnings("deprecation")
 	private static void lose() {
 		// TODO Losing ,Change scene
 		setPlaying(false);
 		ViewManager.getTankThread().stop();
 		System.out.println("LOSE");
 		StatTracker.calculateStat();
+	}
+
+	public static void clear() {
+		setMoney(0);
+		setPlaying(false);
+		setPause(false);
+		setPotion(false);
+		setMaxFood(1);
+		setFoodLevel(1);
+		setGunLevel(1);
+		setGoal(0);
 	}
 
 	public static int getMaxFood() {
@@ -96,6 +107,7 @@ public class PlayerController {
 	}
 
 	public static int getGunDamage() {
+		//TODO Gun Damage
 		switch (gunLevel) {
 		case 1:
 			return 10;
@@ -159,17 +171,6 @@ public class PlayerController {
 
 	public static void setPotion(boolean isPotion) {
 		PlayerController.isPotion = isPotion;
-	}
-
-	public static void clear() {
-		setMoney(0);
-		setPlaying(false);
-		setPause(false);
-		setPotion(false);
-		setMaxFood(1);
-		setFoodLevel(1);
-		setGunLevel(1);
-		setGoal(0);
 	}
 
 

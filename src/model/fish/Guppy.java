@@ -3,7 +3,6 @@ package model.fish;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import manager.GameManager;
 import manager.SoundManager;
 import manager.TankManager;

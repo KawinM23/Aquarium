@@ -111,7 +111,6 @@ public class Production {
 	}
 
 	public void endInvasion(long invasionDuration) {
-		// TODO
 		setLastProduce(lastProduce + invasionDuration);
 	}
 
