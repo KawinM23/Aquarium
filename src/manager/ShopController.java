@@ -1,8 +1,11 @@
 package manager;
 
+import java.util.ArrayList;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -61,37 +64,32 @@ public class ShopController {
 		shopItems = level.getShopItem();
 		// TODO Get details from Level and LevelManager instead
 		// TODO NULL POINTER of getshop
-		prices = new int[] { getUnitPrice(level.getShopItem()[0]), 200, 300, getUnitPrice(level.getShopItem()[1]),
-				getUnitPrice(level.getShopItem()[2]), 1000, level.getGoalPrice() };
-		// TODO Get Gun Images Later (Right now is null) + Get Goal Egg Image
-		images = new Image[] { getUnitImage(level.getShopItem()[0]), Food.getStaticImage(2), null,
-				getUnitImage(level.getShopItem()[1]), getUnitImage(level.getShopItem()[2]), null, null };
-	}
-
-	public static void setShopDetail(int tankNumber) {
-		// TODO Get details from Level and LevelManager instead
-		switch (tankNumber) {
-		case 0:
-			// TODO Prices ; Prices of {Button1, Button4, Button5, Button7}
-			// Fish Fish2 Fish3 Goal
-			prices = new int[] { 100, 1000, 1000, 2000 };
-			images = new Image[] { guppyImage, guppyImage, guppyImage, guppyImage, guppyImage, guppyImage, guppyImage,
-					guppyImage };
-			break;
-		case 1:
-			break;
-		case 2:
-			prices = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-			break;
-		case 3:
-			prices = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-			break;
-		default:
+		int foodTypePrice = 200;
+		int maxFoodPrice = 300;
+		Image foodTypeImage = Food.getStaticImage(2);
+		int weaponPrice = 1000;
+		if (!level.isFoodUpgradable()) {
+			foodTypePrice = 0;
+			maxFoodPrice = 0;
+			foodTypeImage = null;
 		}
+		if (!level.isWeaponUpgradable()) {
+			weaponPrice = 0;
+		}
+		prices = new int[] { getUnitPrice(level.getShopItem()[0]), foodTypePrice, maxFoodPrice,
+				getUnitPrice(level.getShopItem()[1]), getUnitPrice(level.getShopItem()[2]), weaponPrice,
+				level.getGoalPrice() };
+		// TODO Get Gun Images Later (Right now is null) + Get Goal Egg Image
+		images = new Image[] { getUnitImage(level.getShopItem()[0]), foodTypeImage, null,
+				getUnitImage(level.getShopItem()[1]), getUnitImage(level.getShopItem()[2]), null, null };
 	}
 
 	// TODO Add All button
 	public static void setAllButtons(AnchorPane anchorpane) {
+		// Clear Previous Buttons
+		clearShop(anchorpane);
+
+		// Add in new Buttons
 		for (Button eachButton : buttonList) {
 			setButtonProperty(anchorpane, eachButton);
 		}
@@ -288,6 +286,14 @@ public class ShopController {
 				priceText = "";
 			if (shopItems[2] == null && i == 4)
 				priceText = "";
+			if (prices[1] == 0 && i == 1)
+				priceText = "";
+			if (prices[2] == 0 && i == 2) {
+				priceText = "";
+			}
+			if ((PlayerController.getGunLevel() == 10 || prices[5] == 0) && i == 5) {
+				priceText = "";
+			}
 
 			DrawManager.drawText(gc, priceText, 18,
 					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
@@ -296,6 +302,9 @@ public class ShopController {
 
 		// Draw Max Food Number
 		String maxFoodString = "" + (PlayerController.getMaxFood() + 1);
+		if (prices[2] == 0) {
+			maxFoodString = "";
+		}
 		if (PlayerController.getMaxFood() == 10) {
 			maxFoodString = "";
 		}
@@ -311,7 +320,8 @@ public class ShopController {
 	}
 
 	public static int getUnitPrice(Unit unit) {
-		if (unit == null) return 0;
+		if (unit == null)
+			return 0;
 		else if (unit instanceof Fish) {
 			return ((Fish) unit).getPrice();
 		} else if (unit instanceof Food) {
@@ -344,6 +354,26 @@ public class ShopController {
 			}
 		}
 		return null;
+	}
+
+	public static void clearShop(AnchorPane anchorpane) {
+		ArrayList<Node> toBeRemovedNodes = new ArrayList<Node>();
+		for (Node node : anchorpane.getChildren()) {
+			if (node instanceof Button) {
+				try {
+					if (Integer.parseInt(((Button) node).getText()) >= 1
+							&& Integer.parseInt(((Button) node).getText()) <= 8) {
+						toBeRemovedNodes.add(node);
+					}
+				} catch (Exception e) {
+
+				}
+
+			}
+		}
+		for (Node node : toBeRemovedNodes) {
+			anchorpane.getChildren().remove(node);
+		}
 	}
 
 	public void setPrice(int ButtonNumber, int newPrice) {

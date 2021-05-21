@@ -62,6 +62,8 @@ public class PlayerMenu {
 				JSONManager.addNewPlayer(playerName);
 				JSONManager.changePlayer(playerName);
 				currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());
+				SceneController.updatePlayerSettings();
+				SceneController.changeScene("MainMenu");
 			}
 			setDropDown(comboBox1);
 			newPlayerName.clear();
