@@ -51,6 +51,12 @@ public class LevelManager {
 		level.setWeaponUpgradable(false);
 
 		level.setGoalPrice(150);
+		
+		//Invasion
+		level.setInvasionMonster(new ArrayList<>());
+
+		int[] invasionTime = new int[] {0};
+		level.setInvasionTime(invasionTime);
 	}
 
 	public static void loadLevel1_2(Level level) {

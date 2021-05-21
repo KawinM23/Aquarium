@@ -192,6 +192,7 @@ public class ViewManager {
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
 		firstInvasion.add(d);
+		InvasionManager.setInvasionList(new ArrayList<>());
 		InvasionManager.getInvasionList().add(firstInvasion);
 		InvasionManager.setInvasionTimeList(new int[] { 10, 30, 40 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
@@ -230,11 +231,12 @@ public class ViewManager {
 		tankThread.start();
 	}
 
-	private void clearLevel() {
+	public void clearLevel() {
 		// Clear Level
 		TankManager.clear();
 		StatTracker.clear();
 		PlayerController.clear();
+		
 
 	}
 

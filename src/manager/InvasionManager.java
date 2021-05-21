@@ -48,7 +48,7 @@ public class InvasionManager {
 				}
 			});
 			warningThread.start();
-		} else if (!isInvaded && System.nanoTime() >= invasionTime) {
+		} else if (!isInvaded && System.nanoTime() >= invasionTime && invasionTimeList[0] != 0) {
 			startInvasion();
 		} else if (isInvaded && TankManager.getMonsterCount() == 0) {
 			endInvasion();
@@ -59,20 +59,6 @@ public class InvasionManager {
 		if (isShowWarning()) {
 			gc.fillText("Warning", 0, 400);
 		}
-
-//		if (isInvaded && hasDestructor) {
-//			for (Monster m : TankManager.getMonsterList()) {
-//				if (m instanceof Destructor) {
-//					if (((Destructor) m).getTargetFishes() != null) {
-//						for (Unit f : ((Destructor) m).getTargetFishes()) {
-//							gc.setStroke(new Color(1, 0, 0, 1));
-//							gc.strokeOval(f.getCenterX() - 20, f.getCenterY() - 20, 40, 40);
-//						} 
-//					}
-//
-//				}
-//			}
-//		}
 
 	}
 

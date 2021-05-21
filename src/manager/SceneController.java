@@ -34,6 +34,8 @@ public class SceneController {
 	private static String[] statsTexts = { "Back" };
 	private static Scene statsScene = (new stats(statsTexts)).getScene();
 
+	private static ViewManager manager = new ViewManager();
+
 	// Declare a primary stage to change scenes in
 	public SceneController() {
 	}
@@ -112,7 +114,6 @@ public class SceneController {
 						SoundManager.setBgm(1);
 						SoundManager.playBgm();
 
-						ViewManager manager = new ViewManager();
 						manager.startLevel(LevelManager.getLevel(tankNumber, levelNumber));
 						SceneController.changeScene(manager.getTankScene());
 					}
@@ -126,7 +127,7 @@ public class SceneController {
 		});
 		thread.start();
 	}
-	
+
 	public static void startLatestLevel() {
 		SoundManager.stopBgm();
 		Thread thread = new Thread(() -> {
@@ -139,7 +140,6 @@ public class SceneController {
 						SoundManager.setBgm(1);
 						SoundManager.playBgm();
 
-						ViewManager manager = new ViewManager();
 						manager.startLevel(LevelManager.getLatestLevel());
 						SceneController.changeScene(manager.getTankScene());
 					}
@@ -157,8 +157,7 @@ public class SceneController {
 	public static void updatePlayerSettings() {
 		if (JSONManager.getTank() == 1 && JSONManager.getLevel() == 1) {
 			startingMenuTexts[0] = "Start";
-		}
-		else  {
+		} else {
 			startingMenuTexts[0] = "Continue";
 		}
 		startingMenuTexts[5] = "Music: " + SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel());
@@ -202,6 +201,14 @@ public class SceneController {
 
 	public static void setCurrentSceneName(String name) {
 		currentSceneName = name;
+	}
+
+	public static ViewManager getManager() {
+		return manager;
+	}
+
+	public static void setManager(ViewManager manager) {
+		SceneController.manager = manager;
 	}
 
 }
