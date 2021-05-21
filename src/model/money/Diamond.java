@@ -11,10 +11,12 @@ public class Diamond extends Money implements Renderable {
 
 	private int type;
 
-	private static final Image DiamondImage = new Image(ClassLoader.getSystemResource("SilverCoin.png").toString());
+	private static final Image DiamondImage = new Image(ClassLoader.getSystemResource("Diamond.png").toString());
 
 	public Diamond(String name, double posX, double posY, int type) {
 		super(name, posX, posY);
+		
+		this.setSize(45, 40);
 		this.type = type;
 		if (type == 0) {
 			this.setVel(0, 40);
