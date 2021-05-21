@@ -88,6 +88,13 @@ public class InvasionManager {
 			}
 		} else {
 			for (Monster m : invasionList.get(invasionList.size() - 1)) {
+				if (m instanceof Gus) {
+					setHasGus(true);
+				}
+				if (m instanceof Destructor) {
+					setHasDestructor(true);
+				}
+				TankManager.addMonster(m);
 				TankManager.addMonster(m);
 			}
 		}
