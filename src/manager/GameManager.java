@@ -7,7 +7,7 @@ public class GameManager {
 	private static int TOPHEIGHT = 150;
 	private static int BOTTOMHEIGHT = HEIGHT - 30;
 	
-	private static int FRAMERATE = 50;
+	private static int FRAMERATE = 25;
 	
 	private static boolean LOG = true;
 	

@@ -9,7 +9,8 @@ import javafx.scene.text.FontWeight;
 
 public class DrawManager {
 	
-	//private static final Image tank1Bg = new Image(ClassLoader.getSystemResource("Tank1.jpg").toString());
+	private static final Image tank1Bg = new Image(ClassLoader.getSystemResource("Tank1.jpg").toString());
+	
 	
 	public static void drawImage(GraphicsContext gc, Image image, double positionX, double positionY) {
 		gc.drawImage(image, positionX, positionY);
