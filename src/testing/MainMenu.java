@@ -1,4 +1,4 @@
-package game;
+package testing;
 
 import manager.ViewManager;
 import manager.GameManager;
@@ -25,6 +25,9 @@ import javafx.util.Duration;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
+
+import game.tank0;
+import game.tank2;
 
 public class MainMenu extends Application {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
@@ -57,7 +60,7 @@ public class MainMenu extends Application {
 
 		setBackGroundImage(gc, IMAGE_PATH);
 		// Set sound effect for button click
-		SoundManager.playMainMenuBgm();
+//		SoundManager.playMainMenuBgm();
 		// sound = new Media(new File(BUTTON_CLICK_PATH).toURI().toString());
 
 		// Add buttons to current menu scene
@@ -145,7 +148,7 @@ public class MainMenu extends Application {
 									// TODO Auto-generated method stub
 									System.out.println("ran");
 									SceneController.changeScene("tank0");
-									SoundManager.stopMainMenuBgm();
+//									SoundManager.stopMainMenuBgm();
 								}
 							});
 						} catch (Exception e) {
