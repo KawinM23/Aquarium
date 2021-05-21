@@ -24,6 +24,8 @@ public class TankManager {
 	private static ArrayList<Money> moneyList = new ArrayList<Money>();
 	private static ArrayList<Monster> monsterList = new ArrayList<Monster>();
 
+	private static ArrayList<Unit> removeUnitList = new ArrayList<Unit>();
+	
 	private static ArrayList<Unit> removeFishList = new ArrayList<Unit>();
 	private static ArrayList<Unit> removeFoodList = new ArrayList<Unit>();
 	private static ArrayList<Unit> removeMoneyList = new ArrayList<Unit>();
@@ -62,7 +64,7 @@ public class TankManager {
 	}
 
 	public static void update() {
-		// Update and draw all unit
+		// Update all unit
 		for (Fish f : fishList) {
 			f.update(GameManager.getFRAMERATE());
 		}
@@ -83,6 +85,10 @@ public class TankManager {
 		}
 		monsterList.removeAll(removeMonsterList);
 		removeMonsterList.clear();
+		
+		unitList.removeAll(removeUnitList);
+		removeUnitList.clear();
+		System.gc();
 	}
 
 	public static void add(Unit u) {
@@ -170,14 +176,7 @@ public class TankManager {
 	public static void remove(Unit u) {
 
 		if (unitList.contains(u)) {
-			Iterator<Unit> itr = unitList.iterator();
-			while (itr.hasNext()) {
-				Unit unit = itr.next();
-				if (unit.equals(u)) {
-					itr.remove();
-
-				}
-			}
+			removeUnitList.add(u);
 			if (u instanceof Food) {
 				removeFoodList.add(u);
 			} else if (u instanceof Money) {
@@ -187,8 +186,6 @@ public class TankManager {
 			} else if (u instanceof Monster) {
 				removeMonsterList.add(u);
 			}
-			u = null;
-			System.gc();
 		}
 		
 	}

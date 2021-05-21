@@ -1,5 +1,7 @@
 package model.fish;
 
+import java.util.ConcurrentModificationException;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
@@ -47,16 +49,20 @@ public class Guppycruncher extends Fish implements Renderable{
 		if (TankManager.getFishList().size() != 0) {
 			Unit nearestFood = null;
 			// Find NearestFood
-			for (Fish f : TankManager.getFishList()) {
-				if (f instanceof Guppy) {
-					if (((Guppy) f).getGrowth() < 100) {
-						if (nearestFood == null) {
-							nearestFood = f;
-						} else if (this.distance(f) < this.distance(nearestFood)) {
-							nearestFood = f;
+			try {
+				for (Fish f : TankManager.getFishList()) {
+					if (f instanceof Guppy) {
+						if (((Guppy) f).getGrowth() < 100) {
+							if (nearestFood == null) {
+								nearestFood = f;
+							} else if (this.distance(f) < this.distance(nearestFood)) {
+								nearestFood = f;
+							}
 						}
 					}
 				}
+			} catch (ConcurrentModificationException e) {
+				nearestFood = null;
 			}
 
 			// Check Food position and Fish
