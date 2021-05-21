@@ -331,6 +331,14 @@ public class SoundManager {
 	public static void playBodyHitSound() {
 		playSoundEffect(HIT_BODY_SOUND);
 	}
+	
+	public static void playWinSound() {
+		SoundManager.playSoundEffect(WIN_SOUND);
+	}
+	
+	public static void playLoseSound() {
+		SoundManager.playSoundEffect(LOSE_SOUND);
+	}
 
 	public static void playSplashSound() {
 		int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
