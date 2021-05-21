@@ -236,7 +236,7 @@ public class menu2 {
 								public void run() {
 									// TODO Auto-generated method stub
 									// TODO Change Bgm later
-									SoundManager.setBgm(0);
+									SoundManager.setBgm(1);
 									SoundManager.playBgm();
 
 									ViewManager manager = new ViewManager();

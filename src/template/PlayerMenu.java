@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import manager.JSONManager;
+import manager.SceneController;
 
 public class PlayerMenu {
 	static Label currentPlayerText = new Label();
@@ -38,6 +39,8 @@ public class PlayerMenu {
 			JSONManager.changePlayer((String) comboBox1.getValue());
 			currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());
 			setDropDown(comboBox1);
+			SceneController.updatePlayerSettings();
+			SceneController.changeScene("MainMenu");
 		});
 
 		changePlayer.getChildren().addAll(changePlayerText, comboBox1, confirmButton);
@@ -122,7 +125,6 @@ public class PlayerMenu {
 
 	public static void setDropDown(ComboBox comboBox) {
 		comboBox.getItems().clear();
-		System.out.println(JSONManager.getJsonNameList().size());
 		for (int i = 0; i < JSONManager.getJsonNameList().size(); i++) {
 			comboBox.getItems().add(JSONManager.getJsonNameList().get(i));
 		}

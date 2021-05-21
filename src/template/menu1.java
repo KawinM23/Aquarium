@@ -128,6 +128,25 @@ public class menu1 {
 					});
 					thread.start();
 
+				} else if (buttonText.equals("Continue")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									SceneController.changeScene("TankAll");
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
 				} else if (buttonText.equals("Select Level")) {
 					Thread thread = new Thread(() -> {
 						try {

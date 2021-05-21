@@ -20,6 +20,8 @@ public class main0 extends Application {
 			JSONManager.readJSON();
 			
 			SceneController.setStage(primaryStage);
+			SoundManager.setBgm(0);
+			SceneController.updatePlayerSettings();
 			SceneController.initializeScenes();
 			SceneController.changeScene("MainMenu");
 			

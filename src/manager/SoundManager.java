@@ -293,5 +293,9 @@ public class SoundManager {
 	public static void setSoundVolumeLevel(int soundVolumeLevel) {
 		SoundManager.soundVolumeLevel = soundVolumeLevel;
 	}
+	
+	public static MediaPlayer getCurrentBgmPlayer() {
+		return currentBgmPlayer;
+	}
 
 }

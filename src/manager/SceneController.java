@@ -3,6 +3,7 @@ package manager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -16,9 +17,8 @@ public class SceneController {
 	private static ArrayList<String> nameList = new ArrayList<String>();
 	private static String currentSceneName;
 	private static Stage stage;
-	private static String[] startingMenuTexts = { "Start", "Select Level", "Statistics", "Change Player", "Credits",
+	private static String[] startingMenuTexts = { "Continue", "Select Level", "Statistics", "Change Player", "Credits",
 			"Music: Normal", "Sound: Normal", "Quit" };
-	private static Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
 	private static String[] tankLevelTexts = { "Tank 1", "Tank 2", "Tank 3", "Tank 4", "Back" };
 	private static Scene tankLevelScene = (new menu2(tankLevelTexts)).getScene();
 	private static String[] tankLevel1Texts = { "Tank 1-1", "Tank 1-2", "Tank 1-3", "Tank 1-4", "Back" };
@@ -39,6 +39,7 @@ public class SceneController {
 	}
 
 	public static void initializeScenes() {
+		Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
 		addScene("MainMenu", startingMenuScene);
 		addScene("TankAll", tankLevelScene);
 		addScene("Tank1", tankLevel1Scene);
@@ -57,7 +58,7 @@ public class SceneController {
 	}
 
 	// Remove scene in ArrayList collection
-	public static void removeScreen(String name) {
+	public static void removeScene(String name) {
 		int tempIndex = nameList.indexOf(name);
 		sceneList.remove(tempIndex);
 		nameList.remove(tempIndex);
@@ -97,6 +98,51 @@ public class SceneController {
 			return true;
 		}
 		return false;
+	}
+
+	public static void startTankLevel(int tankNumber, int levelNumber) {
+		SoundManager.stopBgm();
+		Thread thread = new Thread(() -> {
+			try {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						// TODO Change Bgm later
+						SoundManager.setBgm(1);
+						SoundManager.playBgm();
+
+						ViewManager manager = new ViewManager();
+						manager.startLevel(LevelManager.getLevel1_2());
+						SceneController.changeScene(manager.getTankScene());
+					}
+				});
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		});
+		thread.start();
+	}
+
+	public static void updatePlayerSettings() {
+		if (JSONManager.getTank() == 1 && JSONManager.getLevel() == 1) {
+			startingMenuTexts[0] = "Start";
+		}
+		else  {
+			startingMenuTexts[0] = "Continue";
+		}
+		startingMenuTexts[5] = "Music: " + SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel());
+		startingMenuTexts[6] = "Sound: " + SoundManager.getVolumeLevelWord(SoundManager.getSoundVolumeLevel());
+		SoundManager.setVolume(SoundManager.getCurrentBgmPlayer(), SoundManager.getBgmVolumeLevel());
+		if (sceneExist("MainMenu")) {
+			removeScene("MainMenu");
+			Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
+			addScene("MainMenu", startingMenuScene);
+		}
+
 	}
 
 	public static ArrayList<Scene> getSceneList() {
