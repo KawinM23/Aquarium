@@ -67,9 +67,17 @@ public class InvasionManager {
 		setInvaded(true);
 		setWarning(false);
 		setShowWarning(false);
+		setHasGus(false);
+		setHasDestructor(false);
 		// ADD MONSTER
 		if (invasion < invasionList.size()) {
 			for (Monster m : invasionList.get(invasion)) {
+				if (m instanceof Gus) {
+					setHasGus(true);
+				}
+				if (m instanceof Destructor) {
+					setHasDestructor(true);
+				}
 				TankManager.addMonster(m);
 			}
 		} else {
@@ -78,16 +86,7 @@ public class InvasionManager {
 			}
 		}
 		
-		setHasGus(false);
-		setHasDestructor(false);
-		for (Monster m : TankManager.getMonsterList()) {
-			if (m instanceof Gus) {
-				setHasGus(true);
-			}
-			if (m instanceof Destructor) {
-				setHasDestructor(true);
-			}
-		}
+
 	}
 
 	public static void endInvasion() {
