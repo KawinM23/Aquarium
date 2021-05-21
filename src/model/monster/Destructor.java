@@ -118,10 +118,10 @@ public class Destructor extends Monster implements Renderable {
 
 	private void shootMissile(Unit u) {
 		// TODO Auto-generated method stub
-
+		
 		Thread shootThread = new Thread(() -> {
 			Missile mis = new Missile("Missile", getCenterX(), getCenterY(), u);
-			TankManager.addMonster(mis);
+			TankManager.add(mis);
 		});
 		shootThread.start();
 	}

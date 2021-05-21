@@ -18,6 +18,7 @@ public class TankManager {
 	static Random rand = new Random();
 
 	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
+	private static ArrayList<Unit> addUnitList = new ArrayList<Unit>();
 
 	private static ArrayList<Fish> fishList = new ArrayList<Fish>();
 	private static ArrayList<Food> foodList = new ArrayList<Food>();
@@ -56,6 +57,8 @@ public class TankManager {
 	}
 
 	public static void render(GraphicsContext gc) {
+		unitList.addAll(addUnitList);
+		addUnitList.clear();
 		for (Unit u : unitList) {
 			if (u instanceof Renderable) {
 				((Renderable) u).render(gc);
@@ -92,7 +95,7 @@ public class TankManager {
 	}
 
 	public static void add(Unit u) {
-		unitList.add(u);
+		addUnitList.add(u);
 		if (u instanceof Food) {
 			foodList.add((Food) u);
 		} else if (u instanceof Money) {
@@ -105,7 +108,7 @@ public class TankManager {
 	}
 	
 	public static void addMonster(Monster m) {
-		unitList.add(m);
+		addUnitList.add(m);
 		monsterList.add(m);
 	}
 
