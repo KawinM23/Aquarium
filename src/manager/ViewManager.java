@@ -148,6 +148,7 @@ public class ViewManager {
 	}
 
 	public void startLevelTest(int tank, int level) {
+		clearLevel();
 		ViewManager.setCurrentTank(tank);
 		ViewManager.setCurrentLevel(level);
 		StatTracker.clear();
