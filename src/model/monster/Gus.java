@@ -3,6 +3,7 @@ package model.monster;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import manager.SoundManager;
 import manager.TankManager;
 import model.Food;
 import model.base.Fish;
@@ -61,6 +62,7 @@ public class Gus extends Monster implements Renderable {
 	}
 
 	private void eat(Unit nearestFood) {
+		SoundManager.playEatSound();
 		TankManager.remove(nearestFood);
 		if (nearestFood instanceof Fish) {
 			decreaseHealth(40);

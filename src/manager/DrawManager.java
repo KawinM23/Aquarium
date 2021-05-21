@@ -8,6 +8,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class DrawManager {
+	
+	//private static final Image tank1Bg = new Image(ClassLoader.getSystemResource("Tank1.jpg").toString());
+	
 	public static void drawImage(GraphicsContext gc, Image image, double positionX, double positionY) {
 		gc.drawImage(image, positionX, positionY);
 	}
@@ -74,6 +77,8 @@ public class DrawManager {
 		Image image = new Image(image_path);
 		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
+	
+	
 
 	public static void drawGuraGreeting(GraphicsContext gc, String key) {
 		String speech = "Welcome, " + JSONManager.getPlayerName() + "!";
