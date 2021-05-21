@@ -9,62 +9,61 @@ import javafx.util.Duration;
 
 public class SoundManager {
 	// Main Menu BGM & Click Sound
-	private static final String BUTTON_CLICK_PATH = ClassLoader.getSystemResource("buttonclick.mp3").toString();
-	private static final Media BUTTON_CLICK_SOUND = new Media(BUTTON_CLICK_PATH);
-	private static final MediaPlayer buttonClickPlayer = new MediaPlayer(new Media(BUTTON_CLICK_PATH));
+	private static final Media BUTTON_CLICK_SOUND = new Media(
+			ClassLoader.getSystemResource("buttonclick.mp3").toString());
+	private static final MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
 
-	private static final String BGM_PATH = ClassLoader.getSystemResource("mainmenu.mp3").toString();
-	private static final MediaPlayer mainMenuBgmPlayer = new MediaPlayer(new Media(BGM_PATH));
+	private static final MediaPlayer mainMenuBgmPlayer = new MediaPlayer(
+			new Media(ClassLoader.getSystemResource("mainmenu.mp3").toString()));
 
 	// Tank BGM
 	// TODO CHANGE MUSIC TO CORRECT PATHS
-	private static final String TANK1_BGM_PATH = ClassLoader.getSystemResource("mainmenu.mp3").toString();
-	private static final MediaPlayer tank1BgmPlayer = new MediaPlayer(new Media(TANK1_BGM_PATH));
+	private static final MediaPlayer tank1BgmPlayer = new MediaPlayer(
+			new Media(ClassLoader.getSystemResource("mainmenu.mp3").toString()));
 
-	private static final String TANK2_BGM_PATH = ClassLoader.getSystemResource("mainmenu.mp3").toString();
-	private static final MediaPlayer tank2BgmPlayer = new MediaPlayer(new Media(TANK2_BGM_PATH));
+	private static final MediaPlayer tank2BgmPlayer = new MediaPlayer(
+			new Media(ClassLoader.getSystemResource("Tank2.mp3").toString()));
 
-	private static final String TANK3_BGM_PATH = ClassLoader.getSystemResource("mainmenu.mp3").toString();
-	private static final MediaPlayer tank3BgmPlayer = new MediaPlayer(new Media(TANK3_BGM_PATH));
+	private static final MediaPlayer tank3BgmPlayer = new MediaPlayer(
+			new Media(ClassLoader.getSystemResource("Tank3.mp3").toString()));
 
-	private static final String TANK4_BGM_PATH = ClassLoader.getSystemResource("mainmenu.mp3").toString();
-	private static final MediaPlayer tank4BgmPlayer = new MediaPlayer(new Media(TANK4_BGM_PATH));
+	private static final MediaPlayer tank4BgmPlayer = new MediaPlayer(
+			new Media(ClassLoader.getSystemResource("Tank4.mp3").toString()));
+
 	// Sound Effects
-	private static final String DIE_PATH = ClassLoader.getSystemResource("DIE.mp3").toString();
-	private static final Media DIE_SOUND = new Media(DIE_PATH);
+	private static final Media DIE_SOUND = new Media(ClassLoader.getSystemResource("DIE.mp3").toString());
 
-	private static final String DROP_FOOD_PATH = ClassLoader.getSystemResource("DROPFOOD.mp3").toString();
-	private static final Media DROP_FOOD_SOUND = new Media(DROP_FOOD_PATH);
+	private static final Media DROP_FOOD_SOUND = new Media(ClassLoader.getSystemResource("DROPFOOD.mp3").toString());
 
-	private static final String POINT_PATH = ClassLoader.getSystemResource("POINTS.mp3").toString();
-	private static final Media POINT_SOUND = new Media(POINT_PATH);
+	private static final Media POINT_SOUND = new Media(ClassLoader.getSystemResource("POINTS.mp3").toString());
 
-	private static final String POINT2_PATH = ClassLoader.getSystemResource("POINTS2.mp3").toString();
-	private static final Media POINT2_SOUND = new Media(POINT2_PATH);
+	private static final Media POINT2_SOUND = new Media(ClassLoader.getSystemResource("POINTS2.mp3").toString());
 
-	private static final String POINT3_PATH = ClassLoader.getSystemResource("POINTS3.mp3").toString();
-	private static final Media POINT3_SOUND = new Media(POINT3_PATH);
+	private static final Media POINT3_SOUND = new Media(ClassLoader.getSystemResource("POINTS3.mp3").toString());
 
-	private static final String POINT4_PATH = ClassLoader.getSystemResource("POINTS4.mp3").toString();
-	private static final Media POINT4_SOUND = new Media(POINT4_PATH);
+	private static final Media POINT4_SOUND = new Media(ClassLoader.getSystemResource("POINTS4.mp3").toString());
 
-	private static final String SLURP_PATH = ClassLoader.getSystemResource("SLURP.mp3").toString();
-	private static final Media SLURP_SOUND = new Media(SLURP_PATH);
+	private static final Media SLURP_SOUND = new Media(ClassLoader.getSystemResource("SLURP.mp3").toString());
 
-	private static final String SLURP2_PATH = ClassLoader.getSystemResource("SLURP2.mp3").toString();
-	private static final Media SLURP2_SOUND = new Media(SLURP2_PATH);
+	private static final Media SLURP2_SOUND = new Media(ClassLoader.getSystemResource("SLURP2.mp3").toString());
 
-	private static final String SLURP3_PATH = ClassLoader.getSystemResource("SLURP3.mp3").toString();
-	private static final Media SLURP3_SOUND = new Media(SLURP3_PATH);
+	private static final Media SLURP3_SOUND = new Media(ClassLoader.getSystemResource("SLURP3.mp3").toString());
 
-	private static final String SPLASH_PATH = ClassLoader.getSystemResource("SPLASH.mp3").toString();
-	private static final Media SPLASH_SOUND = new Media(SPLASH_PATH);
+	private static final Media SPLASH_SOUND = new Media(ClassLoader.getSystemResource("SPLASH.mp3").toString());
 
-	private static final String SPLASH2_PATH = ClassLoader.getSystemResource("SPLASH2.mp3").toString();
-	private static final Media SPLASH2_SOUND = new Media(SPLASH2_PATH);
+	private static final Media SPLASH2_SOUND = new Media(ClassLoader.getSystemResource("SPLASH2.mp3").toString());
 
-	private static final String SPLASH3_PATH = ClassLoader.getSystemResource("SPLASH3.mp3").toString();
-	private static final Media SPLASH3_SOUND = new Media(SPLASH3_PATH);
+	private static final Media SPLASH3_SOUND = new Media(ClassLoader.getSystemResource("SPLASH3.mp3").toString());
+
+	private static final Media EAT_FISH1_SOUND = new Media(ClassLoader.getSystemResource("chomp.mp3").toString());
+
+	private static final Media EAT_FISH2_SOUND = new Media(ClassLoader.getSystemResource("chomp2.mp3").toString());
+
+	private static final Media WARNING_SOUND = new Media(ClassLoader.getSystemResource("AWOOGA.mp3").toString());
+
+	private static final Media ERROR_SOUND = new Media(ClassLoader.getSystemResource("BUZZER.mp3").toString());
+
+	private static final Media ALIEN_SCREAM_SOUND = new Media(ClassLoader.getSystemResource("bigchomp.mp3").toString());
 
 	// 0 Mute, 1 Quiet, 2 Normal, 3 Loud
 	private static int bgmVolumeLevel = 2;
@@ -108,7 +107,7 @@ public class SoundManager {
 			break;
 		default:
 		}
-		
+
 	}
 
 	public static void playBgm() {
@@ -258,6 +257,31 @@ public class SoundManager {
 		}
 	}
 
+	public static void playEatFishSound() {
+		int randomNum = ThreadLocalRandom.current().nextInt(1, 2 + 1);
+		switch (randomNum) {
+		case 1:
+			playSoundEffect(EAT_FISH1_SOUND);
+			break;
+		case 2:
+			playSoundEffect(EAT_FISH2_SOUND);
+			break;
+		default:
+		}
+	}
+
+	public static void playWarningSound() {
+		playSoundEffect(WARNING_SOUND);
+	}
+
+	public static void playErrorSound() {
+		playSoundEffect(ERROR_SOUND);
+	}
+
+	public static void playAlienScreamSound() {
+		playSoundEffect(ALIEN_SCREAM_SOUND);
+	}
+
 	public static void playSplashSound() {
 		int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 		switch (randomNum) {
@@ -293,7 +317,7 @@ public class SoundManager {
 	public static void setSoundVolumeLevel(int soundVolumeLevel) {
 		SoundManager.soundVolumeLevel = soundVolumeLevel;
 	}
-	
+
 	public static MediaPlayer getCurrentBgmPlayer() {
 		return currentBgmPlayer;
 	}

@@ -28,9 +28,9 @@ import template.pause1;
 
 public class ShopController {
 	// TODO get money from Money class
-	static final int shopHeight = 113;
+	static final int shopHeight = 101;
 	static Stage stage;
-	static final String MENU_IMAGE_PATH = ClassLoader.getSystemResource("menubar.jpg").toString();
+	static final String MENU_IMAGE_PATH = ClassLoader.getSystemResource("menubar2.jpg").toString();
 	static final String GUPPY_IMAGE_PATH = ClassLoader.getSystemResource("Guppy.png").toString();
 	static int[] prices;
 	private static int foodLevelPrice = 300;
