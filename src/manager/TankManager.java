@@ -19,15 +19,16 @@ public class TankManager {
 	static Random rand = new Random();
 
 	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
-	private static ArrayList<Unit> addUnitList = new ArrayList<Unit>();
-
 	private static ArrayList<Fish> fishList = new ArrayList<Fish>();
 	private static ArrayList<Food> foodList = new ArrayList<Food>();
 	private static ArrayList<Money> moneyList = new ArrayList<Money>();
 	private static ArrayList<Monster> monsterList = new ArrayList<Monster>();
+	
+	private static ArrayList<Unit> addUnitList = new ArrayList<Unit>();
+	private static ArrayList<Fish> addFishList = new ArrayList<Fish>();
+	private static ArrayList<Monster> addMonsterList = new ArrayList<Monster>();
 
 	private static ArrayList<Unit> removeUnitList = new ArrayList<Unit>();
-	
 	private static ArrayList<Unit> removeFishList = new ArrayList<Unit>();
 	private static ArrayList<Unit> removeFoodList = new ArrayList<Unit>();
 	private static ArrayList<Unit> removeMoneyList = new ArrayList<Unit>();
@@ -71,21 +72,28 @@ public class TankManager {
 
 	public static void update() {
 		// Update all unit
+		fishList.addAll(addFishList);
+		addFishList.clear();
 		for (Fish f : fishList) {
 			f.update(GameManager.getFRAMERATE());
 		}
 		fishList.removeAll(removeFishList);
 		removeFishList.clear();
+		
 		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
 		}
 		foodList.removeAll(removeFoodList);
 		removeFoodList.clear();
+		
 		for (Money m : moneyList) {
 			m.update(GameManager.getFRAMERATE());
 		}
 		moneyList.removeAll(removeMoneyList);
 		removeMoneyList.clear();
+		
+		monsterList.addAll(addMonsterList);
+		addMonsterList.clear();
 		for (Monster m : monsterList) {
 			m.update(GameManager.getFRAMERATE());
 		}
@@ -118,7 +126,7 @@ public class TankManager {
 		}
 		
 		addUnitList.add(m);
-		monsterList.add(m);
+		addMonsterList.add(m);
 	}
 
 	public static void addNewFish(Fish f) {
@@ -132,8 +140,8 @@ public class TankManager {
 						+ (GameManager.getBOTTOMHEIGHT() - f.getHeight() - GameManager.getTOPHEIGHT())
 								* rand.nextDouble();
 				f.setPos(posX, posY / 2);
-				unitList.add(f);
-				fishList.add(f);
+				addUnitList.add(f);
+				addFishList.add(f);
 				// Random Hunger Fish
 				f.getHunger().addLastFedRandom(3, 6);
 
@@ -156,15 +164,15 @@ public class TankManager {
 		if (f instanceof Guppy) {
 			((Guppy) f).setBornTime(System.nanoTime());
 		}
-		unitList.add(f);
-		fishList.add(f);
+		addUnitList.add(f);
+		addFishList.add(f);
 		// Random Hunger Fish
 		f.getHunger().addLastFedRandom(3, 6);
 	}
 
 	public static void addBornedFish(Fish f) {
-		unitList.add(f);
-		fishList.add(f);
+		addUnitList.add(f);
+		addFishList.add(f);
 		// Random Hunger Fish
 		f.getHunger().addLastFedRandom(3, 6);
 

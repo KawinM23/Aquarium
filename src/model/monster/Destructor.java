@@ -21,10 +21,9 @@ public class Destructor extends Monster implements Renderable {
 
 	private static final Image DestructorImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	
 	private ArrayList<Unit> targetFishes;
-	
-	public Destructor(String name, double posX, double posY,int health) {
+
+	public Destructor(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
 
 		this.setSize(135, 200);
@@ -34,7 +33,7 @@ public class Destructor extends Monster implements Renderable {
 		this.setHealth(health);
 		this.setHunger(new Hunger(8, 0));
 		this.setIdle(new Idle(this, 20));
-		
+
 		this.getHunger().setLastFedRandom(3, 4);
 	}
 
@@ -102,10 +101,8 @@ public class Destructor extends Monster implements Renderable {
 			}
 			// TODO SHOOT MISSLIES
 			System.out.println(targetFishes);
-			for(Unit f :targetFishes) {
-				shootMissile(f);
-			}
-			
+
+			shootMissile(targetFishes);
 
 			this.getHunger().setLastFedNow();
 
@@ -117,12 +114,14 @@ public class Destructor extends Monster implements Renderable {
 		}
 	}
 
-	private void shootMissile(Unit u) {
+	private void shootMissile(ArrayList<Unit> targetFishes) {
 		// TODO Auto-generated method stub
-		
+
 		Thread shootThread = new Thread(() -> {
-			Missile mis = new Missile("Missile", getCenterX(), getCenterY(), u);
-			TankManager.add(mis);
+			for (Unit u : targetFishes) {
+				Missile mis = new Missile("Missile", getCenterX(), getCenterY(), u);
+				TankManager.add(mis);
+			}
 		});
 		shootThread.start();
 	}

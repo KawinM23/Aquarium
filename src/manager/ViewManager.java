@@ -213,6 +213,8 @@ public class ViewManager {
 		ShopController.setAllButtons(anchorPane);
 		ShopController.prices[6] = 50;
 
+		tankThread = newTankThread(canvas, gc);
+		tankThread.setDaemon(true);
 		tankThread.start();
 	}
 
