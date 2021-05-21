@@ -64,7 +64,8 @@ public class PlayerController {
 
 		ViewManager.winLevel();
 		StatTracker.calculateStat();
-
+		
+		SoundManager.playWinSound();
 		SceneController.changeScene("Win");
 	}
 
@@ -75,7 +76,8 @@ public class PlayerController {
 		ViewManager.getTankThread().stop();
 		System.out.println("LOSE");
 		StatTracker.calculateStat();
-
+		
+		SoundManager.playLoseSound();
 		SceneController.changeScene("Lose");
 	}
 

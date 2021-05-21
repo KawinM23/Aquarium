@@ -65,9 +65,7 @@ public class InvasionManager {
 	public static void startInvasion() {
 		// SOUND
 		SoundManager.playAlienScreamSound();
-		SoundManager.stopBgm();
-		SoundManager.setBgm(5);
-		SoundManager.playBgm();
+		SoundManager.changeBgmTo(5);
 
 		System.out.println("Invading");
 		setInvaded(true);
@@ -104,9 +102,7 @@ public class InvasionManager {
 	public static void endInvasion() {
 		// SOUND
 		SoundManager.playAlienDieSound();
-		SoundManager.stopBgm();
-		SoundManager.setBgm(ViewManager.getCurrentTank());
-		SoundManager.playBgm();
+		SoundManager.changeBgmTo(ViewManager.getCurrentTank());
 
 		System.out.println("END INVASION");
 		setInvaded(false);
