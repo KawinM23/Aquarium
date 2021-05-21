@@ -73,22 +73,27 @@ public class PlayerMenu {
 
 		Button changeButton = new Button("Change");
 		changeButton.setOnAction(e -> {
-			if (!JSONManager.isNameExist(changePlayerName.getText()) && !newPlayerName.getText().equals("")) {
+			if (!JSONManager.isNameExist(changePlayerName.getText()) && !changePlayerName.getText().equals("")) {
+				System.out.println("CAME");
 				JSONManager.setPlayerName(changePlayerName.getText());
+				JSONManager.writeJSON();
 				currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());
 			}
-			newPlayerName.clear();
+			changePlayerName.clear();
 		});
 
 		changePlayerNameBox.getChildren().addAll(changePlayerNameText, changePlayerName, changeButton);
 		changePlayerNameBox.setAlignment(Pos.CENTER);
+		
 		// DELETE
 		Button deleteButton = new Button("Delete");
 		deleteButton.setOnAction(e -> {
 			// TODO MAKE ANOTHER WINDOW TO COMFIRM DELETION
 			System.out.println("Pressed Delete");
 		});
-
+		
+		
+		
 		// Set up everything
 		VBox layout = new VBox(10);
 		layout.getChildren().addAll(currentPlayerText, changePlayer, newPlayer, changePlayerNameBox);

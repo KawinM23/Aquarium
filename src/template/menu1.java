@@ -239,6 +239,8 @@ public class menu1 {
 								public void run() {
 									// TODO Auto-generated method stub
 									SceneController.changeScene("Stats");
+									stats.setStats();
+									stats.drawStats();
 								}
 							});
 

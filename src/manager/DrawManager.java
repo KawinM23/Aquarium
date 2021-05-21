@@ -39,6 +39,21 @@ public class DrawManager {
 		gc.fillText(text, positionX, positionY, width);
 
 	}
+	
+	public static void drawStatsText(GraphicsContext gc, String text, int fontSize, int positionX, int positionY,
+			int width) {
+		// Set line width
+		gc.setLineWidth(2);
+		// Set fill color
+		gc.setFill(Color.MOCCASIN);
+		gc.setStroke(Color.BLACK);
+		// set font
+		Font theFont = Font.font("Comic Sans MS", FontWeight.LIGHT, fontSize);
+		gc.setFont(theFont);
+		// text,x,y,maxWidth - maximum width the text string can have.
+		gc.fillText(text, positionX, positionY, width);
+
+	}
 
 	public static void drawOval(GraphicsContext gc, int posX, int posY, int width, int height) {
 		gc.setLineWidth(2);
