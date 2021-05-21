@@ -134,25 +134,25 @@ public class ShopController {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				if (!PlayerController.isPause()) {
-					SoundManager.playClickSound();
 
 					switch (buttonNumber) {
 					// Guppy Fish
 					case 1:
 						if (PlayerController.buy(prices[0])) {
 							TankManager.addNewFish(new Guppy("Guppy", 0, 0));
+							SoundManager.playClickSound();
 						}
 						break;
 					// Food Type
 					case 2:
-						// If enough money AND Food Level not maxed
-						if (PlayerController.buy(prices[1]) && PlayerController.getFoodLevel() <= 2) {
+						// If enough money AND Food Level not max
+						if (PlayerController.buy(prices[1]) && PlayerController.getFoodLevel() <= 2 && prices[1] != 0) {
 							PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
 							if (PlayerController.getFoodLevel() == 3) {
 								prices[1] = 0;
 								button.setVisible(false);
 							}
-
+							SoundManager.playClickSound();
 							Thread thread = new Thread(() -> {
 								try {
 									images[1] = Food.getStaticImage(PlayerController.getFoodLevel() + 1);
@@ -175,7 +175,12 @@ public class ShopController {
 						break;
 					// Food Capacity
 					case 3:
+						if (prices[2] == 0) {
+							button.setVisible(false);
+						}
 						if (PlayerController.buy(prices[2]) && PlayerController.getFoodLevel() <= 9) {
+							if (button.isVisible())
+								SoundManager.playClickSound();
 							PlayerController.setMaxFood(PlayerController.getMaxFood() + 1);
 							if (PlayerController.getMaxFood() == 10) {
 								prices[2] = 0;
@@ -187,6 +192,7 @@ public class ShopController {
 					// Special 1
 					case 4:
 						if (PlayerController.buy(prices[3])) {
+							SoundManager.playClickSound();
 							// If it is a potion
 							if (shopItems[1] instanceof Food) {
 								PlayerController.setPotion(true);
@@ -206,6 +212,7 @@ public class ShopController {
 					// Special 2
 					case 5:
 						if (PlayerController.buy(prices[4])) {
+							SoundManager.playClickSound();
 							if (shopItems[2] instanceof Starcatcher) {
 								Starcatcher fish = new Starcatcher("Starcatcher", 0, 0);
 								TankManager.addNewFish(fish);
@@ -221,6 +228,8 @@ public class ShopController {
 					// Gun
 					case 6:
 						if (PlayerController.buy(prices[5])) {
+
+							SoundManager.playClickSound();
 							PlayerController.setGunLevel(PlayerController.getGunLevel() + 1);
 							// TODO Change image to new gun images
 						}
@@ -228,6 +237,7 @@ public class ShopController {
 					// Goal
 					case 7:
 						if (PlayerController.buy(prices[6])) {
+							SoundManager.playClickSound();
 							PlayerController.buyGoal();
 						}
 						break;
