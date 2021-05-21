@@ -37,8 +37,10 @@ import model.monster.Sylvester;
 import template.pause1;
 
 public class ViewManager {
-	private Pane tankPane;
-	private AnchorPane anchorPane;
+	private static Canvas canvas;
+	private static Pane tankPane;
+	private static AnchorPane anchorPane;
+	private static GraphicsContext gc;
 	private static Scene tankScene;
 
 	private static int currentTank;
@@ -49,9 +51,9 @@ public class ViewManager {
 		tankPane = new Pane();
 		tankScene = new Scene(tankPane, GameManager.getWIDTH(), GameManager.getHEIGHT());
 
-		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
+		canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		tankPane.getChildren().add(canvas);
-		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc = canvas.getGraphicsContext2D();
 		anchorPane = new AnchorPane();
 		tankPane.getChildren().add(anchorPane);
 
@@ -60,47 +62,7 @@ public class ViewManager {
 		pause1.hideButtons();
 
 		// tankThread
-		tankThread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				Runnable updater = new Runnable() {
-					@Override
-					public void run() {
-						if (!PlayerController.isPause()) {
-							InvasionManager.update();
-							TankManager.update();
-							PlayerController.checkPlaying();
-							pause1.hideButtons();
-						}
-						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-//						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
-						gc.setFill(Color.rgb(102, 204, 255));
-						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
-
-						TankManager.render(gc);
-						ShopController.drawShop(gc);
-						InvasionManager.render(gc);
-
-						if (PlayerController.isPause()) {
-							pause1.drawPane(gc);
-							pause1.showButtons();
-						}
-
-					}
-				};
-
-				while (PlayerController.isPlaying()) {
-					try {
-						Thread.sleep(1000 / GameManager.getFRAMERATE());// 50hz ,1000/50 = 20
-					} catch (InterruptedException ex) {
-					}
-					Platform.runLater(updater);
-				}
-
-			}
-
-		});
+		tankThread = newTankThread(canvas, gc);
 
 		// don't let thread prevent JVM shutdown
 		tankThread.setDaemon(true);
@@ -146,6 +108,50 @@ public class ViewManager {
 		tankScene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 
 //		startLevelTest(1, 1);
+	}
+
+	public Thread newTankThread(Canvas canvas, GraphicsContext gc) {
+		return new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				Runnable updater = new Runnable() {
+					@Override
+					public void run() {
+						if (!PlayerController.isPause()) {
+							InvasionManager.update();
+							TankManager.update();
+							PlayerController.checkPlaying();
+							pause1.hideButtons();
+						}
+						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+//						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
+						gc.setFill(Color.rgb(102, 204, 255));
+						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
+
+						TankManager.render(gc);
+						ShopController.drawShop(gc);
+						InvasionManager.render(gc);
+
+						if (PlayerController.isPause()) {
+							pause1.drawPane(gc);
+							pause1.showButtons();
+						}
+
+					}
+				};
+
+				while (PlayerController.isPlaying()) {
+					try {
+						Thread.sleep(1000 / GameManager.getFRAMERATE());// 50hz ,1000/50 = 20
+					} catch (InterruptedException ex) {
+					}
+					Platform.runLater(updater);
+				}
+
+			}
+
+		});
 	}
 
 	public void startLevelTest(int tank, int level) {
@@ -228,6 +234,7 @@ public class ViewManager {
 		InvasionManager.setStartInvasionTime();
 
 		PlayerController.setPlaying(true);
+		tankThread = newTankThread(canvas, gc);
 		tankThread.start();
 	}
 
