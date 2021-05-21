@@ -167,6 +167,7 @@ public class ViewManager {
 		TankManager.addNewFish(g2);
 
 		Guppy g3 = new Guppy("g3", 400, 100);
+		g3.setStar(true);
 		TankManager.addNewFish(g3);
 
 		Carnivore c1 = new Carnivore("c1", 300, 200);

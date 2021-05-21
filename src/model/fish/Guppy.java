@@ -1,6 +1,7 @@
 package model.fish;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.GameManager;
@@ -20,11 +21,15 @@ public class Guppy extends Fish implements Renderable {
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 	private long bornTime;
 
-	private static final Image GuppyImageLeft = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
-	private static final Image GuppyImageRight = new Image(ClassLoader.getSystemResource("GuppyRight.png").toString());
+	private static final Image GuppyLeftImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image GuppyRightImage = new Image(ClassLoader.getSystemResource("GuppyRight.png").toString());
+	private static final Image GuppyHungryLeftImage = new Image(
+			ClassLoader.getSystemResource("GuppyHungryLeft.png").toString());
+	private static final Image GuppyHungryRightImage = new Image(
+			ClassLoader.getSystemResource("GuppyHungryRight.png").toString());
 
 	public Image getImage() {
-		return GuppyImageLeft;
+		return GuppyLeftImage;
 	}
 
 	public Guppy(String name, double posX, double posY) {
@@ -42,8 +47,8 @@ public class Guppy extends Fish implements Renderable {
 		this.setBornTime(System.nanoTime());
 
 		this.setPrice(100);
-		this.setHunger(new Hunger(6, 20));
-		this.setProduction(new Production(this, 0, 5 + Math.random()));
+		this.setHunger(new Hunger(7, 17));
+		this.setProduction(new Production(this, 0, 6 + Math.random()));
 		this.setIdle(new Idle(this, 30));
 	}
 
@@ -80,7 +85,7 @@ public class Guppy extends Fish implements Renderable {
 	public void feed(Unit nearestFood) {
 		// Play Sound Effect
 		SoundManager.playEatSound();
-		
+
 		this.getHunger().setLastFedNow();
 		this.getHunger().addLastFedRandom(0, 2);
 
@@ -138,19 +143,28 @@ public class Guppy extends Fish implements Renderable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		if (isFacingLeft()) {
-			gc.drawImage(GuppyImageLeft, getPosX(), getPosY(), getWidth(), getHeight());
-			if (isStar) {
-				gc.setStroke(new Color(1, 1, 0, 1));
-			}
-			gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		} else {
-			gc.drawImage(GuppyImageRight, getPosX(), getPosY(), getWidth(), getHeight());
-			if (isStar) {
-				gc.setStroke(new Color(1, 1, 0, 1));
-			}
-			gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
+		if (isStar) {
+			gc.setGlobalAlpha(0.8);
+			gc.setEffect(new Glow(0.8));
 		}
+		if (getHunger().checkHunger() == 2) {
+			if (isFacingLeft()) {
+				gc.drawImage(GuppyHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(GuppyHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
+		} else {
+			
+			if (isFacingLeft()) {
+				gc.drawImage(GuppyLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(GuppyRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
+		}
+
+		gc.setGlobalAlpha(1);
+		gc.setEffect(null);
+
 	}
 
 }
