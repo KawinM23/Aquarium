@@ -31,7 +31,7 @@ public class Carnivore extends Fish implements Renderable {
 
 		this.setHunger(new Hunger(10, 30));
 		this.setProduction(new Production(this, 3, 9.5 + Math.random()));
-		this.setIdle(new Idle(this, 20));
+		this.setIdle(new Idle(this, 30));
 		this.setPrice(1000);
 	}
 

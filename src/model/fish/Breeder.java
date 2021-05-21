@@ -33,7 +33,7 @@ public class Breeder extends Fish implements Renderable{
 
 		this.setHunger(new Hunger(7, 20));
 		this.setProduction(new Production(this, 8, 25));
-		this.setIdle(new Idle(this, 20));
+		this.setIdle(new Idle(this, 30));
 		this.setPrice(200);
 	}
 	
