@@ -164,7 +164,7 @@ public class Guppy extends Fish implements Renderable {
 			gc.setGlobalAlpha(0.8);
 			gc.setEffect(new Glow(0.8));
 		}
-		if (getHunger().checkHunger() == 2) {
+		if (isHungry()) {
 			if (isFacingLeft()) {
 				gc.drawImage(GuppyHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 			} else {

@@ -21,6 +21,8 @@ public abstract class Fish extends Unit {
 	private long turningTime;
 	private double mouthPosX;
 	private double mouthPosY;
+	
+	private boolean isHungry;
 
 	public Fish(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -108,10 +110,12 @@ public abstract class Fish extends Unit {
 	@Override
 	public void update(int fr) {
 		if (!InvasionManager.isInvaded()) {
+			
 			switch (hunger.checkHunger()) {
 			case 0:
 				// idle
 				this.idle.checkIdle();
+				setHungry(false);
 				break;
 			case 1:
 				// find food
@@ -120,6 +124,7 @@ public abstract class Fish extends Unit {
 			case 2:
 				// Very Hungry TODO ChangePic
 				this.findFood();
+				setHungry(true);
 				break;
 			case 3:
 				// die
@@ -162,6 +167,14 @@ public abstract class Fish extends Unit {
 	public void setMouthPos(double mouthPosX, double mouthPosY) {
 		this.mouthPosX = mouthPosX;
 		this.mouthPosY = mouthPosY;
+	}
+
+	public boolean isHungry() {
+		return isHungry;
+	}
+
+	public void setHungry(boolean isHungry) {
+		this.isHungry = isHungry;
 	}
 
 	public boolean isFacingLeft() {
