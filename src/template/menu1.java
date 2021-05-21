@@ -116,7 +116,7 @@ public class menu1 {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.changeScene("TankAll");
+									SceneController.startTankLevel(1, 1);
 								}
 							});
 
@@ -135,7 +135,7 @@ public class menu1 {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.changeScene("TankAll");
+									SceneController.startLatestLevel();
 								}
 							});
 
