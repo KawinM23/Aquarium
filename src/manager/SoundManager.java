@@ -75,9 +75,9 @@ public class SoundManager {
 	private static final Media HIT_BODY_SOUND = new Media(ClassLoader.getSystemResource("BodyHit.mp3").toString());
 
 	private static final Media WIN_SOUND = new Media(ClassLoader.getSystemResource("win.mp3").toString());
-	
+
 	private static final Media LOSE_SOUND = new Media(ClassLoader.getSystemResource("lose.mp3").toString());
-	
+
 	// 0 Mute, 1 Quiet, 2 Normal, 3 Loud
 	private static int bgmVolumeLevel = 2;
 	private static int soundVolumeLevel = 2;
@@ -309,7 +309,24 @@ public class SoundManager {
 	}
 
 	public static void playWarningSound() {
-		playSoundEffect(WARNING_SOUND);
+		Thread thread = new Thread(() -> {
+
+			try {
+				for (int i = 0; i < 3; i++) {
+					MediaPlayer player = new MediaPlayer(WARNING_SOUND);
+					setVolume(player, soundVolumeLevel);
+					player.play();
+					Thread.sleep(2000);
+				}
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		});
+		thread.start();
+
 	}
 
 	public static void playErrorSound() {
@@ -331,11 +348,11 @@ public class SoundManager {
 	public static void playBodyHitSound() {
 		playSoundEffect(HIT_BODY_SOUND);
 	}
-	
+
 	public static void playWinSound() {
 		SoundManager.playSoundEffect(WIN_SOUND);
 	}
-	
+
 	public static void playLoseSound() {
 		SoundManager.playSoundEffect(LOSE_SOUND);
 	}
