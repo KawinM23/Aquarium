@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import manager.DrawManager;
 import manager.JSONManager;
 import manager.LevelManager;
 import manager.SceneController;
@@ -21,6 +22,7 @@ public class main0 extends Application {
 			
 			SceneController.setStage(primaryStage);
 			SoundManager.setBgm(0);
+			DrawManager.setJustOpened();
 			SceneController.updatePlayerSettings();
 			SceneController.initializeScenes();
 			SceneController.changeScene("MainMenu");

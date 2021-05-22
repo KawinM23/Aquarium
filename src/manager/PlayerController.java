@@ -66,6 +66,7 @@ public class PlayerController {
 		
 		SoundManager.playWinSound();
 		SceneController.changeScene("Win");
+		clear();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -78,6 +79,7 @@ public class PlayerController {
 		
 		SoundManager.playLoseSound();
 		SceneController.changeScene("Lose");
+		clear();
 	}
 
 	public static void clear() {

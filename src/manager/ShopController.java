@@ -78,7 +78,7 @@ public class ShopController {
 			foodTypeImage = null;
 		}
 		if (!level.isWeaponUpgradable()) {
-			gunImage=null;
+			gunImage = null;
 			weaponPrice = 0;
 		}
 		prices = new int[] { getUnitPrice(level.getShopItem()[0]), foodTypePrice, maxFoodPrice,
@@ -88,6 +88,7 @@ public class ShopController {
 		images = new Image[] { getUnitImage(level.getShopItem()[0]), foodTypeImage, null,
 				getUnitImage(level.getShopItem()[1]), getUnitImage(level.getShopItem()[2]), gunImage,
 				Trophy.getGoalImage(1) };
+		setStartingButtonsVisibility(level);
 	}
 
 	// TODO Add All button
@@ -241,7 +242,6 @@ public class ShopController {
 								prices[5] = -1;
 								button.setVisible(false);
 							}
-							
 
 						}
 						break;
@@ -300,11 +300,11 @@ public class ShopController {
 			// Draw Prices
 			String priceText = "" + prices[i];
 			int relay = priceText.length() * 3;
-			
+
 			if ((PlayerController.getGunLevel() == 10 || prices[5] == 0) && i == 5) {
 				priceText = "";
 			}
-			
+
 			if (prices[i] == -1) {
 				priceText = "MAX";
 				relay += 10;
@@ -318,8 +318,6 @@ public class ShopController {
 			if (prices[2] == 0 && i == 2)
 				priceText = "";
 
-
-			
 			DrawManager.drawText(gc, priceText, 18,
 					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
 					(int) ((buttonDetail[i][3] * 1.5) + 19), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
@@ -379,6 +377,38 @@ public class ShopController {
 			}
 		}
 		return null;
+	}
+
+	public static void setStartingButtonsVisibility(Level level) {
+		// Guppy
+		buttonList[0].setVisible(true);
+		// Food Type, Max Food
+		if (level.isFoodUpgradable()) {
+			buttonList[1].setVisible(true);
+			buttonList[2].setVisible(true);
+		} else if (!level.isFoodUpgradable()) {
+			buttonList[1].setVisible(false);
+			buttonList[2].setVisible(false);
+		}
+		// Special 1
+		if (level.getShopItem()[1]!=null) {
+			buttonList[3].setVisible(true);
+		} else buttonList[3].setVisible(false);
+		
+		// Special 2
+		if (level.getShopItem()[2]!=null) {
+			buttonList[4].setVisible(true);
+		} else buttonList[4].setVisible(false);
+		
+		// Gun
+		if (level.isWeaponUpgradable()) {
+			buttonList[5].setVisible(true);
+		} else buttonList[5].setVisible(false);
+		
+		// Goal
+		buttonList[6].setVisible(true);
+		// Menu
+		buttonList[7].setVisible(true);
 	}
 
 	public static void clearShop(AnchorPane anchorpane) {

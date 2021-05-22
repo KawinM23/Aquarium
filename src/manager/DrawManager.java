@@ -148,6 +148,7 @@ public class DrawManager {
 	public static void drawGuraGreeting(GraphicsContext gc, String key) {
 		String speech = "Welcome, " + JSONManager.getPlayerName() + "!";
 		int randomNum = ThreadLocalRandom.current().nextInt(1, 10 + 1);
+		if (key.substring(0, 4).equals("Tank")) key = "Tank";
 		switch (key) {
 		case "MainMenu":
 			if (randomNum <= 2 && !justOpened) {

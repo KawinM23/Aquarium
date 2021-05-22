@@ -20,6 +20,7 @@ public class menu1 {
 	final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted5.jpg").toString();
 	Scene scene;
 	String[] buttonTexts;
+	GraphicsContext gcc;
 	// ClassLoader.getSystemResource("").toString();
 
 	public menu1(String[] buttonTexts) {
@@ -28,6 +29,7 @@ public class menu1 {
 		this.scene = new Scene(root);
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gcc=gc;
 		root.getChildren().add(canvas);
 
 		DrawManager.resetBackGround(gc);
@@ -47,6 +49,10 @@ public class menu1 {
 
 	public Scene getScene() {
 		return this.scene;
+	}
+	
+	public GraphicsContext getGraphicsContext() {
+		return gcc;
 	}
 
 }

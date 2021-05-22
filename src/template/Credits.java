@@ -29,6 +29,7 @@ public class Credits {
 	final String IMAGE_PATH = ClassLoader.getSystemResource("Credits.jpg").toString();
 	Scene scene;
 	String[] buttonTexts;
+	GraphicsContext gcc;
 	// ClassLoader.getSystemResource("").toString();
 
 	public Credits(String[] buttonTexts) {
@@ -37,6 +38,7 @@ public class Credits {
 		this.scene = new Scene(root);
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gcc=gc;
 		root.getChildren().add(canvas);
 		DrawManager.resetBackGround(gc);
 
@@ -56,5 +58,9 @@ public class Credits {
 
 	public Scene getScene() {
 		return this.scene;
+	}
+	
+	public GraphicsContext getGraphicsContext() {
+		return gcc;
 	}
 }

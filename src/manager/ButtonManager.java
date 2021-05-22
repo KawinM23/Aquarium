@@ -413,6 +413,7 @@ public class ButtonManager {
 				}
 				// Tank 1-1
 				else if (key.length() == 8) {
+					PlayerController.clear();
 					int tankNumber = Integer.parseInt(key.substring(key.length() - 3, key.length() - 2));
 					int levelNumber = Integer.parseInt(key.substring(key.length() - 1));
 					if (JSONManager.isPlayable(tankNumber, levelNumber)) {
