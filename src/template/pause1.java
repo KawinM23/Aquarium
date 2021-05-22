@@ -16,7 +16,7 @@ import manager.DrawManager;
 import manager.PlayerController;
 import manager.SceneController;
 import manager.SoundManager;
-import manager.ViewManager;
+import manager.GameManager;
 
 public class pause1 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,

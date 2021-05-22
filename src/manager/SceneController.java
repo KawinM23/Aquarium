@@ -37,7 +37,7 @@ public class SceneController {
 	private static Scene winScene = (new WinLose(1)).getScene();
 	private static Scene loseScene = (new WinLose(0)).getScene();
 
-	private static ViewManager manager = new ViewManager();
+	private static GameManager manager = new GameManager();
 
 	// Declare a primary stage to change scenes in
 	public SceneController() {
@@ -290,11 +290,11 @@ public class SceneController {
 		currentSceneName = name;
 	}
 
-	public static ViewManager getManager() {
+	public static GameManager getManager() {
 		return manager;
 	}
 
-	public static void setManager(ViewManager manager) {
+	public static void setManager(GameManager manager) {
 		SceneController.manager = manager;
 	}
 

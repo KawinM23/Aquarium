@@ -19,7 +19,7 @@ import manager.GameManager;
 import manager.PlayerController;
 import manager.SceneController;
 import manager.SoundManager;
-import manager.ViewManager;
+import manager.GameManager;
 
 public class WinLose {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,

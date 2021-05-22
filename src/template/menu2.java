@@ -21,7 +21,7 @@ import manager.JSONManager;
 import manager.LevelManager;
 import manager.SceneController;
 import manager.SoundManager;
-import manager.ViewManager;
+import manager.GameManager;
 import manager.base.Level;
 import testing.tank0;
 

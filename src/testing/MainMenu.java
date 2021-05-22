@@ -1,6 +1,6 @@
 package testing;
 
-import manager.ViewManager;
+import manager.GameManager;
 import manager.GameManager;
 import manager.LevelManager;
 import manager.SceneController;
@@ -159,7 +159,7 @@ public class MainMenu extends Application {
 					Thread newTankthread = new Thread(() -> {
 						try {
 							if (!SceneController.sceneExist("tank1")) {
-								ViewManager vm1 = new ViewManager();
+								GameManager vm1 = new GameManager();
 
 								Scene tank1 = vm1.getTankScene();
 								SceneController.addScene("tank1", tank1);
@@ -167,8 +167,7 @@ public class MainMenu extends Application {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									if (GameManager.isLOG())
-										System.out.println("Change To Tank1");
+									System.out.println("Change To Tank1");
 									SceneController.changeScene("tank1");
 								}
 							});

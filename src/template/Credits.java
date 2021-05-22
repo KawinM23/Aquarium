@@ -17,7 +17,7 @@ import manager.DrawManager;
 import manager.GameManager;
 import manager.SceneController;
 import manager.SoundManager;
-import manager.ViewManager;
+import manager.GameManager;
 import testing.tank0;
 
 public class Credits {

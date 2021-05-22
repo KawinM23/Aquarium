@@ -385,7 +385,7 @@ public class ButtonManager {
 									// TODO Auto-generated method stub
 									// TODO Change Bgm later
 
-									ViewManager manager = new ViewManager();
+									GameManager manager = new GameManager();
 									manager.startLevelTest(1, 1);
 									SceneController.changeScene(manager.getTankScene());
 								}
@@ -449,7 +449,7 @@ public class ButtonManager {
 								public void run() {
 									// TODO Auto-generated method stub
 									SceneController.getManager().clearLevel();
-									ViewManager.clearLevel();
+									GameManager.clearLevel();
 
 									SceneController.startLatestLevel();
 								}
@@ -472,7 +472,7 @@ public class ButtonManager {
 								public void run() {
 									// TODO Auto-generated method stub
 									SceneController.getManager().clearLevel();
-									ViewManager.clearLevel();
+									GameManager.clearLevel();
 
 									SoundManager.setBgm(1);
 									SoundManager.playBgm();
@@ -497,10 +497,10 @@ public class ButtonManager {
 								public void run() {
 									// TODO Auto-generated method stub
 									SceneController.getManager().clearLevel();
-									ViewManager.clearLevel();
+									GameManager.clearLevel();
 
-									SceneController.startTankLevel(ViewManager.getCurrentTank(),
-											ViewManager.getCurrentLevel());
+									SceneController.startTankLevel(GameManager.getCurrentTank(),
+											GameManager.getCurrentLevel());
 								}
 							});
 
@@ -606,7 +606,7 @@ public class ButtonManager {
 									SceneController.changeScene("MainMenu");
 
 									SceneController.getManager().clearLevel();
-									ViewManager.clearLevel();
+									GameManager.clearLevel();
 									PlayerController.setBack(true);
 
 									// TODO Auto-generated method stub

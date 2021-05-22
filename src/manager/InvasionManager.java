@@ -107,7 +107,7 @@ public class InvasionManager {
 	public static void endInvasion() {
 		// SOUND
 		SoundManager.playAlienDieSound();
-		SoundManager.changeBgmTo(ViewManager.getCurrentTank());
+		SoundManager.changeBgmTo(GameManager.getCurrentTank());
 
 		System.out.println("END INVASION");
 		setInvaded(false);
