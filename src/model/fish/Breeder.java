@@ -13,27 +13,30 @@ import properties.Production;
 import properties.Renderable;
 
 public class Breeder extends Fish implements Renderable {
-
-	private static final Image BreederImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	
+	private static final Image BreederLeftImage = new Image(ClassLoader.getSystemResource("BreederLeft.png").toString());
+	private static final Image BreederRightImage = new Image(ClassLoader.getSystemResource("BreederRight.png").toString());
+	private static final Image BreederHungryLeftImage = new Image(ClassLoader.getSystemResource("BreederHungryLeft.png").toString());
+	private static final Image BreederHungryRightImage = new Image(ClassLoader.getSystemResource("BreederHungryRight.png").toString());
 
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 
 	public Image getImage() {
-		return BreederImage;
+		return BreederLeftImage;
 	}
 
 	public Breeder(String name, double posX, double posY) {
 		super(name, posX, posY);
 		// TODO SIze
-		this.setSize(67, 67);
-		this.setMouthPos(10, 50);
-		this.setSpeed(70);
+		this.setSize(67, 52);
+		this.setMouthPos(7.5, 20);
+		this.setSpeed(60);
 
 		this.growth = 0;
 
 		this.setHunger(new Hunger(7, 20));
 		this.setProduction(new Production(this, 8, 25));
-		this.setIdle(new Idle(this, 30));
+		this.setIdle(new Idle(this, 25));
 		this.setPrice(200);
 	}
 
@@ -87,28 +90,37 @@ public class Breeder extends Fish implements Renderable {
 		}
 		// TODO SIze
 		if (string.equals("Small")) {
-			this.setSize(65, 65);
-			this.setMouthPos(10, 50);
+			this.setSize(67, 52);
+			this.setMouthPos(7.5, 20);
 		} else if (string.equals("Medium")) {
-			this.setSize(80, 80);
-			this.setMouthPos(15, 55);
-			this.setPos(getPosX() - 7.5, getPosY() - 7.5);
+			this.setSize(80, 62);
+			this.setMouthPos(9, 24);
+			this.setPos(getPosX() - 6.5, getPosY() - 5);
 			this.getProduction().setCooldown(20);
 		} else if (string.equals("Large")) {
-			this.setSize(95, 95);
-			this.setMouthPos(20, 75);
-			this.setPos(getPosX() - 7.5, getPosY() - 7.5);
-			this.getProduction().setCooldown(25);
+			this.setSize(95, 74);
+			this.setMouthPos(10.5, 28);
+			this.setPos(getPosX() - 7.5, getPosY() - 6);
+			this.getProduction().setCooldown(18);
 		}
 	}
 
 	@Override
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if (isFacingLeft()) {
-			gc.drawImage(BreederImage, getPosX(), getPosY(), getWidth(), getHeight());
+		if (isHungry()) {
+			if (isFacingLeft()) {
+				gc.drawImage(BreederHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(BreederHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
 		} else {
-			gc.drawImage(BreederImage, getPosX(), getPosY(), getWidth(), getHeight());
+
+			if (isFacingLeft()) {
+				gc.drawImage(BreederLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(BreederRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
 		}
 	}
 
