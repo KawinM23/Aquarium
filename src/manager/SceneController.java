@@ -66,13 +66,16 @@ public class SceneController {
 
 	// Remove scene in ArrayList collection
 	public static void removeScene(String name) {
-		int tempIndex = nameList.indexOf(name);
-		sceneList.remove(tempIndex);
-		nameList.remove(tempIndex);
+		if (sceneExist(name)) {
+			int tempIndex = nameList.indexOf(name);
+			sceneList.remove(tempIndex);
+			nameList.remove(tempIndex);
+		}
 	}
 
 	// Change scene of primary stage to another scene
 	public static void changeScene(String name) {
+		refreshScene(name);
 		int tempIndex = nameList.indexOf(name);
 		Scene scene = sceneList.get(tempIndex);
 		stage.setScene(scene);
@@ -185,12 +188,72 @@ public class SceneController {
 		startingMenuTexts[5] = "Music: " + SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel());
 		startingMenuTexts[6] = "Sound: " + SoundManager.getVolumeLevelWord(SoundManager.getSoundVolumeLevel());
 		SoundManager.setVolume(SoundManager.getCurrentBgmPlayer(), SoundManager.getBgmVolumeLevel());
-		if (sceneExist("MainMenu")) {
+		refreshScene("MainMenu");
+	}
+
+	public static void refreshScene(String sceneName) {
+		if (sceneName.equals("MainMenu")) {
 			removeScene("MainMenu");
 			Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
 			addScene("MainMenu", startingMenuScene);
+		} else if (sceneName.equals("TankAll")) {
+			removeScene("TankAll");
+			Scene tankLevelScene = (new menu2(tankLevelTexts)).getScene();
+			addScene("TankAll", tankLevelScene);
+		} else if (sceneName.equals("Tank1")) {
+			removeScene("Tank1");
+			Scene tankLevel1Scene = (new menu2(tankLevel1Texts)).getScene();
+			addScene("Tank1", tankLevel1Scene);
+		} else if (sceneName.equals("Tank2")) {
+			removeScene("Tank2");
+			Scene tankLevel2Scene = (new menu2(tankLevel2Texts)).getScene();
+			addScene("Tank2", tankLevel2Scene);
+		} else if (sceneName.equals("Tank3")) {
+			removeScene("Tank3");
+			Scene tankLevel3Scene = (new menu2(tankLevel3Texts)).getScene();
+			addScene("Tank3", tankLevel3Scene);
+		} else if (sceneName.equals("Tank4")) {
+			removeScene("Tank4");
+			Scene tankLevel4Scene = (new menu2(tankLevel4Texts)).getScene();
+			addScene("Tank4", tankLevel4Scene);
+		} else if (sceneName.equals("Credits")) {
+			removeScene("Credits");
+			Scene creditsScene = (new Credits(creditsTexts)).getScene();
+			addScene("Credits", creditsScene);
+		} else if (sceneName.equals("Statistics")) {
+			removeScene("Statistics");
+			Scene statsScene = (new stats(statsTexts)).getScene();
+			addScene("Statistics", statsScene);
 		}
 
+	}
+
+	public static void refreshAllScenes() {
+		Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
+		Scene tankLevelScene = (new menu2(tankLevelTexts)).getScene();
+		Scene tankLevel1Scene = (new menu2(tankLevel1Texts)).getScene();
+		Scene tankLevel2Scene = (new menu2(tankLevel2Texts)).getScene();
+		Scene tankLevel3Scene = (new menu2(tankLevel3Texts)).getScene();
+		Scene tankLevel4Scene = (new menu2(tankLevel4Texts)).getScene();
+		Scene creditsScene = (new Credits(creditsTexts)).getScene();
+		Scene statsScene = (new stats(statsTexts)).getScene();
+
+		removeAllScenes();
+
+		addScene("MainMenu", startingMenuScene);
+		addScene("TankAll", tankLevelScene);
+		addScene("Tank1", tankLevel1Scene);
+		addScene("Tank2", tankLevel2Scene);
+		addScene("Tank3", tankLevel3Scene);
+		addScene("Tank4", tankLevel4Scene);
+		addScene("Credits", creditsScene);
+		addScene("Stats", statsScene);
+
+	}
+
+	public static void removeAllScenes() {
+		sceneList.clear();
+		nameList.clear();
 	}
 
 	public static ArrayList<Scene> getSceneList() {
