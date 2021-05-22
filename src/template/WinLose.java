@@ -24,20 +24,24 @@ import manager.GameManager;
 public class WinLose {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
-	static final double[][] buttonDetail = { { 235, 285, 745, 392, 10, 60 }, { 200, 482, 771, 600, 10, 60 } };
-	static String[] winButtonTexts = { "Next Level", "Back to Menu" };
-	static String[] loseButtonTexts = { "Try Again", "Back to Menu" };
-	static String[] buttonTexts;
+	private static final double[][] buttonDetail = { { 235, 285, 745, 392, 10, 60 }, { 200, 482, 771, 600, 10, 60 } };
+
 	private static final String IMAGE_PATH = ClassLoader.getSystemResource("WinLose.jpg").toString();
 	private static Image image = new Image(IMAGE_PATH);
+
 	private static final int posX = 275;
 	private static final int posY = 50;
 	private static final int width = 535;
 	private static final int height = 482;
-	static AnchorPane anchorPane;
-	static GraphicsContext gc;
-	static Scene scene;
-	static ArrayList<Button> buttonList = new ArrayList<Button>();
+
+	private static String[] buttonTexts;
+	private static String[] winButtonTexts = { "Next Level", "Back to Menu" };
+	private static String[] loseButtonTexts = { "Try Again", "Back to Menu" };
+
+	private static AnchorPane anchorPane;
+	private static GraphicsContext gc;
+	private static Scene scene;
+	private static ArrayList<Button> buttonList = new ArrayList<Button>();
 
 	// 1 for win, 0 for lose
 	public WinLose(int status) {
