@@ -1,5 +1,7 @@
 package properties;
 
+import java.util.Random;
+
 import manager.TankManager;
 import model.base.Unit;
 import model.fish.Guppy;
@@ -12,6 +14,8 @@ import model.money.Star;
 import model.money.TreasureChest;
 
 public class Production {
+	
+	private Random rand = new Random();
 
 	private Unit producer;
 	private int productType;
@@ -96,6 +100,13 @@ public class Production {
 
 	public void setLastProduce(long lastProduce) {
 		this.lastProduce = lastProduce;
+	}
+	
+	public void setLastProduceRandom(double min,double max) {
+		
+		// rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+		long randomTime = (long) ((min + ((max - min) * rand.nextDouble())) * 1.0e9);
+		this.setLastProduce(System.nanoTime() + randomTime);
 	}
 
 	public void setLastProduceNow() {
