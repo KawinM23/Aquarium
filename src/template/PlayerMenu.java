@@ -68,6 +68,12 @@ public class PlayerMenu {
 				currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());
 				SceneController.updatePlayerSettings();
 				SceneController.changeScene("MainMenu");
+			} else if (JSONManager.isNameExist(playerName)) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Duplicate Name");
+				alert.setHeaderText(null);
+				alert.setContentText("Player with that name already exists. Please try again.");
+				alert.showAndWait();
 			}
 			setDropDown(comboBox1);
 			newPlayerName.clear();
@@ -87,11 +93,32 @@ public class PlayerMenu {
 		});
 
 		Button changeButton = new Button("Change");
+
 		changeButton.setOnAction(e -> {
+			String playerName = changePlayerName.getText();
+			System.out.println(JSONManager.getPlayerName());
+			System.out.println(playerName);
 			if (!JSONManager.isNameExist(changePlayerName.getText()) && !changePlayerName.getText().equals("")) {
 				JSONManager.setPlayerName(changePlayerName.getText());
 				JSONManager.writeJSON();
 				currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());
+
+				JSONManager.changePlayer(JSONManager.getPlayerName());
+				setDropDown(comboBox1);
+				SceneController.updatePlayerSettings();
+				SceneController.changeScene("MainMenu");
+			} else if (JSONManager.getPlayerName().equals(playerName)) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Duplicate Name");
+				alert.setHeaderText(null);
+				alert.setContentText("You ARE already named " + playerName);
+				alert.showAndWait();
+			} else if (JSONManager.isNameExist(changePlayerName.getText())) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Duplicate Name");
+				alert.setHeaderText(null);
+				alert.setContentText("Player with that name already exists. Please try again.");
+				alert.showAndWait();
 			}
 			changePlayerName.clear();
 		});

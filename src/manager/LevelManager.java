@@ -2,6 +2,7 @@ package manager;
 
 import java.util.ArrayList;
 
+import manager.base.Level;
 import model.Food;
 import model.base.Fish;
 import model.base.Monster;
