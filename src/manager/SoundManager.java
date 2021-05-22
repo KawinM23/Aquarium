@@ -78,6 +78,8 @@ public class SoundManager {
 
 	private static final Media LOSE_SOUND = new Media(ClassLoader.getSystemResource("lose.mp3").toString());
 
+	private static final Media SHOOT_DIAMOND_SOUND = new Media(ClassLoader.getSystemResource("ShootDiamond.mp3").toString());
+	
 	// 0 Mute, 1 Quiet, 2 Normal, 3 Loud
 	private static int bgmVolumeLevel = 2;
 	private static int soundVolumeLevel = 2;
@@ -306,6 +308,10 @@ public class SoundManager {
 			break;
 		default:
 		}
+	}
+	
+	public static void playShootDiamondSound() {
+		playSoundEffect(SHOOT_DIAMOND_SOUND);
 	}
 
 	public static void playWarningSound() {

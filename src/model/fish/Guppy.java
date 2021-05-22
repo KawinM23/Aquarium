@@ -21,7 +21,7 @@ public class Guppy extends Fish implements Renderable {
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 	private long bornTime;
 
-	private static final Image GuppyLeftImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image GuppyLeftImage = new Image(ClassLoader.getSystemResource("GuppyLeft.png").toString());
 	private static final Image GuppyRightImage = new Image(ClassLoader.getSystemResource("GuppyRight.png").toString());
 	private static final Image GuppyHungryLeftImage = new Image(
 			ClassLoader.getSystemResource("GuppyHungryLeft.png").toString());

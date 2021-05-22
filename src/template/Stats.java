@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import manager.ButtonManager;
 import manager.DrawManager;
 import manager.GameManager;
 import manager.JSONManager;
@@ -22,11 +23,11 @@ public class Stats {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
 	// THIS IS MEASURED IN 940 x 720 PIXELS
-	final double[][] buttonDetail = { { 578, 597, 882, 681, 40, 40 } };
+	private final double[][] BUTTON_DETAIL = { { 578, 597, 882, 681, 40, 40 } };
 
-	final static String IMAGE_PATH = ClassLoader.getSystemResource("BlankMenu.jpg").toString();
-	Scene scene;
-	String[] buttonTexts;
+	private final static String IMAGE_PATH = ClassLoader.getSystemResource("BlankMenu.jpg").toString();
+	private Scene scene;
+	private String[] buttonTexts;
 
 	// Get Infomation from JSONManager
 	private static int tank;
@@ -48,117 +49,22 @@ public class Stats {
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
-		resetBackGround(gc);
+		DrawManager.resetBackGround(gc);
 
-		setBackGroundImage(gc, IMAGE_PATH);
+		DrawManager.setBackGroundImage(gc, IMAGE_PATH);
 
-		for (int i = 0; i < buttonDetail.length; i++) {
-			addButtons(root, buttonTexts[i], buttonDetail[i]);
+		for (int i = 0; i < BUTTON_DETAIL.length; i++) {
+			Button button = new Button(buttonTexts[i]);
+			ButtonManager.setFont(button, (int) BUTTON_DETAIL[i][5]);
+			ButtonManager.setHighlightProperty(button, (int) BUTTON_DETAIL[i][4]);
+			ButtonManager.setStatsButtonHandler(button);
+			ButtonManager.setButtonLocationNoZoom(root, button, BUTTON_DETAIL[i]);
+			// addButtons(root, buttonTexts[i], BUTTON_DETAIL[i]);
 		}
 		;
 
 		gcc = gc;
-		
-	}
 
-	// Set background to BLACK
-	private static void resetBackGround(GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-	}
-
-	// Set background to an image
-	private static void setBackGroundImage(GraphicsContext gc, String image_path) {
-		Image image = new Image(image_path);
-		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-	}
-
-	// Add buttons and set their event listeners
-	private void addButtons(AnchorPane anchorpane, String buttonText, double[] position) {
-		Button button = new Button(buttonText);
-		button.setPrefSize((position[2] - position[0]), (position[3] - position[1]));
-		button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-				+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
-//					button.setBorder(null);
-//					button.setBackground(null);
-		button.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-			}
-		});
-
-		Font font = new Font("Arial Black", position[5]);
-		button.setFont(font);
-
-		AnchorPane.setTopAnchor(button, position[1]);
-		AnchorPane.setLeftAnchor(button, position[0]);
-
-		button.hoverProperty().addListener((event) -> {
-			button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-					+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
-		});
-
-		button.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
-			}
-		});
-		button.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
-			}
-		});
-		button.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-						+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
-				SoundManager.playClickSound();
-				if (buttonText.equals("Back")) {
-					Thread thread = new Thread(() -> {
-						try {
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-
-									SceneController.changeScene("MainMenu");
-
-								}
-							});
-
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					});
-					thread.start();
-
-				}
-			}
-		});
-		button.setOnMouseReleased(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (button.isHover()) {
-					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: moccasin");
-				} else {
-					button.setStyle("-fx-background-radius: " + position[4] + "px;" + "-fx-border-color: transparent;"
-							+ "-fx-background-color: transparent;" + "-fx-text-fill: rgb(97, 44, 16)");
-				}
-
-			}
-
-		});
-
-		anchorpane.getChildren().addAll(button);
 	}
 
 	public Scene getScene() {
@@ -176,8 +82,8 @@ public class Stats {
 	}
 
 	public static void drawStats() {
-		resetBackGround(gcc);
-		setBackGroundImage(gcc, IMAGE_PATH);
+		DrawManager.resetBackGround(gcc);
+		DrawManager.setBackGroundImage(gcc, IMAGE_PATH);
 		String tankLevelText = "Progress: Tank " + tank + "-" + level;
 		String line = "_______________________________________________";
 		String moneyGainedText = "Total Money Gained: " + moneyGained;
@@ -187,9 +93,9 @@ public class Stats {
 		String monsterDefeatedText = "Total Monsters Defeated: " + monsterDefeated;
 		String[] statsList = { tankLevelText, line, moneyGainedText, fishBoughtText, playTimeText, foodBoughtText,
 				monsterDefeatedText };
-		
+
 		DrawManager.drawGuraGreeting(gcc, "Statistics");
-		
+
 		for (int i = 0; i < statsList.length; i++) {
 			// GraphicsContext, Font Size, posX, posY, Width
 			if (i != 1) {
