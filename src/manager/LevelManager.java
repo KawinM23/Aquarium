@@ -7,6 +7,7 @@ import model.base.Fish;
 import model.base.Monster;
 import model.base.Unit;
 import model.fish.Beetlemuncher;
+import model.fish.Breeder;
 import model.fish.Carnivore;
 import model.fish.Guppy;
 import model.fish.Guppycruncher;
@@ -308,7 +309,7 @@ public class LevelManager {
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(false);
 
-		level.setGoalPrice(500);
+		level.setGoalPrice(1000);
 
 		// Invasion
 		Balrog br = new Balrog("Balrog", 0, 0, 280);
@@ -340,7 +341,7 @@ public class LevelManager {
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(true);
 
-		level.setGoalPrice(1000);
+		level.setGoalPrice(2000);
 
 		// Invasion
 		Gus g = new Gus("Gus", 0, 0, 350);
@@ -374,7 +375,7 @@ public class LevelManager {
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(true);
 
-		level.setGoalPrice(2000);
+		level.setGoalPrice(3000);
 
 		// Invasion
 		Sylvester sv = new Sylvester("Sylvester", 0, 0, 300);
@@ -406,7 +407,7 @@ public class LevelManager {
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(true);
 
-		level.setGoalPrice(4000);
+		level.setGoalPrice(5000);
 
 		// Invasion
 		Balrog br = new Balrog("Balrog", 0, 0, 350);
@@ -427,12 +428,11 @@ public class LevelManager {
 		level.setStartingMoney(200);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
-		startingFishList.add(new Guppy("Guppy", 0, 0));
-		startingFishList.add(new Guppy("Guppy", 0, 0));
+		startingFishList.add(new Breeder("Breeder", 0, 0));
 		level.setStartingFish(startingFishList);
 
 		Unit[] shopItem = new Unit[3];
-		shopItem[0] = new Guppy("Guppy", 0, 0);
+		shopItem[0] = new Breeder("Breeder", 0, 0);
 		shopItem[1] = new Carnivore("Carnivore", 0, 0);
 		shopItem[2] = null;
 		level.setShopItem(shopItem);
@@ -440,7 +440,7 @@ public class LevelManager {
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(false);
 
-		level.setGoalPrice(1000);
+		level.setGoalPrice(2000);
 
 		// Invasion
 		Balrog br = new Balrog("Balrog", 0, 0, 300);
@@ -459,12 +459,11 @@ public class LevelManager {
 		level.setStartingMoney(200);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
-		startingFishList.add(new Guppy("Guppy", 0, 0));
-		startingFishList.add(new Guppy("Guppy", 0, 0));
+		startingFishList.add(new Breeder("Breeder", 0, 0));
 		level.setStartingFish(startingFishList);
 
 		Unit[] shopItem = new Unit[3];
-		shopItem[0] = new Guppy("Guppy", 0, 0);
+		shopItem[0] = new Breeder("Breeder", 0, 0);
 		shopItem[1] = new Carnivore("Carnivore", 0, 0);
 		shopItem[2] = new Ultravore("Ultravore", 0, 0);
 		level.setShopItem(shopItem);
@@ -472,7 +471,7 @@ public class LevelManager {
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(true);
 
-		level.setGoalPrice(3000);
+		level.setGoalPrice(5000);
 
 		// Invasion
 		Balrog br = new Balrog("Balrog", 0, 0, 300);
@@ -491,12 +490,11 @@ public class LevelManager {
 		level.setStartingMoney(200);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
-		startingFishList.add(new Guppy("Guppy", 0, 0));
-		startingFishList.add(new Guppy("Guppy", 0, 0));
+		startingFishList.add(new Breeder("Breeder", 0, 0));
 		level.setStartingFish(startingFishList);
 
 		Unit[] shopItem = new Unit[3];
-		shopItem[0] = new Guppy("Guppy", 0, 0);
+		shopItem[0] = new Breeder("Breeder", 0, 0);
 		shopItem[1] = new Carnivore("Carnivore", 0, 0);
 		shopItem[2] = new Ultravore("Ultravore", 0, 0);
 
@@ -505,7 +503,7 @@ public class LevelManager {
 		level.setFoodUpgradable(true);
 		level.setWeaponUpgradable(false);
 
-		level.setGoalPrice(5000);
+		level.setGoalPrice(7500);
 
 		// Invasion
 		Gus g = new Gus("Gus", 0, 0, 400);
@@ -530,12 +528,11 @@ public class LevelManager {
 		level.setStartingMoney(200);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
-		startingFishList.add(new Guppy("Guppy", 0, 0));
-		startingFishList.add(new Guppy("Guppy", 0, 0));
+		startingFishList.add(new Breeder("Breeder", 0, 0));
 		level.setStartingFish(startingFishList);
 
 		Unit[] shopItem = new Unit[3];
-		shopItem[0] = new Guppy("Guppy", 0, 0);
+		shopItem[0] = new Breeder("Breeder", 0, 0);
 		shopItem[1] = new Carnivore("Carnivore", 0, 0);
 		shopItem[2] = new Ultravore("Ultravore", 0, 0);
 		level.setShopItem(shopItem);
