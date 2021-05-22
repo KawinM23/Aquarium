@@ -211,10 +211,10 @@ public class GameManager {
 
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(g);
+		firstInvasion.add(sv);
 		InvasionManager.setInvasionList(new ArrayList<>());
 		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 45, 50, 60 });
+		InvasionManager.setInvasionTimeList(new int[] { 12, 50, 60 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		//////////////////////////// Setting

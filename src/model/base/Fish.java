@@ -2,11 +2,8 @@ package model.base;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
-import manager.GameManager;
 import manager.InvasionManager;
-import manager.PlayerController;
 import manager.SoundManager;
-import manager.StatTracker;
 import manager.TankManager;
 import model.Food;
 import properties.Hunger;

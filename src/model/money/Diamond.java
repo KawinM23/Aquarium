@@ -2,7 +2,6 @@ package model.money;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import jdk.jfr.SettingControl;
 import manager.GameManager;
 import model.base.Money;
 import properties.Renderable;

@@ -8,8 +8,6 @@ import model.base.Fish;
 import model.base.Money;
 import model.base.Unit;
 import model.money.Beetle;
-import model.money.Pearl;
-import model.money.Star;
 import properties.Hunger;
 import properties.Idle;
 import properties.Production;

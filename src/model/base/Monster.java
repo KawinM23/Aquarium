@@ -21,10 +21,13 @@ public abstract class Monster extends Unit {
 
 	public Monster(String name, double posX, double posY) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
 
 		this.setMaxHealth(100);
 		this.setHealth(100);
+		
+		this.setFacingLeft(true);
+		this.setHunger(new Hunger(0,0));
+		this.setIdle(new Idle(this, 30));
 	}
 
 	public abstract void attack();
