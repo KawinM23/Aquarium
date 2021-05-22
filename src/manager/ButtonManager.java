@@ -315,7 +315,6 @@ public class ButtonManager {
 	}
 
 	public static void updateTankLevelButtons() {
-		System.out.println(menu2ButtonList.size());
 		for (int i = 0; i < menu2ButtonList.size(); i++) {
 			String key = menu2ButtonList.get(i).getText();
 			// Tank 1
@@ -337,7 +336,6 @@ public class ButtonManager {
 					ButtonManager.setDisabledHighlightProperty(menu2ButtonList.get(i),
 							(int) staticMenu2ButtonDetail[i%5][4]);
 				} else {
-					System.out.println(menu2ButtonList.size());
 					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i%5][4]);
 				}
 

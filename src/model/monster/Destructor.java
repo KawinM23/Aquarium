@@ -103,7 +103,7 @@ public class Destructor extends Monster implements Renderable {
 						replaceTargetFishes(targetFishes, TankManager.getFishList().get(j));
 					}
 				}
-				//SHOOT MISSLIES
+				// SHOOT MISSLIES
 				shootMissile(targetFishes);
 
 				this.getHunger().setLastFedNow();
@@ -183,7 +183,7 @@ public class Destructor extends Monster implements Renderable {
 
 	public void getHit() {
 		// Onclick Mouse -> decrease Hp
-		double hpPercent = (getHealth() / getMaxHealth()) * 100;
+		double hpPercent = (((double) getHealth()) / ((double) getMaxHealth())) * 100;
 		if (hpPercent >= 50) {
 			SoundManager.playShieldHitSound();
 		} else if (hpPercent < 50) {
