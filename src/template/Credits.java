@@ -23,7 +23,7 @@ import testing.tank0;
 public class Credits {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
-	// THIS IS MEASURED IN 940 x 720 PIXELS
+	// THIS IS MEASURED IN 960 x 720 PIXELS
 	private final double[][] BUTTON_DETAIL = { { 578, 597, 882, 681, 40, 40 } };
 
 	private final String IMAGE_PATH = ClassLoader.getSystemResource("Credits.jpg").toString();

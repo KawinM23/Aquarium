@@ -138,7 +138,7 @@ public class Starcatcher extends Fish implements Renderable{
 	}
 
 	public void feed(Unit nearestFood) {
-		
+		SoundManager.playShootDiamondSound();
 		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
 			Thread feedThread = new Thread(() -> {
 				try {
