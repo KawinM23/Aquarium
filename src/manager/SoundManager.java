@@ -154,14 +154,15 @@ public class SoundManager {
 	}
 
 	public static void stopBgm() {
+		currentBgmPlayer.stop();
 		Thread thread = new Thread(() -> {
 			try {
-
+				currentBgmPlayer.stop();
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						System.out.println("STOP");
+						//System.out.println("STOP");
 						currentBgmPlayer.stop();
 					}
 				});

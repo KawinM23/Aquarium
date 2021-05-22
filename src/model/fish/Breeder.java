@@ -13,11 +13,15 @@ import properties.Production;
 import properties.Renderable;
 
 public class Breeder extends Fish implements Renderable {
-	
-	private static final Image BreederLeftImage = new Image(ClassLoader.getSystemResource("BreederLeft.png").toString());
-	private static final Image BreederRightImage = new Image(ClassLoader.getSystemResource("BreederRight.png").toString());
-	private static final Image BreederHungryLeftImage = new Image(ClassLoader.getSystemResource("BreederHungryLeft.png").toString());
-	private static final Image BreederHungryRightImage = new Image(ClassLoader.getSystemResource("BreederHungryRight.png").toString());
+
+	private static final Image BreederLeftImage = new Image(
+			ClassLoader.getSystemResource("BreederLeft.png").toString());
+	private static final Image BreederRightImage = new Image(
+			ClassLoader.getSystemResource("BreederRight.png").toString());
+	private static final Image BreederHungryLeftImage = new Image(
+			ClassLoader.getSystemResource("BreederHungryLeft.png").toString());
+	private static final Image BreederHungryRightImage = new Image(
+			ClassLoader.getSystemResource("BreederHungryRight.png").toString());
 
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 
@@ -43,9 +47,9 @@ public class Breeder extends Fish implements Renderable {
 	public void feed(Unit nearestFood) {
 		// Play Sound Effect
 		if (!TankManager.getRemoveFoodList().contains(this)) {
+			SoundManager.playEatSound();
 			Thread feedThread = new Thread(() -> {
 				try {
-					SoundManager.playEatSound();
 
 					this.getHunger().setLastFedNow();
 					this.getHunger().addLastFedRandom(0, 2);

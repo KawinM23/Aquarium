@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
 import manager.InvasionManager;
+import manager.SoundManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Unit;
@@ -68,6 +69,7 @@ public class Guppycruncher extends Fish implements Renderable{
 			// Check Food position and Fish
 			if (nearestFood != null) {
 				if (this.isAtMounth(nearestFood)) {
+					SoundManager.playEatFishSound();
 					TankManager.remove(nearestFood);
 					this.feed(nearestFood);
 					return;

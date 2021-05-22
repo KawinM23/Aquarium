@@ -17,7 +17,7 @@ import manager.JSONManager;
 import manager.SceneController;
 
 public class PlayerMenu {
-	static Label currentPlayerText = new Label();
+	private static Label currentPlayerText = new Label();
 
 	public static void display() {
 		Stage window = new Stage();

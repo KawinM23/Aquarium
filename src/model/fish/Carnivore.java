@@ -2,6 +2,7 @@ package model.fish;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import manager.SoundManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Unit;
@@ -54,6 +55,7 @@ public class Carnivore extends Fish implements Renderable {
 			if (nearestFood != null) {
 				if (isAtMounth(nearestFood)) {
 					// Eat baby guppy
+					SoundManager.playEatFishSound();
 					this.feed(nearestFood);
 					this.getIdle().eatFood();
 					;
