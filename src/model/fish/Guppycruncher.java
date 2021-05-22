@@ -67,7 +67,7 @@ public class Guppycruncher extends Fish implements Renderable{
 
 			// Check Food position and Fish
 			if (nearestFood != null) {
-				if (this.intersect(nearestFood)) {
+				if (this.isAtMounth(nearestFood)) {
 					TankManager.remove(nearestFood);
 					this.feed(nearestFood);
 					return;

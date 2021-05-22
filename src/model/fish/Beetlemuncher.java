@@ -56,7 +56,7 @@ public class Beetlemuncher extends Fish implements Renderable {
 			}
 			// Check Food position and Fish
 			if (nearestFood != null) {
-				if (this.intersect(nearestFood)) {
+				if (this.isAtMounth(nearestFood)) {
 					// Eat
 					TankManager.remove(nearestFood);
 					this.feed(nearestFood);
