@@ -122,8 +122,9 @@ public class Sylvester extends Monster implements Renderable {
 
 	public void getHit() {
 		// TODO Onclick Mouse -> decrease Hp
-		double hpPercent = (getHealth()/getMaxHealth())*100;
+		double hpPercent = (((double) getHealth()) / ((double) getMaxHealth())) * 100;
 		if (hpPercent>=50) {
+			System.out.println("got hit");
 			SoundManager.playShieldHitSound();
 		} else if (hpPercent<50) {
 			SoundManager.playBodyHitSound();

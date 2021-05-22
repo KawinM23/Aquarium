@@ -27,7 +27,7 @@ public class JSONManager {
 	private static int monsterDefeated;
 
 	private static JSONArray newPlayerList = new JSONArray();
-	
+
 	private static ArrayList<String> jsonNameList = new ArrayList<String>();
 	private static ArrayList<JSONObject> jsonList = new ArrayList<JSONObject>();
 
@@ -52,7 +52,7 @@ public class JSONManager {
 				addNewPlayer("New Player");
 				writeJSON();
 				changePlayer("New Player");
-			} 
+			}
 //			else if (playerList.size() == 1 && jsonList.size() == 1) {
 //				JSONObject eachPlayer = (JSONObject) jsonList.get(0).get("player");
 //				eachPlayer.remove("currentPlayer");
@@ -160,7 +160,7 @@ public class JSONManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		readJSON();
 	}
 
@@ -252,9 +252,9 @@ public class JSONManager {
 			newPlayerList.add(eachJSONObj);
 		}
 	}
-	
+
 	public static boolean isNameExist(String name) {
-		if(name.equals(playerName)) {
+		if (name.equals(playerName)) {
 			return true;
 		}
 		for (JSONObject eachJSONobj : jsonList) {
@@ -272,6 +272,21 @@ public class JSONManager {
 		} else if (level == 4 && tank != 4) {
 			setLevel(1);
 			setTank(tank + 1);
+		}
+	}
+
+	public static boolean isPlayable(int tankNumber, int levelNumber) {
+
+		if (tankNumber < getTank()) {
+			return true;
+		} else if (tankNumber > getTank()) {
+			return false;
+		} else {
+			if (levelNumber <= getLevel()) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 

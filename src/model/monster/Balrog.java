@@ -111,7 +111,7 @@ public class Balrog extends Monster implements Renderable {
 
 	@Override
 	public void getHit() {
-		double hpPercent = (getHealth() / getMaxHealth()) * 100;
+		double hpPercent = (((double) getHealth()) / ((double) getMaxHealth())) * 100;
 		if (hpPercent >= 50) {
 			SoundManager.playShieldHitSound();
 		} else if (hpPercent < 50) {

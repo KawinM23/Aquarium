@@ -1,5 +1,7 @@
 package manager;
 
+import java.util.ArrayList;
+
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -7,12 +9,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import template.PlayerMenu;
+import template.menu2;
 import template.stats;
 
 public class ButtonManager {
 
 	static String buttonTextDefaultColor = "rgb(97,44,16)";
 	static String buttonTextHoverColor = "moccasin";
+	static ArrayList<Button> menu2ButtonList = new ArrayList<Button>();
+	final static double[][] staticMenu2ButtonDetail = { { 553, 68, 899, 157, 20, 40 }, { 557, 203, 897, 291, 20, 40 },
+			{ 563, 338, 898, 423, 20, 40 }, { 564, 460, 903, 543, 20, 40 }, { 578, 597, 882, 681, 40, 40 } };
 
 	// Set Button Fonts
 	public static void setFont(Button button, int fontSize) {
@@ -154,6 +160,7 @@ public class ButtonManager {
 					thread.start();
 					break;
 				case "Select Level":
+					updateTankLevelButtons();
 					thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
@@ -303,15 +310,49 @@ public class ButtonManager {
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonHandler);
 	}
 
+	public static void addMenu2Button(Button button) {
+		menu2ButtonList.add(button);
+	}
+
+	public static void updateTankLevelButtons() {
+		for (int i = 0; i < menu2ButtonList.size(); i++) {
+			String key = menu2ButtonList.get(i).getText();
+			// Tank 1
+			if (key.length() == 6) {
+				int tankNumber = Integer.parseInt(key.substring(key.length() - 1));
+				if (!JSONManager.isPlayable(tankNumber, 1)) {
+					ButtonManager.setDisabledHighlightProperty(menu2ButtonList.get(i),
+							(int) staticMenu2ButtonDetail[i%5][4]);
+				} else {
+					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i%5][4]);
+				}
+
+			}
+			// Tank 1-1
+			else if (key.length() == 8) {
+				int tankNumber = Integer.parseInt(key.substring(key.length() - 3, key.length() - 2));
+				int levelNumber = Integer.parseInt(key.substring(key.length() - 1));
+				if (!JSONManager.isPlayable(tankNumber, levelNumber)) {
+					ButtonManager.setDisabledHighlightProperty(menu2ButtonList.get(i),
+							(int) staticMenu2ButtonDetail[i%5][4]);
+				} else {
+					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i%5][4]);
+				}
+
+			}
+
+		}
+	}
+
 	public static void setMenu2ButtonHandler(Button button) {
 
 		EventHandler<MouseEvent> buttonHandler = new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				SoundManager.playClickSound();
 				String key = button.getText();
 
 				if (key.equals("Back")) {
+					SoundManager.playClickSound();
 					Thread thread = new Thread(() -> {
 						try {
 							Platform.runLater(new Runnable() {
@@ -334,6 +375,7 @@ public class ButtonManager {
 					});
 					thread.start();
 				} else if (key.equals("Tank 1-1")) {
+					SoundManager.playClickSound();
 					SoundManager.changeBgmTo(1);
 					Thread thread = new Thread(() -> {
 						try {
@@ -361,13 +403,25 @@ public class ButtonManager {
 				// Tank 1
 				else if (key.length() == 6) {
 					int tankNumber = Integer.parseInt(key.substring(key.length() - 1));
-					SceneController.changeToTank(tankNumber);
-				} 
+					if (JSONManager.isPlayable(tankNumber, 1)) {
+						SoundManager.playClickSound();
+						SceneController.changeToTank(tankNumber);
+					} else {
+						SoundManager.playErrorSound();
+					}
+
+				}
 				// Tank 1-1
 				else if (key.length() == 8) {
 					int tankNumber = Integer.parseInt(key.substring(key.length() - 3, key.length() - 2));
 					int levelNumber = Integer.parseInt(key.substring(key.length() - 1));
-					SceneController.startTankLevel(tankNumber, levelNumber);
+					if (JSONManager.isPlayable(tankNumber, levelNumber)) {
+						SoundManager.playClickSound();
+						SceneController.startTankLevel(tankNumber, levelNumber);
+					} else {
+						SoundManager.playErrorSound();
+					}
+
 				}
 
 			}
@@ -615,6 +669,43 @@ public class ButtonManager {
 		};
 
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonHandler);
+	}
+
+	// Set Button Highlight Colors And Default Colors
+	public static void setDisabledHighlightProperty(Button button, int borderRadius) {
+
+		button.setStyle("-fx-background-radius: " + borderRadius + "px;" + "-fx-border-color: transparent;"
+				+ "-fx-background-color: transparent;" + "-fx-text-fill: " + "darkgray");
+
+		button.hoverProperty().addListener((event) -> {
+			button.setStyle("-fx-background-radius: " + borderRadius + "px;" + "-fx-border-color: transparent;"
+					+ "-fx-background-color: transparent;" + "-fx-text-fill: " + "darkgray");
+		});
+
+		button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+
+				button.setStyle("-fx-background-radius: " + borderRadius + "px;" + "-fx-border-color: transparent;"
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: " + "darkgray");
+			}
+		});
+
+		button.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				button.setStyle("-fx-background-radius: " + borderRadius + "px;" + "-fx-border-color: transparent;"
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: " + "darkgray");
+			}
+		});
+
+		button.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				button.setStyle("-fx-background-radius: " + borderRadius + "px;" + "-fx-border-color: transparent;"
+						+ "-fx-background-color: transparent;" + "-fx-text-fill: " + "darkgray");
+			}
+		});
 	}
 
 }
