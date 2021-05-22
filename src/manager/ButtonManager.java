@@ -358,11 +358,13 @@ public class ButtonManager {
 					thread.start();
 
 				}
-
+				// Tank 1
 				else if (key.length() == 6) {
 					int tankNumber = Integer.parseInt(key.substring(key.length() - 1));
 					SceneController.changeToTank(tankNumber);
-				} else if (key.length() == 8) {
+				} 
+				// Tank 1-1
+				else if (key.length() == 8) {
 					int tankNumber = Integer.parseInt(key.substring(key.length() - 3, key.length() - 2));
 					int levelNumber = Integer.parseInt(key.substring(key.length() - 1));
 					SceneController.startTankLevel(tankNumber, levelNumber);

@@ -8,12 +8,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class DrawManager {
-
+	
 	private static final Image tank1Bg = new Image(ClassLoader.getSystemResource("Tank1.png").toString());
 	private static final Image tank2Bg = new Image(ClassLoader.getSystemResource("Tank2.jpg").toString());
 	private static final Image tank3Bg = new Image(ClassLoader.getSystemResource("Tank3.jpg").toString());
 	private static final Image tank4Bg = new Image(ClassLoader.getSystemResource("Tank4.jpg").toString());
 
+	private static boolean justOpened = true;
+	
 	public static void drawImage(GraphicsContext gc, Image image, double positionX, double positionY) {
 		gc.drawImage(image, positionX, positionY);
 	}
@@ -105,6 +107,7 @@ public class DrawManager {
 		case "MainMenu":
 			break;
 		case "Credits":
+			// Sleeping is also important na
 			speech = "They're awesome!";
 			break;
 		case "Tank":
@@ -120,5 +123,6 @@ public class DrawManager {
 		String quoteBy = "- Gawr Gura 2021";
 		drawStatsText(gc, quote, 40, 15, 539, 420);
 		drawStatsText(gc, quoteBy, 20, 190, 580, 240);
+		justOpened=false;
 	}
 }

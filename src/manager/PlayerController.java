@@ -122,7 +122,23 @@ public class PlayerController {
 		case 1:
 			return 10;
 		case 2:
-			return 25;
+			return 13;
+		case 3:
+			return 17;
+		case 4:
+			return 20;
+		case 5:
+			return 24;
+		case 6:
+			return 27;
+		case 7:
+			return 31;
+		case 8:
+			return 34;
+		case 9:
+			return 38;
+		case 10:
+			return 41;
 		}
 		return 0;
 	}

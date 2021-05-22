@@ -211,7 +211,7 @@ public class ViewManager {
 		PlayerController.setMoney(200);
 		PlayerController.setGunLevel(2);
 
-		ShopController.setShopDetail(LevelManager.getLevel1_1());
+		ShopController.setShopDetail(LevelManager.getLevel(1,1));
 		ShopController.setAllButtons(anchorPane);
 		ShopController.prices[6] = 50;
 

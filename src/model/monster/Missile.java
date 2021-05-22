@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.PlayerController;
+import manager.SoundManager;
 import manager.StatTracker;
 import manager.TankManager;
 import model.base.Fish;
@@ -67,6 +68,7 @@ public class Missile extends Monster implements Renderable {
 	}
 	
 	public void defeated() {
+		SoundManager.playAlienDieSound();
 		TankManager.remove(this);
 	}
 
