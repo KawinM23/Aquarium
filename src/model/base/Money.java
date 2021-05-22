@@ -5,6 +5,8 @@ import manager.PlayerController;
 import manager.SoundManager;
 import manager.StatTracker;
 import manager.TankManager;
+import model.money.Diamond;
+import model.money.Pearl;
 
 public abstract class Money extends Unit {
 
@@ -46,10 +48,16 @@ public abstract class Money extends Unit {
 	public void collected() {
 
 		if (!TankManager.getRemoveMoneyList().contains(this)) {
+			if (this instanceof Diamond) {
+				SoundManager.playDiamondSound();
+			} else if (this instanceof Pearl) {
+				SoundManager.playPearlSound();
+			} else {
+				SoundManager.playCollectSound();
+			}
 			Thread collectedThread = new Thread(() -> {
 				try {
 					// Play Sound Effect
-					SoundManager.playCollectSound();
 
 					TankManager.remove(this);
 					PlayerController.addMoney(value);

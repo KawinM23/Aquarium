@@ -80,6 +80,10 @@ public class SoundManager {
 
 	private static final Media SHOOT_DIAMOND_SOUND = new Media(ClassLoader.getSystemResource("ShootDiamond.mp3").toString());
 	
+	private static final Media DIAMOND_SOUND = new Media(ClassLoader.getSystemResource("diamond.mp3").toString());
+	
+	private static final Media PEARL_SOUND = new Media(ClassLoader.getSystemResource("PEARL.mp3").toString());
+	
 	// 0 Mute, 1 Quiet, 2 Normal, 3 Loud
 	private static int bgmVolumeLevel = 2;
 	private static int soundVolumeLevel = 2;
@@ -262,6 +266,14 @@ public class SoundManager {
 			break;
 		default:
 		}
+	}
+	
+	public static void playDiamondSound() {
+		playSoundEffect(DIAMOND_SOUND);
+	}
+	
+	public static void playPearlSound() {
+		playSoundEffect(PEARL_SOUND);
 	}
 
 	public static void playEatSound() {
