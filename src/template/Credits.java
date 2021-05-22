@@ -24,11 +24,11 @@ public class Credits {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
 	// THIS IS MEASURED IN 940 x 720 PIXELS
-	final double[][] buttonDetail = { { 578, 597, 882, 681, 40, 40 } };
+	private final double[][] BUTTON_DETAIL = { { 578, 597, 882, 681, 40, 40 } };
 
-	final String IMAGE_PATH = ClassLoader.getSystemResource("Credits.jpg").toString();
-	Scene scene;
-	String[] buttonTexts;
+	private final String IMAGE_PATH = ClassLoader.getSystemResource("Credits.jpg").toString();
+	private Scene scene;
+	private String[] buttonTexts;
 	// ClassLoader.getSystemResource("").toString();
 
 	public Credits(String[] buttonTexts) {
@@ -43,13 +43,13 @@ public class Credits {
 		DrawManager.setBackGroundImage(gc, IMAGE_PATH);
 		DrawManager.drawGuraGreeting(gc, "Credits");
 
-		for (int i = 0; i < buttonDetail.length; i++) {
+		for (int i = 0; i < BUTTON_DETAIL.length; i++) {
 			Button button = new Button(buttonTexts[i]);
-			ButtonManager.setFont(button, (int) buttonDetail[i][5]);
-			ButtonManager.setHighlightProperty(button, (int) buttonDetail[i][4]);
+			ButtonManager.setFont(button, (int) BUTTON_DETAIL[i][5]);
+			ButtonManager.setHighlightProperty(button, (int) BUTTON_DETAIL[i][4]);
 			ButtonManager.setCreditsButtonHandler(button);
-			ButtonManager.setButtonLocationNoZoom(root, button, buttonDetail[i]);
-			// addButtons(root, buttonTexts[i], buttonDetail[i]);
+			ButtonManager.setButtonLocationNoZoom(root, button, BUTTON_DETAIL[i]);
+			// addButtons(root, buttonTexts[i], BUTTON_DETAIL[i]);
 		}
 		;
 	}

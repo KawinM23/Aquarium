@@ -671,6 +671,40 @@ public class ButtonManager {
 
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonHandler);
 	}
+	
+	public static void setStatsButtonHandler(Button button) {
+		EventHandler<MouseEvent> buttonHandler = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				SoundManager.playClickSound();
+				if (button.getText().equals("Back")) {
+					Thread thread = new Thread(() -> {
+						try {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+
+									SceneController.changeScene("MainMenu");
+
+								}
+							});
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					});
+					thread.start();
+
+				}
+
+			}
+		};
+
+		button.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonHandler);
+	}
 
 	// Set Button Highlight Colors And Default Colors
 	public static void setDisabledHighlightProperty(Button button, int borderRadius) {
