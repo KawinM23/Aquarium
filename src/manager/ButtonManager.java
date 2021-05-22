@@ -374,7 +374,7 @@ public class ButtonManager {
 
 					});
 					thread.start();
-				} else if (key.equals("Tank 1-1")) {
+				} else if (key.equals("Tank 1-1") && JSONManager.getPlayerName().equals("HackerMan")) {
 					SoundManager.playClickSound();
 					SoundManager.changeBgmTo(1);
 					Thread thread = new Thread(() -> {
