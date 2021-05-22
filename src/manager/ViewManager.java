@@ -22,6 +22,7 @@ import model.fish.Carnivore;
 import model.fish.Guppy;
 import model.fish.Guppycruncher;
 import model.fish.Starcatcher;
+import model.fish.Ultravore;
 import model.money.Star;
 import model.monster.Balrog;
 import model.monster.Destructor;
@@ -175,6 +176,9 @@ public class ViewManager {
 
 		Carnivore c1 = new Carnivore("c1", 300, 200);
 		TankManager.addStartFish(c1);
+		
+		Ultravore uv1 = new Ultravore("uv1", 100, 500);
+		TankManager.addStartFish(uv1);
 
 		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
 		TankManager.add(sc1);
@@ -183,11 +187,11 @@ public class ViewManager {
 		TankManager.add(s1);
 //
 //
-		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
-		TankManager.addStartFish(gc1);
+//		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
+//		TankManager.addStartFish(gc1);
 //
-		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
-		TankManager.addStartFish(bm1);
+//		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
+//		TankManager.addStartFish(bm1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500, 0);
 

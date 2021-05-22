@@ -7,7 +7,7 @@ import properties.Renderable;
 
 public class TreasureChest extends Money implements Renderable{
 
-	private static final Image TreasureChestImage = new Image(ClassLoader.getSystemResource("SilverCoin.png").toString());
+	private static final Image TreasureChestImage = new Image(ClassLoader.getSystemResource("TreasureChest.png").toString());
 	
 	public TreasureChest(String name, double posX, double posY) {
 		super(name, posX, posY);
