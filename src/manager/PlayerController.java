@@ -30,7 +30,6 @@ public class PlayerController {
 
 	public static boolean buy(int value) {
 		if (PlayerController.money >= value) {
-			SoundManager.playClickSound();
 			PlayerController.money -= value;
 			return true;
 		} else {

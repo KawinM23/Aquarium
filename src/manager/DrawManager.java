@@ -8,10 +8,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class DrawManager {
-	
-	private static final Image tank1Bg = new Image(ClassLoader.getSystemResource("Tank1.jpg").toString());
-	
-	
+
+	private static final Image tank1Bg = new Image(ClassLoader.getSystemResource("Tank1.png").toString());
+	private static final Image tank2Bg = new Image(ClassLoader.getSystemResource("Tank2.jpg").toString());
+	private static final Image tank3Bg = new Image(ClassLoader.getSystemResource("Tank3.jpg").toString());
+	private static final Image tank4Bg = new Image(ClassLoader.getSystemResource("Tank4.jpg").toString());
+
 	public static void drawImage(GraphicsContext gc, Image image, double positionX, double positionY) {
 		gc.drawImage(image, positionX, positionY);
 	}
@@ -78,8 +80,24 @@ public class DrawManager {
 		Image image = new Image(image_path);
 		gc.drawImage(image, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
-	
-	
+
+	public static void setTankBg(GraphicsContext gc, int tankNumber) {
+		switch (tankNumber) {
+		case 1:
+			gc.drawImage(tank1Bg, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+			break;
+		case 2:
+			gc.drawImage(tank2Bg, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+			break;
+		case 3:
+			gc.drawImage(tank3Bg, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+			break;
+		case 4:
+			gc.drawImage(tank4Bg, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+			break;
+		default:
+		}
+	}
 
 	public static void drawGuraGreeting(GraphicsContext gc, String key) {
 		String speech = "Welcome, " + JSONManager.getPlayerName() + "!";
@@ -97,7 +115,7 @@ public class DrawManager {
 			break;
 		default:
 		}
-		
+
 		String quote = "\" " + speech + " \"";
 		String quoteBy = "- Gawr Gura 2021";
 		drawStatsText(gc, quote, 40, 15, 539, 420);
