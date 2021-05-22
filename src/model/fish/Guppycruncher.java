@@ -25,7 +25,7 @@ public class Guppycruncher extends Fish implements Renderable{
 	private boolean isJumping;
 	private final double fallAcc = 120;
 	private final double velYJump = -150;
-	private final double reachHeight = 160;
+	private final double reachHeight = 180;
 	private final double reachDistance = 80;
 
 	public Guppycruncher(String name, double posX, double posY) {
