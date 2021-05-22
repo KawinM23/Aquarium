@@ -1,27 +1,13 @@
 package template;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import manager.ButtonManager;
 import manager.DrawManager;
 import manager.GameManager;
-import manager.JSONManager;
-import manager.SceneController;
-import manager.SoundManager;
-import manager.ViewManager;
-import testing.tank0;
-import testing.tank2;
 
 public class menu1 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,

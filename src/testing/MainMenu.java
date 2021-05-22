@@ -34,7 +34,6 @@ public class MainMenu extends Application {
 			{ 354.0, 282.0, 576.0, 357.0, 100.0, 40.0 }, { 402.0, 377.0, 529.0, 409.0, 80.0, 20.0 },
 			{ 323.0, 412.0, 417.0, 443.0, 80.0, 20.0 }, { 416.0, 410.0, 512.0, 443.0, 10.0, 20.0 },
 			{ 513.0, 410.0, 603.0, 443.0, 80.0, 20.0 } };
-	private tank2 tank2;
 	final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted2.jpg").toString();
 
 	// ClassLoader.getSystemResource("").toString();
@@ -171,36 +170,6 @@ public class MainMenu extends Application {
 									if (GameManager.isLOG())
 										System.out.println("Change To Tank1");
 									SceneController.changeScene("tank1");
-								}
-							});
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-
-					});
-					newTankthread.start();
-				} else if (buttonText.equals("Button 3")) {
-					Thread newTankthread = new Thread(() -> {
-						try {
-							if (!SceneController.sceneExist("tank2")) {
-
-								tank2 = new tank2();
-								Scene sceneTank2 = tank2.getScene();
-								SceneController.addScene("tank2", sceneTank2);
-							} else {
-
-							}
-							Platform.runLater(new Runnable() {
-								@Override
-								public void run() {
-									if (GameManager.isLOG())
-										System.out.println("Change To Tank2");
-									SceneController.changeScene("tank2");
-									if (tank2.getThreadTank().getState() == Thread.State.WAITING) {
-										synchronized (tank2.getThreadTank()) {
-											tank2.getThreadTank().notify();
-										}
-									}
 								}
 							});
 						} catch (Exception e) {
