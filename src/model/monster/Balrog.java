@@ -92,7 +92,7 @@ public class Balrog extends Monster implements Renderable {
 	}
 
 	private void eat(Unit nearestFish, int i) {
-		
+		SoundManager.playEatFishSound();
 		if (!TankManager.getRemoveFishList().contains(nearestFish)) {
 			Thread feedThread = new Thread(() -> {
 				try {

@@ -133,7 +133,8 @@ public class LevelManager {
 	}
 
 	public static void loadLevel1_4(Level level) {
-		level.setStartingMoney(200);
+		//TODO FOR TESTING
+		level.setStartingMoney(20000);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
 		startingFishList.add(new Guppy("Guppy", 0, 0));

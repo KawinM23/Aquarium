@@ -62,10 +62,9 @@ public class Gus extends Monster implements Renderable {
 	}
 
 	private void eat(Unit nearestFood) {
-
+		SoundManager.playEatSound();
 		Thread feedThread = new Thread(() -> {
 			try {
-				SoundManager.playEatSound();
 				TankManager.remove(nearestFood);
 				if (nearestFood instanceof Fish) {
 					decreaseHealth(15);

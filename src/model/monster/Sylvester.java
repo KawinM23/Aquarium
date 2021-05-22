@@ -103,7 +103,7 @@ public class Sylvester extends Monster implements Renderable {
 
 	private void eat(Unit nearestFish) {
 		// TODO Auto-generated method stub
-		
+		SoundManager.playEatFishSound();
 		if (!TankManager.getRemoveFishList().contains(nearestFish)) {
 			Thread feedThread = new Thread(() -> {
 				try {

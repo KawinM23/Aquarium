@@ -149,7 +149,7 @@ public class ShopController {
 						if (PlayerController.buy(prices[1]) && PlayerController.getFoodLevel() <= 2 && prices[1] != 0) {
 							PlayerController.setFoodLevel(PlayerController.getFoodLevel() + 1);
 							if (PlayerController.getFoodLevel() == 3) {
-								prices[1] = 0;
+								prices[1] = -1;
 								button.setVisible(false);
 							}
 							SoundManager.playClickSound();
@@ -182,7 +182,7 @@ public class ShopController {
 								SoundManager.playClickSound();
 							PlayerController.setMaxFood(PlayerController.getMaxFood() + 1);
 							if (PlayerController.getMaxFood() == 10) {
-								prices[2] = 0;
+								prices[2] = -1;
 								button.setVisible(false);
 							}
 						}
@@ -286,7 +286,7 @@ public class ShopController {
 			// Draw Prices
 			String priceText = "" + prices[i];
 			int relay = priceText.length() * 3;
-			if (prices[i] == 0) {
+			if (prices[i] == -1) {
 				priceText = "MAX";
 				relay += 10;
 			}
@@ -296,9 +296,10 @@ public class ShopController {
 				priceText = "";
 			if (prices[1] == 0 && i == 1)
 				priceText = "";
-			if (prices[2] == 0 && i == 2) {
+			if (prices[2] == 0 && i == 2) 
 				priceText = "";
-			}
+			
+			
 			if ((PlayerController.getGunLevel() == 10 || prices[5] == 0) && i == 5) {
 				priceText = "";
 			}
