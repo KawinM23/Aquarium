@@ -123,6 +123,7 @@ public class Gus extends Monster implements Renderable {
 		}
 
 		this.move(fr);
+		this.checkFacingLeft();
 	}
 
 	@Override

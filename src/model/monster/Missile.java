@@ -27,7 +27,6 @@ public class Missile extends Monster implements Renderable {
 		this.setSize(60, 60);
 		this.setSpeed(80);
 
-
 		this.setMaxHealth(10);
 		this.setMaxHealth(health);
 		this.setHealth(getMaxHealth());

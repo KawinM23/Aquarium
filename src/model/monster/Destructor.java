@@ -61,6 +61,7 @@ public class Destructor extends Monster implements Renderable {
 		}
 
 		this.move(fr);
+		this.checkFacingLeft();
 	}
 
 	public void move(int fr) {

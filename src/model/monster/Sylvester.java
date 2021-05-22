@@ -57,6 +57,7 @@ public class Sylvester extends Monster implements Renderable {
 		}
 
 		this.move(fr);
+		this.checkFacingLeft();
 	}
 
 	@Override
