@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
 import manager.InvasionManager;
+import manager.SoundManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
@@ -35,7 +36,7 @@ public class Starcatcher extends Fish implements Renderable{
 		this.setVelZero();
 		this.setGrounded(false);
 
-		this.setHunger(new Hunger(10, 20)); // Hunger 10sec
+		this.setHunger(new Hunger(10, 25)); // Hunger 10sec
 		this.setProduction(new Production(this, 4, 0));
 		this.setIdle(new Idle(this,25));
 		this.setPrice(750);
@@ -136,8 +137,23 @@ public class Starcatcher extends Fish implements Renderable{
 	}
 
 	public void feed(Unit nearestFood) {
-		this.getHunger().setLastFedNow();
-		TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY() - 20, 1));
+		
+		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
+			Thread feedThread = new Thread(() -> {
+				try {
+					TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY() - 20, 1));
+					TankManager.remove(nearestFood);
+					
+					this.getHunger().setLastFedNow();
+					this.getHunger().addLastFedRandom(0, 1);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			feedThread.start();
+		}
+
 	}
 
 	@Override

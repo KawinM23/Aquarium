@@ -68,41 +68,53 @@ public class Guppy extends Fish implements Renderable {
 
 	public void feed(Unit nearestFood) {
 		// Play Sound Effect
-		SoundManager.playEatSound();
-	
-		this.getHunger().setLastFedNow();
-		this.getHunger().addLastFedRandom(0, 2);
-	
-		if (nearestFood instanceof Food) {
-			if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
-				this.die();
-				return;
-			} else if (growth == 200 && ((Food) nearestFood).getFoodType() == 2) {
-				this.setStar(true);
-				this.getProduction().setProductType(5);
-			}
-			switch (((Food) nearestFood).getFoodLevel()) {
-			case 1:
-				this.setGrowth(getGrowth() + 25); // FoodGrowth 25,50,75
-				break;
-			case 2:
-				this.setGrowth(getGrowth() + 50);
-				break;
-			case 3:
-				this.setGrowth(getGrowth() + 75);
-				break;
-			}
-			TankManager.remove(nearestFood);
+
+		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
+			Thread feedThread = new Thread(() -> {
+				try {
+					SoundManager.playEatSound();
+
+					this.getHunger().setLastFedNow();
+					this.getHunger().addLastFedRandom(0, 2);
+
+					if (nearestFood instanceof Food) {
+						if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
+							this.die();
+							return;
+						} else if (growth == 200 && ((Food) nearestFood).getFoodType() == 2) {
+							this.setStar(true);
+							this.getProduction().setProductType(5);
+						}
+						switch (((Food) nearestFood).getFoodLevel()) {
+						case 1:
+							this.setGrowth(getGrowth() + 25); // FoodGrowth 25,50,75
+							break;
+						case 2:
+							this.setGrowth(getGrowth() + 50);
+							break;
+						case 3:
+							this.setGrowth(getGrowth() + 75);
+							break;
+						}
+						TankManager.remove(nearestFood);
+					}
+					if (!isStar) {
+						if (this.growth >= 100 && this.growth < 200 && getProduction().getProductType() != 1) {
+							this.setGuppy("Medium");
+						} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
+							this.setGuppy("Large");
+						}
+					} else if (this.getProduction().getProductType() != 5) {
+						this.getProduction().setProductType(5);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			feedThread.start();
 		}
-		if (!isStar) {
-			if (this.growth >= 100 && this.growth < 200 && getProduction().getProductType() != 1) {
-				this.setGuppy("Medium");
-			} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
-				this.setGuppy("Large");
-			}
-		} else if (this.getProduction().getProductType() != 5) {
-			this.getProduction().setProductType(5);
-		}
+
 	}
 
 	@Override
@@ -118,17 +130,17 @@ public class Guppy extends Fish implements Renderable {
 				gc.drawImage(GuppyHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 			}
 		} else {
-	
+
 			if (isFacingLeft()) {
 				gc.drawImage(GuppyLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 			} else {
 				gc.drawImage(GuppyRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 			}
 		}
-	
+
 		gc.setGlobalAlpha(1);
 		gc.setEffect(null);
-	
+
 	}
 
 	public int getGrowth() {
@@ -166,7 +178,7 @@ public class Guppy extends Fish implements Renderable {
 			return;
 		}
 		if (string.equals("Small")) {
-			this.setSize(50,50);
+			this.setSize(50, 50);
 			this.setMouthPos(15, 30);
 			this.getProduction().setProductType(1);
 		} else if (string.equals("Medium")) {
