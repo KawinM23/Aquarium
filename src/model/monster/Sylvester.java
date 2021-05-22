@@ -87,7 +87,7 @@ public class Sylvester extends Monster implements Renderable {
 			// Check Fish
 			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(),
 					nearestFish.getCenterY())) {
-				System.out.println(this.getName() + " eat " + nearestFish.getName());
+				System.out.println(this.getName() + " kill " + nearestFish.getName());
 				this.eat(nearestFish);
 				this.getIdle().checkIdleMonster();
 			} else {

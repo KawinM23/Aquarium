@@ -103,9 +103,7 @@ public class Destructor extends Monster implements Renderable {
 						replaceTargetFishes(targetFishes, TankManager.getFishList().get(j));
 					}
 				}
-				// TODO SHOOT MISSLIES
-				System.out.println(targetFishes);
-
+				//SHOOT MISSLIES
 				shootMissile(targetFishes);
 
 				this.getHunger().setLastFedNow();
@@ -192,7 +190,6 @@ public class Destructor extends Monster implements Renderable {
 			SoundManager.playBodyHitSound();
 		}
 		this.decreaseHealth(PlayerController.getGunDamage());
-		System.out.println(getHealth());
 	}
 
 	@Override

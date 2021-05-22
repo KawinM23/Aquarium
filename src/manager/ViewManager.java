@@ -16,6 +16,7 @@ import model.Food;
 import model.base.Fish;
 import model.base.Money;
 import model.base.Monster;
+import model.fish.Beetlemuncher;
 import model.fish.Breeder;
 import model.fish.Carnivore;
 import model.fish.Guppy;
@@ -185,8 +186,8 @@ public class ViewManager {
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
 		TankManager.addStartFish(gc1);
 //
-//		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
-//		TankManager.add(bm1);
+		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
+		TankManager.addStartFish(bm1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500, 0);
 

@@ -89,7 +89,6 @@ public class PlayerMenu {
 		Button changeButton = new Button("Change");
 		changeButton.setOnAction(e -> {
 			if (!JSONManager.isNameExist(changePlayerName.getText()) && !changePlayerName.getText().equals("")) {
-				System.out.println("CAME");
 				JSONManager.setPlayerName(changePlayerName.getText());
 				JSONManager.writeJSON();
 				currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());

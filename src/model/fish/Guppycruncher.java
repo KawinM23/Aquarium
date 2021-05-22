@@ -95,7 +95,6 @@ public class Guppycruncher extends Fish implements Renderable{
 
 	private void jump() {
 		// jump
-		System.out.println("Jump");
 		setVelY(velYJump);
 		setJumping(true);
 	}

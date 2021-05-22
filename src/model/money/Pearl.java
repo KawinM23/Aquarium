@@ -7,7 +7,7 @@ import properties.Renderable;
 
 public class Pearl extends Money implements Renderable{
 	
-	private Image PearlImage = new Image(ClassLoader.getSystemResource("SilverCoin.png").toString());
+	private Image PearlImage = new Image(ClassLoader.getSystemResource("Pearl.png").toString());
 
 	public Pearl(String name, double posX, double posY) {
 		super(name, posX, posY);

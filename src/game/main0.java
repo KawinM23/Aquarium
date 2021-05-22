@@ -36,7 +36,7 @@ public class main0 extends Application {
 			
 			primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 				if (event.getCode() == KeyCode.SPACE) {
-					System.out.println(JSONManager.getJsonNameList());
+//					System.out.println(JSONManager.getJsonNameList());
 				}
 			});
 		} catch (Exception e) {
