@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="model.monster.Sylvester" project="Aquarium" 
     file="/Aquarium/src/model/monster/Sylvester.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="205" x="1012" y="2112"/>    
+    <position height="214" width="223" x="2533" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="model.money.Diamond" project="Aquarium" 
     file="/Aquarium/src/model/money/Diamond.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="221" x="751" y="2112"/>    
+    <position height="196" width="221" x="1545" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="model.money.Star" project="Aquarium" file="/Aquarium/src/model/money/Star.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="176" x="41" y="2112"/>    
+    <position height="124" width="193" x="1806" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="model.money.GoldCoin" project="Aquarium" 
     file="/Aquarium/src/model/money/GoldCoin.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="205" x="506" y="2112"/>    
+    <position height="124" width="205" x="2039" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="model.money.SilverCoin" project="Aquarium" 
     file="/Aquarium/src/model/money/SilverCoin.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="209" x="257" y="2112"/>    
+    <position height="124" width="209" x="2284" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="model.fish.Guppycruncher" project="Aquarium" 
     file="/Aquarium/src/model/fish/Guppycruncher.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="304" width="240" x="1537" y="2112"/>    
+    <position height="340" width="240" x="41" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="model.fish.Carnivore" project="Aquarium" 
     file="/Aquarium/src/model/fish/Carnivore.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="205" x="2047" y="2112"/>    
+    <position height="178" width="205" x="822" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="model.fish.Guppy" project="Aquarium" file="/Aquarium/src/model/fish/Guppy.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="190" x="1817" y="2112"/>    
+    <position height="412" width="213" x="321" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="model.fish.Starcatcher" project="Aquarium" 
     file="/Aquarium/src/model/fish/Starcatcher.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="219" x="1278" y="2112"/>    
+    <position height="286" width="219" x="1067" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="model.base.Unit" project="Aquarium" file="/Aquarium/src/model/base/Unit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="915" width="226" x="1018" y="525"/>    
+    <position height="861" width="226" x="1326" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="model.base.Monster" project="Aquarium" 
     file="/Aquarium/src/model/base/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="195" width="199" x="1018" y="1480"/>    
+    <position height="591" width="275" x="2037" y="938"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="model.base.Money" project="Aquarium" file="/Aquarium/src/model/base/Money.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="191" x="506" y="1480"/>    
+    <position height="249" width="191" x="1806" y="938"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="model.base.Fish" project="Aquarium" file="/Aquarium/src/model/base/Fish.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="592" width="217" x="1278" y="1480"/>    
+    <position height="717" width="217" x="881" y="938"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="model.Food" project="Aquarium" file="/Aquarium/src/model/Food.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="199" x="779" y="1480"/>    
+    <position height="412" width="199" x="642" y="938"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="properties.Hunger" project="Aquarium" file="/Aquarium/src/properties/Hunger.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="340" width="215" x="1238" y="2456"/>    
+    <position height="376" width="208" x="574" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="properties.Idle" project="Aquarium" file="/Aquarium/src/properties/Idle.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="448" width="147" x="566" y="37"/>    
+    <position height="484" width="253" x="537" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,114 +147,101 @@
   </class>  
   <class id="17" language="java" name="properties.Production" project="Aquarium" 
     file="/Aquarium/src/properties/Production.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="179" x="1278" y="37"/>    
+    <position height="322" width="179" x="1326" y="1695"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="18">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="19" name="hunger">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="5"/>    
+  <generalization id="18">    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="12"/>  
   </generalization>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <generalization id="28">    
+  <generalization id="19">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="11"/>  
   </generalization>  
-  <association id="29">    
+  <association id="20">    
+    <bendpoint x="1335" y="938"/>    
     <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="30" name="producer">        
+      <attribute id="21" name="producer">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
+      <multiplicity id="22" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <generalization id="33">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="34">    
+  <generalization id="23">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <association id="35">    
-    <bendpoint x="1287" y="525"/>    
+  <generalization id="24">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="30">    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="36" name="production">        
+      <attribute id="31" name="production">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1">        
+      <multiplicity id="32" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="38">    
-    <bendpoint x="1247" y="2112"/>    
+  <association id="33">    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="39" name="hunger">        
+      <attribute id="34" name="hunger">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="40" minimum="0" maximum="1">        
+      <multiplicity id="35" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="41">    
+  <generalization id="36">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="12"/>  
   </generalization>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="13"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

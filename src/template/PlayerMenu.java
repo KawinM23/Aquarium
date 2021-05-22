@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import manager.DrawManager;
 import manager.JSONManager;
 import manager.SceneController;
 
@@ -36,6 +37,7 @@ public class PlayerMenu {
 
 		Button confirmButton = new Button("Confirm");
 		confirmButton.setOnAction(e -> {
+			DrawManager.setJustOpened();
 			JSONManager.changePlayer((String) comboBox1.getValue());
 			currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());
 			setDropDown(comboBox1);
@@ -63,6 +65,7 @@ public class PlayerMenu {
 			// TODO IF ELSE FOR BLANK NAME
 			String playerName = newPlayerName.getText();
 			if (!JSONManager.isNameExist(playerName) && !playerName.equals("")) {
+				DrawManager.setJustOpened();
 				JSONManager.addNewPlayer(playerName);
 				JSONManager.changePlayer(playerName);
 				currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());
@@ -99,6 +102,7 @@ public class PlayerMenu {
 			System.out.println(JSONManager.getPlayerName());
 			System.out.println(playerName);
 			if (!JSONManager.isNameExist(changePlayerName.getText()) && !changePlayerName.getText().equals("")) {
+				DrawManager.setJustOpened();
 				JSONManager.setPlayerName(changePlayerName.getText());
 				JSONManager.writeJSON();
 				currentPlayerText.setText("Current Player: " + JSONManager.getPlayerName());

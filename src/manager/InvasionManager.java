@@ -61,7 +61,8 @@ public class InvasionManager {
 
 	public static void render(GraphicsContext gc) {
 		if (isShowWarning()) {
-			gc.fillText("Warning", 0, 400);
+			//gc.fillText("Warning", 0, 400);
+			DrawManager.drawWarning(gc);
 		}
 
 	}
@@ -152,6 +153,9 @@ public class InvasionManager {
 	}
 
 	public static void setWarning(boolean warning) {
+		if (warning==false) {
+			DrawManager.resetWarning();
+		}
 		InvasionManager.warning = warning;
 	}
 
