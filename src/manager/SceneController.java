@@ -55,6 +55,7 @@ public class SceneController {
 		addScene("Stats", statsScene);
 		addScene("Win", winScene);
 		addScene("Lose", loseScene);
+		ButtonManager.updateTankLevelButtons();
 
 	}
 
@@ -75,6 +76,7 @@ public class SceneController {
 
 	// Change scene of primary stage to another scene
 	public static void changeScene(String name) {
+		ButtonManager.updateTankLevelButtons();
 		refreshScene(name);
 		int tempIndex = nameList.indexOf(name);
 		Scene scene = sceneList.get(tempIndex);

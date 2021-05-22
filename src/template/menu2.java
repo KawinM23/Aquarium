@@ -58,6 +58,7 @@ public class menu2 {
 			ButtonManager.addMenu2Button(button);
 			// addButtons(root, buttonTexts[i], buttonDetail[i]);
 		}
+		ButtonManager.updateTankLevelButtons();
 		
 	}
 
