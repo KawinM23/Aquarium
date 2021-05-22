@@ -36,7 +36,8 @@ public class JSONManager {
 		// JSON parser object to parse read file
 		JSONParser jsonParser = new JSONParser();
 
-		try (FileReader reader = new FileReader(workingDir + "/src/jsonFiles/players.json")) {
+//		workingDir + "/src/jsonFiles/players.json"
+		try (FileReader reader = new FileReader("players.json")) {
 			// Read JSON file
 			Object obj = jsonParser.parse(reader);
 
@@ -149,7 +150,7 @@ public class JSONManager {
 		addOtherPlayer(jsonList);
 
 		// Write JSON file
-		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
+		try (FileWriter file = new FileWriter("players.json")) {
 			// We can write any JSONArray or JSONObject instance to the file
 
 			file.write(newPlayerList.toJSONString());
