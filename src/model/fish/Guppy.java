@@ -17,6 +17,7 @@ import properties.Renderable;
 public class Guppy extends Fish implements Renderable {
 
 	private boolean isStar; // StarGuppy
+	private boolean isKing;
 	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
 	private long bornTime;
 
@@ -103,6 +104,9 @@ public class Guppy extends Fish implements Renderable {
 							this.setGuppy("Medium");
 						} else if (this.growth >= 200 && getProduction().getProductType() != 2) {
 							this.setGuppy("Large");
+						} else if (this.growth >= 200 && getAge() > 900 && !isKing) {
+							this.setKing(true);
+							this.getProduction().setProductType(3);
 						}
 					} else if (this.getProduction().getProductType() != 5) {
 						this.getProduction().setProductType(5);
@@ -117,9 +121,13 @@ public class Guppy extends Fish implements Renderable {
 
 	}
 
+	public int getAge() {
+		return (int) ((System.nanoTime() - bornTime) / 1e9);
+	}
+
 	@Override
 	public void render(GraphicsContext gc) {
-		if (isStar) {
+		if (isStar && !isKing) {
 			gc.setGlobalAlpha(0.8);
 			gc.setEffect(new Glow(0.8));
 		}
@@ -141,6 +149,27 @@ public class Guppy extends Fish implements Renderable {
 		gc.setGlobalAlpha(1);
 		gc.setEffect(null);
 
+	}
+
+	public void setGuppy(String string) {
+		if (string == null) {
+			return;
+		}
+		if (string.equals("Small")) {
+			this.setSize(50, 50);
+			this.setMouthPos(15, 30);
+			this.getProduction().setProductType(1);
+		} else if (string.equals("Medium")) {
+			this.setSize(75, 75);
+			this.setMouthPos(15, 55);
+			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
+			this.getProduction().setProductType(1);
+		} else if (string.equals("Large")) {
+			this.setSize(100, 100);
+			this.setMouthPos(15, 75);
+			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
+			this.getProduction().setProductType(2);
+		}
 	}
 
 	public int getGrowth() {
@@ -173,25 +202,12 @@ public class Guppy extends Fish implements Renderable {
 		this.bornTime = bornTime;
 	}
 
-	private void setGuppy(String string) {
-		if (string == null) {
-			return;
-		}
-		if (string.equals("Small")) {
-			this.setSize(50, 50);
-			this.setMouthPos(15, 30);
-			this.getProduction().setProductType(1);
-		} else if (string.equals("Medium")) {
-			this.setSize(75, 75);
-			this.setMouthPos(15, 55);
-			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
-			this.getProduction().setProductType(1);
-		} else if (string.equals("Large")) {
-			this.setSize(100, 100);
-			this.setMouthPos(15, 75);
-			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
-			this.getProduction().setProductType(2);
-		}
+	public boolean isKing() {
+		return isKing;
+	}
+
+	public void setKing(boolean isKing) {
+		this.isKing = isKing;
 	}
 
 }

@@ -18,8 +18,9 @@ import properties.Renderable;
 
 public class Starcatcher extends Fish implements Renderable{
 	
-	private static final Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
-
+	private static final Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Starcatcher.png").toString());
+	private static final Image StarcatcherHungryImage = new Image(ClassLoader.getSystemResource("StarcatcherHungry.png").toString());
+	
 	public Image getImage() {
 		return StarcatcherImage;
 	}
@@ -29,8 +30,8 @@ public class Starcatcher extends Fish implements Renderable{
 
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.setSize(80, 100);
-		this.setMouthPos(15, 60);
+		this.setSize(80, 89);
+		this.setMouthPos(15, 44);
 		
 		this.setSpeed(60);
 		this.setVelZero();
@@ -147,7 +148,6 @@ public class Starcatcher extends Fish implements Renderable{
 					this.getHunger().setLastFedNow();
 					this.getHunger().addLastFedRandom(0, 1);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -158,9 +158,8 @@ public class Starcatcher extends Fish implements Renderable{
 
 	@Override
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		if (isFacingLeft()) {
-			gc.drawImage(StarcatcherImage, getPosX(), getPosY(), getWidth(), getHeight());
+		if (isHungry()) {
+			gc.drawImage(StarcatcherHungryImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
 			gc.drawImage(StarcatcherImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}

@@ -177,6 +177,7 @@ public class GameManager {
 		Guppy g3 = new Guppy("g3", 400, 100);
 		g3.setGrowth(200);
 		g3.setStar(true);
+		g3.setGuppy("Large");
 		TankManager.addStartFish(g3);
 
 		Breeder b1 = new Breeder("b1", 400, 288);
