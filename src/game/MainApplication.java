@@ -12,7 +12,7 @@ import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
 
-public class main0 extends Application {
+public class MainApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
