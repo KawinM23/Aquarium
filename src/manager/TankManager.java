@@ -23,7 +23,7 @@ public class TankManager {
 	private static ArrayList<Food> foodList = new ArrayList<Food>();
 	private static ArrayList<Money> moneyList = new ArrayList<Money>();
 	private static ArrayList<Monster> monsterList = new ArrayList<Monster>();
-	
+
 	private static ArrayList<Unit> addUnitList = new ArrayList<Unit>();
 	private static ArrayList<Fish> addFishList = new ArrayList<Fish>();
 	private static ArrayList<Monster> addMonsterList = new ArrayList<Monster>();
@@ -79,19 +79,19 @@ public class TankManager {
 		}
 		fishList.removeAll(removeFishList);
 		removeFishList.clear();
-		
+
 		for (Food f : foodList) {
 			f.update(GameManager.getFRAMERATE());
 		}
 		foodList.removeAll(removeFoodList);
 		removeFoodList.clear();
-		
+
 		for (Money m : moneyList) {
 			m.update(GameManager.getFRAMERATE());
 		}
 		moneyList.removeAll(removeMoneyList);
 		removeMoneyList.clear();
-		
+
 		monsterList.addAll(addMonsterList);
 		addMonsterList.clear();
 		for (Monster m : monsterList) {
@@ -99,7 +99,7 @@ public class TankManager {
 		}
 		monsterList.removeAll(removeMonsterList);
 		removeMonsterList.clear();
-		
+
 		System.gc();
 	}
 
@@ -115,18 +115,17 @@ public class TankManager {
 			addMonsterList.add((Monster) u);
 		}
 	}
-	
+
 	public static void addMonster(Monster m) {
-		if(!(m instanceof Destructor) && !(m instanceof Missile)) {
+		if (!(m instanceof Destructor) && !(m instanceof Missile)) {
 			double posX = 0 + (GameManager.getWIDTH() - m.getWidth() - 0) * rand.nextDouble();
 			double posY = GameManager.getTOPHEIGHT()
-					+ (GameManager.getBOTTOMHEIGHT() - m.getHeight() - GameManager.getTOPHEIGHT())
-							* rand.nextDouble();
+					+ (GameManager.getBOTTOMHEIGHT() - m.getHeight() - GameManager.getTOPHEIGHT()) * rand.nextDouble();
 			m.setPos(posX, posY);
 		}
-		
+
 		m.setHealth(m.getMaxHealth());
-		
+
 		addUnitList.add(m);
 		addMonsterList.add(m);
 	}
@@ -176,29 +175,36 @@ public class TankManager {
 	}
 
 	public static void addBornedFish(Fish f) {
-		addUnitList.add(f);
-		addFishList.add(f);
-		// Random Hunger Fish
-		f.getHunger().addLastFedRandom(3, 6);
-		f.getProduction().setLastProduceRandom(2, 6);
+		Thread addBornedThread = new Thread(() -> {
+			addUnitList.add(f);
+			addFishList.add(f);
+			// Random Hunger Fish
+			f.getHunger().addLastFedRandom(3, 6);
+			f.getProduction().setLastProduceRandom(2, 6);
+		});
+		addBornedThread.start();
 	}
 
-	public static boolean addFood(Food f) {
+	public static void addFood(Food f) {
 		// Play Sound Effect
 		SoundManager.playDropFoodSound();
 
-		if (!(foodList.size() >= PlayerController.getMaxFood())) {
-			addUnitList.add(f);
-			foodList.add(f);
-			return true;
-		} else {
-			return false;
-		}
+		Thread addFoodThread = new Thread(() -> {
+			if (!(foodList.size() >= PlayerController.getMaxFood())) {
+				addUnitList.add(f);
+				foodList.add(f);
+			}
+		});
+		addFoodThread.start();
+
 	}
 
 	public static void produceMoney(Money m) {
-		addUnitList.add(m);
-		moneyList.add(m);
+		Thread produceMoneyThread = new Thread(() -> {
+			addUnitList.add(m);
+			moneyList.add(m);
+		});
+		produceMoneyThread.start();
 	}
 
 	public static void remove(Unit u) {
@@ -215,7 +221,7 @@ public class TankManager {
 				removeMonsterList.add(u);
 			}
 		}
-		
+
 	}
 
 	public static void clear() {
@@ -225,7 +231,7 @@ public class TankManager {
 		moneyList.clear();
 		fishList.clear();
 		monsterList.clear();
-		
+
 		addUnitList.clear();
 		addFishList.clear();
 		addMonsterList.clear();
