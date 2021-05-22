@@ -1,247 +1,550 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="model.monster.Sylvester" project="Aquarium" 
-    file="/Aquarium/src/model/monster/Sylvester.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="223" x="2533" y="1695"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="model.money.Diamond" project="Aquarium" 
-    file="/Aquarium/src/model/money/Diamond.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="221" x="1545" y="1695"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="model.money.Star" project="Aquarium" file="/Aquarium/src/model/money/Star.java" 
+  <class id="1" language="java" name="properties.Hunger" project="Aquarium" file="/Aquarium/src/properties/Hunger.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="193" x="1806" y="1695"/>    
+    <position height="376" width="208" x="3171" y="1282"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="model.money.GoldCoin" project="Aquarium" 
-    file="/Aquarium/src/model/money/GoldCoin.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="205" x="2039" y="1695"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="model.money.SilverCoin" project="Aquarium" 
-    file="/Aquarium/src/model/money/SilverCoin.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="209" x="2284" y="1695"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="model.fish.Guppycruncher" project="Aquarium" 
-    file="/Aquarium/src/model/fish/Guppycruncher.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="340" width="240" x="41" y="1695"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="model.fish.Carnivore" project="Aquarium" 
-    file="/Aquarium/src/model/fish/Carnivore.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="205" x="822" y="1695"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="model.fish.Guppy" project="Aquarium" file="/Aquarium/src/model/fish/Guppy.java" 
+  <class id="2" language="java" name="properties.Idle" project="Aquarium" file="/Aquarium/src/properties/Idle.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="412" width="213" x="321" y="1695"/>    
+    <position height="466" width="253" x="2224" y="776"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="model.fish.Starcatcher" project="Aquarium" 
-    file="/Aquarium/src/model/fish/Starcatcher.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="219" x="1067" y="1695"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="model.base.Unit" project="Aquarium" file="/Aquarium/src/model/base/Unit.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="861" width="226" x="1326" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="model.base.Monster" project="Aquarium" 
-    file="/Aquarium/src/model/base/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="591" width="275" x="2037" y="938"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="model.base.Money" project="Aquarium" file="/Aquarium/src/model/base/Money.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="249" width="191" x="1806" y="938"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="model.base.Fish" project="Aquarium" file="/Aquarium/src/model/base/Fish.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="717" width="217" x="881" y="938"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="model.Food" project="Aquarium" file="/Aquarium/src/model/Food.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="412" width="199" x="642" y="938"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="15" language="java" name="properties.Hunger" project="Aquarium" file="/Aquarium/src/properties/Hunger.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="376" width="208" x="574" y="1695"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="properties.Idle" project="Aquarium" file="/Aquarium/src/properties/Idle.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="484" width="253" x="537" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="properties.Production" project="Aquarium" 
+  <class id="3" language="java" name="properties.Production" project="Aquarium" 
     file="/Aquarium/src/properties/Production.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="179" x="1326" y="1695"/>    
+    <position height="358" width="279" x="1884" y="776"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="18">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <association id="20">    
-    <bendpoint x="1335" y="938"/>    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="21" name="producer">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <generalization id="29">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
+  <interface id="4" language="java" name="properties.Renderable" project="Aquarium" 
+    file="/Aquarium/src/properties/Renderable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="193" x="1676" y="2871"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="model.monster.Sylvester" project="Aquarium" 
+    file="/Aquarium/src/model/monster/Sylvester.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="223" x="3673" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="model.monster.Destructor" project="Aquarium" 
+    file="/Aquarium/src/model/monster/Destructor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="294" x="2816" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="model.monster.Gus" project="Aquarium" file="/Aquarium/src/model/monster/Gus.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="194" x="3439" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="model.monster.Missile" project="Aquarium" 
+    file="/Aquarium/src/model/monster/Missile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="268" width="238" x="2538" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="model.monster.Balrog" project="Aquarium" 
+    file="/Aquarium/src/model/monster/Balrog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="207" x="3171" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="model.money.Diamond" project="Aquarium" 
+    file="/Aquarium/src/model/money/Diamond.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="221" x="2663" y="2635"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="model.money.Star" project="Aquarium" file="/Aquarium/src/model/money/Star.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="193" x="1194" y="2635"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="model.money.GoldCoin" project="Aquarium" 
+    file="/Aquarium/src/model/money/GoldCoin.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="205" x="2418" y="2635"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="model.money.Beetle" project="Aquarium" 
+    file="/Aquarium/src/model/money/Beetle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="193" x="2185" y="2635"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="model.money.SilverCoin" project="Aquarium" 
+    file="/Aquarium/src/model/money/SilverCoin.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="209" x="1427" y="2635"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="model.money.TreasureChest" project="Aquarium" 
+    file="/Aquarium/src/model/money/TreasureChest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="236" x="1676" y="2635"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="model.money.Pearl" project="Aquarium" file="/Aquarium/src/model/money/Pearl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="193" x="1952" y="2635"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="model.fish.Beetlemuncher" project="Aquarium" 
+    file="/Aquarium/src/model/fish/Beetlemuncher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="262" x="530" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="model.fish.Guppycruncher" project="Aquarium" 
+    file="/Aquarium/src/model/fish/Guppycruncher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="240" x="832" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="model.fish.Carnivore" project="Aquarium" 
+    file="/Aquarium/src/model/fish/Carnivore.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="205" x="43" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="model.fish.Breeder" project="Aquarium" 
+    file="/Aquarium/src/model/fish/Breeder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="220" x="1112" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="model.fish.Guppy" project="Aquarium" file="/Aquarium/src/model/fish/Guppy.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="412" width="213" x="1372" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="model.fish.Starcatcher" project="Aquarium" 
+    file="/Aquarium/src/model/fish/Starcatcher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="219" x="1625" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="model.fish.Ultravore" project="Aquarium" 
+    file="/Aquarium/src/model/fish/Ultravore.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="202" x="288" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="model.base.Unit" project="Aquarium" file="/Aquarium/src/model/base/Unit.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="861" width="226" x="2351" y="1282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="model.base.Monster" project="Aquarium" 
+    file="/Aquarium/src/model/base/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="555" width="275" x="2965" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="model.base.Money" project="Aquarium" file="/Aquarium/src/model/base/Money.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="249" width="191" x="1983" y="2183"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="model.base.Fish" project="Aquarium" file="/Aquarium/src/model/base/Fish.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="699" width="217" x="1625" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="model.Food" project="Aquarium" file="/Aquarium/src/model/Food.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="412" width="199" x="2706" y="2183"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="29">    
+    <bendpoint x="869" y="1282"/>    
+    <bendpoint x="869" y="2183"/>    
+    <bendpoint x="869" y="2635"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <association id="30">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="31" name="production">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="32" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="31" name="targetFish"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="24" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="33">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="34" name="hunger">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="35" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <generalization id="33">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="36">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="37" name="producer"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="24" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="36">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="12"/>  
+  <association id="39">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="40" name="idle"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="26"/>  
   </generalization>  
-  <generalization id="37">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="13"/>  
+  <association id="43">    
+    <bendpoint x="3408" y="776"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="44" name="hunger"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="46">    
+    <bendpoint x="2935" y="1282"/>    
+    <bendpoint x="2935" y="2183"/>    
+    <bendpoint x="2935" y="2635"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="47">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="26"/>  
   </generalization>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="10"/>  
+  <realization id="48">    
+    <bendpoint x="1100" y="1282"/>    
+    <bendpoint x="1100" y="2183"/>    
+    <bendpoint x="1100" y="2635"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="26"/>  
   </generalization>  
-  <generalization id="39">    
+  <realization id="50">    
+    <bendpoint x="1142" y="1282"/>    
+    <bendpoint x="1142" y="2183"/>    
+    <bendpoint x="1142" y="2635"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="51">    
+    <bendpoint x="3409" y="1282"/>    
+    <bendpoint x="3409" y="2183"/>    
+    <bendpoint x="3409" y="2635"/>    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="13"/>  
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <realization id="53">    
+    <bendpoint x="1079" y="1282"/>    
+    <bendpoint x="1079" y="2183"/>    
+    <bendpoint x="1079" y="2635"/>    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <association id="55">    
+    <bendpoint x="3140" y="776"/>    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="56" name="hunger"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="58">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="59">    
+    <bendpoint x="2956" y="1282"/>    
+    <bendpoint x="2956" y="2183"/>    
+    <bendpoint x="2956" y="2635"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="60">    
+    <bendpoint x="1163" y="1282"/>    
+    <bendpoint x="1163" y="2183"/>    
+    <bendpoint x="1163" y="2635"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="61">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <realization id="62">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <generalization id="64">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <generalization id="65">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <realization id="66">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="67">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="68">    
+    <bendpoint x="1121" y="1282"/>    
+    <bendpoint x="1121" y="2183"/>    
+    <bendpoint x="1121" y="2635"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="69">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="70">    
+    <bendpoint x="991" y="1282"/>    
+    <bendpoint x="991" y="2183"/>    
+    <bendpoint x="991" y="2635"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="71">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <generalization id="72">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <realization id="73">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="74">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="75">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <generalization id="76">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <generalization id="77">    
+    <bendpoint x="2193" y="776"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="78">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="79" name="production"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="81">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <realization id="82">    
+    <bendpoint x="2977" y="1282"/>    
+    <bendpoint x="2977" y="2183"/>    
+    <bendpoint x="2977" y="2635"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="83">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <association id="84">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="85" name="targetFishes"/>      
+      <multiplicity id="86" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="87">    
+    <bendpoint x="3430" y="1282"/>    
+    <bendpoint x="3430" y="2183"/>    
+    <bendpoint x="3430" y="2635"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="88">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <generalization id="89">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <realization id="90">    
+    <bendpoint x="2914" y="2635"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="91">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="92">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="93" name="hunger"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="96" name="idle"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="99" name="unit"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="101">    
+    <bendpoint x="2507" y="776"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="24"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

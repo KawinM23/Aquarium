@@ -87,7 +87,7 @@ public abstract class Unit {
 		return new Rectangle2D(posX, posY, width, height);
 	}
 
-	public boolean intersects(Unit u) {
+	public boolean intersect(Unit u) {
 		return this.getBoundary().intersects(u.getBoundary());
 	}
 
