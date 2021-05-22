@@ -1,12 +1,12 @@
 package testing;
 
 import manager.DrawManager;
-import manager.Level;
 import manager.LevelManager;
 import manager.SceneController;
 import manager.ShopController;
 import manager.SoundManager;
 import manager.ViewManager;
+import manager.base.Level;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

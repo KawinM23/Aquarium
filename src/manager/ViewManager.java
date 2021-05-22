@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import manager.base.Level;
 import model.Food;
 import model.base.Fish;
 import model.base.Money;

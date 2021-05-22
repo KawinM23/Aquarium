@@ -14,6 +14,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import manager.base.Gun;
+import manager.base.Level;
+import manager.base.Trophy;
 import model.Food;
 import model.base.Fish;
 import model.base.Unit;
@@ -67,6 +70,7 @@ public class ShopController {
 		int foodTypePrice = 200;
 		int maxFoodPrice = 300;
 		Image foodTypeImage = Food.getStaticImage(2);
+		Image gunImage = Gun.getGunImage(2);
 		int weaponPrice = 1000;
 		if (!level.isFoodUpgradable()) {
 			foodTypePrice = 0;
@@ -74,6 +78,7 @@ public class ShopController {
 			foodTypeImage = null;
 		}
 		if (!level.isWeaponUpgradable()) {
+			gunImage=null;
 			weaponPrice = 0;
 		}
 		prices = new int[] { getUnitPrice(level.getShopItem()[0]), foodTypePrice, maxFoodPrice,
@@ -81,7 +86,8 @@ public class ShopController {
 				level.getGoalPrice() };
 		// TODO Get Gun Images Later (Right now is null) + Get Goal Egg Image
 		images = new Image[] { getUnitImage(level.getShopItem()[0]), foodTypeImage, null,
-				getUnitImage(level.getShopItem()[1]), getUnitImage(level.getShopItem()[2]), null, null };
+				getUnitImage(level.getShopItem()[1]), getUnitImage(level.getShopItem()[2]), gunImage,
+				Trophy.getGoalImage(1) };
 	}
 
 	// TODO Add All button
@@ -226,10 +232,17 @@ public class ShopController {
 					// Gun
 					case 6:
 						if (PlayerController.buy(prices[5])) {
-
 							SoundManager.playClickSound();
 							PlayerController.setGunLevel(PlayerController.getGunLevel() + 1);
+							images[5] = Gun.getGunImage(PlayerController.getGunLevel() + 1);
 							// TODO Change image to new gun images
+							// If MAXED
+							if (PlayerController.getGunLevel() == 10) {
+								prices[5] = -1;
+								button.setVisible(false);
+							}
+							
+
 						}
 						break;
 					// Goal
@@ -237,6 +250,7 @@ public class ShopController {
 						if (PlayerController.buy(prices[6])) {
 							SoundManager.playClickSound();
 							PlayerController.buyGoal();
+							images[6] = Trophy.getGoalImage(PlayerController.getGoal() + 1);
 						}
 						break;
 					// Menu
@@ -275,7 +289,7 @@ public class ShopController {
 		for (int i = 0; i < 7; i++) {
 			// Draw Images
 
-			if (prices[i] != 0) {
+			if (prices[i] != 0 && prices[i] != -1) {
 				DrawManager.drawOval(gc, (int) (buttonDetail[i][0] * 1.5), (int) (buttonDetail[i][1] * 1.5),
 						(int) (getButtonWidth(i + 1) * 1.5 + 1), (int) (getButtonHeight(i + 1) * 1.5 + 5));
 			}
@@ -286,6 +300,11 @@ public class ShopController {
 			// Draw Prices
 			String priceText = "" + prices[i];
 			int relay = priceText.length() * 3;
+			
+			if ((PlayerController.getGunLevel() == 10 || prices[5] == 0) && i == 5) {
+				priceText = "";
+			}
+			
 			if (prices[i] == -1) {
 				priceText = "MAX";
 				relay += 10;
@@ -296,14 +315,11 @@ public class ShopController {
 				priceText = "";
 			if (prices[1] == 0 && i == 1)
 				priceText = "";
-			if (prices[2] == 0 && i == 2) 
+			if (prices[2] == 0 && i == 2)
 				priceText = "";
-			
-			
-			if ((PlayerController.getGunLevel() == 10 || prices[5] == 0) && i == 5) {
-				priceText = "";
-			}
 
+
+			
 			DrawManager.drawText(gc, priceText, 18,
 					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
 					(int) ((buttonDetail[i][3] * 1.5) + 19), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));

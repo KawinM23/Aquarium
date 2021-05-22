@@ -18,11 +18,11 @@ import manager.ButtonManager;
 import manager.DrawManager;
 import manager.GameManager;
 import manager.JSONManager;
-import manager.Level;
 import manager.LevelManager;
 import manager.SceneController;
 import manager.SoundManager;
 import manager.ViewManager;
+import manager.base.Level;
 import testing.tank0;
 
 public class menu2 {
