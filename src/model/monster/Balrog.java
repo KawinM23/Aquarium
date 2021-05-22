@@ -60,6 +60,7 @@ public class Balrog extends Monster implements Renderable {
 			}
 		}
 		this.move(fr);
+		this.checkFacingLeft();
 	}
 
 	@Override

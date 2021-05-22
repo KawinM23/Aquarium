@@ -61,6 +61,17 @@ public abstract class Monster extends Unit {
 		this.isFacingLeft = isFacingLeft;
 	}
 
+	public void checkFacingLeft() {
+		if (getVelX() > 0) {
+			setFacingLeft(false);
+
+		} else {
+			setFacingLeft(true);
+
+		}
+	}
+
+
 	public Idle getIdle() {
 		return idle;
 	}
@@ -110,7 +121,6 @@ public abstract class Monster extends Unit {
 		if (maxHealth != 0) {
 			this.maxHealth = maxHealth;
 		}
-
 	}
 
 }
