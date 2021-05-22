@@ -15,12 +15,12 @@ import properties.Idle;
 import properties.Renderable;
 
 public class Balrog extends Monster implements Renderable {
-	
+
 	private static final Image BalrogImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
 	private Hunger hunger;
 
-	public Balrog(String name, double posX, double posY,int health) {
+	public Balrog(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
 
 		this.setSize(135, 200);
@@ -29,7 +29,7 @@ public class Balrog extends Monster implements Renderable {
 		this.setMaxHealth(220);
 		this.setMaxHealth(health);
 		this.setHealth(getMaxHealth());
-		
+
 		this.setHunger(new Hunger(5, 0));
 		this.setIdle(new Idle(this, 25));
 	}
@@ -56,8 +56,8 @@ public class Balrog extends Monster implements Renderable {
 			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(f.getCenterX(), f.getCenterY())) {
 				// eat & levelup
 				System.out.println(this.getName() + " eat " + f.getName());
-				this.eat(f,0);
-			} 
+				this.eat(f, 0);
+			}
 		}
 		this.move(fr);
 	}
@@ -74,9 +74,10 @@ public class Balrog extends Monster implements Renderable {
 				}
 			}
 			// CheckFish
-			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(), nearestFish.getCenterY())) {
+			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(),
+					nearestFish.getCenterY())) {
 				System.out.println(this.getName() + " eat " + nearestFish.getName());
-				this.eat(nearestFish,1);
+				this.eat(nearestFish, 1);
 
 				this.getIdle().checkIdle();
 			} else {
@@ -90,19 +91,30 @@ public class Balrog extends Monster implements Renderable {
 		}
 	}
 
-	private void eat(Unit nearestFish,int i) {
-		TankManager.remove(nearestFish);
-		if(i == 1) {
-			this.getHunger().setLastFedRandom(8, 10);
+	private void eat(Unit nearestFish, int i) {
+		
+		if (!TankManager.getRemoveFishList().contains(nearestFish)) {
+			Thread feedThread = new Thread(() -> {
+				try {
+					TankManager.remove(nearestFish);
+					if (i == 1) {
+						this.getHunger().setLastFedRandom(8, 10);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			feedThread.start();
 		}
 	}
 
 	@Override
 	public void getHit() {
-		double hpPercent = (getHealth()/getMaxHealth())*100;
-		if (hpPercent>=50) {
+		double hpPercent = (getHealth() / getMaxHealth()) * 100;
+		if (hpPercent >= 50) {
 			SoundManager.playShieldHitSound();
-		} else if (hpPercent<50) {
+		} else if (hpPercent < 50) {
 			SoundManager.playBodyHitSound();
 		}
 		this.decreaseHealth(PlayerController.getGunDamage());
@@ -112,7 +124,8 @@ public class Balrog extends Monster implements Renderable {
 	public void render(GraphicsContext gc) {
 		gc.setStroke(new Color(1, 0, 0, 1));
 		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()), getHeight() - (2 * getInnerY()));
+		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
+				getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
 			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
@@ -133,7 +146,5 @@ public class Balrog extends Monster implements Renderable {
 	public void setHunger(Hunger hunger) {
 		this.hunger = hunger;
 	}
-	
-
 
 }

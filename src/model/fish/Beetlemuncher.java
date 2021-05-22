@@ -2,6 +2,7 @@ package model.fish;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import manager.SoundManager;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Money;
@@ -14,7 +15,7 @@ import properties.Idle;
 import properties.Production;
 import properties.Renderable;
 
-public class Beetlemuncher extends Fish implements Renderable{
+public class Beetlemuncher extends Fish implements Renderable {
 
 	private static final Image BeetlemuncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
@@ -26,7 +27,7 @@ public class Beetlemuncher extends Fish implements Renderable{
 		super(name, posX, posY);
 		this.setSize(100, 110);
 		this.setMouthPos(15, 80);
-		
+
 		this.setSpeed(100);
 
 		this.setHunger(new Hunger(6, 20));
@@ -74,9 +75,24 @@ public class Beetlemuncher extends Fish implements Renderable{
 	}
 
 	public void feed(Unit nearestFood) {
-		this.getHunger().setLastFedNow();
+		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
+			Thread feedThread = new Thread(() -> {
+				try {
+					// Play Sound Effect
+					SoundManager.playEatSound();
+
+					TankManager.remove(nearestFood);
+					this.getHunger().setLastFedNow();
+					this.getHunger().addLastFedRandom(0, 1);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			feedThread.start();
+		}
 	}
-	
+
 	@Override
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub

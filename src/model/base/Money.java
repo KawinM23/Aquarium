@@ -44,21 +44,23 @@ public abstract class Money extends Unit {
 	}
 
 	public void collected() {
-		// Play Sound Effect
-		SoundManager.playCollectSound();
-		
-		Thread collectedThread = new Thread(() -> {
-			try {
-				TankManager.remove(this);
-				PlayerController.addMoney(value);
-				StatTracker.addMoneyGain(value);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-		collectedThread.start();
 
+		if (!TankManager.getRemoveMoneyList().contains(this)) {
+			Thread collectedThread = new Thread(() -> {
+				try {
+					// Play Sound Effect
+					SoundManager.playCollectSound();
+
+					TankManager.remove(this);
+					PlayerController.addMoney(value);
+					StatTracker.addMoneyGain(value);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			collectedThread.start();
+		}
 	}
 
 	public long getDisappearTime() {

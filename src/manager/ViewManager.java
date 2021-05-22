@@ -201,7 +201,7 @@ public class ViewManager {
 		firstInvasion.add(g);
 		InvasionManager.setInvasionList(new ArrayList<>());
 		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 10, 10, 10 });
+		InvasionManager.setInvasionTimeList(new int[] { 30, 50, 60 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		//////////////////////////// Setting

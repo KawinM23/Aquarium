@@ -2,8 +2,11 @@ package model.base;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import manager.GameManager;
 import manager.InvasionManager;
+import manager.PlayerController;
 import manager.SoundManager;
+import manager.StatTracker;
 import manager.TankManager;
 import model.Food;
 import properties.Hunger;
@@ -47,33 +50,43 @@ public abstract class Fish extends Unit {
 
 	public void findFood() {
 
-		if (TankManager.getFoodList().size() != 0) {
-			Unit nearestFood = TankManager.getFoodList().get(0);
-			// Find NearestFood
-			for (Food f : TankManager.getFoodList()) {
-				if (this.distance(f) < this.distance(nearestFood)) {
-					nearestFood = f;
-				}
-			}
-			// Check Food position and Fish
-			if (isAtMounth(nearestFood)) {
-				// eat & levelup
-				System.out.println(this.getName() + " eat " + nearestFood.getName());
-				this.feed(nearestFood);
-				this.idle.eatFood();
-			} else {
-				// Go to food
-				this.headToFood(nearestFood);
-				if (Math.abs(this.distanceX(nearestFood)) < 10) {
-					this.setVelX(0);
-				}
-				this.idle.slowIdle();
-			}
+		Thread findFoodThread = new Thread(() -> {
+			try {
+				if (TankManager.getFoodList().size() != 0) {
+					Unit nearestFood = TankManager.getFoodList().get(0);
+					// Find NearestFood
+					for (Food f : TankManager.getFoodList()) {
+						if (this.distance(f) < this.distance(nearestFood)) {
+							nearestFood = f;
+						}
+					}
+					// Check Food position and Fish
+					if (isAtMounth(nearestFood)) {
+						// eat & levelup
+						System.out.println(this.getName() + " eat " + nearestFood.getName());
+						this.feed(nearestFood);
+						this.idle.eatFood();
+					} else {
+						// Go to food
+						this.headToFood(nearestFood);
+						if (Math.abs(this.distanceX(nearestFood)) < 10) {
+							this.setVelX(0);
+						}
+						this.idle.slowIdle();
+					}
 
-		} else {
-			// Idle No food
-			this.idle.checkIdle();
-		}
+				} else {
+					// Idle No food
+					this.idle.checkIdle();
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		findFoodThread.start();
+		
+		
 
 	}
 
@@ -85,11 +98,23 @@ public abstract class Fish extends Unit {
 
 	public void feed(Unit nearestFood) {
 		// Play Sound Effect
-		SoundManager.playEatSound();
-		
-		TankManager.remove(nearestFood);
-		this.hunger.setLastFedNow();
-		this.hunger.addLastFedRandom(0, 1);
+		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
+			Thread feedThread = new Thread(() -> {
+				try {
+					// Play Sound Effect
+					SoundManager.playEatSound();
+					
+					TankManager.remove(nearestFood);
+					this.hunger.setLastFedNow();
+					this.hunger.addLastFedRandom(0, 1);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			feedThread.start();
+		}
+
 	}
 
 	public void headToFood(Unit u) {
@@ -100,11 +125,12 @@ public abstract class Fish extends Unit {
 	}
 
 	public void die() {
-		// Play Sound Effect
-		SoundManager.playDieSound();
-		
-		System.out.println(this.getName() + " die");
-		TankManager.remove(this);
+		Thread fishDieThread = new Thread(() -> {
+			// Play Sound Effect
+			SoundManager.playDieSound();
+			TankManager.remove(this);
+		});
+		fishDieThread.start();
 	}
 
 	@Override

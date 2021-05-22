@@ -30,11 +30,10 @@ public class Destructor extends Monster implements Renderable {
 		this.setSize(135, 200);
 		this.setSpeed(80);
 
-
 		this.setMaxHealth(300);
 		this.setMaxHealth(health);
 		this.setHealth(getMaxHealth());
-		
+
 		this.setHunger(new Hunger(8, 0));
 		this.setIdle(new Idle(this, 20));
 
@@ -87,35 +86,39 @@ public class Destructor extends Monster implements Renderable {
 	@Override
 	public void attack() {
 		// TODO Shoot
-		targetFishes = new ArrayList<Unit>();
-		if (TankManager.getFishList().size() != 0) {
-			if (TankManager.getFishList().size() <= 3) {
-				for (Fish f : TankManager.getFishList()) {
-					targetFishes.add(f);
+		Thread attackThread = new Thread(() -> {
+			targetFishes = new ArrayList<Unit>();
+			if (TankManager.getFishList().size() != 0) {
+				if (TankManager.getFishList().size() <= 3) {
+					for (Fish f : TankManager.getFishList()) {
+						targetFishes.add(f);
+					}
+				} else {
+					for (int i = 0; i < 3; i++) {
+						targetFishes.add(TankManager.getFishList().get(i));
+					}
+
+					// Find TargetFishes
+					for (int j = 3; j < TankManager.getFishList().size(); j++) {
+						replaceTargetFishes(targetFishes, TankManager.getFishList().get(j));
+					}
 				}
+				// TODO SHOOT MISSLIES
+				System.out.println(targetFishes);
+
+				shootMissile(targetFishes);
+
+				this.getHunger().setLastFedNow();
+
+				this.getIdle().checkIdleMonster();
+
 			} else {
-				for (int i = 0; i < 3; i++) {
-					targetFishes.add(TankManager.getFishList().get(i));
-				}
-
-				// Find TargetFishes
-				for (int j = 3; j < TankManager.getFishList().size(); j++) {
-					replaceTargetFishes(targetFishes, TankManager.getFishList().get(j));
-				}
+				// Idle No food
+				this.getIdle().checkIdleMonster();
 			}
-			// TODO SHOOT MISSLIES
-			System.out.println(targetFishes);
+		});
+		attackThread.start();
 
-			shootMissile(targetFishes);
-
-			this.getHunger().setLastFedNow();
-
-			this.getIdle().checkIdleMonster();
-
-		} else {
-			// Idle No food
-			this.getIdle().checkIdleMonster();
-		}
 	}
 
 	private void shootMissile(ArrayList<Unit> targetFishes) {
@@ -182,10 +185,10 @@ public class Destructor extends Monster implements Renderable {
 
 	public void getHit() {
 		// Onclick Mouse -> decrease Hp
-		double hpPercent = (getHealth()/getMaxHealth())*100;
-		if (hpPercent>=50) {
+		double hpPercent = (getHealth() / getMaxHealth()) * 100;
+		if (hpPercent >= 50) {
 			SoundManager.playShieldHitSound();
-		} else if (hpPercent<50) {
+		} else if (hpPercent < 50) {
 			SoundManager.playBodyHitSound();
 		}
 		this.decreaseHealth(PlayerController.getGunDamage());

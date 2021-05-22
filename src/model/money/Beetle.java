@@ -13,7 +13,7 @@ public class Beetle extends Money implements Renderable{
 		super(name, posX, posY);
 		this.setSize(45, 40);
 		
-		this.setVelY(-50);
+		this.setVelY(-55);
 		
 		this.setValue(150);
 	}

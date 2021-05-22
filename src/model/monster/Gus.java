@@ -17,7 +17,7 @@ public class Gus extends Monster implements Renderable {
 
 	private static final Image GusImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	public Gus(String name, double posX, double posY,int health) {
+	public Gus(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
 
 		this.setSize(150, 200);
@@ -26,7 +26,7 @@ public class Gus extends Monster implements Renderable {
 		this.setMaxHealth(300);
 		this.setMaxHealth(health);
 		this.setHealth(getMaxHealth());
-		
+
 		this.setHunger(new Hunger(0.1, 0));
 		this.setIdle(new Idle(this, 30));
 	}
@@ -62,28 +62,37 @@ public class Gus extends Monster implements Renderable {
 	}
 
 	private void eat(Unit nearestFood) {
-		SoundManager.playEatSound();
-		TankManager.remove(nearestFood);
-		if (nearestFood instanceof Fish) {
-			decreaseHealth(40);
-		} else if (nearestFood instanceof Food) {
-			if (((Food) nearestFood).getFoodType() == 2) {
-				decreaseHealth(100);
-			} else if (((Food) nearestFood).getFoodType() == 1) {
-				switch (((Food) nearestFood).getFoodLevel()) {
-				case 1:
-					decreaseHealth(10);
-					break;
-				case 2:
-					decreaseHealth(20);
-					break;
-				case 3:
-					decreaseHealth(30);
-					break;
+
+		Thread feedThread = new Thread(() -> {
+			try {
+				SoundManager.playEatSound();
+				TankManager.remove(nearestFood);
+				if (nearestFood instanceof Fish) {
+					decreaseHealth(15);
+				} else if (nearestFood instanceof Food) {
+					if (((Food) nearestFood).getFoodType() == 2) {
+						decreaseHealth(100);
+					} else if (((Food) nearestFood).getFoodType() == 1) {
+						switch (((Food) nearestFood).getFoodLevel()) {
+						case 1:
+							decreaseHealth(10);
+							break;
+						case 2:
+							decreaseHealth(20);
+							break;
+						case 3:
+							decreaseHealth(30);
+							break;
+						}
+					}
 				}
+				getHunger().setLastFedNow();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
-		getHunger().setLastFedNow();
+		});
+		feedThread.start();
 
 	}
 

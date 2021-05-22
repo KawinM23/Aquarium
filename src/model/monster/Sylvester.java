@@ -103,8 +103,21 @@ public class Sylvester extends Monster implements Renderable {
 
 	private void eat(Unit nearestFish) {
 		// TODO Auto-generated method stub
-		TankManager.remove(nearestFish);
-		this.getHunger().setLastFedNow();
+		
+		if (!TankManager.getRemoveFishList().contains(nearestFish)) {
+			Thread feedThread = new Thread(() -> {
+				try {
+					TankManager.remove(nearestFish);
+					this.getHunger().setLastFedNow();
+					this.getHunger().addLastFedRandom(1, 2);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			feedThread.start();
+		}
+
 	}
 
 	public void getHit() {

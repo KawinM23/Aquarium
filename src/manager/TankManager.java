@@ -110,9 +110,9 @@ public class TankManager {
 		} else if (u instanceof Money) {
 			moneyList.add((Money) u);
 		} else if (u instanceof Fish) {
-			fishList.add((Fish) u);
+			addFishList.add((Fish) u);
 		} else if (u instanceof Monster) {
-			monsterList.add((Monster) u);
+			addMonsterList.add((Monster) u);
 		}
 	}
 	
@@ -185,7 +185,7 @@ public class TankManager {
 		SoundManager.playDropFoodSound();
 
 		if (!(foodList.size() >= PlayerController.getMaxFood())) {
-			unitList.add(f);
+			addUnitList.add(f);
 			foodList.add(f);
 			return true;
 		} else {
@@ -194,7 +194,7 @@ public class TankManager {
 	}
 
 	public static void produceMoney(Money m) {
-		unitList.add(m);
+		addUnitList.add(m);
 		moneyList.add(m);
 	}
 
@@ -202,15 +202,6 @@ public class TankManager {
 
 		if (unitList.contains(u)) {
 			removeUnitList.add(u);
-			
-//			Iterator<Unit> itr = unitList.iterator();
-//			while (itr.hasNext()) {
-//				Unit unit = itr.next();
-//				if (unit.equals(u)) {
-//					itr.remove();
-//
-//				}
-//			}
 			if (u instanceof Food) {
 				removeFoodList.add(u);
 			} else if (u instanceof Money) {
@@ -231,6 +222,10 @@ public class TankManager {
 		moneyList.clear();
 		fishList.clear();
 		monsterList.clear();
+		
+		addUnitList.clear();
+		addFishList.clear();
+		addMonsterList.clear();
 
 		removeFoodList.clear();
 		removeMoneyList.clear();
@@ -268,6 +263,26 @@ public class TankManager {
 			m.continuePause(duration);
 		}
 		InvasionManager.addInvasionTime(duration);
+	}
+
+	public static ArrayList<Unit> getRemoveUnitList() {
+		return removeUnitList;
+	}
+
+	public static ArrayList<Unit> getRemoveFishList() {
+		return removeFishList;
+	}
+
+	public static ArrayList<Unit> getRemoveFoodList() {
+		return removeFoodList;
+	}
+
+	public static ArrayList<Unit> getRemoveMoneyList() {
+		return removeMoneyList;
+	}
+
+	public static ArrayList<Unit> getRemoveMonsterList() {
+		return removeMonsterList;
 	}
 
 }
