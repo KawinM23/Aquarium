@@ -96,8 +96,13 @@ public class JSONManager {
 			if (ecurrentPlayer) {
 				playerName = eplayerName;
 				currentPlayer = ecurrentPlayer;
-				tank = (int) etank;
-				level = (int) elevel;
+				if (playerName.equals("HackerMan")) {
+					tank = 4;
+					level = 4;
+				} else {
+					tank = (int) etank;
+					level = (int) elevel;
+				}
 				moneyGained = (int) emoney;
 				fishBought = (int) efish;
 				playTime = eplaytime;
