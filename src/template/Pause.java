@@ -30,8 +30,8 @@ public class Pause {
 	private static final int POS_Y = 50;
 	private static final int WIDTH = 391;
 	private static final int HEIGHT = 576;
-	static AnchorPane anchorPane;
-	static ArrayList<Button> buttonList = new ArrayList<Button>();
+	private static AnchorPane anchorPane;
+	private static ArrayList<Button> buttonList = new ArrayList<Button>();
 
 	public static void drawPane(GraphicsContext gc) {
 		DrawManager.drawImageFixSize(gc, image, POS_X, POS_Y, WIDTH, HEIGHT);
