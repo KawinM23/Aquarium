@@ -83,7 +83,6 @@ public class stats {
 //					button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				System.out.println("Pressed " + buttonText);
 			}
 		});
 

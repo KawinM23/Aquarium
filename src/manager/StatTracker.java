@@ -9,11 +9,11 @@ public class StatTracker {
 	private static int monsterDefeated;
 	
 	public static void calculateStat() {
-		System.out.println(getMoneyGained());
-		System.out.println(getFishBought());
-		System.out.println(getDuration());
-		System.out.println(getFoodBought());
-		System.out.println(getMonsterDefeated());
+//		System.out.println(getMoneyGained());
+//		System.out.println(getFishBought());
+//		System.out.println(getDuration());
+//		System.out.println(getFoodBought());
+//		System.out.println(getMonsterDefeated());
 		
 		//JSON Calculate
 		addStatToJSON();

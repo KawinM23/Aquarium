@@ -170,7 +170,6 @@ public class ShopController {
 
 							});
 							thread.start();
-							System.out.println(PlayerController.getFoodLevel());
 						}
 						break;
 					// Food Capacity
@@ -186,7 +185,6 @@ public class ShopController {
 								prices[2] = 0;
 								button.setVisible(false);
 							}
-							System.out.println(PlayerController.getMaxFood());
 						}
 						break;
 					// Special 1

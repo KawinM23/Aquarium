@@ -36,7 +36,6 @@ public abstract class Monster extends Unit {
 	public void defeated() {
 		TankManager.produceMoney(new Diamond("Diamond", getCenterX(), getCenterY(), 0));
 		TankManager.remove(this);
-		System.out.println("Defeat");
 		StatTracker.addMonsterDefeated();
 	}
 

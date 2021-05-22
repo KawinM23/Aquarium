@@ -25,33 +25,37 @@ public class InvasionManager {
 	private static boolean hasDestructor;
 
 	public static void update() {
-		if (!isInvaded && invasionTime - System.nanoTime() <= 7e9 && warning != true) {
-			setWarning(true);
-			SoundManager.playWarningSound();
-			// TODO show warning
-			Thread warningThread = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					while (isWarning()) {
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+		if (invasionTimeList[0] != 0) {
+			if (!isInvaded && invasionTime - System.nanoTime() <= 7e9 && warning != true) {
+				setWarning(true);
+				SoundManager.playWarningSound();
+				// TODO show warning
+				Thread warningThread = new Thread(new Runnable() {
+					@Override
+					public void run() {
+						while (isWarning() && !PlayerController.isPause()) {
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							if (!PlayerController.isPause()) {
+								if (isShowWarning()) {
+									setShowWarning(false);
+								} else {
+									setShowWarning(true);
+								}
+							}
 						}
-						if (isShowWarning()) {
-							setShowWarning(false);
-						} else {
-							setShowWarning(true);
-						}
+						setShowWarning(false);
 					}
-					setShowWarning(false);
-				}
-			});
-			warningThread.start();
-		} else if (!isInvaded && System.nanoTime() >= invasionTime && invasionTimeList[0] != 0) {
-			startInvasion();
-		} else if (isInvaded && TankManager.getMonsterCount() == 0) {
-			endInvasion();
+				});
+				warningThread.start();
+			} else if (!isInvaded && System.nanoTime() >= invasionTime) {
+				startInvasion();
+			} else if (isInvaded && TankManager.getMonsterCount() == 0) {
+				endInvasion();
+			}
 		}
 	}
 
