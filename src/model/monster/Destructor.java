@@ -40,9 +40,8 @@ public class Destructor extends Monster implements Renderable {
 
 	@Override
 	public void update(int fr) {
-		// TODO Auto-generated method stub
 		if (this.getHealth() <= 0) {
-			// TODO Defeat
+			//Defeat
 			defeated();
 			return;
 		}
@@ -84,7 +83,7 @@ public class Destructor extends Monster implements Renderable {
 
 	@Override
 	public void attack() {
-		// TODO Shoot
+		//Shoot
 		Thread attackThread = new Thread(() -> {
 			targetFishes = new ArrayList<Unit>();
 			if (TankManager.getFishList().size() != 0) {
@@ -119,8 +118,6 @@ public class Destructor extends Monster implements Renderable {
 	}
 
 	private void shootMissile(ArrayList<Unit> targetFishes) {
-		// TODO Auto-generated method stub
-
 		Thread shootThread = new Thread(() -> {
 			for (Unit u : targetFishes) {
 				Missile mis = new Missile("Missile", getCenterX(), getCenterY(), 0, u);
@@ -193,7 +190,6 @@ public class Destructor extends Monster implements Renderable {
 
 	@Override
 	public void continuePause(long duration) {
-		// TODO Auto-generated method stub
 		this.getHunger().addLastFed(duration);
 	}
 

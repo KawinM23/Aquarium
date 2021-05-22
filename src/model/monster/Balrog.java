@@ -36,7 +36,7 @@ public class Balrog extends Monster implements Renderable {
 	@Override
 	public void update(int fr) {
 		if (this.getHealth() <= 0) {
-			// TODO Defeat
+			//Defeat
 			defeated();
 			return;
 		}
@@ -64,7 +64,6 @@ public class Balrog extends Monster implements Renderable {
 
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
 		if (TankManager.getFishList().size() != 0) {
 			Unit nearestFish = TankManager.getFishList().get(0);
 			// Find NearestFish
@@ -101,7 +100,6 @@ public class Balrog extends Monster implements Renderable {
 						this.getHunger().setLastFedRandom(8, 10);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -135,7 +133,6 @@ public class Balrog extends Monster implements Renderable {
 
 	@Override
 	public void continuePause(long duration) {
-		// TODO Auto-generated method stub
 		this.getHunger().addLastFed(duration);
 	}
 

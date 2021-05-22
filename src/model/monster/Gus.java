@@ -87,7 +87,6 @@ public class Gus extends Monster implements Renderable {
 				}
 				getHunger().setLastFedNow();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -128,7 +127,6 @@ public class Gus extends Monster implements Renderable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
 		gc.setStroke(new Color(1, 0, 0, 1));
 		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
