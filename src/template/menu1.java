@@ -20,7 +20,6 @@ public class menu1 {
 	final String IMAGE_PATH = ClassLoader.getSystemResource("menu_editted5.jpg").toString();
 	Scene scene;
 	String[] buttonTexts;
-	GraphicsContext gcc;
 	// ClassLoader.getSystemResource("").toString();
 
 	public menu1(String[] buttonTexts) {
@@ -29,12 +28,11 @@ public class menu1 {
 		this.scene = new Scene(root);
 		Canvas canvas = new Canvas(GameManager.getWIDTH(), GameManager.getHEIGHT());
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gcc=gc;
 		root.getChildren().add(canvas);
 
 		DrawManager.resetBackGround(gc);
 		DrawManager.setBackGroundImage(gc, IMAGE_PATH);
-		DrawManager.drawGuraGreeting(gc,"MainMenu");
+		DrawManager.drawGuraGreeting(gc, "MainMenu");
 
 		for (int i = 0; i < buttonDetail.length; i++) {
 			Button button = new Button(buttonTexts[i]);
@@ -49,10 +47,6 @@ public class menu1 {
 
 	public Scene getScene() {
 		return this.scene;
-	}
-	
-	public GraphicsContext getGraphicsContext() {
-		return gcc;
 	}
 
 }

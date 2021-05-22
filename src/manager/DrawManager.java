@@ -151,12 +151,12 @@ public class DrawManager {
 		if (key.substring(0, 4).equals("Tank")) key = "Tank";
 		switch (key) {
 		case "MainMenu":
-			if (randomNum <= 2 && !justOpened) {
-				speech = "A";
-			}
 			break;
 		case "Credits":
-			if (randomNum <= 3) {
+			if (randomNum <= 1) {
+				speech = "A";
+			}
+			else if (randomNum <= 3) {
 				speech = "Sleeping is also important na";
 			} else if (randomNum <= 6) {
 				speech = "I smell a SHRIMP in here...";
