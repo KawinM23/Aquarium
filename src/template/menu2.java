@@ -1,5 +1,7 @@
 package template;
 
+import java.util.ArrayList;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,6 +17,7 @@ import javafx.scene.text.Font;
 import manager.ButtonManager;
 import manager.DrawManager;
 import manager.GameManager;
+import manager.JSONManager;
 import manager.Level;
 import manager.LevelManager;
 import manager.SceneController;
@@ -28,10 +31,10 @@ public class menu2 {
 	// THIS IS MEASURED IN 940 x 720 PIXELS
 	final double[][] buttonDetail = { { 553, 68, 899, 157, 20, 40 }, { 557, 203, 897, 291, 20, 40 },
 			{ 563, 338, 898, 423, 20, 40 }, { 564, 460, 903, 543, 20, 40 }, { 578, 597, 882, 681, 40, 40 } };
-
 	final String IMAGE_PATH = ClassLoader.getSystemResource("menu2_editted3.jpg").toString();
 	Scene scene;
 	String[] buttonTexts;
+	
 	// ClassLoader.getSystemResource("").toString();
 
 	public menu2(String[] buttonTexts) {
@@ -52,12 +55,14 @@ public class menu2 {
 			ButtonManager.setHighlightProperty(button, (int) buttonDetail[i][4]);
 			ButtonManager.setMenu2ButtonHandler(button);
 			ButtonManager.setButtonLocationNoZoom(root, button, buttonDetail[i]);
-			//addButtons(root, buttonTexts[i], buttonDetail[i]);
+			ButtonManager.addMenu2Button(button);
+			// addButtons(root, buttonTexts[i], buttonDetail[i]);
 		}
-		;
+		
 	}
 
 	public Scene getScene() {
 		return this.scene;
 	}
+
 }

@@ -154,14 +154,14 @@ public class SceneController {
 		});
 		thread.start();
 	}
-	
+
 	public static void changeToTank(int tankNumber) {
 		Thread thread = new Thread(() -> {
 			try {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						String tankCode = "Tank"+tankNumber;
+						String tankCode = "Tank" + tankNumber;
 						// TODO Auto-generated method stub
 						SceneController.changeScene(tankCode);
 					}
@@ -175,7 +175,6 @@ public class SceneController {
 		});
 		thread.start();
 	}
-	
 
 	public static void updatePlayerSettings() {
 		if (JSONManager.getTank() == 1 && JSONManager.getLevel() == 1) {
