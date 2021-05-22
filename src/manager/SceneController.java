@@ -9,9 +9,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import template.Credits;
 import template.WinLose;
-import template.menu1;
-import template.menu2;
-import template.stats;
+import template.Menu1;
+import template.Menu2;
+import template.Stats;
 
 public class SceneController {
 	private static ArrayList<Scene> sceneList = new ArrayList<Scene>();
@@ -21,19 +21,19 @@ public class SceneController {
 	private static String[] startingMenuTexts = { "Continue", "Select Level", "Statistics", "Change Player", "Credits",
 			"Music: Normal", "Sound: Normal", "Quit" };
 	private static String[] tankLevelTexts = { "Tank 1", "Tank 2", "Tank 3", "Tank 4", "Back" };
-	private static Scene tankLevelScene = (new menu2(tankLevelTexts)).getScene();
+	private static Scene tankLevelScene = (new Menu2(tankLevelTexts)).getScene();
 	private static String[] tankLevel1Texts = { "Tank 1-1", "Tank 1-2", "Tank 1-3", "Tank 1-4", "Back" };
 	private static String[] tankLevel2Texts = { "Tank 2-1", "Tank 2-2", "Tank 2-3", "Tank 2-4", "Back" };
 	private static String[] tankLevel3Texts = { "Tank 3-1", "Tank 3-2", "Tank 3-3", "Tank 3-4", "Back" };
 	private static String[] tankLevel4Texts = { "Tank 4-1", "Tank 4-2", "Tank 4-3", "Tank 4-4", "Back" };
-	private static Scene tankLevel1Scene = (new menu2(tankLevel1Texts)).getScene();
-	private static Scene tankLevel2Scene = (new menu2(tankLevel2Texts)).getScene();
-	private static Scene tankLevel3Scene = (new menu2(tankLevel3Texts)).getScene();
-	private static Scene tankLevel4Scene = (new menu2(tankLevel4Texts)).getScene();
+	private static Scene tankLevel1Scene = (new Menu2(tankLevel1Texts)).getScene();
+	private static Scene tankLevel2Scene = (new Menu2(tankLevel2Texts)).getScene();
+	private static Scene tankLevel3Scene = (new Menu2(tankLevel3Texts)).getScene();
+	private static Scene tankLevel4Scene = (new Menu2(tankLevel4Texts)).getScene();
 	private static String[] creditsTexts = { "Back" };
 	private static Scene creditsScene = (new Credits(creditsTexts)).getScene();
 	private static String[] statsTexts = { "Back" };
-	private static Scene statsScene = (new stats(statsTexts)).getScene();
+	private static Scene statsScene = (new Stats(statsTexts)).getScene();
 	private static Scene winScene = (new WinLose(1)).getScene();
 	private static Scene loseScene = (new WinLose(0)).getScene();
 
@@ -44,7 +44,7 @@ public class SceneController {
 	}
 
 	public static void initializeScenes() {
-		Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
+		Scene startingMenuScene = (new Menu1(startingMenuTexts)).getScene();
 		addScene("MainMenu", startingMenuScene);
 		addScene("TankAll", tankLevelScene);
 		addScene("Tank1", tankLevel1Scene);
@@ -196,27 +196,27 @@ public class SceneController {
 	public static void refreshScene(String sceneName) {
 		if (sceneName.equals("MainMenu")) {
 			removeScene("MainMenu");
-			Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
+			Scene startingMenuScene = (new Menu1(startingMenuTexts)).getScene();
 			addScene("MainMenu", startingMenuScene);
 		} else if (sceneName.equals("TankAll")) {
 			removeScene("TankAll");
-			Scene tankLevelScene = (new menu2(tankLevelTexts)).getScene();
+			Scene tankLevelScene = (new Menu2(tankLevelTexts)).getScene();
 			addScene("TankAll", tankLevelScene);
 		} else if (sceneName.equals("Tank1")) {
 			removeScene("Tank1");
-			Scene tankLevel1Scene = (new menu2(tankLevel1Texts)).getScene();
+			Scene tankLevel1Scene = (new Menu2(tankLevel1Texts)).getScene();
 			addScene("Tank1", tankLevel1Scene);
 		} else if (sceneName.equals("Tank2")) {
 			removeScene("Tank2");
-			Scene tankLevel2Scene = (new menu2(tankLevel2Texts)).getScene();
+			Scene tankLevel2Scene = (new Menu2(tankLevel2Texts)).getScene();
 			addScene("Tank2", tankLevel2Scene);
 		} else if (sceneName.equals("Tank3")) {
 			removeScene("Tank3");
-			Scene tankLevel3Scene = (new menu2(tankLevel3Texts)).getScene();
+			Scene tankLevel3Scene = (new Menu2(tankLevel3Texts)).getScene();
 			addScene("Tank3", tankLevel3Scene);
 		} else if (sceneName.equals("Tank4")) {
 			removeScene("Tank4");
-			Scene tankLevel4Scene = (new menu2(tankLevel4Texts)).getScene();
+			Scene tankLevel4Scene = (new Menu2(tankLevel4Texts)).getScene();
 			addScene("Tank4", tankLevel4Scene);
 		} else if (sceneName.equals("Credits")) {
 			removeScene("Credits");
@@ -224,21 +224,21 @@ public class SceneController {
 			addScene("Credits", creditsScene);
 		} else if (sceneName.equals("Statistics")) {
 			removeScene("Statistics");
-			Scene statsScene = (new stats(statsTexts)).getScene();
+			Scene statsScene = (new Stats(statsTexts)).getScene();
 			addScene("Statistics", statsScene);
 		}
 
 	}
 
 	public static void refreshAllScenes() {
-		Scene startingMenuScene = (new menu1(startingMenuTexts)).getScene();
-		Scene tankLevelScene = (new menu2(tankLevelTexts)).getScene();
-		Scene tankLevel1Scene = (new menu2(tankLevel1Texts)).getScene();
-		Scene tankLevel2Scene = (new menu2(tankLevel2Texts)).getScene();
-		Scene tankLevel3Scene = (new menu2(tankLevel3Texts)).getScene();
-		Scene tankLevel4Scene = (new menu2(tankLevel4Texts)).getScene();
+		Scene startingMenuScene = (new Menu1(startingMenuTexts)).getScene();
+		Scene tankLevelScene = (new Menu2(tankLevelTexts)).getScene();
+		Scene tankLevel1Scene = (new Menu2(tankLevel1Texts)).getScene();
+		Scene tankLevel2Scene = (new Menu2(tankLevel2Texts)).getScene();
+		Scene tankLevel3Scene = (new Menu2(tankLevel3Texts)).getScene();
+		Scene tankLevel4Scene = (new Menu2(tankLevel4Texts)).getScene();
 		Scene creditsScene = (new Credits(creditsTexts)).getScene();
-		Scene statsScene = (new stats(statsTexts)).getScene();
+		Scene statsScene = (new Stats(statsTexts)).getScene();
 
 		removeAllScenes();
 

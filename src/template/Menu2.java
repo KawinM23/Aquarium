@@ -25,7 +25,7 @@ import manager.GameManager;
 import manager.base.Level;
 import testing.tank0;
 
-public class menu2 {
+public class Menu2 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
 	// THIS IS MEASURED IN 940 x 720 PIXELS
@@ -37,7 +37,7 @@ public class menu2 {
 	
 	// ClassLoader.getSystemResource("").toString();
 
-	public menu2(String[] buttonTexts) {
+	public Menu2(String[] buttonTexts) {
 		this.buttonTexts = buttonTexts;
 		AnchorPane root = new AnchorPane();
 		this.scene = new Scene(root);

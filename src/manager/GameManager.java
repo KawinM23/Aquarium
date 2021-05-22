@@ -29,7 +29,7 @@ import model.monster.Balrog;
 import model.monster.Destructor;
 import model.monster.Gus;
 import model.monster.Sylvester;
-import template.pause1;
+import template.Pause;
 
 public class GameManager {
 	private static int WIDTH = (int) (640*1.5);
@@ -59,9 +59,9 @@ public class GameManager {
 		anchorPane = new AnchorPane();
 		tankPane.getChildren().add(anchorPane);
 
-		pause1.setAnchorPane(anchorPane);
-		pause1.setPauseButtons();
-		pause1.hideButtons();
+		Pause.setAnchorPane(anchorPane);
+		Pause.setPauseButtons();
+		Pause.hideButtons();
 
 		// tankThread
 		tankThread = newTankThread(canvas, gc);
@@ -127,7 +127,7 @@ public class GameManager {
 
 							}
 
-							pause1.hideButtons();
+							Pause.hideButtons();
 						}
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
@@ -141,8 +141,8 @@ public class GameManager {
 						InvasionManager.render(gc);
 
 						if (PlayerController.isPause()) {
-							pause1.drawPane(gc);
-							pause1.showButtons();
+							Pause.drawPane(gc);
+							Pause.showButtons();
 						}
 
 					}

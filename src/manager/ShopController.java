@@ -27,7 +27,7 @@ import model.fish.Guppycruncher;
 import model.fish.Starcatcher;
 import model.fish.Ultravore;
 import model.money.Beetle;
-import template.pause1;
+import template.Pause;
 
 public class ShopController {
 	// TODO get money from Money class

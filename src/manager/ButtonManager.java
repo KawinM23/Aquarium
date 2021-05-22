@@ -9,8 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import template.PlayerMenu;
-import template.menu2;
-import template.stats;
+import template.Menu2;
+import template.Stats;
 
 public class ButtonManager {
 
@@ -225,8 +225,8 @@ public class ButtonManager {
 								public void run() {
 									// TODO Auto-generated method stub
 									SceneController.changeScene("Stats");
-									stats.setStats();
-									stats.drawStats();
+									Stats.setStats();
+									Stats.drawStats();
 								}
 							});
 

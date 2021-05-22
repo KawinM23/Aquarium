@@ -18,7 +18,7 @@ import manager.SceneController;
 import manager.SoundManager;
 import manager.GameManager;
 
-public class pause1 {
+public class Pause {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
 	static final double[][] buttonDetail = { { 53, 138, 340, 217, 20, 40.0 }, { 54, 253, 340, 325, 20, 30.0 },

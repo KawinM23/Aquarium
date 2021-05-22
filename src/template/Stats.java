@@ -18,7 +18,7 @@ import manager.JSONManager;
 import manager.SceneController;
 import manager.SoundManager;
 
-public class stats {
+public class Stats {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
 	// THIS IS MEASURED IN 940 x 720 PIXELS
@@ -41,7 +41,7 @@ public class stats {
 	private static GraphicsContext gcc;
 	// ClassLoader.getSystemResource("").toString();
 
-	public stats(String[] buttonTexts) {
+	public Stats(String[] buttonTexts) {
 		this.buttonTexts = buttonTexts;
 		AnchorPane root = new AnchorPane();
 		this.scene = new Scene(root);

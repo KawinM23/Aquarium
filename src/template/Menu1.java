@@ -9,7 +9,7 @@ import manager.ButtonManager;
 import manager.DrawManager;
 import manager.GameManager;
 
-public class menu1 {
+public class Menu1 {
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
 	final double[][] buttonDetail = { { 354.0, 43.0, 576.0, 116.0, 100.0, 50.0 },
@@ -22,7 +22,7 @@ public class menu1 {
 	String[] buttonTexts;
 	// ClassLoader.getSystemResource("").toString();
 
-	public menu1(String[] buttonTexts) {
+	public Menu1(String[] buttonTexts) {
 		this.buttonTexts = buttonTexts;
 		AnchorPane root = new AnchorPane();
 		this.scene = new Scene(root);

@@ -3,9 +3,6 @@ package manager.base;
 import javafx.scene.image.Image;
 
 public class Gun {
-	private static int level;
-	private static int damage;
-	private static int price = 1000;
 
 	private static Image gun1Image = new Image(ClassLoader.getSystemResource("gun1.png").toString());
 	private static Image gun2Image = new Image(ClassLoader.getSystemResource("gun2.png").toString());
@@ -43,53 +40,6 @@ public class Gun {
 		default:
 		}
 		return null;
-	}
-
-	public static int getLevel() {
-		return level;
-	}
-
-	public static void setLevel(int level) {
-		Gun.level = level;
-	}
-
-	public static int getDamage() {
-		// TODO Gun Damage
-		switch (level) {
-		case 1:
-			return 10;
-		case 2:
-			return 13;
-		case 3:
-			return 17;
-		case 4:
-			return 20;
-		case 5:
-			return 24;
-		case 6:
-			return 27;
-		case 7:
-			return 31;
-		case 8:
-			return 34;
-		case 9:
-			return 38;
-		case 10:
-			return 41;
-		}
-		return 0;
-	}
-
-	public static void setDamage(int damage) {
-		Gun.damage = damage;
-	}
-
-	public static int getPrice() {
-		return price;
-	}
-
-	public static void setPrice(int price) {
-		Gun.price = price;
 	}
 
 }
