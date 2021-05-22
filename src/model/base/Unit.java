@@ -92,8 +92,6 @@ public abstract class Unit {
 	}
 
 	// GETTER SETTER
-	@SuppressWarnings("unused")
-	private int _____GETTER_SETTER_____;
 
 	public String getName() {
 		return name;
