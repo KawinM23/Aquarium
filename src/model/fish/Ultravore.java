@@ -13,10 +13,15 @@ import properties.Renderable;
 
 public class Ultravore extends Fish implements Renderable {
 
-	private static final Image UltravoreImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image UltravoreLeftImage = new Image(ClassLoader.getSystemResource("UltravoreLeft.png").toString());
+	private static final Image UltravoreRightImage = new Image(ClassLoader.getSystemResource("UltravoreRight.png").toString());
+	private static final Image UltravoreHungryLeftImage = new Image(
+			ClassLoader.getSystemResource("UltravoreHungryLeft.png").toString());
+	private static final Image UltravoreHungryRightImage = new Image(
+			ClassLoader.getSystemResource("UltravoreHungryRight.png").toString());
 
 	public Image getImage() {
-		return UltravoreImage;
+		return UltravoreLeftImage;
 	}
 
 	public Ultravore(String name, double posX, double posY) {
@@ -27,19 +32,28 @@ public class Ultravore extends Fish implements Renderable {
 		this.setSpeed(60);
 		this.setVelZero();
 
-		this.setHunger(new Hunger(10, 30));
-		this.setProduction(new Production(this, 9, 15));
+		this.setHunger(new Hunger(10, 32));
+		this.setProduction(new Production(this, 9, 18));
 		this.setIdle(new Idle(this, 20));
 		this.setPrice(10000);
 	}
 
 	@Override
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		if (isFacingLeft()) {
-			gc.drawImage(UltravoreImage, getPosX(), getPosY(), getWidth(), getHeight());
+
+		if (isHungry()) {
+			if (isFacingLeft()) {
+				gc.drawImage(UltravoreHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(UltravoreHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
 		} else {
-			gc.drawImage(UltravoreImage, getPosX(), getPosY(), getWidth(), getHeight());
+
+			if (isFacingLeft()) {
+				gc.drawImage(UltravoreLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(UltravoreRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
 		}
 	}
 

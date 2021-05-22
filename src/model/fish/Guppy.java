@@ -112,7 +112,6 @@ public class Guppy extends Fish implements Renderable {
 						this.getProduction().setProductType(5);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
