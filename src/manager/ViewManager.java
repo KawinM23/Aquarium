@@ -187,11 +187,11 @@ public class ViewManager {
 		TankManager.add(s1);
 //
 //
-//		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
-//		TankManager.addStartFish(gc1);
-//
-//		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
-//		TankManager.addStartFish(bm1);
+		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
+		TankManager.addStartFish(gc1);
+
+		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
+		TankManager.addStartFish(bm1);
 
 		Sylvester sv = new Sylvester("Sv", 400, 500, 0);
 

@@ -17,16 +17,20 @@ import properties.Renderable;
 
 public class Beetlemuncher extends Fish implements Renderable {
 
-	private static final Image BeetlemuncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
-
+	private static final Image BeetlemuncherLeftImage = new Image(ClassLoader.getSystemResource("BeetlemuncherLeft.png").toString());
+	private static final Image BeetlemuncherRightImage = new Image(ClassLoader.getSystemResource("BeetlemuncherRight.png").toString());
+	private static final Image BeetlemuncherHungryLeftImage = new Image(ClassLoader.getSystemResource("BeetlemuncherHungryLeft.png").toString());
+	private static final Image BeetlemuncherHungryRightImage = new Image(ClassLoader.getSystemResource("BeetlemuncherHungryRight.png").toString());
+	
+	
 	public Image getImage() {
-		return BeetlemuncherImage;
+		return BeetlemuncherLeftImage;
 	}
 
 	public Beetlemuncher(String name, double posX, double posY) {
 		super(name, posX, posY);
 		this.setSize(100, 110);
-		this.setMouthPos(15, 80);
+		this.setMouthPos(15, 60);
 
 		this.setSpeed(100);
 
@@ -96,10 +100,19 @@ public class Beetlemuncher extends Fish implements Renderable {
 	@Override
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if (isFacingLeft()) {
-			gc.drawImage(BeetlemuncherImage, getPosX(), getPosY(), getWidth(), getHeight());
+		if (isHungry()) {
+			if (isFacingLeft()) {
+				gc.drawImage(BeetlemuncherHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(BeetlemuncherHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
 		} else {
-			gc.drawImage(BeetlemuncherImage, getPosX(), getPosY(), getWidth(), getHeight());
+
+			if (isFacingLeft()) {
+				gc.drawImage(BeetlemuncherLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(BeetlemuncherRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
 		}
 	}
 
