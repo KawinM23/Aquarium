@@ -16,7 +16,8 @@ import properties.Renderable;
 
 public class Guppycruncher extends Fish implements Renderable{
 
-	private static final Image GuppycruncherImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image GuppycruncherImage = new Image(ClassLoader.getSystemResource("Guppycruncher.png").toString());
+	private static final Image GuppycruncherHungryImage = new Image(ClassLoader.getSystemResource("GuppycruncherHungry.png").toString());
 
 	public Image getImage() {
 		return GuppycruncherImage;
@@ -163,8 +164,8 @@ public class Guppycruncher extends Fish implements Renderable{
 	@Override
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if (isFacingLeft()) {
-			gc.drawImage(GuppycruncherImage, getPosX(), getPosY(), getWidth(), getHeight());
+		if (isHungry()) {
+			gc.drawImage(GuppycruncherHungryImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
 			gc.drawImage(GuppycruncherImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
