@@ -11,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import manager.base.Gun;
 import manager.base.Level;
@@ -26,8 +24,6 @@ import model.fish.Guppy;
 import model.fish.Guppycruncher;
 import model.fish.Starcatcher;
 import model.fish.Ultravore;
-import model.money.Beetle;
-import template.Pause;
 
 public class ShopController {
 	// TODO get money from Money class
@@ -429,7 +425,7 @@ public class ShopController {
 	}
 
 	public void setPrice(int ButtonNumber, int newPrice) {
-		this.prices[ButtonNumber - 1] = newPrice;
+		prices[ButtonNumber - 1] = newPrice;
 	}
 
 	private static int getButtonWidth(int buttonNumber) {
