@@ -322,9 +322,9 @@ public class ButtonManager {
 				int tankNumber = Integer.parseInt(key.substring(key.length() - 1));
 				if (!JSONManager.isPlayable(tankNumber, 1)) {
 					ButtonManager.setDisabledHighlightProperty(menu2ButtonList.get(i),
-							(int) staticMenu2ButtonDetail[i%5][4]);
+							(int) staticMenu2ButtonDetail[i % 5][4]);
 				} else {
-					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i%5][4]);
+					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i % 5][4]);
 				}
 
 			}
@@ -334,9 +334,9 @@ public class ButtonManager {
 				int levelNumber = Integer.parseInt(key.substring(key.length() - 1));
 				if (!JSONManager.isPlayable(tankNumber, levelNumber)) {
 					ButtonManager.setDisabledHighlightProperty(menu2ButtonList.get(i),
-							(int) staticMenu2ButtonDetail[i%5][4]);
+							(int) staticMenu2ButtonDetail[i % 5][4]);
 				} else {
-					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i%5][4]);
+					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i % 5][4]);
 				}
 
 			}
@@ -388,6 +388,7 @@ public class ButtonManager {
 									GameManager manager = new GameManager();
 									manager.startLevelTest(1, 1);
 									SceneController.changeScene(manager.getTankScene());
+									SceneController.setLastPlayedTank(1, 1);
 								}
 							});
 
@@ -451,7 +452,20 @@ public class ButtonManager {
 									SceneController.getManager().clearLevel();
 									GameManager.clearLevel();
 
-									SceneController.startLatestLevel();
+									// playing11 playing21
+									int tankNumber = Integer
+											.parseInt(SceneController.getLastPlayedTank().substring(0, 1));
+									int levelNumber = Integer
+											.parseInt(SceneController.getLastPlayedTank().substring(1, 2));
+									if (tankNumber == 4 && levelNumber == 4) {
+
+									} else if (levelNumber < 4) {
+										levelNumber++;
+									} else if (levelNumber == 4) {
+										levelNumber = 1;
+										tankNumber++;
+									}
+									SceneController.startTankLevel(tankNumber, levelNumber);
 								}
 							});
 
@@ -671,7 +685,7 @@ public class ButtonManager {
 
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonHandler);
 	}
-	
+
 	public static void setStatsButtonHandler(Button button) {
 		EventHandler<MouseEvent> buttonHandler = new EventHandler<MouseEvent>() {
 			@Override

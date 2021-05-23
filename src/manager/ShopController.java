@@ -31,16 +31,13 @@ import template.Pause;
 
 public class ShopController {
 	// TODO get money from Money class
-	static final int shopHeight = 101;
+	static final int SHOP_HEIGHT = 101;
 	static Stage stage;
 	static final String MENU_IMAGE_PATH = ClassLoader.getSystemResource("menubar3.jpg").toString();
 	static final String GUPPY_IMAGE_PATH = ClassLoader.getSystemResource("Guppy.png").toString();
 	static int[] prices;
-	private static int foodLevelPrice = 300;
-	private static int foodCountPrice = 200;
-	private static int weaponUpgradePrice = 1000;
 	static final Image guppyImage = new Image(GUPPY_IMAGE_PATH);
-	static final Image menuImage = new Image(MENU_IMAGE_PATH);
+	static Image menuImage = new Image(MENU_IMAGE_PATH);
 	static Image[] images;
 	static String[] imagePaths;
 	static Unit[] shopItems;
@@ -56,7 +53,7 @@ public class ShopController {
 
 	// { XOfTopLeft, YOfTopLeft, XOfBottomRight, YOfBottomRight, borderRadius,
 	// FontSize }
-	private static final double[][] buttonDetail = { { 22.0, 3.0, 72.0, 46.0, 100.0, 20.0 },
+	private static final double[][] BUTTON_DETAIL = { { 22.0, 3.0, 72.0, 46.0, 100.0, 20.0 },
 			{ 91.0, 3.0, 141.0, 46.0, 80.0, 20.0 }, { 148.0, 3.0, 198.0, 46.0, 80.0, 20.0 },
 			{ 221.0, 3.0, 271.0, 46.0, 100.0, 20.0 }, { 295.0, 3.0, 344.0, 46.0, 80.0, 20.0 },
 			{ 367.0, 3.0, 417.0, 46.0, 80.0, 20.0 }, { 440.0, 3.0, 490.0, 46.0, 80.0, 20.0 },
@@ -104,11 +101,11 @@ public class ShopController {
 
 	public static void setButtonProperty(AnchorPane anchorpane, Button button) {
 		int buttonNumber = Integer.parseInt(button.getText());
-		button.setPrefSize((buttonDetail[buttonNumber - 1][2] - buttonDetail[buttonNumber - 1][0]) * 1.5,
-				(buttonDetail[buttonNumber - 1][3] - buttonDetail[buttonNumber - 1][1]) * 1.5);
-		button.setStyle("-fx-background-radius: " + buttonDetail[buttonNumber - 1][4] + "px;"
+		button.setPrefSize((BUTTON_DETAIL[buttonNumber - 1][2] - BUTTON_DETAIL[buttonNumber - 1][0]) * 1.5,
+				(BUTTON_DETAIL[buttonNumber - 1][3] - BUTTON_DETAIL[buttonNumber - 1][1]) * 1.5);
+		button.setStyle("-fx-background-radius: " + BUTTON_DETAIL[buttonNumber - 1][4] + "px;"
 				+ "-fx-border-color: transparent;" + "-fx-background-color: transparent;" + "-fx-text-fill: null");
-//		button.setStyle("-fx-background-radius: " + buttonDetail[buttonNumber][4] + "px;");
+//		button.setStyle("-fx-background-radius: " + BUTTON_DETAIL[buttonNumber][4] + "px;");
 //			button.setBorder(null);
 //			button.setBackground(null);
 		button.setOnAction(new EventHandler<ActionEvent>() {
@@ -117,8 +114,8 @@ public class ShopController {
 			}
 		});
 
-		AnchorPane.setTopAnchor(button, buttonDetail[buttonNumber - 1][1] * 1.5);
-		AnchorPane.setLeftAnchor(button, buttonDetail[buttonNumber - 1][0] * 1.5);
+		AnchorPane.setTopAnchor(button, BUTTON_DETAIL[buttonNumber - 1][1] * 1.5);
+		AnchorPane.setLeftAnchor(button, BUTTON_DETAIL[buttonNumber - 1][0] * 1.5);
 
 		button.hoverProperty().addListener((event) -> {
 
@@ -283,19 +280,19 @@ public class ShopController {
 	public static void drawShop(GraphicsContext gc) {
 		// Draw the UI Bar
 
-		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, GameManager.getWIDTH(), shopHeight);
+		DrawManager.drawImageFixSize(gc, menuImage, 0, 0, GameManager.getWIDTH(), SHOP_HEIGHT);
 
 		// Draw the images
 		for (int i = 0; i < 7; i++) {
 			// Draw Images
 
 			if (prices[i] != 0 && prices[i] != -1) {
-				DrawManager.drawOval(gc, (int) (buttonDetail[i][0] * 1.5), (int) (buttonDetail[i][1] * 1.5),
+				DrawManager.drawOval(gc, (int) (BUTTON_DETAIL[i][0] * 1.5), (int) (BUTTON_DETAIL[i][1] * 1.5),
 						(int) (getButtonWidth(i + 1) * 1.5 + 1), (int) (getButtonHeight(i + 1) * 1.5 + 5));
 			}
 
-			DrawManager.drawImageFixSize(gc, images[i], (int) (buttonDetail[i][0] * 1.5),
-					(int) (buttonDetail[i][1] * 1.5), getButtonWidth(i + 1) * 1.5, getButtonHeight(i + 1) * 1.5);
+			DrawManager.drawImageFixSize(gc, images[i], (int) (BUTTON_DETAIL[i][0] * 1.5),
+					(int) (BUTTON_DETAIL[i][1] * 1.5), getButtonWidth(i + 1) * 1.5, getButtonHeight(i + 1) * 1.5);
 
 			// Draw Prices
 			String priceText = "" + prices[i];
@@ -319,8 +316,8 @@ public class ShopController {
 				priceText = "";
 
 			DrawManager.drawText(gc, priceText, 18,
-					(int) ((buttonDetail[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
-					(int) ((buttonDetail[i][3] * 1.5) + 19), (int) ((buttonDetail[i][2] - buttonDetail[i][0]) * 1.5));
+					(int) ((BUTTON_DETAIL[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
+					(int) ((BUTTON_DETAIL[i][3] * 1.5) + 19), (int) ((BUTTON_DETAIL[i][2] - BUTTON_DETAIL[i][0]) * 1.5));
 		}
 
 		// Draw Max Food Number
@@ -331,14 +328,14 @@ public class ShopController {
 		if (PlayerController.getMaxFood() == 10) {
 			maxFoodString = "";
 		}
-		DrawManager.drawText(gc, maxFoodString, 40, (int) (buttonDetail[2][0] * 1.5 + 25),
-				(int) (buttonDetail[2][3] * 1.5 - 15), (int) (((buttonDetail[2][2] - buttonDetail[2][0])) * 1.5));
+		DrawManager.drawText(gc, maxFoodString, 40, (int) (BUTTON_DETAIL[2][0] * 1.5 + 25),
+				(int) (BUTTON_DETAIL[2][3] * 1.5 - 15), (int) (((BUTTON_DETAIL[2][2] - BUTTON_DETAIL[2][0])) * 1.5));
 
 		// Draw current money
 		DrawManager.drawText(gc, "" + PlayerController.getMoney(), 24,
-				(int) ((buttonDetail[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(PlayerController.getMoney()) * 5)
+				(int) ((BUTTON_DETAIL[7][0] + getButtonWidth(7 + 1) / 2 - getDigit(PlayerController.getMoney()) * 5)
 						* 1.5 + 10),
-				(int) ((buttonDetail[7][3] * 1.5) + 45), (int) ((buttonDetail[7][2] - buttonDetail[7][0]) * 1.5));
+				(int) ((BUTTON_DETAIL[7][3] * 1.5) + 45), (int) ((BUTTON_DETAIL[7][2] - BUTTON_DETAIL[7][0]) * 1.5));
 
 	}
 
@@ -436,28 +433,16 @@ public class ShopController {
 	}
 
 	private static int getButtonWidth(int buttonNumber) {
-		return (int) (buttonDetail[buttonNumber - 1][2] - buttonDetail[buttonNumber - 1][0]);
+		return (int) (BUTTON_DETAIL[buttonNumber - 1][2] - BUTTON_DETAIL[buttonNumber - 1][0]);
 	}
 
 	private static int getButtonHeight(int buttonNumber) {
-		return (int) (buttonDetail[buttonNumber - 1][3] - buttonDetail[buttonNumber - 1][1]);
+		return (int) (BUTTON_DETAIL[buttonNumber - 1][3] - BUTTON_DETAIL[buttonNumber - 1][1]);
 	}
 
 	private static int getDigit(int n) {
 		String str = String.valueOf(n);
 		return str.length();
-	}
-
-	public static int getFoodLevelPrice() {
-		return foodLevelPrice;
-	}
-
-	public static int getFoodCountPrice() {
-		return foodCountPrice;
-	}
-
-	public static int getWeaponUpgradePrice() {
-		return weaponUpgradePrice;
 	}
 
 	public Button getButton(int buttonNumber) {
