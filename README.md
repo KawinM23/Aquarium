@@ -1,3 +1,3 @@
-# Aquarium
+# Aquarium Demastered
 
-CU Project
+CU Project/Prog-Meth-2020-2
