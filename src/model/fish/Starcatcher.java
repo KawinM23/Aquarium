@@ -75,7 +75,6 @@ public class Starcatcher extends Fish implements Renderable{
 			getIdle().checkIdleX();
 		}
 		this.move(fr);
-		this.checkFacingLeft();
 	}
 
 	public void move(int fr) {

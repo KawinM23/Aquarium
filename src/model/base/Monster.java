@@ -43,10 +43,8 @@ public abstract class Monster extends Unit {
 	public void checkFacingLeft() {
 		if (getVelX() > 0) {
 			setFacingLeft(false);
-	
 		} else {
 			setFacingLeft(true);
-	
 		}
 	}
 

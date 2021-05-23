@@ -35,6 +35,23 @@ public class Missile extends Monster implements Renderable {
 	}
 
 	@Override
+	public void update(int fr) {
+		if (this.getHealth() <= 0) {
+			// Defeat
+			defeated();
+			return;
+		}
+		this.attack();
+		this.move(fr);
+	}
+
+	@Override
+	public void render(GraphicsContext gc) {
+		gc.drawImage(MissileImage, getPosX(), getPosY(), getWidth(), getHeight());
+		gc.drawImage(MissileTargetImage, targetFish.getCenterX() - 50, targetFish.getCenterY() - 50, 100, 100);
+	}
+
+	@Override
 	public void attack() {
 
 		if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(targetFish.getCenterX(), targetFish.getCenterY())) {
@@ -65,23 +82,6 @@ public class Missile extends Monster implements Renderable {
 		System.out.println(getName() + " destroyed");
 		SoundManager.playAlienDieSound();
 		TankManager.remove(this);
-	}
-
-	@Override
-	public void update(int fr) {
-		if (this.getHealth() <= 0) {
-			// Defeat
-			defeated();
-			return;
-		}
-		this.attack();
-		this.move(fr);
-	}
-
-	@Override
-	public void render(GraphicsContext gc) {
-		gc.drawImage(MissileImage, getPosX(), getPosY(), getWidth(), getHeight());
-		gc.drawImage(MissileTargetImage, targetFish.getCenterX() - 50, targetFish.getCenterY() - 50, 100, 100);
 	}
 
 	public Unit getTargetFish() {
