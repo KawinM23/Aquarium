@@ -67,11 +67,11 @@ public class Food extends Unit implements Renderable {
 
 	@Override
 	public void update(int fr) {
+		this.move(fr);
 		if (this.getPosY() + this.getHeight() >= GameManager.getBOTTOMHEIGHT()) {
 			TankManager.remove(this);
 			return;
 		}
-		this.move(fr);
 	}
 
 	@Override
