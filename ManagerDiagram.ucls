@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="manager.LevelManager" project="Aquarium" 
+    file="/Aquarium/src/manager/LevelManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="718" width="163" x="2337" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="manager.ShopController" project="Aquarium" 
+    file="/Aquarium/src/manager/ShopController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="682" width="278" x="5208" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="manager.DrawManager" project="Aquarium" 
+    file="/Aquarium/src/manager/DrawManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="502" width="470" x="2800" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="manager.StatTracker" project="Aquarium" 
+    file="/Aquarium/src/manager/StatTracker.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="502" width="190" x="251" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="manager.SoundManager" project="Aquarium" 
+    file="/Aquarium/src/manager/SoundManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1312" width="300" x="3866" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="manager.InvasionManager" project="Aquarium" 
+    file="/Aquarium/src/manager/InvasionManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="754" width="328" x="762" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="manager.GameManager" project="Aquarium" 
+    file="/Aquarium/src/manager/GameManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="664" width="309" x="3310" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="manager.TankManager" project="Aquarium" 
+    file="/Aquarium/src/manager/TankManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="790" width="261" x="4447" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="manager.SceneController" project="Aquarium" 
+    file="/Aquarium/src/manager/SceneController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="988" width="241" x="481" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="manager.JSONManager" project="Aquarium" 
+    file="/Aquarium/src/manager/JSONManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1042" width="397" x="1359" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="manager.PlayerController" project="Aquarium" 
+    file="/Aquarium/src/manager/PlayerController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="808" width="167" x="3659" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="manager.ButtonManager" project="Aquarium" 
+    file="/Aquarium/src/manager/ButtonManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="412" width="401" x="5526" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="template.Pause" project="Aquarium" file="/Aquarium/src/template/Pause.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="220" x="2540" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="template.Menu2" project="Aquarium" file="/Aquarium/src/template/Menu2.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="189" x="4748" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="template.Menu1" project="Aquarium" file="/Aquarium/src/template/Menu1.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="189" x="1796" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="template.WinLose" project="Aquarium" file="/Aquarium/src/template/WinLose.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="520" width="272" x="2025" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="template.Credits" project="Aquarium" file="/Aquarium/src/template/Credits.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="189" x="1130" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="template.DeletePlayerWindow" project="Aquarium" 
+    file="/Aquarium/src/template/DeletePlayerWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="170" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="template.Stats" project="Aquarium" file="/Aquarium/src/template/Stats.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="191" x="4977" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="template.PlayerMenu" project="Aquarium" 
+    file="/Aquarium/src/template/PlayerMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="201" x="4206" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
