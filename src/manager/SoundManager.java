@@ -11,26 +11,26 @@ public class SoundManager {
 	// Main Menu BGM & Click Sound
 	private static final Media BUTTON_CLICK_SOUND = new Media(
 			ClassLoader.getSystemResource("buttonclick.mp3").toString());
-	private static final MediaPlayer buttonClickPlayer = new MediaPlayer(BUTTON_CLICK_SOUND);
+	private static final MediaPlayer BUTTON_CLICK_PLAYER = new MediaPlayer(BUTTON_CLICK_SOUND);
 
-	private static final MediaPlayer mainMenuBgmPlayer = new MediaPlayer(
+	private static final MediaPlayer MAIN_MENU_BGM_PLAYER = new MediaPlayer(
 			new Media(ClassLoader.getSystemResource("mainmenu.mp3").toString()));
 
 	// Tank BGM
 	// TODO CHANGE MUSIC TO CORRECT PATHS
-	private static final MediaPlayer tank1BgmPlayer = new MediaPlayer(
+	private static final MediaPlayer TANK1_BGM_PLAYER = new MediaPlayer(
 			new Media(ClassLoader.getSystemResource("mainmenu.mp3").toString()));
 
-	private static final MediaPlayer tank2BgmPlayer = new MediaPlayer(
+	private static final MediaPlayer TANK2_BGM_PLAYER = new MediaPlayer(
 			new Media(ClassLoader.getSystemResource("Tank2.mp3").toString()));
 
-	private static final MediaPlayer tank3BgmPlayer = new MediaPlayer(
+	private static final MediaPlayer TANK3_BGM_PLAYER = new MediaPlayer(
 			new Media(ClassLoader.getSystemResource("Tank3.mp3").toString()));
 
-	private static final MediaPlayer tank4BgmPlayer = new MediaPlayer(
+	private static final MediaPlayer TANK4_BGM_PLAYER = new MediaPlayer(
 			new Media(ClassLoader.getSystemResource("Tank4.mp3").toString()));
 
-	private static final MediaPlayer alienBgmPlayer = new MediaPlayer(
+	private static final MediaPlayer ALIEN_BGM_PLAYER = new MediaPlayer(
 			new Media(ClassLoader.getSystemResource("AlienBgm.mp3").toString()));
 
 	// Sound Effects
@@ -110,22 +110,22 @@ public class SoundManager {
 	public static void setBgm(int tankNumber) {
 		switch (tankNumber) {
 		case 0:
-			currentBgmPlayer = mainMenuBgmPlayer;
+			currentBgmPlayer = MAIN_MENU_BGM_PLAYER;
 			break;
 		case 1:
-			currentBgmPlayer = tank1BgmPlayer;
+			currentBgmPlayer = TANK1_BGM_PLAYER;
 			break;
 		case 2:
-			currentBgmPlayer = tank2BgmPlayer;
+			currentBgmPlayer = TANK2_BGM_PLAYER;
 			break;
 		case 3:
-			currentBgmPlayer = tank3BgmPlayer;
+			currentBgmPlayer = TANK3_BGM_PLAYER;
 			break;
 		case 4:
-			currentBgmPlayer = tank4BgmPlayer;
+			currentBgmPlayer = TANK4_BGM_PLAYER;
 			break;
 		case 5:
-			currentBgmPlayer = alienBgmPlayer;
+			currentBgmPlayer = ALIEN_BGM_PLAYER;
 		default:
 		}
 
@@ -376,8 +376,8 @@ public class SoundManager {
 		}
 	}
 
-	public static MediaPlayer getMainmenubgmplayer() {
-		return mainMenuBgmPlayer;
+	public static MediaPlayer getMAIN_MENU_BGM_PLAYER() {
+		return MAIN_MENU_BGM_PLAYER;
 	}
 
 	public static int getBgmVolumeLevel() {

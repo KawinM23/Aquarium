@@ -17,7 +17,7 @@ public class ButtonManager {
 	static String buttonTextDefaultColor = "rgb(97,44,16)";
 	static String buttonTextHoverColor = "moccasin";
 	static ArrayList<Button> menu2ButtonList = new ArrayList<Button>();
-	final static double[][] staticMenu2ButtonDetail = { { 553, 68, 899, 157, 20, 40 }, { 557, 203, 897, 291, 20, 40 },
+	final static double[][] MENU2_BUTTON_DETAIL = { { 553, 68, 899, 157, 20, 40 }, { 557, 203, 897, 291, 20, 40 },
 			{ 563, 338, 898, 423, 20, 40 }, { 564, 460, 903, 543, 20, 40 }, { 578, 597, 882, 681, 40, 40 } };
 
 	// Set Button Fonts
@@ -323,9 +323,9 @@ public class ButtonManager {
 				int tankNumber = Integer.parseInt(key.substring(key.length() - 1));
 				if (!JSONManager.isPlayable(tankNumber, 1)) {
 					ButtonManager.setDisabledHighlightProperty(menu2ButtonList.get(i),
-							(int) staticMenu2ButtonDetail[i % 5][4]);
+							(int) MENU2_BUTTON_DETAIL[i % 5][4]);
 				} else {
-					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i % 5][4]);
+					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) MENU2_BUTTON_DETAIL[i % 5][4]);
 				}
 
 			}
@@ -335,9 +335,9 @@ public class ButtonManager {
 				int levelNumber = Integer.parseInt(key.substring(key.length() - 1));
 				if (!JSONManager.isPlayable(tankNumber, levelNumber)) {
 					ButtonManager.setDisabledHighlightProperty(menu2ButtonList.get(i),
-							(int) staticMenu2ButtonDetail[i % 5][4]);
+							(int) MENU2_BUTTON_DETAIL[i % 5][4]);
 				} else {
-					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) staticMenu2ButtonDetail[i % 5][4]);
+					ButtonManager.setHighlightProperty(menu2ButtonList.get(i), (int) MENU2_BUTTON_DETAIL[i % 5][4]);
 				}
 
 			}
