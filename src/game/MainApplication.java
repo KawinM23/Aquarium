@@ -4,14 +4,12 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import manager.DrawManager;
 import manager.JSONManager;
 import manager.LevelManager;
 import manager.SceneController;
 import manager.SoundManager;
-import manager.GameManager;
 
 public class MainApplication extends Application {
 	@Override
@@ -50,5 +48,6 @@ public class MainApplication extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+		return;
 	}
 }
