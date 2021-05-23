@@ -6,7 +6,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import manager.DrawManager;
-import manager.GameManager;
 import manager.JSONManager;
 import manager.LevelManager;
 import manager.PlayerController;

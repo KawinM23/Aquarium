@@ -9,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import template.PlayerMenu;
-import template.Menu2;
 import template.Stats;
 
 public class ButtonManager {
@@ -450,7 +449,7 @@ public class ButtonManager {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.getManager().clearLevel();
+									GameManager.clearLevel();
 									GameManager.clearLevel();
 
 									// playing11 playing21
@@ -486,7 +485,7 @@ public class ButtonManager {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.getManager().clearLevel();
+									GameManager.clearLevel();
 									GameManager.clearLevel();
 
 									SoundManager.setBgm(1);
@@ -512,7 +511,7 @@ public class ButtonManager {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									SceneController.getManager().clearLevel();
+									GameManager.clearLevel();
 									GameManager.clearLevel();
 
 									SceneController.startTankLevel(GameManager.getCurrentTank(),
@@ -622,7 +621,7 @@ public class ButtonManager {
 									SceneController.changeScene("MainMenu");
 									StatTracker.calculateStat();
 
-									SceneController.getManager().clearLevel();
+									GameManager.clearLevel();
 									GameManager.clearLevel();
 									PlayerController.setBack(true);
 
