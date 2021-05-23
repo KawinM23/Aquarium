@@ -96,7 +96,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 65, 80, 90 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -128,13 +128,12 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 60, 70, 80 };
 		level.setInvasionTime(invasionTime);
 
 	}
 
 	public static void loadLevel1_4(Level level) {
-		//TODO FOR TESTING
 		level.setStartingMoney(200);
 
 		ArrayList<Fish> startingFishList = new ArrayList<Fish>();
@@ -161,7 +160,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 60, 70, 80 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -193,7 +192,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 90, 90, 100 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -225,7 +224,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 100, 100, 120 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -257,7 +256,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 100, 100, 120 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -289,7 +288,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 100, 110, 120 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -321,7 +320,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 100, 120, 140 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -355,7 +354,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 150, 150, 170 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -387,7 +386,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 130, 120, 130 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -421,7 +420,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 140, 150, 160 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -452,7 +451,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 150, 140, 160 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -483,7 +482,7 @@ public class LevelManager {
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 130, 140, 150 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -516,12 +515,12 @@ public class LevelManager {
 		ArrayList<Monster> wave2 = new ArrayList<Monster>();
 		wave2.add(sv);
 		wave2.add(br);
-		
+
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 		level.getInvasionMonster().add(wave2);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 140, 160, 150, 170 };
 		level.setInvasionTime(invasionTime);
 
 	}
@@ -553,12 +552,12 @@ public class LevelManager {
 		ArrayList<Monster> wave2 = new ArrayList<Monster>();
 		wave2.add(sv);
 		wave2.add(br);
-		
+
 		level.setInvasionMonster(new ArrayList<>());
 		level.getInvasionMonster().add(wave1);
 		level.getInvasionMonster().add(wave2);
 
-		int[] invasionTime = new int[] { 30, 40, 50 };
+		int[] invasionTime = new int[] { 160, 180, 180, 200 };
 		level.setInvasionTime(invasionTime);
 
 	}
