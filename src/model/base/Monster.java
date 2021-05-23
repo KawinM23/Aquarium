@@ -58,8 +58,6 @@ public abstract class Monster extends Unit {
 		StatTracker.addMonsterDefeated();
 	}
 
-	
-
 	//GETTER SETTER
 	
 	public int getHealth() {
