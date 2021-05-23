@@ -36,7 +36,6 @@ public class Guppycruncher extends Fish implements Renderable{
 		this.setMouthPos(35, 40);
 		
 		this.setSpeed(40);
-		this.setVelZero();
 
 		this.setJumping(false);
 
@@ -162,7 +161,6 @@ public class Guppycruncher extends Fish implements Renderable{
 
 	@Override
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
 		if (isHungry()) {
 			gc.drawImage(GuppycruncherHungryImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
