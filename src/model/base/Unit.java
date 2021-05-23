@@ -93,6 +93,14 @@ public abstract class Unit {
 
 	// GETTER SETTER
 
+	public double getCenterX() {
+		return posX + (width / 2.0);
+	}
+
+	public double getCenterY() {
+		return posY + (height / 2.0);
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -154,14 +162,6 @@ public abstract class Unit {
 	public void setSize(double width, double height) {
 		this.setWidth(width);
 		this.setHeight(height);
-	}
-
-	public double getCenterX() {
-		return posX + (width / 2.0);
-	}
-
-	public double getCenterY() {
-		return posY + (height / 2.0);
 	}
 
 	public double getVelX() {

@@ -32,13 +32,13 @@ import model.monster.Sylvester;
 import template.Pause;
 
 public class GameManager {
-	private static int WIDTH = (int) (640*1.5);
-	private static int HEIGHT = (int) (480*1.5);
+	private static int WIDTH = (int) (640 * 1.5);
+	private static int HEIGHT = (int) (480 * 1.5);
 	private static int TOPHEIGHT = 150;
 	private static int BOTTOMHEIGHT = HEIGHT - 30;
-	
+
 	private static int FRAMERATE = 25;
-	
+
 	private static Canvas canvas;
 	private static Pane tankPane;
 	private static AnchorPane anchorPane;
@@ -62,11 +62,6 @@ public class GameManager {
 		Pause.setAnchorPane(anchorPane);
 		Pause.setPauseButtons();
 		Pause.hideButtons();
-
-		// tankThread
-		tankThread = newTankThread(canvas, gc);
-
-		// don't let thread prevent JVM shutdown
 
 		// MouseClick Position
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -133,9 +128,9 @@ public class GameManager {
 //						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
 						gc.setFill(Color.rgb(102, 204, 255));
 						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
-						
+
 						DrawManager.setTankBg(gc, currentTank);
-						
+
 						TankManager.render(gc);
 						ShopController.drawShop(gc);
 						InvasionManager.render(gc);
@@ -179,42 +174,49 @@ public class GameManager {
 		g3.setStar(true);
 		TankManager.addStartFish(g3);
 
-		Breeder b1 = new Breeder("b1", 400, 288);
-		TankManager.addStartFish(b1);
-
 		Carnivore c1 = new Carnivore("c1", 300, 200);
 		TankManager.addStartFish(c1);
-		
-		Ultravore uv1 = new Ultravore("uv1", 100, 500);
-		TankManager.addStartFish(uv1);
+
+		Star s1 = new Star("s1", 480, 20);
+		TankManager.add(s1);
 
 		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
-		TankManager.add(sc1);
+		TankManager.addStartFish(sc1);
 
-		Star s1 = new Star("s1", 400, 100);
-		TankManager.add(s1);
-//
-//
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
 		TankManager.addStartFish(gc1);
 
 		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
 		TankManager.addStartFish(bm1);
 
-		Sylvester sv = new Sylvester("Sv", 400, 500, 0);
+		Breeder b1 = new Breeder("b1", 400, 288);
+		TankManager.addStartFish(b1);
 
-		Balrog br = new Balrog("Br", 400, 500, 0);
+		Ultravore uv1 = new Ultravore("uv1", 100, 500);
+		TankManager.addStartFish(uv1);
 
-		Gus g = new Gus("GUS", 400, 500, 0);
-
+		// Invasion
+		Sylvester sv = new Sylvester("SV", 400, 500, 0);
+		Balrog br = new Balrog("BR", 400, 500, 0);
+		Gus g = new Gus("G", 400, 500, 0);
 		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200, 0);
 
-		InvasionManager.setInvasionTime((long) (System.nanoTime() + 20e9));
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(g);
+		firstInvasion.add(sv);
+		firstInvasion.add(br);
+
+		ArrayList<Monster> secondInvasion = new ArrayList<Monster>();
+		secondInvasion.add(g);
+
+		ArrayList<Monster> thirdInvasion = new ArrayList<Monster>();
+		thirdInvasion.add(d);
+
 		InvasionManager.setInvasionList(new ArrayList<>());
 		InvasionManager.getInvasionList().add(firstInvasion);
-		InvasionManager.setInvasionTimeList(new int[] { 45, 50, 60 });
+		InvasionManager.getInvasionList().add(secondInvasion);
+		InvasionManager.getInvasionList().add(thirdInvasion);
+		
+		InvasionManager.setInvasionTimeList(new int[] { 40, 50, 60, 60, 70 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		//////////////////////////// Setting
@@ -224,12 +226,13 @@ public class GameManager {
 		PlayerController.setMoney(200);
 		PlayerController.setGunLevel(2);
 
-		ShopController.setShopDetail(LevelManager.getLevel(1,1));
+		ShopController.setShopDetail(LevelManager.getLevel(1, 1));
 		ShopController.setAllButtons(anchorPane);
 		ShopController.prices[6] = 50;
 
 		tankThread = newTankThread(canvas, gc);
 		tankThread.setDaemon(true);
+		System.out.println("Playing Level ???");
 		tankThread.start();
 	}
 
@@ -253,6 +256,7 @@ public class GameManager {
 		PlayerController.setPlaying(true);
 		tankThread = newTankThread(canvas, gc);
 		tankThread.setDaemon(true);
+		System.out.println("Playing Level " + level.getId()[0] + "-" + level.getId()[1]);
 		tankThread.start();
 	}
 
@@ -305,19 +309,21 @@ public class GameManager {
 		addFoodThread.start();
 
 	}
-	
-	//GETTER SETTER
-	
+
+	// GETTER SETTER
+
 	public static int getWIDTH() {
 		return WIDTH;
 	}
+
 	public static int getHEIGHT() {
 		return HEIGHT;
 	}
-	
+
 	public static int getBOTTOMHEIGHT() {
 		return BOTTOMHEIGHT;
 	}
+
 	public static int getFRAMERATE() {
 		return FRAMERATE;
 	}

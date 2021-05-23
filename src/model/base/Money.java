@@ -37,17 +37,10 @@ public abstract class Money extends Unit {
 		this.move(fr);
 	}
 
-	public int getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
 	public void collected() {
 
 		if (!TankManager.getRemoveMoneyList().contains(this)) {
+			// Play Sound Effect
 			if (this instanceof Diamond) {
 				SoundManager.playDiamondSound();
 			} else if (this instanceof Pearl) {
@@ -56,19 +49,21 @@ public abstract class Money extends Unit {
 				SoundManager.playCollectSound();
 			}
 			Thread collectedThread = new Thread(() -> {
-				try {
-					// Play Sound Effect
-
-					TankManager.remove(this);
-					PlayerController.addMoney(value);
-					StatTracker.addMoneyGain(value);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				System.out.println(this.getName() + " collected");
+				TankManager.remove(this);
+				PlayerController.addMoney(value);
+				StatTracker.addMoneyGain(value);
 			});
 			collectedThread.start();
 		}
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	public long getDisappearTime() {

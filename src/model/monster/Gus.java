@@ -15,8 +15,9 @@ import properties.Renderable;
 
 public class Gus extends Monster implements Renderable {
 
-	private static final Image GusImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
-
+	private static final Image GusLeftImage = new Image(ClassLoader.getSystemResource("GusLeft.png").toString());
+	private static final Image GusRightImage = new Image(ClassLoader.getSystemResource("GusRight.png").toString());
+	
 	public Gus(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
 
@@ -51,7 +52,7 @@ public class Gus extends Monster implements Renderable {
 		if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFood.getCenterX(),
 				nearestFood.getCenterY())) {
 			// eat & levelup
-			System.out.println(this.getName() + " kill " + nearestFood.getName());
+			System.out.println(this.getName() + " eat " + nearestFood.getName());
 			this.eat(nearestFood);
 			this.getIdle().checkIdleMonster();
 		} else {
@@ -86,8 +87,8 @@ public class Gus extends Monster implements Renderable {
 					}
 				}
 				getHunger().setLastFedNow();
+				System.out.println(getName() + " Health: " + getHealth());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -128,15 +129,14 @@ public class Gus extends Monster implements Renderable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
 		gc.setStroke(new Color(1, 0, 0, 1));
 		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
 		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
 				getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
-			gc.drawImage(GusImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(GusLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
-			gc.drawImage(GusImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(GusRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}
 

@@ -2,11 +2,8 @@ package model.base;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
-import manager.GameManager;
 import manager.InvasionManager;
-import manager.PlayerController;
 import manager.SoundManager;
-import manager.StatTracker;
 import manager.TankManager;
 import model.Food;
 import properties.Hunger;
@@ -16,6 +13,7 @@ import properties.Production;
 public abstract class Fish extends Unit {
 
 	private int price;
+	private boolean isHungry;
 	private Hunger hunger;
 	private Production production;
 	private Idle idle;
@@ -25,8 +23,6 @@ public abstract class Fish extends Unit {
 	private double mouthPosX;
 	private double mouthPosY;
 	
-	private boolean isHungry;
-
 	public Fish(String name, double posX, double posY) {
 		super(name, posX, posY);
 		this.setMouthPos(10, 30);
@@ -40,12 +36,51 @@ public abstract class Fish extends Unit {
 		this.setIdle(new Idle(this, 15));
 	}
 
-	public Idle getIdle() {
-		return idle;
+	public abstract Image getImage();
+
+	@Override
+	public void update(int fr) {
+		if (!InvasionManager.isInvaded()) {
+			
+			switch (hunger.checkHunger()) {
+			case 0:
+				// idle
+				this.idle.checkIdle();
+				setHungry(false);
+				break;
+			case 1:
+				// find food
+				this.findFood();
+				break;
+			case 2:
+				// Very Hungry
+				this.findFood();
+				setHungry(true);
+				break;
+			case 3:
+				// die
+				this.die();
+				return;
+			}
+	
+			this.production.checkProduce();
+		} else {
+			idle.checkIdle();
+		}
+		this.move(fr);
+		this.checkFacingLeft();
 	}
 
-	public void setIdle(Idle idle) {
-		this.idle = idle;
+	public void checkFacingLeft() {
+		if (System.nanoTime() - turningTime >= 0.5e9) {
+			if (getVelX() > 0) {
+				setFacingLeft(false);
+				setTurningTimeNow();
+			} else {
+				setFacingLeft(true);
+				setTurningTimeNow();
+			}
+		}
 	}
 
 	public void findFood() {
@@ -91,9 +126,15 @@ public abstract class Fish extends Unit {
 	}
 
 	public boolean isAtMounth(Unit nearestFood) {
-		return new Rectangle2D(getPosX() + getMouthPosX(false), getMouthPosY() - 2,
-				getWidth() - (2 * getMouthPosX(false)), 4).intersects(nearestFood.getBoundary());
-//		return nearestFood.getBoundary().contains(new Point2D(getMouthPosX(), getMouthPosY()));
+			return new Rectangle2D(getPosX() + getMouthPosX(false), getMouthPosY() - 2,
+					getWidth() - (2 * getMouthPosX(false)), 4).intersects(nearestFood.getBoundary());
+		}
+
+	public void headToFood(Unit u) {
+		this.setVelX(((u.getCenterX() - getMouthPosX(true)) / u.distance(getMouthPosX(true), getMouthPosY()))
+				* this.getSpeed());
+		this.setVelY(
+				((u.getCenterY() - getMouthPosY()) / u.distance(getMouthPosX(true), getMouthPosY())) * this.getSpeed());
 	}
 
 	public void feed(Unit nearestFood) {
@@ -117,13 +158,6 @@ public abstract class Fish extends Unit {
 
 	}
 
-	public void headToFood(Unit u) {
-		this.setVelX(((u.getCenterX() - getMouthPosX(true)) / u.distance(getMouthPosX(true), getMouthPosY()))
-				* this.getSpeed());
-		this.setVelY(
-				((u.getCenterY() - getMouthPosY()) / u.distance(getMouthPosX(true), getMouthPosY())) * this.getSpeed());
-	}
-
 	public void die() {
 		Thread fishDieThread = new Thread(() -> {
 			// Play Sound Effect
@@ -133,37 +167,64 @@ public abstract class Fish extends Unit {
 		fishDieThread.start();
 	}
 
-	@Override
-	public void update(int fr) {
-		if (!InvasionManager.isInvaded()) {
-			
-			switch (hunger.checkHunger()) {
-			case 0:
-				// idle
-				this.idle.checkIdle();
-				setHungry(false);
-				break;
-			case 1:
-				// find food
-				this.findFood();
-				break;
-			case 2:
-				// Very Hungry TODO ChangePic
-				this.findFood();
-				setHungry(true);
-				break;
-			case 3:
-				// die
-				this.die();
-				return;
-			}
+	public int getPrice() {
+		return price;
+	}
 
-			this.production.checkProduce();
-		} else {
-			idle.checkIdle();
-		}
-		this.move(fr);
-		this.checkFacingLeft();
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public boolean isHungry() {
+		return isHungry;
+	}
+
+	public void setHungry(boolean isHungry) {
+		this.isHungry = isHungry;
+	}
+
+	public Hunger getHunger() {
+		return hunger;
+	}
+
+	public void setHunger(Hunger hunger) {
+		this.hunger = hunger;
+	}
+
+	public Production getProduction() {
+		return production;
+	}
+
+	public void setProduction(Production production) {
+		this.production = production;
+	}
+
+	public Idle getIdle() {
+		return idle;
+	}
+
+	public void setIdle(Idle idle) {
+		this.idle = idle;
+	}
+
+	public boolean isFacingLeft() {
+		return isFacingLeft;
+	}
+
+	public void setFacingLeft(boolean isFacingLeft) {
+		this.isFacingLeft = isFacingLeft;
+	}
+
+	public long getTurningTime() {
+		return turningTime;
+	}
+
+	public void setTurningTime(long turningTime) {
+		this.turningTime = turningTime;
+	}
+
+	public void setTurningTimeNow() {
+		this.turningTime = System.nanoTime();
 	}
 
 	public double getMouthPosX(boolean abs) {
@@ -193,72 +254,6 @@ public abstract class Fish extends Unit {
 	public void setMouthPos(double mouthPosX, double mouthPosY) {
 		this.mouthPosX = mouthPosX;
 		this.mouthPosY = mouthPosY;
-	}
-
-	public boolean isHungry() {
-		return isHungry;
-	}
-
-	public void setHungry(boolean isHungry) {
-		this.isHungry = isHungry;
-	}
-
-	public boolean isFacingLeft() {
-		return isFacingLeft;
-	}
-
-	public void setFacingLeft(boolean isFacingLeft) {
-		this.isFacingLeft = isFacingLeft;
-	}
-
-	public void checkFacingLeft() {
-		if (System.nanoTime() - turningTime >= 0.5e9) {
-			if (getVelX() > 0) {
-				setFacingLeft(false);
-				setTurningTimeNow();
-			} else {
-				setFacingLeft(true);
-				setTurningTimeNow();
-			}
-		}
-	}
-
-	public abstract Image getImage();
-
-	public Hunger getHunger() {
-		return hunger;
-	}
-
-	public void setHunger(Hunger hunger) {
-		this.hunger = hunger;
-	}
-
-	public Production getProduction() {
-		return production;
-	}
-
-	public void setProduction(Production production) {
-		this.production = production;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public long getTurningTime() {
-		return turningTime;
-	}
-
-	public void setTurningTime(long turningTime) {
-		this.turningTime = turningTime;
-	}
-	
-	public void setTurningTimeNow() {
-		this.turningTime = System.nanoTime();
 	}
 
 }

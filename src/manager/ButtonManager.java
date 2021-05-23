@@ -289,6 +289,7 @@ public class ButtonManager {
 								public void run() {
 									// TODO Auto-generated method stub
 									JSONManager.writeJSON();
+								    System.out.println("Closing Application ...");
 									System.exit(0);
 								}
 							});
@@ -618,6 +619,7 @@ public class ButtonManager {
 									SoundManager.setBgm(0);
 									SoundManager.playBgm();
 									SceneController.changeScene("MainMenu");
+									StatTracker.calculateStat();
 
 									SceneController.getManager().clearLevel();
 									GameManager.clearLevel();

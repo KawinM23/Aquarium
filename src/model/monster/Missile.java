@@ -5,12 +5,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import manager.PlayerController;
 import manager.SoundManager;
-import manager.StatTracker;
 import manager.TankManager;
-import model.base.Fish;
 import model.base.Monster;
 import model.base.Unit;
-import model.money.Diamond;
 import properties.Hunger;
 import properties.Idle;
 import properties.Renderable;
@@ -23,7 +20,6 @@ public class Missile extends Monster implements Renderable {
 
 	public Missile(String name, double posX, double posY,int health, Unit targetFish) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
 		this.setSize(60, 60);
 		this.setSpeed(80);
 
@@ -57,16 +53,15 @@ public class Missile extends Monster implements Renderable {
 
 	@Override
 	public void getHit() {
-		// TODO Auto-generated method stub
 		this.decreaseHealth(PlayerController.getGunDamage());
 	}
 
 	@Override
 	public void continuePause(long duration) {
-		// TODO Auto-generated method stub
 	}
 	
 	public void defeated() {
+		System.out.println(getName() + " destroyed");
 		SoundManager.playAlienDieSound();
 		TankManager.remove(this);
 	}
@@ -74,7 +69,7 @@ public class Missile extends Monster implements Renderable {
 	@Override
 	public void update(int fr) {
 		if (this.getHealth() <= 0) {
-			// TODO Defeat
+			//Defeat
 			defeated();
 			return;
 		}

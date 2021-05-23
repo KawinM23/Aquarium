@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import model.base.Monster;
-import model.base.Unit;
 import model.monster.Destructor;
 import model.monster.Gus;
 

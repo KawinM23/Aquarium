@@ -1,6 +1,5 @@
 package model.monster;
 
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -16,14 +15,13 @@ import properties.Renderable;
 
 public class Balrog extends Monster implements Renderable {
 
-	private static final Image BalrogImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
-
-	private Hunger hunger;
-
+	private static final Image BalrogLeftImage = new Image(ClassLoader.getSystemResource("BalrogLeft.png").toString());
+	private static final Image BalrogRightImage = new Image(ClassLoader.getSystemResource("BalrogRight.png").toString());
+	
 	public Balrog(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
 
-		this.setSize(135, 200);
+		this.setSize(170, 200);
 		this.setSpeed(80);
 
 		this.setMaxHealth(220);
@@ -37,15 +35,15 @@ public class Balrog extends Monster implements Renderable {
 	@Override
 	public void update(int fr) {
 		if (this.getHealth() <= 0) {
-			// TODO Defeat
+			//Defeat
 			defeated();
 			return;
 		}
 
-		switch (hunger.checkHunger()) {
+		switch (getHunger().checkHunger()) {
 		case 0:
 			// idle
-			this.setVelZero();
+			this.getIdle().checkIdleMonster();;
 			break;
 		case 1:
 			// find food
@@ -55,7 +53,7 @@ public class Balrog extends Monster implements Renderable {
 		for (Fish f : TankManager.getFishList()) {
 			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(f.getCenterX(), f.getCenterY())) {
 				// eat & levelup
-				System.out.println(this.getName() + " kill " + f.getName());
+				System.out.println(this.getName() + " eat " + f.getName());
 				this.eat(f, 0);
 			}
 		}
@@ -64,8 +62,20 @@ public class Balrog extends Monster implements Renderable {
 	}
 
 	@Override
+	public void render(GraphicsContext gc) {
+		gc.setStroke(new Color(1, 0, 0, 1));
+		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
+		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
+				getHeight() - (2 * getInnerY()));
+		if (isFacingLeft()) {
+			gc.drawImage(BalrogLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(BalrogRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+		}
+	}
+
+	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
 		if (TankManager.getFishList().size() != 0) {
 			Unit nearestFish = TankManager.getFishList().get(0);
 			// Find NearestFish
@@ -77,13 +87,13 @@ public class Balrog extends Monster implements Renderable {
 			// CheckFish
 			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(),
 					nearestFish.getCenterY())) {
-				System.out.println(this.getName() + " kill " + nearestFish.getName());
+				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish, 1);
-
-				this.getIdle().checkIdle();
+				this.getIdle().eatFood();
 			} else {
 				// Go to food
 				this.headToUnit(nearestFish);
+				this.getIdle().slowIdle();
 			}
 
 		} else {
@@ -102,7 +112,6 @@ public class Balrog extends Monster implements Renderable {
 						this.getHunger().setLastFedRandom(8, 10);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -119,33 +128,12 @@ public class Balrog extends Monster implements Renderable {
 			SoundManager.playBodyHitSound();
 		}
 		this.decreaseHealth(PlayerController.getGunDamage());
-	}
-
-	@Override
-	public void render(GraphicsContext gc) {
-		gc.setStroke(new Color(1, 0, 0, 1));
-		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
-				getHeight() - (2 * getInnerY()));
-		if (isFacingLeft()) {
-			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
-		} else {
-			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
-		}
+		System.out.println(getName() + " Health: " + getHealth());
 	}
 
 	@Override
 	public void continuePause(long duration) {
-		// TODO Auto-generated method stub
 		this.getHunger().addLastFed(duration);
-	}
-
-	public Hunger getHunger() {
-		return hunger;
-	}
-
-	public void setHunger(Hunger hunger) {
-		this.hunger = hunger;
 	}
 
 }

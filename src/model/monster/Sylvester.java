@@ -1,13 +1,10 @@
 package model.monster;
 
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import manager.PlayerController;
 import manager.SoundManager;
-import manager.StatTracker;
 import manager.TankManager;
 import model.base.Fish;
 import model.base.Monster;
@@ -18,13 +15,12 @@ import properties.Renderable;
 
 public class Sylvester extends Monster implements Renderable {
 
-	private static final Image SylvesterImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image SylvesterLeftImage = new Image(ClassLoader.getSystemResource("SylvesterLeft.png").toString());
+	private static final Image SylvesterRightImage = new Image(ClassLoader.getSystemResource("SylvesterRight.png").toString());
 
 	public Sylvester(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
-		// TODO Auto-generated constructor stub
-
-		this.setSize(135, 200);
+		this.setSize(132, 185);
 		this.setSpeed(80);
 
 		this.setMaxHealth(100);
@@ -38,9 +34,7 @@ public class Sylvester extends Monster implements Renderable {
 
 	@Override
 	public void update(int fr) {
-		// TODO Auto-generated method stub
 		if (this.getHealth() <= 0) {
-			// TODO Defeat
 			defeated();
 			return;
 		}
@@ -68,15 +62,15 @@ public class Sylvester extends Monster implements Renderable {
 		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
 				getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
-			gc.drawImage(SylvesterImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(SylvesterLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
-			gc.drawImage(SylvesterImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(SylvesterRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}
 
 	@Override
 	public void attack() {
-		// TODO Try eat one fish
+		//Try eat one fish
 		if (TankManager.getFishList().size() != 0) {
 			Unit nearestFish = TankManager.getFishList().get(0);
 			// Find NearestFish
@@ -88,7 +82,7 @@ public class Sylvester extends Monster implements Renderable {
 			// Check Fish
 			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(),
 					nearestFish.getCenterY())) {
-				System.out.println(this.getName() + " kill " + nearestFish.getName());
+				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish);
 				this.getIdle().checkIdleMonster();
 			} else {
@@ -103,7 +97,6 @@ public class Sylvester extends Monster implements Renderable {
 	}
 
 	private void eat(Unit nearestFish) {
-		// TODO Auto-generated method stub
 		SoundManager.playEatFishSound();
 		if (!TankManager.getRemoveFishList().contains(nearestFish)) {
 			Thread feedThread = new Thread(() -> {
@@ -112,7 +105,6 @@ public class Sylvester extends Monster implements Renderable {
 					this.getHunger().setLastFedNow();
 					this.getHunger().addLastFedRandom(1, 2);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -122,20 +114,19 @@ public class Sylvester extends Monster implements Renderable {
 	}
 
 	public void getHit() {
-		// TODO Onclick Mouse -> decrease Hp
+		//Onclick Mouse -> decrease Hp
 		double hpPercent = (((double) getHealth()) / ((double) getMaxHealth())) * 100;
 		if (hpPercent>=50) {
-			System.out.println("got hit");
 			SoundManager.playShieldHitSound();
 		} else if (hpPercent<50) {
 			SoundManager.playBodyHitSound();
 		}
 		this.decreaseHealth(PlayerController.getGunDamage());
+		System.out.println(getName() + " Health: " + getHealth());
 	}
 
 	@Override
 	public void continuePause(long duration) {
-		// TODO Auto-generated method stub
 		this.getHunger().addLastFed(duration);
 	}
 
