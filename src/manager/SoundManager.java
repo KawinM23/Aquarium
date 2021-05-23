@@ -11,7 +11,7 @@ public class SoundManager {
 	// Main Menu BGM & Click Sound
 	private static final Media BUTTON_CLICK_SOUND = new Media(
 			ClassLoader.getSystemResource("buttonclick.mp3").toString());
-	private static final MediaPlayer BUTTON_CLICK_PLAYER = new MediaPlayer(BUTTON_CLICK_SOUND);
+	//private static final MediaPlayer BUTTON_CLICK_PLAYER = new MediaPlayer(BUTTON_CLICK_SOUND);
 
 	private static final MediaPlayer MAIN_MENU_BGM_PLAYER = new MediaPlayer(
 			new Media(ClassLoader.getSystemResource("mainmenu.mp3").toString()));
