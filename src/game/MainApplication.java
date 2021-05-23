@@ -6,8 +6,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import manager.DrawManager;
+import manager.GameManager;
 import manager.JSONManager;
 import manager.LevelManager;
+import manager.PlayerController;
 import manager.SceneController;
 import manager.SoundManager;
 import manager.StatTracker;
@@ -49,14 +51,14 @@ public class MainApplication extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-	    Runtime.getRuntime().addShutdownHook(new Thread()
-	    {
-	      public void run()
-	      {
-	    	StatTracker.calculateStat();
-	      }
-	    });
-	    System.out.println("Closing Application ...");
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			public void run() {
+				if(PlayerController.isPlaying()) {
+					StatTracker.calculateStat();
+				}
+				System.out.println("Closing Application ...");
+			}
+		});
 		return;
 	}
 }

@@ -42,7 +42,7 @@ public class Idle {
 			this.setNextIdleRandom(3, 6); // interval idle
 		}
 	}
-	
+
 	public void checkIdleMonster() {
 		if (System.nanoTime() <= nextIdle) {
 			this.unit.setVel(velX, velY);
@@ -70,8 +70,8 @@ public class Idle {
 	}
 
 	public void slowIdle() {
-		setVelX(unit.getVelX() * (Math.random() / 2));
-		setVelY(unit.getVelY() * (Math.random() / 2));
+		setVelX(unit.getVelX() * (0.4 + (Math.random() / 2)));
+		setVelY(unit.getVelY() * (0.4 + (Math.random() / 2)));
 		this.nextIdle = (long) (System.nanoTime() + 1e9);
 	}
 
