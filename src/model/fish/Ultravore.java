@@ -30,32 +30,12 @@ public class Ultravore extends Fish implements Renderable {
 		this.setMouthPos(45, 100);
 		
 		this.setSpeed(60);
-		this.setVelZero();
 
 		this.setHunger(new Hunger(10, 32));
 		this.setProduction(new Production(this, 9, 18));
 		this.setIdle(new Idle(this, 20));
 		
 		this.setPrice(10000);
-	}
-
-	@Override
-	public void render(GraphicsContext gc) {
-
-		if (isHungry()) {
-			if (isFacingLeft()) {
-				gc.drawImage(UltravoreHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
-			} else {
-				gc.drawImage(UltravoreHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
-			}
-		} else {
-
-			if (isFacingLeft()) {
-				gc.drawImage(UltravoreLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
-			} else {
-				gc.drawImage(UltravoreRightImage, getPosX(), getPosY(), getWidth(), getHeight());
-			}
-		}
 	}
 
 	@Override
@@ -78,7 +58,7 @@ public class Ultravore extends Fish implements Renderable {
 					// Eat baby guppy
 					SoundManager.playEatFishSound();
 					TankManager.remove(nearestFood);
-					this.getIdle();
+					this.getIdle().eatFood();;
 					this.feed(nearestFood);
 				} else {
 					// Go to food
@@ -91,6 +71,25 @@ public class Ultravore extends Fish implements Renderable {
 		} else {
 			// No Food ,Idle
 			this.getIdle().checkIdle();
+		}
+	}
+
+	@Override
+	public void render(GraphicsContext gc) {
+
+		if (isHungry()) {
+			if (isFacingLeft()) {
+				gc.drawImage(UltravoreHungryLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(UltravoreHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
+		} else {
+
+			if (isFacingLeft()) {
+				gc.drawImage(UltravoreLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
+			} else {
+				gc.drawImage(UltravoreRightImage, getPosX(), getPosY(), getWidth(), getHeight());
+			}
 		}
 	}
 

@@ -87,7 +87,6 @@ public class Beetlemuncher extends Fish implements Renderable {
 					this.getHunger().setLastFedNow();
 					this.getHunger().addLastFedRandom(0, 1);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});

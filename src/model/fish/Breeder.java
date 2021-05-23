@@ -61,7 +61,7 @@ public class Breeder extends Fish implements Renderable {
 						}
 						switch (((Food) nearestFood).getFoodLevel()) {
 						case 1:
-							this.setGrowth(getGrowth() + 25); // FoodGrowth 25,50,75
+							this.setGrowth(getGrowth() + 25);
 							break;
 						case 2:
 							this.setGrowth(getGrowth() + 50);
@@ -79,7 +79,6 @@ public class Breeder extends Fish implements Renderable {
 						this.setBreeder("Large");
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -88,21 +87,21 @@ public class Breeder extends Fish implements Renderable {
 
 	}
 
-	public void setBreeder(String string) {
-		if (string == null) {
+	public void setBreeder(String size) {
+		if (size == null) {
 			return;
 		}
 		//Size
-		if (string.equals("Small")) {
+		if (size.equals("Small")) {
 			this.setSize(67, 52);
 			this.setMouthPos(7.5, 20);
 			this.getProduction().setCooldown(25);
-		} else if (string.equals("Medium")) {
+		} else if (size.equals("Medium")) {
 			this.setSize(80, 62);
 			this.setMouthPos(9, 24);
 			this.setPos(getPosX() - 6.5, getPosY() - 5);
 			this.getProduction().setCooldown(20);
-		} else if (string.equals("Large")) {
+		} else if (size.equals("Large")) {
 			this.setSize(95, 74);
 			this.setMouthPos(10.5, 28);
 			this.setPos(getPosX() - 7.5, getPosY() - 6);
