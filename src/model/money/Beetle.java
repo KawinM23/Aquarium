@@ -7,7 +7,7 @@ import properties.Renderable;
 
 public class Beetle extends Money implements Renderable{
 
-	private static final Image BeetleImage = new Image(ClassLoader.getSystemResource("Beetle.png").toString());
+	private static final Image BEETLE_IMAGE = new Image(ClassLoader.getSystemResource("Beetle.png").toString());
 	
 	public Beetle(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -21,7 +21,7 @@ public class Beetle extends Money implements Renderable{
 	@Override
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(BeetleImage, getPosX(), getPosY(), getWidth(), getHeight());
+		gc.drawImage(BEETLE_IMAGE, getPosX(), getPosY(), getWidth(), getHeight());
 	}
 
 }
