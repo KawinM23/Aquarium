@@ -19,6 +19,7 @@ import model.Food;
 import model.base.Fish;
 import model.base.Unit;
 import model.fish.Beetlemuncher;
+import model.fish.Breeder;
 import model.fish.Carnivore;
 import model.fish.Guppy;
 import model.fish.Guppycruncher;
@@ -139,7 +140,11 @@ public class ShopController {
 					// Guppy Fish
 					case 1:
 						if (PlayerController.buy(prices[0])) {
-							TankManager.addNewFish(new Guppy("Guppy", 0, 0));
+							if (shopItems[0] instanceof Breeder) {
+								TankManager.addNewFish(new Breeder("Breeder", 0, 0));
+							} else if (shopItems[0] instanceof Guppy) {
+								TankManager.addNewFish(new Guppy("Guppy", 0, 0));
+							}
 							SoundManager.playClickSound();
 						}
 						break;
@@ -313,7 +318,8 @@ public class ShopController {
 
 			DrawManager.drawText(gc, priceText, 18,
 					(int) ((BUTTON_DETAIL[i][0] + getButtonWidth(i + 1) / 2 - relay) * 1.5),
-					(int) ((BUTTON_DETAIL[i][3] * 1.5) + 19), (int) ((BUTTON_DETAIL[i][2] - BUTTON_DETAIL[i][0]) * 1.5));
+					(int) ((BUTTON_DETAIL[i][3] * 1.5) + 19),
+					(int) ((BUTTON_DETAIL[i][2] - BUTTON_DETAIL[i][0]) * 1.5));
 		}
 
 		// Draw Max Food Number
@@ -384,20 +390,23 @@ public class ShopController {
 			buttonList[2].setVisible(false);
 		}
 		// Special 1
-		if (level.getShopItem()[1]!=null) {
+		if (level.getShopItem()[1] != null) {
 			buttonList[3].setVisible(true);
-		} else buttonList[3].setVisible(false);
-		
+		} else
+			buttonList[3].setVisible(false);
+
 		// Special 2
-		if (level.getShopItem()[2]!=null) {
+		if (level.getShopItem()[2] != null) {
 			buttonList[4].setVisible(true);
-		} else buttonList[4].setVisible(false);
-		
+		} else
+			buttonList[4].setVisible(false);
+
 		// Gun
 		if (level.isWeaponUpgradable()) {
 			buttonList[5].setVisible(true);
-		} else buttonList[5].setVisible(false);
-		
+		} else
+			buttonList[5].setVisible(false);
+
 		// Goal
 		buttonList[6].setVisible(true);
 		// Menu
