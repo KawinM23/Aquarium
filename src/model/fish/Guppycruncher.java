@@ -1,7 +1,6 @@
 package model.fish;
 
-import java.util.ConcurrentModificationException;
-
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
@@ -27,14 +26,14 @@ public class Guppycruncher extends Fish implements Renderable{
 	private boolean isJumping;
 	private final double fallAcc = 120;
 	private final double velYJump = -150;
-	private final double reachHeight = 170;
+	private final double reachHeight = 160;
 	private final double reachDistance = 80;
 
 	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
 
 		this.setSize(100, 100);
-		this.setMouthPos(20, 10);
+		this.setMouthPos(35, 40);
 		
 		this.setSpeed(40);
 		this.setVelZero();
@@ -45,6 +44,61 @@ public class Guppycruncher extends Fish implements Renderable{
 		this.setProduction(new Production(this, 6, 15));
 		this.setIdle(new Idle(this, 25));
 		this.setPrice(750);
+	}
+
+	@Override
+	public void update(int fr) {
+		if (!InvasionManager.isInvaded()) {
+			switch (getHunger().checkHunger()) {
+			case 0:
+				// idle
+				if (!isJumping) {
+					this.getIdle().checkIdleX();
+				}
+				setHungry(false);
+				break;
+			case 1:
+				// find food
+				this.findFood();
+				break;
+			case 2:
+				// Very Hungry
+				this.findFood();
+				setHungry(true);
+				break;
+			case 3:
+				// die
+				this.die();
+				return;
+			}
+	
+			this.getProduction().checkProduce();
+		} else {
+			getIdle().checkIdleX();
+		}
+		this.move(fr);
+		this.checkFacingLeft();
+	}
+
+	public void move(int fr) {
+		//Jumping GC
+		double deltaTime = 1.0 / fr;
+		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
+		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
+			setJumping(true);
+		}
+		if (isJumping) {
+			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+			this.setVelY(getVelY() + (fallAcc * deltaTime));
+			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
+				this.getIdle().randomVel();
+				this.getIdle().setNextIdleRandom(1, 2);
+				this.setVelX(getVelX() * 0.8);
+				this.getIdle().setVelX(getVelX());
+				this.setVelY(0);
+				this.setJumping(false);
+			}
+		}
 	}
 
 	public void findFood() {
@@ -63,7 +117,7 @@ public class Guppycruncher extends Fish implements Renderable{
 						}
 					}
 				}
-			} catch (ConcurrentModificationException e) {
+			} catch (Exception e) {
 				nearestFood = null;
 			}
 
@@ -101,68 +155,10 @@ public class Guppycruncher extends Fish implements Renderable{
 		setVelY(velYJump);
 		setJumping(true);
 	}
-
-	@Override
-	public void update(int fr) {
-		if (!InvasionManager.isInvaded()) {
-			switch (getHunger().checkHunger()) {
-			case 0:
-				// idle
-				if (!isJumping) {
-					this.getIdle().checkIdleX();
-				}
-				setHungry(false);
-				break;
-			case 1:
-				// find food
-				this.findFood();
-				break;
-			case 2:
-				// Very Hungry
-				this.findFood();
-				setHungry(true);
-				break;
-			case 3:
-				// die
-				this.die();
-				return;
-			}
-
-			this.getProduction().checkProduce();
-		} else {
-			getIdle().checkIdleX();
-		}
-		this.move(fr);
-		this.checkFacingLeft();
-	}
-
-	public void move(int fr) {
-		//Jumping GC
-		double deltaTime = 1.0 / fr;
-		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
-		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
-			setJumping(true);
-		}
-		if (isJumping) {
-			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
-			this.setVelY(getVelY() + (fallAcc * deltaTime));
-			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
-				this.getIdle().randomVel();
-				this.getIdle().setNextIdleRandom(1, 2);
-				this.setVelX(getVelX() * 0.8);
-				this.getIdle().setVelX(getVelX());
-				this.setVelY(0);
-				this.setJumping(false);
-			}
-		}
-	}
-
-	public boolean isJumping() {
-		return isJumping;
-	}
-
-	public void setJumping(boolean isJumping) {
-		this.isJumping = isJumping;
+	
+	public boolean isAtMounth(Unit nearestFood) {
+		return new Rectangle2D(getPosX() + getMouthPosX(false), getMouthPosY() - 2,
+				getWidth() - (2 * getMouthPosX(false)), 25).intersects(nearestFood.getBoundary());
 	}
 
 	@Override
@@ -173,6 +169,14 @@ public class Guppycruncher extends Fish implements Renderable{
 		} else {
 			gc.drawImage(GuppycruncherImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
+	}
+
+	public boolean isJumping() {
+		return isJumping;
+	}
+
+	public void setJumping(boolean isJumping) {
+		this.isJumping = isJumping;
 	}
 
 }

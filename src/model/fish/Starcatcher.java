@@ -1,5 +1,6 @@
 package model.fish;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import manager.GameManager;
@@ -31,9 +32,9 @@ public class Starcatcher extends Fish implements Renderable{
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
 		this.setSize(80, 89);
-		this.setMouthPos(15, 44);
+		this.setMouthPos(20, 45);
 		
-		this.setSpeed(60);
+		this.setSpeed(65);
 		this.setVelZero();
 		this.setGrounded(false);
 
@@ -77,6 +78,28 @@ public class Starcatcher extends Fish implements Renderable{
 		this.checkFacingLeft();
 	}
 
+	public void move(int fr) {
+		double deltaTime = 1.0 / fr;
+		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
+		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
+			setGrounded(false);
+		}else if(getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()){
+			setGrounded(true);
+		}
+		if (!isGrounded) {
+			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
+			this.setVelY(getVelY() + (fallAcc * deltaTime));
+			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
+				this.getIdle().randomVel();
+				this.getIdle().setNextIdleRandom(1, 2);
+				this.setVelX(getVelX() * 0.8);
+				this.getIdle().setVelX(getVelX());
+				this.setVelY(0);
+				this.setGrounded(true);
+			}
+		}
+	}
+
 	public void findFood() {
 		if (TankManager.getMoneyList().size() != 0) {
 			Unit nearestFood = null;
@@ -117,28 +140,11 @@ public class Starcatcher extends Fish implements Renderable{
 		}
 	}
 	
-	public void move(int fr) {
-		double deltaTime = 1.0 / fr;
-		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
-		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
-			setGrounded(false);
-		}else if(getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()){
-			setGrounded(true);
-		}
-		if (!isGrounded) {
-			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
-			this.setVelY(getVelY() + (fallAcc * deltaTime));
-			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
-				this.getIdle().randomVel();
-				this.getIdle().setNextIdleRandom(1, 2);
-				this.setVelX(getVelX() * 0.8);
-				this.getIdle().setVelX(getVelX());
-				this.setVelY(0);
-				this.setGrounded(true);
-			}
-		}
+	public boolean isAtMounth(Unit nearestFood) {
+		return new Rectangle2D(getPosX() + getMouthPosX(false), getMouthPosY() - 2,
+				getWidth() - (2 * getMouthPosX(false)), 20).intersects(nearestFood.getBoundary());
 	}
-
+	
 	public void feed(Unit nearestFood) {
 		SoundManager.playShootDiamondSound();
 		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
@@ -155,7 +161,7 @@ public class Starcatcher extends Fish implements Renderable{
 			});
 			feedThread.start();
 		}
-
+	
 	}
 
 	@Override

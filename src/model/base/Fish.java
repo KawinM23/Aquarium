@@ -128,7 +128,6 @@ public abstract class Fish extends Unit {
 	public boolean isAtMounth(Unit nearestFood) {
 			return new Rectangle2D(getPosX() + getMouthPosX(false), getMouthPosY() - 2,
 					getWidth() - (2 * getMouthPosX(false)), 4).intersects(nearestFood.getBoundary());
-	//		return nearestFood.getBoundary().contains(new Point2D(getMouthPosX(), getMouthPosY()));
 		}
 
 	public void headToFood(Unit u) {

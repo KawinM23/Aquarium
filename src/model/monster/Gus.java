@@ -51,7 +51,7 @@ public class Gus extends Monster implements Renderable {
 		if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFood.getCenterX(),
 				nearestFood.getCenterY())) {
 			// eat & levelup
-			System.out.println(this.getName() + " kill " + nearestFood.getName());
+			System.out.println(this.getName() + " eat " + nearestFood.getName());
 			this.eat(nearestFood);
 			this.getIdle().checkIdleMonster();
 		} else {

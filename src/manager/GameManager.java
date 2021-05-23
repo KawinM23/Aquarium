@@ -216,7 +216,7 @@ public class GameManager {
 		InvasionManager.getInvasionList().add(secondInvasion);
 		InvasionManager.getInvasionList().add(thirdInvasion);
 		
-		InvasionManager.setInvasionTimeList(new int[] { 15, 20, 30, 50, 60 });
+		InvasionManager.setInvasionTimeList(new int[] { 40, 50, 60, 60, 70 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
 		//////////////////////////// Setting

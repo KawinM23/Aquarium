@@ -17,8 +17,6 @@ public class Balrog extends Monster implements Renderable {
 
 	private static final Image BalrogImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
 
-	private Hunger hunger;
-
 	public Balrog(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
 
@@ -41,10 +39,10 @@ public class Balrog extends Monster implements Renderable {
 			return;
 		}
 
-		switch (hunger.checkHunger()) {
+		switch (getHunger().checkHunger()) {
 		case 0:
 			// idle
-			this.setVelZero();
+			this.getIdle().checkIdleMonster();;
 			break;
 		case 1:
 			// find food
@@ -54,7 +52,7 @@ public class Balrog extends Monster implements Renderable {
 		for (Fish f : TankManager.getFishList()) {
 			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(f.getCenterX(), f.getCenterY())) {
 				// eat & levelup
-				System.out.println(this.getName() + " kill " + f.getName());
+				System.out.println(this.getName() + " eat " + f.getName());
 				this.eat(f, 0);
 			}
 		}
@@ -88,7 +86,7 @@ public class Balrog extends Monster implements Renderable {
 			// CheckFish
 			if (this.getInnerHitbox(getInnerX(), getInnerY()).contains(nearestFish.getCenterX(),
 					nearestFish.getCenterY())) {
-				System.out.println(this.getName() + " kill " + nearestFish.getName());
+				System.out.println(this.getName() + " eat " + nearestFish.getName());
 				this.eat(nearestFish, 1);
 				this.getIdle().eatFood();
 			} else {
