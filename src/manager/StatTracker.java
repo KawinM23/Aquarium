@@ -22,7 +22,6 @@ public class StatTracker {
 		JSONManager.addMonsterDefeated(getMonsterDefeated());
 		
 		JSONManager.writeJSON();
-		JSONManager.readJSON();
 	}
 
 	public static void clear() {
