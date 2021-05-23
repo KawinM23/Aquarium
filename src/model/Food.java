@@ -43,9 +43,13 @@ public class Food extends Unit implements Renderable {
 		} else if (foodNumber == 3) {
 			return Food3Image;
 		} else if (foodNumber == 4) {
-			return Food4Image;
+			return null;
 		}
 		return null;
+	}
+	
+	public static Image getPotionImage() {
+		return Food4Image;
 	}
 
 	public Food(String name, double posX, double posY, int foodType) {
