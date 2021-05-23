@@ -163,13 +163,10 @@ public class GameManager {
 		StatTracker.clear();
 
 		//////////////////////////
-		Guppy g1 = new Guppy("g1", 500, 300);
+		Guppy g1 = new Guppy("Guppy1", 500, 300);
 		TankManager.addStartFish(g1);
 
-		Guppy g2 = new Guppy("g2", 200, 100);
-		TankManager.addStartFish(g2);
-
-		Guppy g3 = new Guppy("g3", 400, 100);
+		Guppy g3 = new Guppy("Guppy3", 400, 100);
 		g3.setGrowth(200);
 		g3.setStar(true);
 		TankManager.addStartFish(g3);
@@ -199,11 +196,11 @@ public class GameManager {
 		Sylvester sv = new Sylvester("SV", 400, 500, 0);
 		Balrog br = new Balrog("BR", 400, 500, 0);
 		Gus g = new Gus("G", 400, 500, 0);
-		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200, 0);
+		Destructor d = new Destructor("D", 400, GameManager.getBOTTOMHEIGHT() - 200, 0);
 
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(d);
-//		firstInvasion.add(br);
+		firstInvasion.add(sv);
+		firstInvasion.add(br);
 
 		ArrayList<Monster> secondInvasion = new ArrayList<Monster>();
 		secondInvasion.add(g);

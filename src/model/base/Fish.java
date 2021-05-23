@@ -33,7 +33,7 @@ public abstract class Fish extends Unit {
 		this.price = 0;
 		this.hunger = null;
 		this.production = null;
-		this.setIdle(new Idle(this, 15));
+		this.idle = null;
 	}
 
 	public abstract Image getImage();

@@ -82,7 +82,7 @@ public class Ultravore extends Fish implements Renderable {
 					this.feed(nearestFood);
 				} else {
 					// Go to food
-					this.headToUnit(nearestFood);
+					this.headToFood(nearestFood);
 					this.getIdle().slowIdle();
 				}
 			} else {

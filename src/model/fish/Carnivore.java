@@ -61,7 +61,7 @@ public class Carnivore extends Fish implements Renderable {
 					;
 				} else {
 					// Go to food
-					this.headToUnit(nearestFood);
+					this.headToFood(nearestFood);
 					this.getIdle().slowIdle();
 				}
 			} else {
