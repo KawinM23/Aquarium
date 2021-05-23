@@ -54,7 +54,6 @@ public class MainApplication extends Application {
 	      public void run()
 	      {
 	    	StatTracker.calculateStat();
-	    	JSONManager.writeJSON();
 	      }
 	    });
 	    System.out.println("Closing Application ...");
