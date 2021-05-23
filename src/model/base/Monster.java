@@ -36,12 +36,34 @@ public abstract class Monster extends Unit {
 
 	public abstract void continuePause(long duration);
 
+	public Rectangle2D getInnerHitbox(double x, double y) {
+		return new Rectangle2D(getPosX() + x, getPosY() + y, getWidth() - (2 * x), getHeight() - (2 * y));
+	}
+
+	public void checkFacingLeft() {
+		if (getVelX() > 0) {
+			setFacingLeft(false);
+	
+		} else {
+			setFacingLeft(true);
+	
+		}
+	}
+
+	public void decreaseHealth(int damage) {
+		this.health = (getHealth() - damage);
+	}
+
 	public void defeated() {
 		TankManager.produceMoney(new Diamond("Diamond", getCenterX(), getCenterY(), 0));
 		TankManager.remove(this);
 		StatTracker.addMonsterDefeated();
 	}
 
+	
+
+	//GETTER SETTER
+	
 	public int getHealth() {
 		return health;
 	}
@@ -52,10 +74,6 @@ public abstract class Monster extends Unit {
 		}
 	}
 
-	public void decreaseHealth(int damage) {
-		this.health = (getHealth() - damage);
-	}
-
 	public boolean isFacingLeft() {
 		return isFacingLeft;
 	}
@@ -64,27 +82,12 @@ public abstract class Monster extends Unit {
 		this.isFacingLeft = isFacingLeft;
 	}
 
-	public void checkFacingLeft() {
-		if (getVelX() > 0) {
-			setFacingLeft(false);
-
-		} else {
-			setFacingLeft(true);
-
-		}
-	}
-
-
 	public Idle getIdle() {
 		return idle;
 	}
 
 	public void setIdle(Idle idle) {
 		this.idle = idle;
-	}
-
-	public Rectangle2D getInnerHitbox(double x, double y) {
-		return new Rectangle2D(getPosX() + x, getPosY() + y, getWidth() - (2 * x), getHeight() - (2 * y));
 	}
 
 	public int getInnerX() {

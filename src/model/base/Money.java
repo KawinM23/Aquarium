@@ -37,16 +37,8 @@ public abstract class Money extends Unit {
 		this.move(fr);
 	}
 
-	public int getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
 	public void collected() {
-
+	
 		if (!TankManager.getRemoveMoneyList().contains(this)) {
 			if (this instanceof Diamond) {
 				SoundManager.playDiamondSound();
@@ -58,7 +50,7 @@ public abstract class Money extends Unit {
 			Thread collectedThread = new Thread(() -> {
 				try {
 					// Play Sound Effect
-
+	
 					TankManager.remove(this);
 					PlayerController.addMoney(value);
 					StatTracker.addMoneyGain(value);
@@ -69,6 +61,14 @@ public abstract class Money extends Unit {
 			});
 			collectedThread.start();
 		}
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	public long getDisappearTime() {

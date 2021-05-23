@@ -120,10 +120,6 @@ public class Guppy extends Fish implements Renderable {
 
 	}
 
-	public int getAge() {
-		return (int) ((System.nanoTime() - bornTime) / 1e9);
-	}
-
 	@Override
 	public void render(GraphicsContext gc) {
 		if (isStar && !isKing) {
@@ -137,17 +133,17 @@ public class Guppy extends Fish implements Renderable {
 				gc.drawImage(GuppyHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 			}
 		} else {
-
+	
 			if (isFacingLeft()) {
 				gc.drawImage(GuppyLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 			} else {
 				gc.drawImage(GuppyRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 			}
 		}
-
+	
 		gc.setGlobalAlpha(1);
 		gc.setEffect(null);
-
+	
 	}
 
 	public void setGuppy(String string) {
@@ -199,6 +195,10 @@ public class Guppy extends Fish implements Renderable {
 
 	public void setBornTime(long bornTime) {
 		this.bornTime = bornTime;
+	}
+
+	public int getAge() {
+		return (int) ((System.nanoTime() - bornTime) / 1e9);
 	}
 
 	public boolean isKing() {
