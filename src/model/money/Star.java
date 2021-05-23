@@ -7,7 +7,7 @@ import properties.Renderable;
 
 public class Star extends Money implements Renderable{
 
-	private static final Image StarImage = new Image(ClassLoader.getSystemResource("Star.png").toString());
+	private static final Image STAR_IMAGE = new Image(ClassLoader.getSystemResource("Star.png").toString());
 	
 	public Star(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -19,7 +19,7 @@ public class Star extends Money implements Renderable{
 	@Override
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(StarImage, getPosX(), getPosY(), getWidth(), getHeight());
+		gc.drawImage(STAR_IMAGE, getPosX(), getPosY(), getWidth(), getHeight());
 	}
 
 }

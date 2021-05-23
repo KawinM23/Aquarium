@@ -10,7 +10,7 @@ public class Diamond extends Money implements Renderable {
 
 	private int type;
 
-	private static final Image DiamondImage = new Image(ClassLoader.getSystemResource("Diamond.png").toString());
+	private static final Image DIAMOND_IMAGE = new Image(ClassLoader.getSystemResource("Diamond.png").toString());
 
 	public Diamond(String name, double posX, double posY, int type) {
 		super(name, posX, posY);
@@ -40,7 +40,7 @@ public class Diamond extends Money implements Renderable {
 	@Override
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(DiamondImage, getPosX(), getPosY(), getWidth(), getHeight());
+		gc.drawImage(DIAMOND_IMAGE, getPosX(), getPosY(), getWidth(), getHeight());
 	}
 
 	public int getType() {
