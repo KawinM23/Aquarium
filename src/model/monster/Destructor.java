@@ -18,7 +18,7 @@ import properties.Renderable;
 
 public class Destructor extends Monster implements Renderable {
 
-	private static final Image DestructorImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
+	private static final Image DestructorImage = new Image(ClassLoader.getSystemResource("Destructor.png").toString());
 
 	private ArrayList<Unit> targetFishes;
 
@@ -41,7 +41,7 @@ public class Destructor extends Monster implements Renderable {
 	@Override
 	public void update(int fr) {
 		if (this.getHealth() <= 0) {
-			//Defeat
+			// Defeat
 			defeated();
 			return;
 		}
@@ -71,19 +71,12 @@ public class Destructor extends Monster implements Renderable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-
-		gc.setStroke(new Color(1, 0, 0, 1));
-		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		if (isFacingLeft()) {
-			gc.drawImage(DestructorImage, getPosX(), getPosY(), getWidth(), getHeight());
-		} else {
-			gc.drawImage(DestructorImage, getPosX(), getPosY(), getWidth(), getHeight());
-		}
+		gc.drawImage(DestructorImage, getPosX(), getPosY(), getWidth(), getHeight());
 	}
 
 	@Override
 	public void attack() {
-		//Shoot
+		// Shoot
 		Thread attackThread = new Thread(() -> {
 			targetFishes = new ArrayList<Unit>();
 			if (TankManager.getFishList().size() != 0) {
@@ -120,7 +113,7 @@ public class Destructor extends Monster implements Renderable {
 	private void shootMissile(ArrayList<Unit> targetFishes) {
 		Thread shootThread = new Thread(() -> {
 			for (Unit u : targetFishes) {
-				Missile mis = new Missile("Missile", getCenterX(), getCenterY(), 0, u);
+				Missile mis = new Missile("Missile", getCenterX(), getCenterY() - 40, 0, u);
 				TankManager.add(mis);
 			}
 		});

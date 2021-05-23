@@ -56,11 +56,6 @@ public class Sylvester extends Monster implements Renderable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-
-		gc.setStroke(new Color(1, 0, 0, 1));
-		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
-				getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
 			gc.drawImage(SylvesterLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
