@@ -17,7 +17,7 @@ import properties.Renderable;
 
 public class TankManager {
 
-	static Random rand = new Random();
+	private static Random rand = new Random();
 
 	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
 	private static ArrayList<Fish> fishList = new ArrayList<Fish>();
@@ -151,7 +151,6 @@ public class TankManager {
 				// Stat Tracker
 				StatTracker.addFishBought();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -267,7 +266,7 @@ public class TankManager {
 	}
 
 	public static void continuePause(long duration) {
-		// TODO continue pause
+		//continue pause
 		for (Fish f : fishList) {
 			f.getHunger().addLastFed(duration);
 			f.getIdle().addNextIdle(duration);

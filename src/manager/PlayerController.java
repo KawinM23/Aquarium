@@ -2,19 +2,17 @@ package manager;
 
 public class PlayerController {
 
-	private static int money = 10000;
-	private static boolean isPlaying = true;
+	private static boolean isPlaying = false;
 	private static boolean isPause = false;
 	private static boolean isBack = false;
-
 	private static long pauseTime;
-
-	private static boolean isPotion;// Is next food Potion?
-
+	
+	private static int money;
 	private static int maxFood;
-	private static int foodLevel = 1;
-	private static int gunLevel = 1;
-	private static int goal = 0; // GOAL Tracker
+	private static int foodLevel;
+	private static boolean isPotion;// Is next food Potion?
+	private static int gunLevel;
+	private static int goal; // GOAL Tracker
 
 	public static int getMoney() {
 		return money;

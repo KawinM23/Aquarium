@@ -39,16 +39,15 @@ public class Guppy extends Fish implements Renderable {
 		this.setMouthPos(15, 30);
 
 		this.setSpeed(80);
-		this.setVelZero();
 
 		this.setStar(false);
 		this.growth = 0;
 		this.setBornTime(System.nanoTime());
 
-		this.setPrice(100);
 		this.setHunger(new Hunger(8, 25));
 		this.setProduction(new Production(this, 0, 6 + Math.random()));
 		this.setIdle(new Idle(this, 35));
+		this.setPrice(100);
 	}
 
 	@Override

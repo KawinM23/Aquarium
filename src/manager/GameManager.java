@@ -119,16 +119,12 @@ public class GameManager {
 							if (!PlayerController.isBack()) {
 								PlayerController.checkPlaying();
 								InvasionManager.update();
-
 							}
-
 							Pause.hideButtons();
 						}
 						gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-//						gc.drawImage(bc, 0, 0, canvas.getWidth(), canvas.getHeight());
-						gc.setFill(Color.rgb(102, 204, 255));
-						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
-
+//						gc.setFill(Color.rgb(102, 204, 255));
+//						gc.fillRect(0, 0, canvas.getWidth(), GameManager.getBOTTOMHEIGHT());
 						DrawManager.setTankBg(gc, currentTank);
 
 						TankManager.render(gc);

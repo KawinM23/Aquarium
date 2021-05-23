@@ -13,8 +13,6 @@ import org.json.simple.parser.ParseException;
 
 public class JSONManager {
 
-	private static String workingDir = System.getProperty("user.dir");
-
 	private static String playerName = null;
 	private static boolean currentPlayer = true;
 	private static int tank = 0;
@@ -293,19 +291,6 @@ public class JSONManager {
 			} else {
 				return false;
 			}
-		}
-	}
-
-	public static void clear() {
-
-		try (FileWriter file = new FileWriter(workingDir + "/src/jsonFiles/players.json")) {
-			// We can write any JSONArray or JSONObject instance to the file
-
-			file.write(newPlayerList.toJSONString());
-			file.flush();
-			newPlayerList.clear();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 

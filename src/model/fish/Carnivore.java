@@ -28,7 +28,6 @@ public class Carnivore extends Fish implements Renderable {
 		this.setMouthPos(20, 75);
 
 		this.setSpeed(90);
-		this.setVelZero();
 
 		this.setHunger(new Hunger(10, 30));
 		this.setProduction(new Production(this, 3, 9.5 + Math.random()));
