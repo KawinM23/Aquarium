@@ -3,18 +3,18 @@ package manager.base;
 import javafx.scene.image.Image;
 
 public class Trophy {
-	private static Image bronzeTrophyImage = new Image(ClassLoader.getSystemResource("bronzetrophy.jpg").toString());
-	private static Image silverTrophyImage = new Image(ClassLoader.getSystemResource("silvertrophy.jpg").toString());
-	private static Image goldTrophyImage = new Image(ClassLoader.getSystemResource("goldtrophy.jpg").toString());
+	private static Image Trophy1Image = new Image(ClassLoader.getSystemResource("Trophy1.png").toString());
+	private static Image Trophy2Image = new Image(ClassLoader.getSystemResource("Trophy2.png").toString());
+	private static Image Trophy3Image = new Image(ClassLoader.getSystemResource("Trophy3.png").toString());
 
 	public static Image getGoalImage(int goalLevel) {
 		switch (goalLevel) {
 		case 1:
-			return bronzeTrophyImage;
+			return Trophy1Image;
 		case 2:
-			return silverTrophyImage;
+			return Trophy2Image;
 		case 3:
-			return goldTrophyImage;
+			return Trophy3Image;
 		default:
 		}
 		return null;
