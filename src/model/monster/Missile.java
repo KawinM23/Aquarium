@@ -61,6 +61,7 @@ public class Missile extends Monster implements Renderable {
 	}
 	
 	public void defeated() {
+		System.out.println(getName() + " destroyed");
 		SoundManager.playAlienDieSound();
 		TankManager.remove(this);
 	}

@@ -186,6 +186,7 @@ public class Destructor extends Monster implements Renderable {
 			SoundManager.playBodyHitSound();
 		}
 		this.decreaseHealth(PlayerController.getGunDamage());
+		System.out.println(getName() + " Health: " + getHealth());
 	}
 
 	@Override

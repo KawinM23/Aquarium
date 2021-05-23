@@ -176,29 +176,29 @@ public class GameManager {
 
 		Carnivore c1 = new Carnivore("c1", 300, 200);
 		TankManager.addStartFish(c1);
-		
+
 		Star s1 = new Star("s1", 480, 20);
 		TankManager.add(s1);
-		
+
 		Starcatcher sc1 = new Starcatcher("sc1", 300, 400);
 		TankManager.addStartFish(sc1);
-		
+
 		Guppycruncher gc1 = new Guppycruncher("gc1", 300, 100);
 		TankManager.addStartFish(gc1);
-		
+
 		Beetlemuncher bm1 = new Beetlemuncher("bm", 300, 300);
 		TankManager.addStartFish(bm1);
-		
+
 		Breeder b1 = new Breeder("b1", 400, 288);
 		TankManager.addStartFish(b1);
 
 		Ultravore uv1 = new Ultravore("uv1", 100, 500);
 		TankManager.addStartFish(uv1);
 
-		//Invasion
-		Sylvester sv = new Sylvester("Sv", 400, 500, 0);
-		Balrog br = new Balrog("Br", 400, 500, 0);
-		Gus g = new Gus("GUS", 400, 500, 0);
+		// Invasion
+		Sylvester sv = new Sylvester("SV", 400, 500, 0);
+		Balrog br = new Balrog("BR", 400, 500, 0);
+		Gus g = new Gus("G", 400, 500, 0);
 		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200, 0);
 
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
@@ -215,6 +215,7 @@ public class GameManager {
 		InvasionManager.getInvasionList().add(firstInvasion);
 		InvasionManager.getInvasionList().add(secondInvasion);
 		InvasionManager.getInvasionList().add(thirdInvasion);
+		
 		InvasionManager.setInvasionTimeList(new int[] { 15, 20, 30, 50, 60 });
 		InvasionManager.setInvasionTime((long) (System.nanoTime() + (InvasionManager.getInvasionTimeList()[0] * 1e9)));
 
@@ -231,6 +232,7 @@ public class GameManager {
 
 		tankThread = newTankThread(canvas, gc);
 		tankThread.setDaemon(true);
+		System.out.println("Playing Level ???");
 		tankThread.start();
 	}
 
@@ -254,6 +256,7 @@ public class GameManager {
 		PlayerController.setPlaying(true);
 		tankThread = newTankThread(canvas, gc);
 		tankThread.setDaemon(true);
+		System.out.println("Playing Level " + level.getId()[0] + "-" + level.getId()[1]);
 		tankThread.start();
 	}
 

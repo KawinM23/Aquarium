@@ -86,6 +86,7 @@ public class Gus extends Monster implements Renderable {
 					}
 				}
 				getHunger().setLastFedNow();
+				System.out.println(getName() + " Health: " + getHealth());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

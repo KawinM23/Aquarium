@@ -63,6 +63,19 @@ public class Balrog extends Monster implements Renderable {
 	}
 
 	@Override
+	public void render(GraphicsContext gc) {
+		gc.setStroke(new Color(1, 0, 0, 1));
+		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
+		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
+				getHeight() - (2 * getInnerY()));
+		if (isFacingLeft()) {
+			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
+		} else {
+			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
+		}
+	}
+
+	@Override
 	public void attack() {
 		if (TankManager.getFishList().size() != 0) {
 			Unit nearestFish = TankManager.getFishList().get(0);
@@ -116,32 +129,12 @@ public class Balrog extends Monster implements Renderable {
 			SoundManager.playBodyHitSound();
 		}
 		this.decreaseHealth(PlayerController.getGunDamage());
-	}
-
-	@Override
-	public void render(GraphicsContext gc) {
-		gc.setStroke(new Color(1, 0, 0, 1));
-		gc.strokeRect(getPosX(), getPosY(), getWidth(), getHeight());
-		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
-				getHeight() - (2 * getInnerY()));
-		if (isFacingLeft()) {
-			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
-		} else {
-			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
-		}
+		System.out.println(getName() + " Health: " + getHealth());
 	}
 
 	@Override
 	public void continuePause(long duration) {
 		this.getHunger().addLastFed(duration);
-	}
-
-	public Hunger getHunger() {
-		return hunger;
-	}
-
-	public void setHunger(Hunger hunger) {
-		this.hunger = hunger;
 	}
 
 }
