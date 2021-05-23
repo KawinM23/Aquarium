@@ -35,8 +35,7 @@ public class Guppy extends Fish implements Renderable {
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);
 
-		this.setWidth(50);
-		this.setHeight(50);
+		this.setSize(50, 50);
 		this.setMouthPos(15, 30);
 
 		this.setSpeed(80);
@@ -68,11 +67,10 @@ public class Guppy extends Fish implements Renderable {
 	}
 
 	public void feed(Unit nearestFood) {
-		// Play Sound Effect
-
 		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
 			Thread feedThread = new Thread(() -> {
 				try {
+					// Play Sound Effect
 					SoundManager.playEatSound();
 
 					this.getHunger().setLastFedNow();
@@ -89,7 +87,7 @@ public class Guppy extends Fish implements Renderable {
 						}
 						switch (((Food) nearestFood).getFoodLevel()) {
 						case 1:
-							this.setGrowth(getGrowth() + 25); // FoodGrowth 25,50,75
+							this.setGrowth(getGrowth() + 25);
 							break;
 						case 2:
 							this.setGrowth(getGrowth() + 50);
@@ -100,6 +98,7 @@ public class Guppy extends Fish implements Renderable {
 						}
 						TankManager.remove(nearestFood);
 					}
+					
 					if (!isStar) {
 						if (this.growth >= 100 && this.growth < 200 && getProduction().getProductType() != 1) {
 							this.setGuppy("Medium");
@@ -118,7 +117,6 @@ public class Guppy extends Fish implements Renderable {
 			});
 			feedThread.start();
 		}
-
 	}
 
 	@Override
@@ -134,33 +132,33 @@ public class Guppy extends Fish implements Renderable {
 				gc.drawImage(GuppyHungryRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 			}
 		} else {
-	
+
 			if (isFacingLeft()) {
 				gc.drawImage(GuppyLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 			} else {
 				gc.drawImage(GuppyRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 			}
 		}
-	
+
 		gc.setGlobalAlpha(1);
 		gc.setEffect(null);
-	
+
 	}
 
-	public void setGuppy(String string) {
-		if (string == null) {
+	public void setGuppy(String size) {
+		if (size == null) {
 			return;
 		}
-		if (string.equals("Small")) {
+		if (size.equals("Small")) {
 			this.setSize(50, 50);
 			this.setMouthPos(15, 30);
 			this.getProduction().setProductType(0);
-		} else if (string.equals("Medium")) {
+		} else if (size.equals("Medium")) {
 			this.setSize(75, 75);
 			this.setMouthPos(15, 55);
 			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
 			this.getProduction().setProductType(1);
-		} else if (string.equals("Large")) {
+		} else if (size.equals("Large")) {
 			this.setSize(100, 100);
 			this.setMouthPos(15, 75);
 			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
