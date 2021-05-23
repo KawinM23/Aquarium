@@ -11,10 +11,10 @@ import javafx.scene.text.FontWeight;
 
 public class DrawManager {
 
-	private static final Image tank1Bg = new Image(ClassLoader.getSystemResource("Tank1.png").toString());
-	private static final Image tank2Bg = new Image(ClassLoader.getSystemResource("Tank2.jpg").toString());
-	private static final Image tank3Bg = new Image(ClassLoader.getSystemResource("Tank3.jpg").toString());
-	private static final Image tank4Bg = new Image(ClassLoader.getSystemResource("Tank4.jpg").toString());
+	private static final Image TANK1_BG = new Image(ClassLoader.getSystemResource("Tank1.png").toString());
+	private static final Image TANK2_BG = new Image(ClassLoader.getSystemResource("Tank2.jpg").toString());
+	private static final Image TANK3_BG = new Image(ClassLoader.getSystemResource("Tank3.jpg").toString());
+	private static final Image TANK4_BG = new Image(ClassLoader.getSystemResource("Tank4.jpg").toString());
 
 	private static boolean justOpened = true;
 
@@ -94,16 +94,16 @@ public class DrawManager {
 	public static void setTankBg(GraphicsContext gc, int tankNumber) {
 		switch (tankNumber) {
 		case 1:
-			gc.drawImage(tank1Bg, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+			gc.drawImage(TANK1_BG, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 			break;
 		case 2:
-			gc.drawImage(tank2Bg, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+			gc.drawImage(TANK2_BG, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 			break;
 		case 3:
-			gc.drawImage(tank3Bg, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+			gc.drawImage(TANK3_BG, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 			break;
 		case 4:
-			gc.drawImage(tank4Bg, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+			gc.drawImage(TANK4_BG, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 			break;
 		default:
 		}
