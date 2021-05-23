@@ -503,7 +503,7 @@ public class LevelManager {
 		level.setShopItem(shopItem);
 
 		level.setFoodUpgradable(true);
-		level.setWeaponUpgradable(false);
+		level.setWeaponUpgradable(true);
 
 		level.setGoalPrice(7500);
 
@@ -540,7 +540,7 @@ public class LevelManager {
 		level.setShopItem(shopItem);
 
 		level.setFoodUpgradable(true);
-		level.setWeaponUpgradable(false);
+		level.setWeaponUpgradable(true);
 
 		level.setGoalPrice(10000);
 
