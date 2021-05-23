@@ -27,7 +27,7 @@ public class Starcatcher extends Fish implements Renderable{
 	}
 	
 	private boolean isGrounded;
-	private static final int fallAcc = 120;
+	private static final int FALL_ACC = 120;
 
 	public Starcatcher(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -87,7 +87,7 @@ public class Starcatcher extends Fish implements Renderable{
 		}
 		if (!isGrounded) {
 			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
-			this.setVelY(getVelY() + (fallAcc * deltaTime));
+			this.setVelY(getVelY() + (FALL_ACC * deltaTime));
 			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
 				this.getIdle().randomVel();
 				this.getIdle().setNextIdleRandom(1, 2);

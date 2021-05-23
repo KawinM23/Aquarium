@@ -24,10 +24,10 @@ public class Guppycruncher extends Fish implements Renderable{
 	}
 	
 	private boolean isJumping;
-	private final double fallAcc = 120;
-	private final double velYJump = -150;
-	private final double reachHeight = 160;
-	private final double reachDistance = 80;
+	private static final double FALL_ACC = 120;
+	private static final double VEL_Y_JUMP = -150;
+	private static final double REACH_HEIGHT = 160;
+	private static final double REACH_DISTANCE = 80;
 
 	public Guppycruncher(String name, double posX, double posY) {
 		super(name, posX, posY);
@@ -88,7 +88,7 @@ public class Guppycruncher extends Fish implements Renderable{
 		}
 		if (isJumping) {
 			this.setPosY(this.getPosY() + this.getVelY() * deltaTime);
-			this.setVelY(getVelY() + (fallAcc * deltaTime));
+			this.setVelY(getVelY() + (FALL_ACC * deltaTime));
 			if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
 				this.getIdle().randomVel();
 				this.getIdle().setNextIdleRandom(1, 2);
@@ -133,8 +133,8 @@ public class Guppycruncher extends Fish implements Renderable{
 				} else {
 					setVelX(getVelX() / Math.abs(getVelX()) * getSpeed() * 0.8);
 				}
-				if (!isJumping && Math.abs(distanceY(nearestFood)) < reachHeight
-						&& Math.abs(distanceX(nearestFood)) < reachDistance) {
+				if (!isJumping && Math.abs(distanceY(nearestFood)) < REACH_HEIGHT
+						&& Math.abs(distanceX(nearestFood)) < REACH_DISTANCE) {
 					jump();
 				}
 			} else {
@@ -151,7 +151,7 @@ public class Guppycruncher extends Fish implements Renderable{
 
 	private void jump() {
 		// jump
-		setVelY(velYJump);
+		setVelY(VEL_Y_JUMP);
 		setJumping(true);
 	}
 	
