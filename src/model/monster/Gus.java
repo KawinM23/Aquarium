@@ -15,8 +15,9 @@ import properties.Renderable;
 
 public class Gus extends Monster implements Renderable {
 
-	private static final Image GusImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
-
+	private static final Image GusLeftImage = new Image(ClassLoader.getSystemResource("GusLeft.png").toString());
+	private static final Image GusRightImage = new Image(ClassLoader.getSystemResource("GusRight.png").toString());
+	
 	public Gus(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
 
@@ -133,9 +134,9 @@ public class Gus extends Monster implements Renderable {
 		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
 				getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
-			gc.drawImage(GusImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(GusLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
-			gc.drawImage(GusImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(GusRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}
 
