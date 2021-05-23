@@ -92,7 +92,7 @@ public class Breeder extends Fish implements Renderable {
 		if (string == null) {
 			return;
 		}
-		// TODO SIze
+		//Size
 		if (string.equals("Small")) {
 			this.setSize(67, 52);
 			this.setMouthPos(7.5, 20);

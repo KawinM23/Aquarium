@@ -77,11 +77,11 @@ public class Balrog extends Monster implements Renderable {
 					nearestFish.getCenterY())) {
 				System.out.println(this.getName() + " kill " + nearestFish.getName());
 				this.eat(nearestFish, 1);
-
-				this.getIdle().checkIdle();
+				this.getIdle().eatFood();
 			} else {
 				// Go to food
 				this.headToUnit(nearestFish);
+				this.getIdle().slowIdle();
 			}
 
 		} else {

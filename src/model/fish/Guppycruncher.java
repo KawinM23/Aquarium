@@ -111,14 +111,16 @@ public class Guppycruncher extends Fish implements Renderable{
 				if (!isJumping) {
 					this.getIdle().checkIdleX();
 				}
+				setHungry(false);
 				break;
 			case 1:
 				// find food
 				this.findFood();
 				break;
 			case 2:
-				// Very Hungry TODO ChangePic
+				// Very Hungry
 				this.findFood();
+				setHungry(true);
 				break;
 			case 3:
 				// die

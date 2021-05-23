@@ -53,7 +53,7 @@ public abstract class Fish extends Unit {
 				this.findFood();
 				break;
 			case 2:
-				// Very Hungry TODO ChangePic
+				// Very Hungry
 				this.findFood();
 				setHungry(true);
 				break;

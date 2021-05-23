@@ -146,7 +146,7 @@ public class Guppy extends Fish implements Renderable {
 	
 	}
 
-	public void setGuppy(String string) {
+	private void setGuppy(String string) {
 		if (string == null) {
 			return;
 		}
@@ -165,6 +165,10 @@ public class Guppy extends Fish implements Renderable {
 			this.setPos(getPosX() - 12.5, getPosY() - 12.5);
 			this.getProduction().setProductType(2);
 		}
+	}
+
+	public int getAge() {
+		return (int) ((System.nanoTime() - bornTime) / 1e9);
 	}
 
 	public int getGrowth() {
@@ -195,10 +199,6 @@ public class Guppy extends Fish implements Renderable {
 
 	public void setBornTime(long bornTime) {
 		this.bornTime = bornTime;
-	}
-
-	public int getAge() {
-		return (int) ((System.nanoTime() - bornTime) / 1e9);
 	}
 
 	public boolean isKing() {

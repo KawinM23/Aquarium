@@ -52,6 +52,7 @@ public class Starcatcher extends Fish implements Renderable{
 				if (isGrounded) {
 					this.getIdle().checkIdleX();
 				}
+				setHungry(false);
 				break;
 			case 1:
 				// find food
@@ -59,6 +60,7 @@ public class Starcatcher extends Fish implements Renderable{
 				break;
 			case 2:
 				// Very Hungry TODO ChangePic
+				setHungry(true);
 				this.findFood();
 				break;
 			case 3:
