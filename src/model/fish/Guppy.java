@@ -154,7 +154,7 @@ public class Guppy extends Fish implements Renderable {
 		if (string.equals("Small")) {
 			this.setSize(50, 50);
 			this.setMouthPos(15, 30);
-			this.getProduction().setProductType(1);
+			this.getProduction().setProductType(0);
 		} else if (string.equals("Medium")) {
 			this.setSize(75, 75);
 			this.setMouthPos(15, 55);
