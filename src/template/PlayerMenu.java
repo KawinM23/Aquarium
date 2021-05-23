@@ -18,6 +18,7 @@ import manager.SceneController;
 
 public class PlayerMenu {
 	private static Label currentPlayerText = new Label();
+	private static ComboBox currentComboBox;
 
 	public static void display() {
 		Stage window = new Stage();
@@ -33,6 +34,7 @@ public class PlayerMenu {
 		Label changePlayerText = new Label("Change Player to: ");
 
 		ComboBox comboBox1 = new ComboBox();
+		currentComboBox = comboBox1;
 		setDropDown(comboBox1);
 
 		Button confirmButton = new Button("Confirm");
@@ -168,10 +170,19 @@ public class PlayerMenu {
 		for (int i = 0; i < JSONManager.getJsonNameList().size(); i++) {
 			comboBox.getItems().add(JSONManager.getJsonNameList().get(i));
 		}
+		if (JSONManager.getJsonNameList().size() == 0) {
+			comboBox.setDisable(true);
+		} else if (JSONManager.getJsonNameList().size() > 0) {
+			comboBox.setDisable(false);
+		}
 	}
 
 	public static void setCurrentPlayer(String playerName) {
 		currentPlayerText.setText("Current Player: " + playerName);
+	}
+
+	public static ComboBox getCurrentComboBox() {
+		return currentComboBox;
 	}
 
 }

@@ -38,6 +38,7 @@ public class DeletePlayerWindow {
 				PlayerMenu.setCurrentPlayer(JSONManager.getPlayerName());
 				JSONManager.removePlayer(confirmationField.getText());
 				Alert alert = new Alert(AlertType.INFORMATION);
+				PlayerMenu.setDropDown(PlayerMenu.getCurrentComboBox());
 				alert.setTitle("Deleted Successfully");
 				alert.setHeaderText(null);
 				alert.setContentText("Player " + confirmationField.getText() + " removed from database.");
