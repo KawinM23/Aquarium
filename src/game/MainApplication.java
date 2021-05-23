@@ -10,6 +10,7 @@ import manager.JSONManager;
 import manager.LevelManager;
 import manager.SceneController;
 import manager.SoundManager;
+import manager.StatTracker;
 
 public class MainApplication extends Application {
 	@Override
@@ -48,6 +49,15 @@ public class MainApplication extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	    Runtime.getRuntime().addShutdownHook(new Thread()
+	    {
+	      public void run()
+	      {
+	    	StatTracker.calculateStat();
+	    	JSONManager.writeJSON();
+	      }
+	    });
+	    System.out.println("Closing Application ...");
 		return;
 	}
 }

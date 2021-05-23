@@ -604,6 +604,7 @@ public class ButtonManager {
 									SoundManager.setBgm(0);
 									SoundManager.playBgm();
 									SceneController.changeScene("MainMenu");
+									StatTracker.calculateStat();
 
 									SceneController.getManager().clearLevel();
 									GameManager.clearLevel();
