@@ -202,8 +202,8 @@ public class GameManager {
 		Destructor d = new Destructor("d", 400, GameManager.getBOTTOMHEIGHT() - 200, 0);
 
 		ArrayList<Monster> firstInvasion = new ArrayList<Monster>();
-		firstInvasion.add(sv);
-		firstInvasion.add(br);
+		firstInvasion.add(d);
+//		firstInvasion.add(br);
 
 		ArrayList<Monster> secondInvasion = new ArrayList<Monster>();
 		secondInvasion.add(g);

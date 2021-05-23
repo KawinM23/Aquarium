@@ -9,6 +9,7 @@ import model.base.Fish;
 import model.base.Money;
 import model.base.Monster;
 import model.base.Unit;
+import model.fish.Breeder;
 import model.fish.Guppy;
 import model.monster.Destructor;
 import model.monster.Missile;
@@ -164,8 +165,15 @@ public class TankManager {
 				+ (GameManager.getBOTTOMHEIGHT() - f.getHeight() - GameManager.getTOPHEIGHT()) * rand.nextDouble();
 		f.setPos(posX, posY / 2);
 		if (f instanceof Guppy) {
+			((Guppy) f).setStar(false);
+			((Guppy) f).setKing(false);
+			((Guppy) f).setGuppy("Small");
 			((Guppy) f).setBornTime(System.nanoTime());
 		}
+		if (f instanceof Breeder) {
+			((Breeder) f).setBreeder("Small");
+		}
+		
 		addUnitList.add(f);
 		addFishList.add(f);
 		// Random Hunger Fish

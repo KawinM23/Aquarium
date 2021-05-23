@@ -13,12 +13,14 @@ import properties.Idle;
 import properties.Renderable;
 
 public class Missile extends Monster implements Renderable {
-	
-	private static final Image MissileImage = new Image(ClassLoader.getSystemResource("SilverCoin.png").toString());
+
+	private static final Image MissileImage = new Image(ClassLoader.getSystemResource("Missile.png").toString());
+	private static final Image MissileTargetImage = new Image(
+			ClassLoader.getSystemResource("MissileTarget.png").toString());
 
 	private Unit targetFish;
 
-	public Missile(String name, double posX, double posY,int health, Unit targetFish) {
+	public Missile(String name, double posX, double posY, int health, Unit targetFish) {
 		super(name, posX, posY);
 		this.setSize(60, 60);
 		this.setSpeed(80);
@@ -26,7 +28,7 @@ public class Missile extends Monster implements Renderable {
 		this.setMaxHealth(10);
 		this.setMaxHealth(health);
 		this.setHealth(getMaxHealth());
-		
+
 		this.setHunger(new Hunger(0, 0));
 		this.setIdle(new Idle(this, 30));
 
@@ -59,7 +61,7 @@ public class Missile extends Monster implements Renderable {
 	@Override
 	public void continuePause(long duration) {
 	}
-	
+
 	public void defeated() {
 		System.out.println(getName() + " destroyed");
 		SoundManager.playAlienDieSound();
@@ -69,7 +71,7 @@ public class Missile extends Monster implements Renderable {
 	@Override
 	public void update(int fr) {
 		if (this.getHealth() <= 0) {
-			//Defeat
+			// Defeat
 			defeated();
 			return;
 		}
@@ -79,10 +81,8 @@ public class Missile extends Monster implements Renderable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		gc.drawImage(MissileImage, getPosX(), getPosY(),getWidth(),getHeight());
-		gc.setStroke(new Color(1, 0, 0, 1));
-		gc.strokeOval(targetFish.getCenterX() - 20, targetFish.getCenterY() - 20, 40, 40);
+		gc.drawImage(MissileImage, getPosX(), getPosY(), getWidth(), getHeight());
+		gc.drawImage(MissileTargetImage, targetFish.getCenterX() - 50, targetFish.getCenterY() - 50, 100, 100);
 	}
 
 	public Unit getTargetFish() {

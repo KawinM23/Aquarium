@@ -81,6 +81,7 @@ public class Guppy extends Fish implements Renderable {
 					if (nearestFood instanceof Food) {
 						if (growth < 200 && ((Food) nearestFood).getFoodType() == 2) {
 							this.die();
+							TankManager.remove(nearestFood);
 							return;
 						} else if (growth == 200 && ((Food) nearestFood).getFoodType() == 2) {
 							this.setStar(true);
@@ -146,7 +147,7 @@ public class Guppy extends Fish implements Renderable {
 	
 	}
 
-	private void setGuppy(String string) {
+	public void setGuppy(String string) {
 		if (string == null) {
 			return;
 		}

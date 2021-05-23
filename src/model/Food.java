@@ -18,7 +18,7 @@ public class Food extends Unit implements Renderable {
 	private static final Image Food1Image = new Image(ClassLoader.getSystemResource("Food1.png").toString());
 	private static final Image Food2Image = new Image(ClassLoader.getSystemResource("Food2.png").toString());
 	private static final Image Food3Image = new Image(ClassLoader.getSystemResource("Food3.png").toString());
-	private static final Image Food4Image = new Image(ClassLoader.getSystemResource("Food3.png").toString());// TODO
+	private static final Image Food4Image = new Image(ClassLoader.getSystemResource("StarPotion.png").toString());// TODO
 																												// Image
 
 	// 1 2 3 : Food Types, 4 : Potion
@@ -66,7 +66,7 @@ public class Food extends Unit implements Renderable {
 			this.setFoodLevel(PlayerController.getFoodLevel());
 		} else if (foodType == 2) {
 			this.setWidth(40);
-			this.setHeight(40);
+			this.setHeight(50);
 			this.setFoodLevel(0);
 		}
 		this.setPos(posX - (getWidth() / 2), posY - (getHeight() / 2)); // Slide to match mouse position
