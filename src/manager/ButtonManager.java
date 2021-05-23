@@ -245,6 +245,7 @@ public class ButtonManager {
 								public void run() {
 									// TODO Auto-generated method stub
 									SoundManager.nextSoundVolumeLevel();
+									SceneController.updatePlayerSettings();
 									button.setText("Sound: "
 											+ SoundManager.getVolumeLevelWord(SoundManager.getSoundVolumeLevel()));
 								}
@@ -266,6 +267,7 @@ public class ButtonManager {
 								public void run() {
 									// TODO Auto-generated method stub
 									SoundManager.nextBgmVolumeLevel();
+									SceneController.updatePlayerSettings();
 									button.setText("Music: "
 											+ SoundManager.getVolumeLevelWord(SoundManager.getBgmVolumeLevel()));
 								}
