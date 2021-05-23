@@ -491,7 +491,8 @@ public class ButtonManager {
 
 									SoundManager.setBgm(1);
 									SoundManager.playBgm();
-
+									
+									SceneController.updatePlayerSettings();
 									SceneController.changeScene("MainMenu");
 								}
 							});
