@@ -9,15 +9,15 @@ import properties.Idle;
 
 public abstract class Monster extends Unit {
 
+	private boolean isFacingLeft;
+	
+	private int innerX = 20;
+	private int innerY = 20;
+	
 	private int maxHealth;
 	private int health;
 	private Hunger hunger;
 	private Idle idle;
-
-	private int innerX = 20;
-	private int innerY = 20;
-
-	private boolean isFacingLeft;
 
 	public Monster(String name, double posX, double posY) {
 		super(name, posX, posY);
