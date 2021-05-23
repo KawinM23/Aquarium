@@ -16,11 +16,6 @@ import properties.Renderable;
 
 public class Guppy extends Fish implements Renderable {
 
-	private boolean isStar; // StarGuppy
-	private boolean isKing;
-	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
-	private long bornTime;
-
 	private static final Image GuppyLeftImage = new Image(ClassLoader.getSystemResource("GuppyLeft.png").toString());
 	private static final Image GuppyRightImage = new Image(ClassLoader.getSystemResource("GuppyRight.png").toString());
 	private static final Image GuppyHungryLeftImage = new Image(
@@ -31,6 +26,11 @@ public class Guppy extends Fish implements Renderable {
 	public Image getImage() {
 		return GuppyLeftImage;
 	}
+
+	private boolean isStar; // StarGuppy
+	private boolean isKing;
+	private int growth; // 0-99 Baby / 100+ Medium / 200 Large
+	private long bornTime;
 
 	public Guppy(String name, double posX, double posY) {
 		super(name, posX, posY);

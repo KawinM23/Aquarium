@@ -370,7 +370,7 @@ public class ShopController {
 			}
 			// 2 = Green Potion
 			else if (((Food) unit).getFoodType() == 2) {
-				return ((Food) unit).getPotionImage();
+				return ((Food) unit).getImage(4);
 			}
 		}
 		return null;

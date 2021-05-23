@@ -10,20 +10,17 @@ import properties.Renderable;
 
 public class Food extends Unit implements Renderable {
 
-	private int foodType; // 1 Normal , 2 Potion
-	private int foodLevel; // 1,2,3
-	private int maxFood; //
-
-	// TODO DifferentPic + LAG WHEN FIRST CALL GETTER FUNCTION !!!BUG!!!
+	//Image
 	private static final Image Food1Image = new Image(ClassLoader.getSystemResource("Food1.png").toString());
 	private static final Image Food2Image = new Image(ClassLoader.getSystemResource("Food2.png").toString());
 	private static final Image Food3Image = new Image(ClassLoader.getSystemResource("Food3.png").toString());
 	private static final Image Food4Image = new Image(ClassLoader.getSystemResource("StarPotion.png").toString());// TODO
-																												// Image
+	
+	private int foodType; // 1 Normal , 2 Potion
+	private int foodLevel; // 1,2,3
 
 	// 1 2 3 : Food Types, 4 : Potion
 	public Image getImage(int foodNumber) {
-		// TODO Add the rest of images
 		if (foodNumber == 1) {
 			return Food1Image;
 		} else if (foodNumber == 2) {
@@ -39,7 +36,6 @@ public class Food extends Unit implements Renderable {
 
 	// 1 2 3 : Food Types, 4 : Potion
 	public static Image getStaticImage(int foodNumber) {
-		// TODO Add the rest of images
 		if (foodNumber == 1) {
 			return Food1Image;
 		} else if (foodNumber == 2) {
@@ -47,14 +43,9 @@ public class Food extends Unit implements Renderable {
 		} else if (foodNumber == 3) {
 			return Food3Image;
 		} else if (foodNumber == 4) {
-			return null;
+			return Food4Image;
 		}
 		return null;
-	}
-	
-	public Image getPotionImage() {
-		// TODO Add the rest of images
-		return Food4Image;
 	}
 
 	public Food(String name, double posX, double posY, int foodType) {
@@ -76,11 +67,11 @@ public class Food extends Unit implements Renderable {
 
 	@Override
 	public void update(int fr) {
+		this.move(fr);
 		if (this.getPosY() + this.getHeight() >= GameManager.getBOTTOMHEIGHT()) {
 			TankManager.remove(this);
 			return;
 		}
-		this.move(fr);
 	}
 
 	@Override
@@ -94,7 +85,6 @@ public class Food extends Unit implements Renderable {
 		} else if (getFoodLevel() == 3) {
 			gc.drawImage(Food3Image, getPosX(), getPosY(), getWidth(), getHeight());
 		}
-
 	}
 
 	public int getFoodType() {
@@ -111,14 +101,6 @@ public class Food extends Unit implements Renderable {
 
 	public void setFoodLevel(int foodLevel) {
 		this.foodLevel = foodLevel;
-	}
-
-	public int getMaxFood() {
-		return maxFood;
-	}
-
-	public void setMaxFood(int maxFood) {
-		this.maxFood = maxFood;
 	}
 
 }

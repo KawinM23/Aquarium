@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import manager.GameManager;
 import manager.PlayerController;
 import manager.SoundManager;
@@ -56,9 +55,7 @@ public class Destructor extends Monster implements Renderable {
 			this.attack();
 			break;
 		}
-
 		this.move(fr);
-		this.checkFacingLeft();
 	}
 
 	public void move(int fr) {

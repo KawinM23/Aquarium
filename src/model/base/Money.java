@@ -15,8 +15,8 @@ public abstract class Money extends Unit {
 
 	public Money(String name, double posX, double posY) {
 		super(name, posX, posY);
-		this.setVel(0, 40);
 		this.setSize(45, 45);
+		this.setVel(0, 40);
 
 		this.setValue(0);
 		this.setDisappearTime(0);
