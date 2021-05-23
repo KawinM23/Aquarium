@@ -17,15 +17,17 @@ import properties.Idle;
 import properties.Production;
 import properties.Renderable;
 
-public class Starcatcher extends Fish implements Renderable{
-	
-	private static final Image StarcatcherImage = new Image(ClassLoader.getSystemResource("Starcatcher.png").toString());
-	private static final Image StarcatcherHungryImage = new Image(ClassLoader.getSystemResource("StarcatcherHungry.png").toString());
-	
+public class Starcatcher extends Fish implements Renderable {
+
+	private static final Image StarcatcherImage = new Image(
+			ClassLoader.getSystemResource("Starcatcher.png").toString());
+	private static final Image StarcatcherHungryImage = new Image(
+			ClassLoader.getSystemResource("StarcatcherHungry.png").toString());
+
 	public Image getImage() {
 		return StarcatcherImage;
 	}
-	
+
 	private boolean isGrounded;
 	private static final int FALL_ACC = 120;
 
@@ -33,17 +35,16 @@ public class Starcatcher extends Fish implements Renderable{
 		super(name, posX, posY);
 		this.setSize(80, 89);
 		this.setMouthPos(20, 45);
-		
+
 		this.setSpeed(65);
-		this.setVelZero();
 		this.setGrounded(false);
 
 		this.setHunger(new Hunger(10, 30)); // Hunger 10sec
 		this.setProduction(new Production(this, 4, 0));
-		this.setIdle(new Idle(this,25));
+		this.setIdle(new Idle(this, 25));
 		this.setPrice(750);
 	}
-	
+
 	@Override
 	public void update(int fr) {
 		if (!InvasionManager.isInvaded()) {
@@ -69,8 +70,6 @@ public class Starcatcher extends Fish implements Renderable{
 				this.die();
 				return;
 			}
-
-			this.getProduction().checkProduce();
 		} else {
 			getIdle().checkIdleX();
 		}
@@ -80,9 +79,9 @@ public class Starcatcher extends Fish implements Renderable{
 	public void move(int fr) {
 		double deltaTime = 1.0 / fr;
 		this.setPosX(this.getPosX() + this.getVelX() * deltaTime);
-		if(getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
+		if (getPosY() < GameManager.getBOTTOMHEIGHT() - getHeight()) {
 			setGrounded(false);
-		}else if(getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()){
+		} else if (getPosY() >= GameManager.getBOTTOMHEIGHT() - getHeight()) {
 			setGrounded(true);
 		}
 		if (!isGrounded) {
@@ -130,20 +129,20 @@ public class Starcatcher extends Fish implements Renderable{
 					}
 				}
 			} else {
-				//No food
+				// No food
 				this.getIdle().checkIdleX();
 			}
 		} else {
-			//No food
+			// No food
 			this.getIdle().checkIdleX();
 		}
 	}
-	
+
 	public boolean isAtMounth(Unit nearestFood) {
 		return new Rectangle2D(getPosX() + getMouthPosX(false), getMouthPosY() - 2,
 				getWidth() - (2 * getMouthPosX(false)), 20).intersects(nearestFood.getBoundary());
 	}
-	
+
 	public void feed(Unit nearestFood) {
 		SoundManager.playShootDiamondSound();
 		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
@@ -151,7 +150,7 @@ public class Starcatcher extends Fish implements Renderable{
 				try {
 					TankManager.produceMoney(new Diamond("Diamond", this.getCenterX(), this.getCenterY() - 20, 1));
 					TankManager.remove(nearestFood);
-					
+
 					this.getHunger().setLastFedNow();
 					this.getHunger().addLastFedRandom(0, 1);
 				} catch (Exception e) {
@@ -160,7 +159,7 @@ public class Starcatcher extends Fish implements Renderable{
 			});
 			feedThread.start();
 		}
-	
+
 	}
 
 	@Override
@@ -179,7 +178,5 @@ public class Starcatcher extends Fish implements Renderable{
 	public void setGrounded(boolean isGrounded) {
 		this.isGrounded = isGrounded;
 	}
-	
-	
 
 }
