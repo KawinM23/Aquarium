@@ -17,6 +17,7 @@ public class SceneController {
 	private static ArrayList<Scene> sceneList = new ArrayList<Scene>();
 	private static ArrayList<String> nameList = new ArrayList<String>();
 	private static String currentSceneName;
+	private static String lastPlayedTank;
 	private static Stage stage;
 	private static String[] startingMenuTexts = { "Continue", "Select Level", "Statistics", "Change Player", "Credits",
 			"Music: Normal", "Sound: Normal", "Quit" };
@@ -38,10 +39,6 @@ public class SceneController {
 	private static Scene loseScene = (new WinLose(0)).getScene();
 
 	private static GameManager manager = new GameManager();
-
-	// Declare a primary stage to change scenes in
-	public SceneController() {
-	}
 
 	public static void initializeScenes() {
 		Scene startingMenuScene = (new Menu1(startingMenuTexts)).getScene();
@@ -124,6 +121,7 @@ public class SceneController {
 
 						manager.startLevel(LevelManager.getLevel(tankNumber, levelNumber));
 						SceneController.changeScene(manager.getTankScene());
+						setLastPlayedTank(tankNumber, levelNumber);
 					}
 				});
 
@@ -148,6 +146,9 @@ public class SceneController {
 
 						manager.startLevel(LevelManager.getLatestLevel());
 						SceneController.changeScene(manager.getTankScene());
+						setLastPlayedTank(LevelManager.getLatestLevel().getId()[0],
+								LevelManager.getLatestLevel().getId()[1]);
+
 					}
 				});
 
@@ -296,6 +297,14 @@ public class SceneController {
 
 	public static void setManager(GameManager manager) {
 		SceneController.manager = manager;
+	}
+
+	public static void setLastPlayedTank(int tankNumber, int levelNumber) {
+		lastPlayedTank = "" + tankNumber + levelNumber;
+	}
+	
+	public static String getLastPlayedTank() {
+		return lastPlayedTank;
 	}
 
 }
