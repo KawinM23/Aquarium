@@ -138,13 +138,11 @@ public abstract class Fish extends Unit {
 	}
 
 	public void feed(Unit nearestFood) {
-		// Play Sound Effect
 		if (!TankManager.getRemoveFoodList().contains(nearestFood)) {
 			Thread feedThread = new Thread(() -> {
 				try {
 					// Play Sound Effect
 					SoundManager.playEatSound();
-					
 					TankManager.remove(nearestFood);
 					this.hunger.setLastFedNow();
 					this.hunger.addLastFedRandom(0, 1);
@@ -155,7 +153,6 @@ public abstract class Fish extends Unit {
 			});
 			feedThread.start();
 		}
-
 	}
 
 	public void die() {
@@ -166,6 +163,8 @@ public abstract class Fish extends Unit {
 		});
 		fishDieThread.start();
 	}
+	
+	//GETTER SETTER
 
 	public int getPrice() {
 		return price;
@@ -229,12 +228,14 @@ public abstract class Fish extends Unit {
 
 	public double getMouthPosX(boolean abs) {
 		if (abs) {
+			//Absolute Position to Tank
 			if (isFacingLeft) {
 				return getPosX() + mouthPosX;
 			} else {
 				return getPosX() + getWidth() - mouthPosX;
 			}
 		} else {
+			//Relative Position to Fish
 			return mouthPosX;
 		}
 	}
