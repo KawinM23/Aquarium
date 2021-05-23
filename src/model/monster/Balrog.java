@@ -15,12 +15,13 @@ import properties.Renderable;
 
 public class Balrog extends Monster implements Renderable {
 
-	private static final Image BalrogImage = new Image(ClassLoader.getSystemResource("Guppy.png").toString());
-
+	private static final Image BalrogLeftImage = new Image(ClassLoader.getSystemResource("BalrogLeft.png").toString());
+	private static final Image BalrogRightImage = new Image(ClassLoader.getSystemResource("BalrogRight.png").toString());
+	
 	public Balrog(String name, double posX, double posY, int health) {
 		super(name, posX, posY);
 
-		this.setSize(135, 200);
+		this.setSize(170, 200);
 		this.setSpeed(80);
 
 		this.setMaxHealth(220);
@@ -67,9 +68,9 @@ public class Balrog extends Monster implements Renderable {
 		gc.strokeRect(getPosX() + getInnerX(), getPosY() + getInnerY(), getWidth() - (2 * getInnerX()),
 				getHeight() - (2 * getInnerY()));
 		if (isFacingLeft()) {
-			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(BalrogLeftImage, getPosX(), getPosY(), getWidth(), getHeight());
 		} else {
-			gc.drawImage(BalrogImage, getPosX(), getPosY(), getWidth(), getHeight());
+			gc.drawImage(BalrogRightImage, getPosX(), getPosY(), getWidth(), getHeight());
 		}
 	}
 
